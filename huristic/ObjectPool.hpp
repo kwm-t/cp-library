@@ -29,6 +29,6 @@ public:
 		return data_.size();
 	}
 private:
-	vector<T> data_;
-	stack<int> garbage_;
+	std::vector<T> data_;
+	std::stack<int> garbage_;
 };
