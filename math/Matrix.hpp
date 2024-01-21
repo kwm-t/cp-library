@@ -78,4 +78,30 @@ struct Matrix {
 			std::cout << std::endl;
 		}
 	}
+	mint det() {
+		auto copyMat = mat;
+		mint res = 1;
+		for (int i = 0; i < row; ++i) {
+			for (int j = i; j < row; ++j) {
+				if (0 == copyMat[j][i])continue;
+				if (i != j) {
+					std::swap(copyMat[i], copyMat[j]);
+					res *= -1;
+				}
+			}
+			if (0 == copyMat[i][i])return 0;
+			res *= copyMat[i][i];
+			mint inv = mint(1) / copyMat[i][i];
+			for (int j = 0; j < column; ++j) {
+				copyMat[i][j] *= inv;
+			}
+			for (int j = i + 1; j < row; ++j) {
+				mint c = copyMat[j][i];
+				for (int k = i; k < column; ++k) {
+					copyMat[j][k] -= c * copyMat[i][k];
+				}
+			}
+		}
+		return res;
+	}
 };
