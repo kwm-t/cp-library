@@ -1,9 +1,7 @@
 // 区間加算・区間最小値取得
 using S = long long;
 using F = long long;
-
 const S INF = 8e18;
-
 S op(S a, S b) { return std::min(a, b); }
 S e() { return INF; }
 S mapping(F f, S x) { return f + x; }
@@ -19,9 +17,7 @@ int main() {
 // 区間加算・区間最大値取得
 using S = long long;
 using F = long long;
-
 const S INF = 8e18;
-
 S op(S a, S b) { return std::max(a, b); }
 S e() { return -INF; }
 S mapping(F f, S x) { return f + x; }
@@ -40,7 +36,6 @@ struct S {
 	int size;
 };
 using F = long long;
-
 S op(S a, S b) { return { a.value + b.value, a.size + b.size }; }
 S e() { return { 0, 0 }; }
 S mapping(F f, S x) { return { x.value + f * x.size, x.size }; }
@@ -56,10 +51,8 @@ int main() {
 // 区間変更・区間最小値取得
 using S = long long;
 using F = long long;
-
 const S INF = 8e18;
 const F ID = 8e18;
-
 S op(S a, S b) { return std::min(a, b); }
 S e() { return INF; }
 S mapping(F f, S x) { return (f == ID ? x : f); }
@@ -75,10 +68,8 @@ int main() {
 // 区間変更・区間最大値取得
 using S = long long;
 using F = long long;
-
 const S INF = 8e18;
 const F ID = 8e18;
-
 S op(S a, S b) { return std::max(a, b); }
 S e() { return -INF; }
 S mapping(F f, S x) { return (f == ID ? x : f); }
@@ -97,9 +88,7 @@ struct S {
 	int size;
 };
 using F = long long;
-
 const F ID = 8e18;
-
 S op(S a, S b) { return { a.value + b.value, a.size + b.size }; }
 S e() { return { 0, 0 }; }
 S mapping(F f, S x) {
@@ -120,9 +109,7 @@ int main() {
 
 using S = long long;
 using F = long long;
-
 const S INF = 8e18;
-
 S op(S a, S b) { return std::min(a, b); }
 S e() { return INF; }
 S mapping(F f, S x) { return f + x; }
@@ -138,9 +125,7 @@ int main() {
 // 区間加算・区間最大値取得
 using S = long long;
 using F = long long;
-
 const S INF = 8e18;
-
 S op(S a, S b) { return std::max(a, b); }
 S e() { return -INF; }
 S mapping(F f, S x) { return f + x; }
@@ -159,7 +144,6 @@ struct S {
 	int size;
 };
 using F = long long;
-
 S op(S a, S b) { return { a.value + b.value, a.size + b.size }; }
 S e() { return { 0, 0 }; }
 S mapping(F f, S x) { return { x.value + f * x.size, x.size }; }
@@ -175,10 +159,8 @@ int main() {
 // 区間変更・区間最小値取得
 using S = long long;
 using F = long long;
-
 const S INF = 8e18;
 const F ID = 8e18;
-
 S op(S a, S b) { return std::min(a, b); }
 S e() { return INF; }
 S mapping(F f, S x) { return (f == ID ? x : f); }
@@ -194,10 +176,8 @@ int main() {
 // 区間変更・区間最大値取得
 using S = long long;
 using F = long long;
-
 const S INF = 8e18;
 const F ID = 8e18;
-
 S op(S a, S b) { return std::max(a, b); }
 S e() { return -INF; }
 S mapping(F f, S x) { return (f == ID ? x : f); }
@@ -216,9 +196,7 @@ struct S {
 	int size;
 };
 using F = long long;
-
 const F ID = 8e18;
-
 S op(S a, S b) { return { a.value + b.value, a.size + b.size }; }
 S e() { return { 0, 0 }; }
 S mapping(F f, S x) {
