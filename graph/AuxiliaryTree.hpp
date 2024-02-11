@@ -13,7 +13,7 @@ public:
 		logInit(cur);
 		sparseTableInit(cur);
 	}
-	// root‚Æˆ³k–Ø‚ğ•Ô‚·(‚½‚¾‚µˆ³k–Ø‚Íroot‚©‚ç‚Ì—LŒø–Ø)
+	// root‚Æˆ³k–Ø‚ğ•Ô‚·(‚½‚¾‚µˆ³k–Ø‚Íroot‚©‚ç‚Ì—LŒü–Ø)
 	int createCompressionTree(std::vector<int>&vs, std::vector<std::vector<int>> &graph) {
 		std::sort(vs.begin(), vs.end(), [&](int l, int r) {return fs[l] < fs[r]; });
 		int sz = vs.size();
