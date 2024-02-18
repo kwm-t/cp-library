@@ -1,20 +1,16 @@
-double ok = 0.0;
-double ng = 1000.0;
-for (int i = 0; i < 100; ++i) {//tle‚·‚é‚È‚ç’²®‚·‚é
-	double mid = (ok + ng) / 2;
-	if (f(mid)) ok = mid;
-	else ng = mid;
+template <class T, class F>
+T binarySearch(T ok, T ng, const F &f) {
+	while (abs(ok - ng) > 1) {
+		T mid = (ok + ng) / 2;
+		(f(mid) ? ok : ng) = mid;
+	}
+	return ok;
 }
-printf("%.10f\n", ok);
-
-long long ng = -1;
-long long ok = LINF + 1;
-while (1 < abs(ok - ng)) {
-	long long mid = (ng + ok) / 2;
-	auto check = [&]() {
-		return false;
-	};
-	if (check()) ok = mid;
-	else ng = mid;
+template <class T, class F>
+T binarySearchDouble(T ok, T ng, const F &f, int counter = 100) {
+	while (counter--) {
+		T mid = (ok + ng) / 2;
+		(f(mid) ? ok : ng) = mid;
+	}
+	return ok;
 }
-cout << ok << endl;
