@@ -1,6 +1,6 @@
 printf("%.16f\n", ans);
 printf("%.16Lf\n", ans);
-cout << setprecision(16) << endl;
+cout << fixed << setprecision(16) << endl;
 
 //再帰じゃなくて下から見るタイプ
 rep(i, 1 << n) {
