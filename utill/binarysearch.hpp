@@ -14,3 +14,7 @@ T binarySearchDouble(T ok, T ng, const F &f, int counter = 100) {
 	}
 	return ok;
 }
+/*
+auto f = [&](long long x)->bool {
+	return true;
+};*/
