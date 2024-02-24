@@ -2,20 +2,26 @@ template<typename T>
 class ErasablePriorityQueue {
 public:
 	ErasablePriorityQueue() {}
-	void add(T val) {
-		pq.first.push(val);
+	void add(const T &val) {
+		pq.push(val);
 	}
-	void erase(T val) {
-		pq.second.push(val);
+	void erase(const T &val) {
+		dpq.push(val);
 	}
-	T top(T empty) {
-		while (!pq.second.empty() && pq.first.top() == pq.second.top()) {
-			pq.first.pop();
-			pq.second.pop();
+	T top(const T &empty) {
+		while (!dpq.empty() && pq.top() == dpq.top()) {
+			pq.pop();
+			dpq.pop();
 		}
-		if (pq.first.empty())return empty;
-		return pq.first.top();
+		if (pq.empty())return empty;
+		return pq.top();
+	}
+	size_t size() {
+		return pq.size() - dpq.size();
+	}
+	bool empty() {
+		return 0 == (int)this->size();
 	}
 private:
-	std::pair<std::priority_queue<T>, std::priority_queue<T>>pq;
+	std::priority_queue<T>pq, dpq;
 };
