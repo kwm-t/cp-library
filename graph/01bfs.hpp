@@ -1,37 +1,47 @@
-template<typename T>
-struct bfs01 {
-	struct Edge {
-		int to;
-		T cost;
-		Edge(int _to, T _cost) :to(_to), cost(_cost) {}
-	};
-	int sz;
-	std::vector<std::vector<Edge>>edge;
-	std::vector<T>dp;
+#include <vector>
+#include <deque>
+class bfs01 {
+public:
 	bfs01(int sz) :sz(sz) {
 		edge.resize(sz);
 		dp.resize(sz, INF);
 	}
-	void addEdge(int v, int w, T c) {
+	void addEdge(const int v, const  int w, const  int c) {
 		edge[v].emplace_back(w, c);
 		edge[w].emplace_back(v, c);
 	}
-	void solve(int x) {
+	int solve(const int st, const  int ed) {
 		std::deque<int> q;
-		dp[0] = 0;
-		q.push_back(0);
+		dp[st] = 0;
+		q.push_back(st);
 		while (!q.empty()) {
 			int v = q.front();
 			q.pop_front();
 			for (auto e : edge[v]) {
 				int nv = e.to;
-				if (nv.cost <= x) {//0
-					if (chmin(dp[nv], dp[v])) q.push_front(nv);
+				if (0 == e.cost) {//0
+					if (dp[v] < dp[nv]) {
+						dp[nv] = dp[v];
+						q.push_front(nv);
+					}
 				}
 				else {//1
-					if (chmin(dp[nv], dp[v] + 1)) q.push_back(nv);
+					if (dp[v] + 1 < dp[nv]) {
+						dp[nv] = dp[v] + 1;
+						q.push_back(nv);
+					}
 				}
 			}
 		}
+		return dp[ed];
 	}
+private:
+	struct Edge {
+		int to;
+		int cost;
+		Edge(int _to, int _cost) :to(_to), cost(_cost) {}
+	};
+	int sz;
+	std::vector<std::vector<Edge>>edge;
+	std::vector<int>dp;
 };
