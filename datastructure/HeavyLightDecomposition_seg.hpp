@@ -84,8 +84,7 @@ struct HeavyLightDecomposition {
 	}
 	// point update
 	void update_point(int u, S x) {
-		auto get = seg.get(in[u]);
-		seg.set(in[u], get + 1);
+		seg.set(in[u], x);
 	}
 	void debug() {
 		for (int i = 0; i < n; ++i) std::cout << seg.prod(i, i + 1) << " ";
