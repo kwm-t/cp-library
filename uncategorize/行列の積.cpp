@@ -3,21 +3,22 @@ using namespace std;
 //はxor ver
 vector<vector<mint>> mul(const vector<vector<mint>>&A,const vector<vector<mint>>&B) {
 	vector<vector<mint>> C(A.size(), vector<mint>(B[0].size()));
-	rep(i, A.size()) rep(j, B[0].size()) rep(k, A[0].size()) C[i][j] += A[i][k] * B[k][j];
+	rep(i, A.size()) rep(k, A[0].size()) rep(j, B[0].size())  C[i][j] += A[i][k] * B[k][j];
 	//rep(i, A.size()) rep(j, B[0].size()) rep(k, A[0].size()) C[i][j] += A[i][k] & B[k][j];
 	return C;
 }
 template<typename T>
-vector<vector<T>> mul(const vector<vector<T>>&A,const vector<vector<T>>&B) {
-	vector<vector<T>> C(A.size(), vector<T>(B[0].size()));
+std::vector<vector<T>> mul(const std::vector<std::vector<T>>&A, const std::vector<std::vector<T>>&B) {
+	std::vector<vector<T>> C(A.size(), std::vector<T>(B[0].size()));
 	for (int i = 0; i < (int)A.size(); ++i) {
-		for (int j = 0; j < (int)B.size(); ++j) {
-			for (int k = 0; k < (int)C.size(); ++k) C[i][j] += A[i][k] * B[k][j];
+		for (int k = 0; k < (int)A[0].size(); ++k) {
+			for (int j = 0; j < (int)B[0].size(); ++j) {
+				C[i][j] += A[i][k] * B[k][j];
+			}
 		}
 	}
 	return C;
 }
-
 int main() {
 	int k, m;
 	cin >> k >> m;
