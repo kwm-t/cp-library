@@ -10,6 +10,22 @@ std::string add(const std::string &s, int d) {
 	std::reverse(ret.begin(), ret.end());
 	return ret;
 }
+std::string multiplication(std::string s, int n) {
+	std::reverse(s.begin(), s.end());
+	std::string t;
+	int now = 0;
+	for(int i = 0;i < s.size();++i){
+		now += (s[i] - '0') * n;
+		t += '0' + (now % 10);
+		now /= 10;
+	}
+	while (now) {
+		t += '0' + (now % 10);
+		now /= 10;
+	}
+	std::reverse(t.begin(), t.end());
+	return t;
+}
 std::string divide(const std::string &s, int d) {
 	int n = 0;
 	std::string ret;
