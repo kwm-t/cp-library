@@ -2,39 +2,39 @@ namespace beam_search {
 
 	// ビームサーチの設定
 	struct Config {
-		int max_turn;
-		size_t beam_width;
-		size_t tour_capacity;
-		uint32_t hash_map_capacity;
+		int maxTurn;				// ビームサーチ深さ上限
+		size_t beamWidth;			// ビーム幅
+		size_t tourCapacity;		// オイラーツアーのキャパシティ
+		uint32_t hashMapCapacity;	// HashMapのキャパシティ
 	};
 
 	// 連想配列
 	// Keyにハッシュ関数を適用しない
 	// open addressing with linear probing
-	// unordered_mapよりも速い
-	// nは格納する要素数よりも16倍ほど大きくする
-	template <class Key, class T>
+	// unordered_mapより高速
+	// nは格納する要素数よりも16倍ほど大きく確保をする
+	template <class Key, class Value>
 	struct HashMap {
 	public:
 		explicit HashMap(uint32_t n) {
 			if (n % 2 == 0) {
 				++n;
 			}
-			n_ = n;
-			valid_.resize(n_, false);
-			data_.resize(n_);
+			capacity = n;
+			valid.resize(capacity, false);
+			data.resize(capacity);
 		}
 
 		// 戻り値
 		// - 存在するならtrue、存在しないならfalse
 		// - index
-		std::pair<bool, int> get_index(Key key) const {
-			Key i = key % n_;
-			while (valid_[i]) {
-				if (data_[i].first == key) {
+		std::pair<bool, int> getIndex(Key key) const {
+			Key i = key % capacity;
+			while (valid[i]) {
+				if (data[i].first == key) {
 					return { true, i };
 				}
-				if (++i == n_) {
+				if (++i == capacity) {
 					i = 0;
 				}
 			}
@@ -42,25 +42,25 @@ namespace beam_search {
 		}
 
 		// 指定したindexにkeyとvalueを格納する
-		void set(int i, Key key, T value) {
-			valid_[i] = true;
-			data_[i] = { key, value };
+		void set(int i, Key key, Value value) {
+			valid[i] = true;
+			data[i] = { key, value };
 		}
 
 		// 指定したindexのvalueを返す
-		T get(int i) const {
-			assert(valid_[i]);
-			return data_[i].second;
+		Value get(int i) const {
+			assert(valid[i]);
+			return data[i].second;
 		}
 
 		void clear() {
-			fill(valid_.begin(), valid_.end(), false);
+			fill(valid.begin(), valid.end(), false);
 		}
 
 	private:
-		uint32_t n_;
-		std::vector<bool> valid_;
-		std::vector<std::pair<Key, T>> data_;
+		uint32_t capacity;
+		std::vector<bool> valid;
+		std::vector<std::pair<Key, Value>> data;
 	};
 
 	using Hash = uint32_t; // TODO
@@ -79,10 +79,11 @@ namespace beam_search {
 		}
 	};
 
-	using Cost = int;
+	using Cost = int; // TODO
 
 	// 状態のコストを評価するための構造体
 	// メモリ使用量をできるだけ小さくしてください
+	// Costが低いほど優秀
 	struct Evaluator {
 		// TODO
 
@@ -128,15 +129,15 @@ namespace beam_search {
 	class Selector {
 	public:
 		explicit Selector(const Config& config) :
-			hash_to_index_(config.hash_map_capacity)
+			hashMap(config.hashMapCapacity)
 		{
-			beam_width = config.beam_width;
-			candidates_.reserve(beam_width);
-			full_ = false;
+			beamWidth = config.beamWidth;
+			candidates.reserve(beamWidth);
+			full = false;
 
-			costs_.resize(beam_width);
-			for (size_t i = 0; i < beam_width; ++i) {
-				costs_[i] = { 0, i };
+			costs.resize(beamWidth);
+			for (size_t i = 0; i < beamWidth; ++i) {
+				costs[i] = { 0, i };
 			}
 		}
 
@@ -145,110 +146,110 @@ namespace beam_search {
 		// ビーム幅分の候補をCandidateを追加したときにsegment treeを構築する
 		void push(const Candidate& candidate, bool finished) {
 			if (finished) {
-				finished_candidates_.emplace_back(candidate);
+				finishedCandidates.emplace_back(candidate);
 				return;
 			}
 			Cost cost = candidate.evaluator.evaluate();
-			if (full_ && cost >= st_.all_prod().first) {
+			if (full && cost >= segTree.all_prod().first) {
 				// 保持しているどの候補よりもコストが小さくないとき
 				return;
 			}
-			auto[valid, i] = hash_to_index_.get_index(candidate.hash);
+			auto[valid, i] = hashMap.getIndex(candidate.hash);
 
 			if (valid) {
-				int j = hash_to_index_.get(i);
-				if (candidate.hash == candidates_[j].hash) {
+				int j = hashMap.get(i);
+				if (candidate.hash == candidates[j].hash) {
 					// ハッシュ値が等しいものが存在しているとき
-					if (full_) {
+					if (full) {
 						// segment treeが構築されている場合
-						if (cost < st_.get(j).first) {
-							candidates_[j] = candidate;
-							st_.set(j, { cost, j });
+						if (cost < segTree.get(j).first) {
+							candidates[j] = candidate;
+							segTree.set(j, { cost, j });
 						}
 					}
 					else {
 						// segment treeが構築されていない場合
-						if (cost < costs_[j].first) {
-							candidates_[j] = candidate;
-							costs_[j].first = cost;
+						if (cost < costs[j].first) {
+							candidates[j] = candidate;
+							costs[j].first = cost;
 						}
 					}
 					return;
 				}
 			}
-			if (full_) {
+			if (full) {
 				// segment treeが構築されている場合
-				int j = st_.all_prod().second;
-				hash_to_index_.set(i, candidate.hash, j);
-				candidates_[j] = candidate;
-				st_.set(j, { cost, j });
+				int j = segTree.all_prod().second;
+				hashMap.set(i, candidate.hash, j);
+				candidates[j] = candidate;
+				segTree.set(j, { cost, j });
 			}
 			else {
 				// segment treeが構築されていない場合
-				int j = candidates_.size();
-				hash_to_index_.set(i, candidate.hash, j);
-				candidates_.emplace_back(candidate);
-				costs_[j].first = cost;
+				int j = candidates.size();
+				hashMap.set(i, candidate.hash, j);
+				candidates.emplace_back(candidate);
+				costs[j].first = cost;
 
-				if (candidates_.size() == beam_width) {
+				if (candidates.size() == beamWidth) {
 					// 保持している候補がビーム幅分になったときにsegment treeを構築する
-					full_ = true;
-					st_ = MaxSegtree(costs_);
+					full = true;
+					segTree = MaxSegtree(costs);
 				}
 			}
 		}
 
 		// 選んだ候補を返す
 		const std::vector<Candidate>& select() const {
-			return candidates_;
+			return candidates;
 		}
 
 		// 実行可能解が見つかったか
-		bool have_finished() const {
-			return !finished_candidates_.empty();
+		bool haveFinished() const {
+			return !finishedCandidates.empty();
 		}
 
 		// 実行可能解に到達するCandidateを返す
-		std::vector<Candidate> get_finished_candidates() const {
-			return finished_candidates_;
+		std::vector<Candidate> getFinishedCandidates() const {
+			return finishedCandidates;
 		}
 
 		// 最もよいCandidateを返す
 		Candidate calculate_best_candidate() const {
-			if (full_) {
+			if (full) {
 				size_t best = 0;
-				for (size_t i = 0; i < beam_width; ++i) {
-					if (st_.get(i).first < st_.get(best).first) {
+				for (size_t i = 0; i < beamWidth; ++i) {
+					if (segTree.get(i).first < segTree.get(best).first) {
 						best = i;
 					}
 				}
-				return candidates_[best];
+				return candidates[best];
 			}
 			else {
 				size_t best = 0;
-				for (size_t i = 0; i < candidates_.size(); ++i) {
-					if (costs_[i].first < costs_[best].first) {
+				for (size_t i = 0; i < candidates.size(); ++i) {
+					if (costs[i].first < costs[best].first) {
 						best = i;
 					}
 				}
-				return candidates_[best];
+				return candidates[best];
 			}
 		}
 
 		void clear() {
-			candidates_.clear();
-			hash_to_index_.clear();
-			full_ = false;
+			candidates.clear();
+			hashMap.clear();
+			full = false;
 		}
 
 	private:
-		size_t beam_width;
-		std::vector<Candidate> candidates_;
-		HashMap<Hash, int> hash_to_index_;
-		bool full_;
-		std::vector<std::pair<Cost, int>> costs_;
-		MaxSegtree st_;
-		std::vector<Candidate> finished_candidates_;
+		size_t beamWidth;
+		std::vector<Candidate> candidates;
+		HashMap<Hash, int> hashMap;
+		bool full;
+		std::vector<std::pair<Cost, int>> costs;
+		MaxSegtree segTree;
+		std::vector<Candidate> finishedCandidates;
 	};
 
 	// 深さ優先探索に沿って更新する情報をまとめたクラス
@@ -259,7 +260,7 @@ namespace beam_search {
 		}
 
 		// EvaluatorとHashの初期値を返す
-		std::pair<Evaluator, Hash> make_initial_node() {
+		std::pair<Evaluator, Hash> makeInitialNode() {
 			// TODO
 		}
 
@@ -273,13 +274,13 @@ namespace beam_search {
 		}
 
 		// actionを実行して次の状態に遷移する
-		void move_forward(Action action) {
+		void moveForward(Action action) {
 			// TODO
 		}
 
 		// actionを実行する前の状態に遷移する
 		// 今の状態は、親からactionを実行して遷移した状態である
-		void move_backward(Action action) {
+		void moveBackward(Action action) {
 			// TODO
 		}
 
@@ -291,164 +292,167 @@ namespace beam_search {
 	class Tree {
 	public:
 		explicit Tree(const State& state, const Config& config) :
-			state_(state)
+			state(state)
 		{
-			curr_tour_.reserve(config.tour_capacity);
-			next_tour_.reserve(config.tour_capacity);
-			leaves_.reserve(config.beam_width);
-			buckets_.assign(config.beam_width, {});
+			currTour.reserve(config.tourCapacity);
+			nextTour.reserve(config.tourCapacity);
+			leaves.reserve(config.beamWidth);
+			buckets.assign(config.beamWidth, {});
 		}
 
 		// 状態を更新しながら深さ優先探索を行い、次のノードの候補を全てselectorに追加する
 		void dfs(Selector& selector) {
-			if (curr_tour_.empty()) {
-				// 最初のターン
-				auto[evaluator, hash] = state_.make_initial_node();
-				state_.expand(evaluator, hash, 0, selector);
+			// 最初のターン
+			if (currTour.empty()) {
+				auto[evaluator, hash] = state.makeInitialNode();
+				state.expand(evaluator, hash, 0, selector);
 				return;
 			}
 
-			for (auto[leaf_index, action] : curr_tour_) {
-				if (leaf_index >= 0) {
+			for (auto &[leafIndex, action] : currTour) {
+				if (leafIndex >= 0) {
 					// 葉
-					state_.move_forward(action);
-					auto&[evaluator, hash] = leaves_[leaf_index];
-					state_.expand(evaluator, hash, leaf_index, selector);
-					state_.move_backward(action);
+					state.moveForward(action);
+					auto&[evaluator, hash] = leaves[leafIndex];
+					state.expand(evaluator, hash, leafIndex, selector);
+					state.moveBackward(action);
 				}
-				else if (leaf_index == -1) {
+				else if (leafIndex == -1) {
 					// 前進辺
-					state_.move_forward(action);
+					state.moveForward(action);
 				}
 				else {
 					// 後退辺
-					state_.move_backward(action);
+					state.moveBackward(action);
 				}
 			}
 		}
 
 		// 木を更新する
 		void update(const std::vector<Candidate>& candidates) {
-			leaves_.clear();
+			leaves.clear();
 
-			if (curr_tour_.empty()) {
+			if (currTour.empty()) {
 				// 最初のターン
 				for (const Candidate& candidate : candidates) {
-					curr_tour_.push_back({ (int)leaves_.size(), candidate.action });
-					leaves_.push_back({ candidate.evaluator, candidate.hash });
+					currTour.push_back({ (int)leaves.size(), candidate.action });
+					leaves.push_back({ candidate.evaluator, candidate.hash });
 				}
 				return;
 			}
 
 			for (const Candidate& candidate : candidates) {
-				buckets_[candidate.parent].push_back({ candidate.action, candidate.evaluator, candidate.hash });
+				buckets[candidate.parent].push_back({ candidate.action, candidate.evaluator, candidate.hash });
 			}
 
-			auto it = curr_tour_.begin();
+			auto it = currTour.begin();
 
 			// 一本道を反復しないようにする
-			while (it->first == -1 && it->second == curr_tour_.back().second) {
+			while (it->first == -1 && it->second == currTour.back().second) {
 				Action action = (it++)->second;
-				state_.move_forward(action);
-				direct_road_.push_back(action);
-				curr_tour_.pop_back();
+				state.moveForward(action);
+				directRoad.push_back(action);
+				currTour.pop_back();
 			}
 
 			// 葉の追加や不要な辺の削除をする
-			while (it != curr_tour_.end()) {
-				auto[leaf_index, action] = *(it++);
-				if (leaf_index >= 0) {
+			while (it != currTour.end()) {
+				auto[leafIndex, action] = *(it++);
+				if (leafIndex >= 0) {
 					// 葉
-					if (buckets_[leaf_index].empty()) {
+					// 追加する葉がない
+					if (buckets[leafIndex].empty()) {
 						continue;
 					}
-					next_tour_.push_back({ -1, action });
-					for (auto[new_action, evaluator, hash] : buckets_[leaf_index]) {
-						int new_leaf_index = leaves_.size();
-						next_tour_.push_back({ new_leaf_index, new_action });
-						leaves_.push_back({ evaluator, hash });
+					// 葉の追加
+					nextTour.push_back({ -1, action });
+					for (auto[newAction, evaluator, hash] : buckets[leafIndex]) {
+						int newLeafIndex = leaves.size();
+						nextTour.push_back({ newLeafIndex, newAction });
+						leaves.push_back({ evaluator, hash });
 					}
-					buckets_[leaf_index].clear();
-					next_tour_.push_back({ -2, action });
+					buckets[leafIndex].clear();
+					nextTour.push_back({ -2, action });
 				}
-				else if (leaf_index == -1) {
+				else if (leafIndex == -1) {
 					// 前進辺
-					next_tour_.push_back({ -1, action });
+					nextTour.push_back({ -1, action });
 				}
 				else {
 					// 後退辺
-					auto[old_leaf_index, old_action] = next_tour_.back();
-					if (old_leaf_index == -1) {
-						next_tour_.pop_back();
+					auto[oldLeafIndex, oldAction] = nextTour.back();
+					if (oldLeafIndex == -1) {
+						// 不要な前進辺の削除
+						nextTour.pop_back();
 					}
 					else {
-						next_tour_.push_back({ -2, action });
+						// 後退辺の追加
+						nextTour.push_back({ -2, action });
 					}
 				}
 			}
-			swap(curr_tour_, next_tour_);
-			next_tour_.clear();
+			std::swap(currTour, nextTour);
+			nextTour.clear();
 		}
 
 		// 根からのパスを取得する
-		std::vector<Action> calculate_path(int parent, int turn) const {
-			// cerr << curr_tour_.size() << endl;
-
-			std::vector<Action> ret = direct_road_;
+		std::vector<Action> calculatePath(int parent, int turn) const {
+			std::vector<Action> ret = directRoad;
 			ret.reserve(turn);
-			for (auto[leaf_index, action] : curr_tour_) {
-				if (leaf_index >= 0) {
-					if (leaf_index == parent) {
+			for (auto[leafIndex, action] : currTour) {
+				if (leafIndex >= 0) {
+					// 葉
+					if (leafIndex == parent) {
 						ret.push_back(action);
 						return ret;
 					}
 				}
-				else if (leaf_index == -1) {
+				else if (leafIndex == -1) {
+					// 前進辺
 					ret.push_back(action);
 				}
 				else {
+					// 後退辺
 					ret.pop_back();
 				}
 			}
-
-			//unreachable();
 		}
 
 	private:
-		State state_;
-		std::vector<std::pair<int, Action>> curr_tour_;
-		std::vector<std::pair<int, Action>> next_tour_;
-		std::vector<std::pair<Evaluator, Hash>> leaves_;
-		std::vector<std::vector<std::tuple<Action, Evaluator, Hash>>> buckets_;
-		std::vector<Action> direct_road_;
+		State state;
+		std::vector<std::pair<int, Action>> currTour;
+		std::vector<std::pair<int, Action>> nextTour;
+		std::vector<std::pair<Evaluator, Hash>> leaves;
+		std::vector<std::vector<std::tuple<Action, Evaluator, Hash>>> buckets;
+		std::vector<Action> directRoad;// 固定経路
 	};
 
 	// ビームサーチを行う関数
-	std::vector<Action> beam_search(const Config& config, const State& state) {
+	std::vector<Action> beamSearch(const Config& config, const State& state) {
 		Tree tree(state, config);
 
 		// 新しいノード候補の集合
 		Selector selector(config);
 
-		for (int turn = 0; turn < config.max_turn; ++turn) {
+		for (int turn = 0; turn < config.maxTurn; ++turn) {
 			// Euler Tourでselectorに候補を追加する
 			tree.dfs(selector);
 
-			if (selector.have_finished()) {
+			if (selector.haveFinished()) {
 				// ターン数最小化型の問題で実行可能解が見つかったとき
-				Candidate candidate = selector.get_finished_candidates()[0];
-				std::vector<Action> ret = tree.calculate_path(candidate.parent, turn + 1);
+				Candidate candidate = selector.getFinishedCandidates()[0];
+				std::vector<Action> ret = tree.calculatePath(candidate.parent, turn + 1);
 				ret.push_back(candidate.action);
 				return ret;
 			}
 
 			assert(!selector.select().empty());
 
-			if (turn == config.max_turn - 1) {
+			if (turn == config.maxTurn - 1) {
 				// ターン数固定型の問題で全ターンが終了したとき
-				Candidate best_candidate = selector.calculate_best_candidate();
-				std::vector<Action> ret = tree.calculate_path(best_candidate.parent, turn + 1);
-				ret.push_back(best_candidate.action);
+				Candidate bestCandidate = selector.calculate_best_candidate();
+				std::vector<Action> ret = tree.calculatePath(bestCandidate.parent, turn + 1);
+				ret.push_back(bestCandidate.action);
 				return ret;
 			}
 
@@ -460,5 +464,4 @@ namespace beam_search {
 
 		//unreachable();
 	}
-
 } // namespace beam_search
