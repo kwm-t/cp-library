@@ -161,46 +161,6 @@ private:
 		}
 	}
 };
-//https://github.com/blue-jam/ProconLibrary/blob/4d1c55deed0a1f39862a72b03d4e18519cd2680b/datastructure/statictoptree.hpp
-namespace abc351G {
-	std::vector<mint>A;
-	struct Point;
-	struct Path {
-		mint a, b;
-		Path(mint a = 1, mint b = 0) :a(a), b(b) {}
-		Path operator+(const Path&p)const {
-			return Path(a * p.a, b + a * p.b);
-		}
-		Point toPoint() const;
-	};
-	struct Point {
-		mint x;
-		Point(mint x = 1) :x(x) {}
-		Point operator+(const Point&p)const {
-			return Point(x * p.x);
-		}
-		Path toPath(mint v)const {
-			return Path(x, v);
-		}
-	};
-	Point Path::toPoint() const { return Point(b); }
-
-	Path vertex(int i) {
-		return Path{ 1, A[i] };
-	}
-	Path compress(Path &a, Path &b) {
-		return a + b;
-	}
-	Point rake(Point &a, Point &b) {
-		return a + b;
-	}
-	Point addEdge(Path &a) {
-		return a.toPoint();
-	}
-	Path addVertex(Point &a, int i) {
-		return a.toPath(A[i]);
-	}
-};
 /*
 Žg—p—á
 https://atcoder.jp/contests/abc351/tasks/abc351_g
