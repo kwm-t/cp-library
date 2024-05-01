@@ -50,16 +50,22 @@ public:
 		}
 	}
 };
-//区間加算、一点取得
-using S0 = long long;
-S0 op0(S0 x, S0 f) { return { x + f }; }
-S0 e0() { return { 0 }; }
-//区間更新、一点取得
-using S1 = long long;
-S1 op1(S1 x, S1 f) { return (f == -LINF ? x : f); }
-S1 e1() { return { -LINF }; }
-//区間chmin、一点取得
-using S = long long;
-S op0(S x, S f) { return std::min(x, f); }
-S e0() { return { INF }; }
+namespace RangeAdd {
+	//区間加算、一点取得
+	using S = long long;
+	S op(S x, S f) { return { x + f }; }
+	S e() { return { 0 }; }
+}
+namespace RangeUpdate {
+	//区間更新、一点取得
+	using S = long long;
+	S op(S x, S f) { return (f == -LINF ? x : f); }
+	S e() { return { -LINF }; }
+}
+namespace RangeChangeMin {
+	//区間chmin、一点取得
+	using S = long long;
+	S op(S x, S f) { return std::min(x, f); }
+	S e() { return { INF }; }
+}
 //DualSegtree<S, op, e>seg(n);
