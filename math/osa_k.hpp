@@ -1,26 +1,25 @@
 class Osa_k {
 public:
 	Osa_k(int max = 1000006) {
-		size = max + 1;
-		osa_k.resize(size);
+		osa_k.resize(max + 1);
 	}
 	void init() {
 		osa_k[1] = 1;
-		for (int i = 2; i < size + 1; ++i) {
+		for (int i = 2; i < osa_k.size(); ++i) {
 			if (0 != osa_k[i])continue;
 			osa_k[i] = i;
-			for (int j = i * 2; j <= size; j += i) {
+			for (int j = i * 2; j < osa_k.size(); j += i) {
 				if (0 == osa_k[j]) osa_k[j] = i;
 			}
 		}
 	}
 	std::vector<int> osk(int n) {
-		std::vector<int>ret;
+		std::vector<int>result;
 		while (1 != n) {
-			ret.push_back(osa_k[n]);
+			result.push_back(osa_k[n]);
 			n /= osa_k[n];
 		}
-		return ret;
+		return result;
 	}
 	std::vector<std::pair<int, int>>oskPair(int n) {
 		auto ps = osk(n);
@@ -34,6 +33,5 @@ public:
 		return result;
 	}
 private:
-	int size;
 	std::vector<int>osa_k;
 };
