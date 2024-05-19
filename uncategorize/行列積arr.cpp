@@ -1,8 +1,10 @@
 template <typename T, int SIZE = 1>
 struct Matrix {
 	array<array<T, SIZE>, SIZE> v;
-	Matrix(int i = 0) {
-		if (1 == i) { for (int i = 0; i < SIZE; ++i) { v[i][i] = 1; } }
+	Matrix(bool e = false) {
+		if (e) { 
+			for (int i = 0; i < SIZE; ++i) { v[i][i] = 1; } 
+		}
 	}
 	Matrix(const array<array<T, SIZE>, SIZE> &s) { v = s; }
 	std::array<T, SIZE>& operator[](const int i) {
