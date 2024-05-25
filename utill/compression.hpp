@@ -1,5 +1,10 @@
-//Ç±ÇÍÇ™ëÅÇ¢ÅB
-auto tmp = a;
-std::sort(tmp.begin(), tmp.end());
-tmp.erase(unique(tmp.begin(), tmp.end()), tmp.end());
-for (int i = 0; i < n; ++i) a[i] = lower_bound(tmp.begin(), tmp.end(), a[i]) - tmp.begin();
+template<typename T>
+std::pair<std::vector<T>, int> compression(std::vector<T>org) {
+	auto copy = org;
+	std::sort(copy.begin(), copy.end());
+	copy.erase(unique(copy.begin(), copy.end()), copy.end());
+	for (auto &e : org) {
+		e = std::lower_bound(copy.begin(), copy.end(), e) - copy.begin();
+	}
+	return { org,copy.size() };
+}
