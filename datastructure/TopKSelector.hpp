@@ -18,7 +18,9 @@ public:
 	}
 	std::vector<T> get() {
 		std::sort(vector.begin(), vector.end());
-		vector.resize(k);
+		if(vector.size() > k) {
+			vector.resize(k);
+		}
 		return vector;
 	}
 private:
