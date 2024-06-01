@@ -15,7 +15,15 @@ int count = lower_bound(all(v), r)-lower_bound(all(v), l);
 
 //set
 set<int>st;
-auto it = st.lower_bound(target);
+// 門番が必須
+auto before = [&](long long n)->long long {
+	auto ite = prev(st.lower_bound(n));
+	return *ite;
+};
+auto after = [&](long long n)->long long {
+	auto ite = st.upper_bound(n);
+	return *ite;
+};
 
 
 // lowerboundは
@@ -24,10 +32,8 @@ auto it = st.lower_bound(target);
 targetの次に大きな物
 *upper_bound(target)
 
-lower_bound
-値以上のものの最初のイテレータを返す
-upper_bound
-値より大きいものの最初のイテレータを返す
+lower_bound:=値以上のものの最初のイテレータを返す
+upper_bound:=値より大きいものの最初のイテレータを返す
 例えば、multisetに556777とあって
 
 最初の7が取得したいなら
@@ -37,3 +43,8 @@ mst.lower_bound(7);
 auto itr = mst.lower_bound(7+1);
 if(mst.begin()!= itr)itr--;
 else cout << -1 << endl;
+
+
+
+
+
