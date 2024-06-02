@@ -1,5 +1,5 @@
-template<typename T>
-std::vector<T> mergeSort(std::vector<T> vec) {
+template<typename T, class F>
+std::vector<T> mergeSort(std::vector<T> vec, const F &f) {
 	auto dfs = [&](auto && self, int l, int r) {
 		if (l + 1 == r)return;
 		int m = (l + r) / 2;
@@ -12,7 +12,7 @@ std::vector<T> mergeSort(std::vector<T> vec) {
 			if (i0 == m) d.push_back(vec[i1++]);
 			else if (i1 == r)d.push_back(vec[i0++]);
 			else {
-				if (vec[i0] < vec[i1])d.push_back(vec[i0++]);
+				if (f(vec[i0], vec[i1]))d.push_back(vec[i0++]);
 				else d.push_back(vec[i1++]);
 			}
 		}
@@ -23,3 +23,7 @@ std::vector<T> mergeSort(std::vector<T> vec) {
 	dfs(dfs, 0, vec.size());
 	return vec;
 }
+// How To Use
+a = mergeSort(a, [](int l, int r) {
+	return l < r;
+	});
