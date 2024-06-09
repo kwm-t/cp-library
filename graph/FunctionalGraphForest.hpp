@@ -12,7 +12,7 @@ public:
 		int deep;
 		Vertex(int index, int cycleIndex = -1, int deep = -1) :index(index), cycleIndex(cycleIndex), deep(deep) {}
 	};
-	void addEdge(int index, int u, int v) {
+	void addEdge(int u, int v) {
 		edge[u].push_back(v);
 		edgeR[v].push_back(u);
 	}
