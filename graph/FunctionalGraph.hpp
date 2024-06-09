@@ -1,6 +1,6 @@
-class FunctionalGraphForest {
+class FunctionalGraph {
 public:
-	FunctionalGraphForest(int size) :size(size) {
+	FunctionalGraph(int size) :size(size) {
 		edge.resize(size);
 		edgeR.resize(size);
 		vertexs.reserve(size);
