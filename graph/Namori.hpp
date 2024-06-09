@@ -1,10 +1,14 @@
-	vector<int>roop;
-	set<int>st;
+#include <vector>
+#include <set>
+// なもりグラフを与えるとサイクルに含むindexを返す
+std::vector<int> namori(std::vector<std::vector<int>> &to) {
+	std::vector<int>roop;
+	std::set<int>st;
 	auto dfs = [&](auto self, int v, int p = -1)->bool {
 		if (st.count(v)) {
-			reverse(all(roop));
+			std::reverse(roop.begin(),roop.end());
 			while (v != roop.back()) roop.pop_back();
-			reverse(all(roop));
+			std::reverse(roop.begin(), roop.end());
 			return true;
 		}
 		st.insert(v);
@@ -18,3 +22,5 @@
 		st.erase(v);
 		return false;
 	};
+	return roop;
+}
