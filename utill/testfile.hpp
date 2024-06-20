@@ -2,7 +2,7 @@
 #include<iostream>
 #pragma warning(disable : 4996)
 int main() {
-	//ƒRƒ}ƒ“ƒhƒvƒƒ“ƒvƒg‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ“KØ‚É‚·‚é•K—v‚ª‚ ‚é
+	//ã‚³ãƒžãƒ³ãƒ‰ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªé©åˆ‡ã«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 	FILE *in = freopen("in/in.txt", "r", stdin);
 	FILE *out = freopen("out/out.txt", "w", stdout);
 
