@@ -1,6 +1,6 @@
-// monotone‚Èn * ms—ñ‚É‚Â‚¢‚Ä
-// Šes‚ÌÅ¬—v‘f‚Ì‚¤‚¿Å‚à¶‚ÉˆÊ’u‚·‚é‚à‚Ì‚Ì—ñ”Ô†‚ğ
-// O(n+m)‚Å‹‚ß‚éƒAƒ‹ƒSƒŠƒYƒ€
+// monotoneãªn * mè¡Œåˆ—ã«ã¤ã„ã¦
+// å„è¡Œã®æœ€å°è¦ç´ ã®ã†ã¡æœ€ã‚‚å·¦ã«ä½ç½®ã™ã‚‹ã‚‚ã®ã®åˆ—ç•ªå·ã‚’
+// O(n+m)ã§æ±‚ã‚ã‚‹ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ 
 template<typename T, typename F>
 std::vector<std::pair<int, T>> monotoneMinima(const int n, const int m, const F& f) {
 	std::vector<std::pair<int, T>>result(n);

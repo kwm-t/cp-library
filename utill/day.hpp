@@ -1,6 +1,6 @@
 #include <vector>
 #include <string>
-// 0001/01/01‚©‚ç‚ÌŒo‰ß“ú”
+// 0001/01/01ã‹ã‚‰ã®çµŒéæ—¥æ•°
 int days(int y, int m, int d) {
 	std::vector<int>day = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 	//(1,1,1)->1, (1,1,2)->2, ...
@@ -10,7 +10,7 @@ int days(int y, int m, int d) {
 	if ((m > 2) && (((0 == y % 4) && (0 != y % 100)) || (0 == y % 400)))ret++;
 	return ret;
 }
-// YYYY-MM-DD ‚©‚çy,m,d‚ğ”²‚«o‚·ŠÖ”
+// YYYY-MM-DD ã‹ã‚‰y,m,dã‚’æŠœãå‡ºã™é–¢æ•°
 void f(std::string s, int & s0, int&s1, int &s2) {
 	s0 = 0, s1 = 0, s2 = 0;
 	for (int i = 0; i < 4; ++i)s0 = s0 * 10 + s[i] - '0';

@@ -1,6 +1,6 @@
 #include <vector>
 const int INF = 1e9;
-// dp[i] := ’·‚³‚ª i ‚Ì‘‰Á•”•ª—ñ‚Æ‚µ‚ÄÅŒã”ö‚Ì—v‘f‚Ì‚Æ‚è‚¤‚éÅ¬’l
+// dp[i] := é•·ã•ãŒ i ã®å¢—åŠ éƒ¨åˆ†åˆ—ã¨ã—ã¦æœ€å¾Œå°¾ã®è¦ç´ ã®ã¨ã‚Šã†ã‚‹æœ€å°å€¤
 template<class T> int LIS(std::vector<T> a, bool is_strong = true) {
 	const T INF = 1 << 30; // to be set appropriately
 	int n = (int)a.size();

@@ -1,5 +1,5 @@
-// 2D—ÝÏ˜a
-// ¶ã(x0,y0)‰E‰º(—ÌˆæŠO)(x1,y1)
+// 2Dç´¯ç©å’Œ
+// å·¦ä¸Š(x0,y0)å³ä¸‹(é ˜åŸŸå¤–)(x1,y1)
 auto calc = [&](int x0, int y0, int x1, int y1)->long long {
 	return  sa[x1][y1] - sa[x1][y0] - sa[x0][y1] + sa[x0][y0];
 };

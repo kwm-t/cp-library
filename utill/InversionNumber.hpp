@@ -1,6 +1,6 @@
 #include<vector>
 #include<algorithm>
-// “]“|”
+// è»¢å€’æ•°
 long long op(long long a, long long b) { return a + b; }
 long long e() { return 0; }
 long long inversionNumber(std::vector<int>v) {

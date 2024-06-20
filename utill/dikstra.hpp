@@ -7,7 +7,7 @@ vector<Edge>g[200005];
 
 long long dikstra(int st, int ed) {
 	vector<long long> dp(200000, LINF);
-	#define P pair<long long,int>//šš
+	#define P pair<long long,int>//!!!!
 	std::priority_queue<P, vector<P>, greater<P>> q;
 	q.push({0, st});
 	dp[st] = 0;

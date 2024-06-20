@@ -1,7 +1,7 @@
 #include<array>
 using point = std::array<long long, 3>;
 long long crossproduct(point p, point q, point x) {
-	//pq‚©‚ç‚Ý‚Äx‚ª”½ŽžŒv‰ñ‚è‚È‚ç³,ü•ªã‚È‚ç0,ŽžŒv‰ñ‚è‚È‚ç•‰
+	//pqã‹ã‚‰ã¿ã¦xãŒåæ™‚è¨ˆå›žã‚Šãªã‚‰æ­£,ç·šåˆ†ä¸Šãªã‚‰0,æ™‚è¨ˆå›žã‚Šãªã‚‰è² 
 	long long x1 = q[0] - p[0];
 	long long y1 = q[1] - p[1];
 	long long x2 = x[0] - p[0];
@@ -9,7 +9,7 @@ long long crossproduct(point p, point q, point x) {
 	return x1 * y2 - y1 * x2;
 }
 long long innerproduct(point p, point q, point r) {
-	//“àÏ
+	//å†…ç©
 	long long x1 = q[0] - p[0];
 	long long y1 = q[1] - p[1];
 	long long x2 = r[0] - p[0];
@@ -17,8 +17,8 @@ long long innerproduct(point p, point q, point r) {
 	return x1 * x2 + y1 * y2;
 }
 int check(point p, point q, point r) {
-	//r‚ªAp‚©‚çq‚ðŒ©‚Ä¶‘¤‚É‚ ‚ê‚Î1Aü•ªpqã‚É‚ ‚ê‚Î0A‰E‘¤‚É‚ ‚ê‚Î-1
-	//ü•ª‚Ì‰„’·ã‚É‚ ‚ê‚Î-2
+	//rãŒã€pã‹ã‚‰qã‚’è¦‹ã¦å·¦å´ã«ã‚ã‚Œã°1ã€ç·šåˆ†pqä¸Šã«ã‚ã‚Œã°0ã€å³å´ã«ã‚ã‚Œã°-1
+	//ç·šåˆ†ã®å»¶é•·ä¸Šã«ã‚ã‚Œã°-2
 	long long c = crossproduct(p, q, r);
 	if (c)return c > 0 ? 1 : -1;
 	long long i = innerproduct(p, q, r);

@@ -2,7 +2,7 @@
 std::sort(idx.begin(), idx.end(), [](int l, int r) {
 	return l < r; }
 );
-// ¶‰º‚©‚ç”½Œv‰ñ‚è‚Ésort;
+// å·¦ä¸‹ã‹ã‚‰åæ™‚è¨ˆå›ã‚Šã«sort;
 std::sort(xy.begin(), xy.end(), [](const auto x, const auto &y) {
 	return atan2l(x.second, x.first) < atan2l(y.second, y.first);
 });

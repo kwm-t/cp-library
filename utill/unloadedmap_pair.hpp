@@ -1,13 +1,13 @@
 #include <utility>
 struct HashPair {
-	//’ˆÓ const‚ª‚¢‚é
+	//æ³¨æ„ constãŒã„ã‚‹
 	template<class T1, class T2>
 	size_t operator()(const std::pair<T1, T2> &p) const {
-		//first•ª‚ğƒnƒbƒVƒ…‰»‚·‚é
+		//firståˆ†ã‚’ãƒãƒƒã‚·ãƒ¥åŒ–ã™ã‚‹
 		auto hash1 = hash<T1>{}(p.first);
-		//second•ª‚ğƒnƒbƒVƒ…‰»‚·‚é
+		//secondåˆ†ã‚’ãƒãƒƒã‚·ãƒ¥åŒ–ã™ã‚‹
 		auto hash2 = hash<T2>{}(p.second);
-		//d•¡‚µ‚È‚¢‚æ‚¤‚ÉƒnƒbƒVƒ…ˆ—
+		//é‡è¤‡ã—ãªã„ã‚ˆã†ã«ãƒãƒƒã‚·ãƒ¥å‡¦ç†
 		size_t seed = 0;
 		seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 		seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);

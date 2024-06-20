@@ -1,4 +1,4 @@
-// [0,r)ÇÃXOR
+// [0,r)„ÅÆXOR
 long long rangeXOR(long long r) {
 	r--;
 	if (r <= 0)return 0;
@@ -10,13 +10,13 @@ long long rangeXOR(long long r) {
 	}
 	return ret;
 }
-// [l,r)ÇÃxor
+// [l,r)„ÅÆxor
 long long rangeXOR(long long l, long long r) {
 	return rangeXOR(r) ^ rangeXOR(l);
 }
 // 01234
 // 12345
-// 23456ÇÃÇÊÇ§Ç»ÉOÉäÉbÉhÇÃxor
+// 23456„ÅÆ„Çà„ÅÜ„Å™„Ç∞„É™„ÉÉ„Éâ„ÅÆxor
 long long gridXOR(long long n, long long m) {
 	long long ret = 0;
 	if (1 == n % 2) {

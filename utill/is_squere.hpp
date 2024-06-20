@@ -1,6 +1,6 @@
-// •½•û”‚©‚Ç‚¤‚©‚Ì”»’è
+// å¹³æ–¹æ•°ã‹ã©ã†ã‹ã®åˆ¤å®š
 pair<bool, long long> is_squere(long long N) {
-	long long r = (long long)floor(sqrt((long double)N));  // Ø‚èŽÌ‚Ä‚µ‚½•½•ûª
+	long long r = (long long)floor(sqrt((long double)N));  // åˆ‡ã‚Šæ¨ã¦ã—ãŸå¹³æ–¹æ ¹
 	return { (r * r) == N ,r };
 }
 bool squareCheck(long long n) {

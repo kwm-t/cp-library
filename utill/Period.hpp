@@ -7,7 +7,7 @@ private:
 public:
 	Period(Index start) {
 		Index a = start, b = start;
-		do {// ƒtƒƒCƒh‚ÌzŠÂŒŸo–@
+		do {// ãƒ•ãƒ­ã‚¤ãƒ‰ã®å¾ªç’°æ¤œå‡ºæ³•
 			dat.emplace_back(get_data(a));
 			a = next_index(a);
 			b = next_index(next_index(b));

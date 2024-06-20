@@ -8,7 +8,7 @@ double Ternarysearch() {
 	auto f = [&](long long x)->double {
 		return (double)a / sqrt(1.0 + x) + (double)b * x;
 	};
-	// ‰º‚É“Ê
+	// ä¸‹ã«å‡¸
 	while (2 < abs(r - l)) {
 		long long ml = (l * 2 + r) / 3;
 		long long mr = (l + r * 2) / 3;
