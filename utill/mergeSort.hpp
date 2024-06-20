@@ -5,7 +5,7 @@ std::vector<T> mergeSort(std::vector<T> vec, const F &f) {
 		int m = (l + r) / 2;
 		self(self, l, m);
 		self(self, m, r);
-		std::vector<int>d;
+		std::vector<T>d;
 		d.reserve(r - l);
 		int i0 = l, i1 = m;
 		for (int i = 0; i < r - l; ++i) {
