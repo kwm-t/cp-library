@@ -13,7 +13,7 @@ public:
 		logInit(cur);
 		sparseTableInit(cur);
 	}
-	// root�ƈ��k�؂�Ԃ�(���������k�؂�root����̗L����)
+	// rootと圧縮木を返す(ただし圧縮木はrootからの有向木)
 	int createCompressionTree(std::vector<int>&vs, std::vector<std::vector<int>> &graph) {
 		std::sort(vs.begin(), vs.end(), [&](int l, int r) {return fs[l] < fs[r]; });
 		int sz = vs.size();
@@ -35,12 +35,16 @@ public:
 		}
 		return stk[0];
 	}
+	int dist(int u, int v) {
+		int l = lca(u, v);
+		return depth[u] + depth[v] - 2 * depth[l];
+	}
 private:
 	const int NL = 19;
 	int n;
 	std::vector<std::vector<int>> g;
-	// fs[v]: Euler tour��̒��_v�̍ŏ��̏o���ʒu
-	// lS[v]: Euler tour��̒��_v�̍Ō�̏o���ʒu
+	// fs[v]: Euler tour上の頂点vの最初の出現位置
+	// lS[v]: Euler tour上の頂点vの最後の出現位置
 	std::vector<int>fs, ls;
 	std::vector<std::vector<int>> st;// st[lv][v]: Sparse Table
 	std::vector<int>depth;
