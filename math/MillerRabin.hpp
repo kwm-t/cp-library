@@ -3,23 +3,6 @@
 #include <time.h> 
 #include <map>
 #include <numeric>
-long long cheker(long long n) {
-	if (n < 0)return -1;
-	for (long long i = sqrt(n) - 10; i <= sqrt(n) + 10; ++i) {
-		if (i * i == n)return i;
-	}
-	return -1;
-}
-long long sq(long long n) {
-	long long ng = -1, ok = 3 * 1e9;
-	while (abs(ng - ok) > 1) {
-		long long mid = (ok + ng) / 2;
-		if (mid * mid >= n)ok = mid;
-		else ng = mid;
-	}
-	if (ok * ok == n)return ok;
-	else return -1;
-}
 
 struct Miller {
 	const std::vector<long long> v = { 2 , 7 , 61 }; // < 4,759,123,141
@@ -112,25 +95,3 @@ struct Rho {
 		return fa;
 	}
 };
-
-Rho rho;
-
-void dfs(const std::map<long long, long long>& f, long long num, const std::map<long long, long long>::iterator &ite, std::vector<long long> &d) {
-	if (ite == f.end()) {
-		d.push_back(num);
-		return;
-	}
-	for(int i = 0;i <ite->second + 1;++i) {
-		dfs(f, num, next(ite), d);
-		num *= ite->first;
-	}
-}
-
-std::vector<long long> divisor(long long n) {
-	std::map<long long, long long> mp;
-	for (const auto& aa : rho.factor(n))++mp[aa];
-	std::vector<long long>ret;
-	dfs(mp, 1, mp.begin(), ret);
-	return ret;
-}
-//std::vector<long long>vx = divisor(r);
