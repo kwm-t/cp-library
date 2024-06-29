@@ -3,12 +3,12 @@ template <typename Data, Data(*e)(), Data(*leaf)(int), Data(*addEdge)(const Data
 	class ReRooting {
 	public:
 		ReRooting(int size) :size(size) {
-			graph.resize(size);
+			edges.resize(size);
 		}
 
 		void setEdge(int s, int t, int index) {
-			graph[s].emplace_back(s, t, index);
-			graph[t].emplace_back(t, s, index);
+			edges[s].emplace_back(s, t, index);
+			edges[t].emplace_back(t, s, index);
 		}
 
 		std::vector<Data>execute() {
@@ -26,12 +26,12 @@ template <typename Data, Data(*e)(), Data(*leaf)(int), Data(*addEdge)(const Data
 		};
 
 		int size;
-		std::vector<std::vector<Edge>>graph;
+		std::vector<std::vector<Edge>>edges;
 		std::vector<Data>sdp, dp;
 
 		void dfs(int v, int p = -1) {
 			auto val = e();
-			for (Edge &edge : graph[v]) {
+			for (Edge &edge : edges[v]) {
 				if (p == edge.to)continue;
 				dfs(edge.to, v);
 				val = merge(val, addEdge(sdp[edge.to], edge.index));
@@ -41,7 +41,7 @@ template <typename Data, Data(*e)(), Data(*leaf)(int), Data(*addEdge)(const Data
 
 		void dfsR(int v, int p = -1) {
 			std::vector<Data>tmp;
-			for (Edge &edge : graph[v]) {
+			for (Edge &edge : edges[v]) {
 				tmp.push_back(addEdge(sdp[edge.to], edge.index));
 			}
 			int n = tmp.size();
@@ -50,7 +50,7 @@ template <typename Data, Data(*e)(), Data(*leaf)(int), Data(*addEdge)(const Data
 			for (int i = n; i-- > 0;) tail[i] = merge(tail[i + 1], tmp[i]);
 			dp[v] = head[n];
 			int index = 0;
-			for (Edge &edge : graph[v]) {
+			for (Edge &edge : edges[v]) {
 				if (p != edge.to) {
 					sdp[v] = addVertex(merge(head[index], tail[index + 1]), v);
 					dfsR(edge.to, v);
