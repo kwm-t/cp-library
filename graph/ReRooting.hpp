@@ -1,4 +1,4 @@
-template <typename Data, Data(*e)(), Data(*leaf)(int), Data(*addEdge)(const Data&, int)
+template <typename Data, Data(*e)(), Data(*addEdge)(const Data&, int)
 	, Data(*addVertex)(const Data&, int), Data(*merge)(const Data&, const Data&)>
 	class ReRooting {
 	public:
@@ -60,7 +60,7 @@ template <typename Data, Data(*e)(), Data(*leaf)(int), Data(*addEdge)(const Data
 		}
 };
 // sumple ARC179D
-// ReRooting<Data, e, leaf, addEdge, addVertex, merge> reroot(n);
+// ReRooting<Data, e, addEdge, addVertex, merge> reroot(n);
 struct Data {
 	int e;// •Ó‚Ì”
 	int h;// ‚‚³
@@ -69,9 +69,6 @@ struct Data {
 };
 Data e() {
 	return { 0,0,0,0 };
-}
-Data leaf(int v) {
-	return e();
 }
 Data addEdge(const Data &x, int edgeIndex) {
 	return{ x.e + 1,x.h + 1, min(x.v0 + 2,1 + 2 * x.e - x.h) ,x.v1 + 1 };
