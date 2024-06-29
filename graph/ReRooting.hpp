@@ -1,14 +1,14 @@
-template <typename Data, typename Cost, Data(*e)(), Data(*leaf)(int), Data(*addEdge)(const Data&)
-	, Data(*addVertex)(const Data&), Data(*merge)(const Data&, const Data&)>
+template <typename Data, Data(*e)(), Data(*leaf)(int), Data(*addEdge)(const Data&, int)
+	, Data(*addVertex)(const Data&, int), Data(*merge)(const Data&, const Data&)>
 	class ReRooting {
 	public:
 		ReRooting(int size) :size(size) {
 			graph.resize(size);
 		}
 
-		void setEdge(int s, int t, Cost c = 0) {
-			graph[s].emplace_back(s, t, c);
-			graph[t].emplace_back(t, s, c);
+		void setEdge(int s, int t, int index) {
+			graph[s].emplace_back(s, t, index);
+			graph[t].emplace_back(t, s, index);
 		}
 
 		std::vector<Data>execute() {
@@ -21,8 +21,8 @@ template <typename Data, typename Cost, Data(*e)(), Data(*leaf)(int), Data(*addE
 	private:
 		struct Edge {
 			int from, to;
-			Cost cost;
-			Edge(int from, int to, Cost cost) :from(from), to(to), cost(cost) {}
+			int index;
+			Edge(int from, int to, int index) :from(from), to(to), index(index) {}
 		};
 
 		int size;
@@ -31,22 +31,18 @@ template <typename Data, typename Cost, Data(*e)(), Data(*leaf)(int), Data(*addE
 
 		void dfs(int v, int p = -1) {
 			auto val = e();
-			bool upd = false;
 			for (Edge &edge : graph[v]) {
 				if (p == edge.to)continue;
 				dfs(edge.to, v);
-				upd = true;
-				val = merge(val, addEdge(sdp[edge.to]));
+				val = merge(val, addEdge(sdp[edge.to], edge.index));
 			}
-			if (!upd)sdp[v] = leaf(v);
-			else sdp[v] = addVertex(val);
+			sdp[v] = addVertex(val, v);
 		}
 
-		void dfsR(int v, int p) {
+		void dfsR(int v, int p = -1) {
 			std::vector<Data>tmp;
 			for (Edge &edge : graph[v]) {
-				if (edge.to == p) tmp.push_back(addEdge(sdp[p]));
-				else tmp.push_back(addEdge(sdp[edge.to]));
+				tmp.push_back(addEdge(sdp[edge.to], edge.index));
 			}
 			int n = tmp.size();
 			std::vector<Data> head(n + 1, e()), tail(n + 1, e());
@@ -56,16 +52,15 @@ template <typename Data, typename Cost, Data(*e)(), Data(*leaf)(int), Data(*addE
 			int index = 0;
 			for (Edge &edge : graph[v]) {
 				if (p != edge.to) {
-					sdp[v] = addVertex(merge(head[index], tail[index + 1]));
+					sdp[v] = addVertex(merge(head[index], tail[index + 1]), v);
 					dfsR(edge.to, v);
 				}
 				index++;
 			}
 		}
 };
-// ReRooting<Data, Cost, e, leaf, addEdge, addVertex, merge> reroot(n);
 // sumple ARC179D
-using Cost = int;
+// ReRooting<Data, e, leaf, addEdge, addVertex, merge> reroot(n);
 struct Data {
 	int e;// ï”ÇÃêî
 	int h;// çÇÇ≥
@@ -78,10 +73,10 @@ Data e() {
 Data leaf(int v) {
 	return e();
 }
-Data addEdge(const Data &x) {
+Data addEdge(const Data &x, int edgeIndex) {
 	return{ x.e + 1,x.h + 1, min(x.v0 + 2,1 + 2 * x.e - x.h) ,x.v1 + 1 };
 }
-Data addVertex(const Data &x) {
+Data addVertex(const Data &x, int vertexIndex) {
 	return x;
 }
 Data merge(const Data &l, const Data&r) {
