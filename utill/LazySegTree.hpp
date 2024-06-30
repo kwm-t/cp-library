@@ -8,6 +8,7 @@ namespace RangeAddRangeMin{
 	S mapping(F f, S x) { return f + x; }
 	F composition(F f, F g) { return f + g; }
 	F id() { return 0; }
+	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 };
 namespace RangeAddRangeMax {
 	// 区間加算・区間最大値取得
@@ -19,6 +20,7 @@ namespace RangeAddRangeMax {
 	S mapping(F f, S x) { return f + x; }
 	F composition(F f, F g) { return f + g; }
 	F id() { return 0; }
+	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 }
 namespace RangeAddRangeSum {
 	// 区間加算・区間最大値取得
@@ -32,6 +34,7 @@ namespace RangeAddRangeSum {
 	S mapping(F f, S x) { return { x.value + f * x.size, x.size }; }
 	F composition(F f, F g) { return f + g; }
 	F id() { return 0; }
+	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 }
 namespace RangeUpdateRangeMin {
 	// 区間変更・区間最小値取得
@@ -44,6 +47,7 @@ namespace RangeUpdateRangeMin {
 	S mapping(F f, S x) { return (f == ID ? x : f); }
 	F composition(F f, F g) { return (f == ID ? g : f); }
 	F id() { return ID; }
+	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 }
 namespace RangeUpdateRangeMax {
 	// 区間変更・区間最大値取得
@@ -56,6 +60,7 @@ namespace RangeUpdateRangeMax {
 	S mapping(F f, S x) { return (f == ID ? x : f); }
 	F composition(F f, F g) { return (f == ID ? g : f); }
 	F id() { return ID; }
+	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 }
 namespace RangeUpdateRangeSum {
 	// 区間変更・区間和取得
@@ -73,4 +78,5 @@ namespace RangeUpdateRangeSum {
 	}
 	F composition(F f, F g) { return (f == ID ? g : f); }
 	F id() { return ID; }
+	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 }
