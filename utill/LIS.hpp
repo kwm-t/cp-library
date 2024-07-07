@@ -1,7 +1,6 @@
 #include <vector>
-const int INF = 1e9;
 // dp[i] := 長さが i の増加部分列として最後尾の要素のとりうる最小値
-template<class T> int LIS(std::vector<T> a, bool is_strong = true) {
+template<class T> int lis(std::vector<T> a, bool is_strong = true) {
 	const T INF = 1 << 30; // to be set appropriately
 	int n = (int)a.size();
 	std::vector<T> dp(n, INF);
