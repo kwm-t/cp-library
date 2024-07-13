@@ -1,14 +1,14 @@
 #include <vector>
-// dS•ª‰ğ
+// é‡å¿ƒåˆ†è§£
 class CentroidDecomposition {
-public:
+private:
 	int V;
 	std::vector<std::vector<int> > G;
 	std::vector<bool> used;
-	//sz:dS•ª‰ğŒã‚ÌÅ‘å•”•ª–Ø‚ÉŠÜ‚Ü‚ê‚é’¸“_‚Ì”(©•ª‚ğŠÜ‚ß‚é)
-	//par:dS•ª‰ğŒã‚Ìe‚Ì’¸“_
+	//sz:é‡å¿ƒåˆ†è§£å¾Œã®æœ€å¤§éƒ¨åˆ†æœ¨ã«å«ã¾ã‚Œã‚‹é ‚ç‚¹ã®æ•°(è‡ªåˆ†ã‚’å«ã‚ã‚‹)
+	//par:é‡å¿ƒåˆ†è§£å¾Œã®è¦ªã®é ‚ç‚¹
 	std::vector<int> sz, par;
-	//•”•ª–Ø‚ÌƒTƒCƒY‚ğŒvZ
+	//éƒ¨åˆ†æœ¨ã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 	void calcSize(int u, int p) {
 		sz[u] = 1;
 		for (int v : G[u]) {
@@ -18,12 +18,12 @@ public:
 			}
 		}
 	}
-	void cdBuild(int u, int p) {
+	int cdBuild(int u, int p) {
 		calcSize(u, -1);
 		int tot = sz[u];
 		bool ok = false;
 		int pp = -1;
-		//‚¢‚ÜŒ©‚Ä‚¢‚é•”•ª–Ø‚Å‚ÌdS‚ğŒ©‚Â‚¯‚é
+		//ã„ã¾è¦‹ã¦ã„ã‚‹éƒ¨åˆ†æœ¨ã§ã®é‡å¿ƒã‚’è¦‹ã¤ã‘ã‚‹
 		while (!ok) {
 			ok = true;
 			for (int v : G[u]) {
@@ -34,14 +34,15 @@ public:
 			}
 		}
 		par[u] = p;
-		//‰½‚ç‚©‚Ì‘€ì
+		//ä½•ã‚‰ã‹ã®æ“ä½œ
 		used[u] = true;
-		//[‚³—Dæ‚Å‚½‚Ç‚é
+		//æ·±ã•å„ªå…ˆã§ãŸã©ã‚‹
 		for (int v : G[u]) {
 			if (!used[v]) {
 				cdBuild(v, u);
 			}
 		}
+		return u;
 	}
 public:
 	CentroidDecomposition(int node_size) : V(node_size), G(V), used(V, false)
@@ -49,7 +50,7 @@ public:
 	void add_edge(int u, int v) {
 		G[u].push_back(v), G[v].push_back(u);
 	}
-	void build() {
-		cdBuild(0, -1);
+	int build() {
+		return cdBuild(0, -1);
 	}
 };
