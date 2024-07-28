@@ -22,5 +22,6 @@ std::vector<int> namori(std::vector<std::vector<int>> &to) {
 		st.erase(v);
 		return false;
 	};
+	dfs(dfs, 0);
 	return roop;
 }

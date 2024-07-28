@@ -32,7 +32,7 @@ public:
 	}
 	void build(int s) {
 		dp.assign(n, INF);
-		std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> pq;
+		std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>, std::greater<>> pq;
 		dp[s] = 0;
 		pq.push({ dp[s], s });
 		while (!pq.empty()) {
