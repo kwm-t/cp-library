@@ -1,23 +1,11 @@
 #include <vector>
 // KMP
 template<typename T>
-struct MP {
-	int n;
-	T t;
-	std::vector<int> a;
-	MP() {}
-	MP(const T& t) : t(t) {
-		n = t.size();
-		a = std::vector<int>(n + 1);
-		a[0] = -1;
-		int j = -1;
-		for (int i = 0; i < n; ++i) {
-			while (j != -1 && t[j] != t[i]) j = a[j];
-			j++;
-			a[i + 1] = j;
-		}
+class KMP {
+public:
+	KMP(const T& t) : t(t) {
+		build();
 	}
-	int operator[](int i) { return a[i]; }
 	std::vector<int> findAll(const T& s) {
 		std::vector<int> res;
 		int j = 0;
@@ -30,5 +18,25 @@ struct MP {
 			}
 		}
 		return res;
+	}
+	void dump() {
+		for (auto e : a)std::cout << e << " ";
+		std::cout << std::endl;
+	}
+private:
+	int n;
+	T t;
+	std::vector<int> a;
+	void build() {
+		n = t.size();
+		a = std::vector<int>(n + 1);
+		a[0] = -1;
+		int j = -1;
+		for (int i = 0; i < n; ++i) {
+			while (j != -1 && t[j] != t[i]) j = a[j];
+			j++;
+			if (t[i + 1] == t[j])a[i + 1] = a[j];
+			else a[i + 1] = j;
+		}
 	}
 };

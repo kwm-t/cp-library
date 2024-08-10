@@ -21,3 +21,6 @@ transform(S.begin(), S.end(), S.begin(), [](char c) {return tolower(c); });
 
 do {
 } while (next_permutation(v.begin(), v.end()));
+
+//[l0,r0]‚Æ[l1,r1]‚Ì‹¤’Ê”ÍˆÍ‚Ì’·‚³‚ğŠÈ’P‚É‹‚ß‚é
+ clamp(r1, l0, r0) - clamp(l0, l0, r0);
