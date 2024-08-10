@@ -1,8 +1,10 @@
 #include <vector>
 #include <string>
 #include <iostream> 
+
+template<typename ModInt>
 struct GaussJordan {
-	GaussJordan(std::vector<std::vector<mint>>_a, std::vector<mint>_b, long long _mod) :mod(_mod), a(_a), b(_b) {}
+	GaussJordan(std::vector<std::vector<ModInt>>_a, std::vector<ModInt>_b) :a(_a), b(_b) {}
 	// デバッグ用
 	void dbg() {
 		int n = a.size();
@@ -28,7 +30,7 @@ struct GaussJordan {
 				}
 			}
 			if (-1 == pivot)continue;
-			mint inv = inv_mod(a[pivot][i].val(), mod);
+			ModInt inv = inv_mod(a[pivot][i].val(), ModInt::mod());
 			std::swap(a[rank], a[pivot]);
 			std::swap(b[rank], b[pivot]);
 			for (int j = i; j < m; ++j) a[rank][j] *= inv;
@@ -36,7 +38,7 @@ struct GaussJordan {
 			for (int j = 0; j < n; ++j) {
 				if (rank == j)continue;
 				if (0 == a[j][i])continue;
-				mint x = a[j][i];
+				ModInt x = a[j][i];
 				for (int k = 0; k < m; ++k) a[j][k] -= x * a[rank][k];
 				b[j] -= x * b[rank];
 			}
@@ -62,7 +64,7 @@ struct GaussJordan {
 		return true;
 	}
 	// 核
-	std::vector<std::vector<mint>> kernel() {
+	std::vector<std::vector<ModInt>> kernel() {
 		int n = a.size();
 		int m = a[0].size();
 		sweep();
@@ -79,17 +81,20 @@ struct GaussJordan {
 		ker.clear();
 		for (int i = 0; i < m; ++i) {
 			if (cols[i])continue;
-			std::vector<mint>v(m);
+			std::vector<ModInt>v(m);
 			v[i] = -1;
 			for (int j = 0; j < piv.size(); ++j) v[piv[j]] = a[j][i];
 			ker.push_back(v);
 		}
 		return ker;
 	}
-	long long mod;
 	int rank;
-	std::vector<std::vector<mint>>a;
-	std::vector<mint>x;
-	std::vector<mint>b;
-	std::vector<std::vector<mint>>ker;
+	std::vector<std::vector<ModInt>>a;
+	std::vector<ModInt>x;
+	std::vector<ModInt>b;
+	std::vector<std::vector<ModInt>>ker;
 };
+// how to use
+// using modint2 = static_modint<2>;
+// vector a(n, vector<modint2>(n));
+// vector<modint2>b(n);
