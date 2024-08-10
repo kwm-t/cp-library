@@ -4,10 +4,9 @@
 struct GaussJordan {
 	GaussJordan(std::vector<std::vector<mint>>_a, std::vector<mint>_b, long long _mod) :mod(_mod), a(_a), b(_b) {}
 	// デバッグ用
-	void dbg(std::string s) {
+	void dbg() {
 		int n = a.size();
 		int m = a[0].size();
-		std::cout << s << std::endl;
 		for (int i = 0; i < n; ++i) {
 			for (int j = 0; j < n; ++j)std::cout << a[i][j].val() << " ";
 			std::cout << std::endl;
@@ -34,7 +33,7 @@ struct GaussJordan {
 			std::swap(b[rank], b[pivot]);
 			for (int j = i; j < m; ++j) a[rank][j] *= inv;
 			b[rank] *= inv;
-			for (int j = 0; j < n; ++i) {
+			for (int j = 0; j < n; ++j) {
 				if (rank == j)continue;
 				if (0 == a[j][i])continue;
 				mint x = a[j][i];
