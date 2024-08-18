@@ -102,6 +102,11 @@ H_1=\frac{1}{\sqrt{2}}
             \end{array}
         \right)
         \\\\
+    \end{aligned}
+```
+```math
+    \begin{aligned} 
+        \\\\
         &=
         2^{{k}/2} 
         \left(
