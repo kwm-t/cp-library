@@ -486,33 +486,6 @@ https://sapphire15.hatenablog.com/entry/2021/09/13/114900
     \begin{aligned} 
         2^{({k+1})/2}  H_{k+1}(H_{k+1}u \odot H_{k+1}v)
         &=
-        2^{({k+1})/2} 
-        \frac{1}{\sqrt{2}}
-        \left[
-            \begin{array}{cc}
-            H_{k} & H_{k} \cr
-            H_{k} & -H_{k}
-            \end{array}
-        \right]
-        \left(
-            \frac{1}{\sqrt{2}}
-            \left[
-                \begin{array}{cc}
-                    H_{k}u_{0} + H_{k}u_{1} \cr
-                    H_{k}u_{0} - H_{k}u_{1}
-                \end{array}
-            \right]
-            \odot
-            \frac{1}{\sqrt{2}}
-            \left[
-                \begin{array}{cc}
-                    H_{k}v_{0} + H_{k}v_{1} \cr
-                    H_{k}v_{0} - H_{k}v_{1}
-                \end{array}
-            \right]
-        \right)
-        \\\\
-        &=
         \frac{2^{{k}/2}}{2} 
         \left[
             \begin{array}{cc}
