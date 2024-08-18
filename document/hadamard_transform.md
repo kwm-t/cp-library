@@ -7,17 +7,7 @@ $$ Z_k = \sum_{k=i\oplus j} X_iY_j$$
 
 ## アダマール変換
 アダマール変換 $H_n$ は $2^n$ × $2^n$ の行列であり、以下のように再帰的に定義される。<br><br>
- $H_0=\begin{bmatrix}
-        1
-    \end{bmatrix}$ <br><br>
- $H_0 = \left[\begin{array}{c}1\end{array}\right]$ <br><br>
- $
- M = \begin{bmatrix}
-       \frac{5}{6} & \frac{1}{6} & 0           \\[0.3em]
-       \frac{5}{6} & 0           & \frac{1}{6} \\[0.3em]
-       0           & \frac{5}{6} & \frac{1}{6}
-     \end{bmatrix}
- $<br>
+ $H_0=\left[\begin{array}{cc}1\end{array}\right]$ <br><br>
  $
   H_1=\frac{1}{\sqrt{2}}
   \left[
