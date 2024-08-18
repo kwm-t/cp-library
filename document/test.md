@@ -1,5 +1,5 @@
 This sentence uses `$` delimiters to show math inline:  $\sqrt{3x-1}+(1+x)^2$
-  $$ \left(Z_k = \sum_{k=i\oplus j} X_iY_j\right)$$
+  $$ \left(Z_k = \sum_{k=i\oplus j} X_iY_j \right) $$
 
 
 
