@@ -2,12 +2,13 @@
 ## XOR畳み込み
 長さ $2^n$ の数列 $X,Y$ に対して、XOR畳み込みを以下を満たす長さ  $2^n$ の数列 $Z$ として定める。<br>
 $$ Z_k = \sum_{k=i\oplus j} X_iY_j$$
-以降、$ Z = X*Y $と書く<br>
+以降、 $ Z = X*Y $ と書く<br>
 
 
 ## アダマール変換
 アダマール変換 $H_n$ は $2^n$ × $2^n$ の行列であり、以下のように再帰的に定義される。<br><br>
  $H_0=\left[\begin{array}{cc}1\end{array}\right]$ <br><br>
+ $H_0 = \left[\begin{array}{c}1\end{array}\right]$ <br><br>
  $
   H_1=\frac{1}{\sqrt{2}}
   \left[
