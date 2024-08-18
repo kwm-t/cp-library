@@ -227,9 +227,8 @@ void walsh_hadamard_transform(std::vector<T>& f) {
 ## その他の畳み込み
 行列の形を変えxorのときと同様に再帰的に構成するとandやorへの畳み込みにも対応が出来る
 
-andの場合
-
- $
+andの場合<br>
+```math
   H_{1}=
   \left[
     \begin{array}{cc}
@@ -243,28 +242,11 @@ andの場合
       0 & 1
     \end{array}
   \right]
- $
+```
+とし
 ```math
     \begin{aligned} 
         H_{k+1}^{-1}(H_{k+1}u \odot H_{k+1}v)
-        &=
-        H_{k+1}^{-1}
-        \left(
-            \left[
-                \begin{array}{cc}
-                    H_{k}u_{0} + H_{k}u_{1} \cr
-                    H_{k}u_{1}
-                \end{array}
-            \right]
-            \odot
-            \left[
-                \begin{array}{cc}
-                    H_{k}v_{0} + H_{k}v_{1} \cr
-                    H_{k}v_{1}
-                \end{array}
-            \right]
-        \right)
-        \\\\
         &=
         \left[
             \begin{array}{cc}
@@ -322,9 +304,8 @@ andの場合
         u*v
     \end{aligned}
 ```
-orの場合
-
- $
+orの場合<br>
+```math
   H_{1}=
   \left[
     \begin{array}{cc}
@@ -338,7 +319,8 @@ orの場合
       -1 & 1
     \end{array}
   \right]
- $
+```
+とし
 ```math
     \begin{aligned} 
         H_{k+1}^{-1}(H_{k+1}u \odot H_{k+1}v)
