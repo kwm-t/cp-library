@@ -4,7 +4,7 @@
 ```math
 Z_k = \sum_{k=i\oplus j} X_iY_j
 ```
-以降、 $ Z = X*Y $ と書く<br>
+以降、 $Z = X*Y$ と書く<br>
 
 
 ## アダマール変換
