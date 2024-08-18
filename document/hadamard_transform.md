@@ -128,6 +128,7 @@ H_1=\frac{1}{\sqrt{2}}
         u*v
     \end{aligned}
 ```
+(ここなんかgitに上げるとエラー吐くので区切ってる)
 
 ## 高速Walsh-Hadamard変換
 上記アダマール変換を愚直に行うと $\mathcal{O}(4^n)$ になる。<br>
