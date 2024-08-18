@@ -1,18 +1,10 @@
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
- MathJax.Hub.Config({
- tex2jax: {
- inlineMath: [['$', '$'] ],
- displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
- }
- });
-</script>
 
 ## XOR畳み込み
 長さ$2^n$の数列$X,Y$に対して、XOR畳み込みを以下を満たす長さ$2^n$の数列$Z$として定める。<br>
 $$ Z_k = \sum_{k=i\oplus j} X_iY_j$$
 以降、$Z = X*Y$と書く<br>
+
+to $(ax^2 + bx + c = 0)$ and they are 
 
 
 ## アダマール変換
