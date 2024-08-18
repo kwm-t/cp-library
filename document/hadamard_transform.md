@@ -10,24 +10,20 @@ Z_k = \sum_{k=i\oplus j} X_iY_j
 ## アダマール変換
 アダマール変換 $H_n$ は $2^n$ × $2^n$ の行列であり、以下のように再帰的に定義される。<br><br>
  $H_0=\left[\begin{array}{cc}1\end{array}\right]$ <br><br>
- $
-  H_1=\frac{1}{\sqrt{2}}
+ $H_1=\frac{1}{\sqrt{2}}
   \left[
     \begin{array}{cc}
       1 & 1 \cr
       1 & -1
     \end{array}
-  \right]
- $ <br><br>
- $
-  H_{i+1}=\frac{1}{\sqrt{2}}
+  \right]$ <br><br>
+ $H_{i+1}=\frac{1}{\sqrt{2}}
   \left[
     \begin{array}{cc}
       H_{i} & H_{i} \cr
       H_{i} & -H_{i}
     \end{array}
-  \right]
- $ <br><br>
+  \right]$ <br><br>
 
  $H_i*H_i = I$ が成り立つ(帰納法より明らか)<br>
 重要な性質として次が成り立つ。<br>
