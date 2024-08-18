@@ -12,7 +12,6 @@ public:
 	}
 private:
 	int bitSize;
-	long long n, N;
 	std::vector<std::vector<int>> dp;
 	void init(const std::vector<int>&v) {
 		dp.resize(bitSize);
