@@ -30,16 +30,22 @@
         \\\\
         &=
         \frac{2^{{k}/2}}{2} 
-        \left[
-            \begin{array}{cc}
-            H_{k} & H_{k} \cr
-            H_{k} & -H_{k}
-            \end{array}
-        \right]
+        \begin{bmatrix}
+            H_{k} & H_{k} \\[0.3em]
+            H_{k} & -H_{k}\end{bmatrix}
         \left(
             \begin{array}{cc}
             (H_{k}u_{0} + H_{k}u_{1})\odot(H_{k}v_{0} + H_{k}v_{1}) \cr
             (H_{k}u_{0} - H_{k}u_{1})\odot(H_{k}v_{0} - H_{k}v_{1})
+            \end{array}
+        \right)
+        \\\\
+        &=
+        2^{{k}/2} 
+        \left(
+            \begin{array}{cc}
+                H_{k}(H_{k}u_{0}\odot H_{k}v_{0}) + H_{k}(H_{k}u_{1}\odot H_{k}v_{1}) \cr
+                H_{k}(H_{k}u_{0}\odot H_{k}v_{1}) + H_{k}(H_{k}u_{1}\odot H_{k}v_{0})
             \end{array}
         \right)
         \\\\
