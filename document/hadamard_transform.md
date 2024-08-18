@@ -150,8 +150,8 @@ H_1=\frac{1}{\sqrt{2}}
         \right)
         \left(
                 \begin{array}{cc}
-                H_{k-1}&0\cr
-                0&-H_{k-1}
+                H_{k-1}&O\cr
+                O&-H_{k-1}
             \end{array}
         \right)
         u
@@ -166,18 +166,18 @@ H_1=\frac{1}{\sqrt{2}}
         \right)
         \left(
                 \begin{array}{cc}
-                E_{k-2}&E_{k-2}&0&0\cr
-                E_{k-2}&-E_{k-2}&0&0\cr
-                0&0&E_{k-2}&E_{k-2}\cr
-                0&0&E_{k-2}&-E_{k-2}
+                E_{k-2}&E_{k-2}&O&O\cr
+                E_{k-2}&-E_{k-2}&O&O\cr
+                O&O&E_{k-2}&E_{k-2}\cr
+                O&O&E_{k-2}&-E_{k-2}
             \end{array}
         \right)
         \left(
                 \begin{array}{cc}
-                H_{k-2}&0&0&0\cr
-                0&H_{k-2}&0&0\cr
-                0&0&H_{k-2}&0\cr
-                0&0&0&H_{k-2}
+                H_{k-2}&O&O&O\cr
+                O&H_{k-2}&O&O\cr
+                O&O&H_{k-2}&O\cr
+                O&O&O&H_{k-2}
             \end{array}
         \right)
         u
@@ -236,7 +236,7 @@ andの場合<br>
         \left[
             \begin{array}{cc}
             H_{k}^{-1} & -H_{k}^{-1} \cr
-            0 & H_{k}^{-1}
+            O& H_{k}^{-1}
             \end{array}
         \right]
         \left(
@@ -259,7 +259,7 @@ andの場合<br>
         \left[
             \begin{array}{cc}
             H_{k}^{-1} & -H_{k}^{-1} \cr
-            0 & H_{k}^{-1}
+            O & H_{k}^{-1}
             \end{array}
         \right]
         \left(
@@ -312,7 +312,7 @@ orの場合<br>
         &=
         \left[
             \begin{array}{cc}
-            H_{k}^{-1} & 0 \cr
+            H_{k}^{-1} & O \cr
             -H_{k}^{-1}  & H_{k}^{-1}
             \end{array}
         \right]
@@ -335,7 +335,7 @@ orの場合<br>
         &=
         \left[
             \begin{array}{cc}
-            H_{k}^{-1} & 0 \cr
+            H_{k}^{-1} & O \cr
             -H_{k}^{-1}  & H_{k}^{-1}
             \end{array}
         \right]
