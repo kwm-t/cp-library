@@ -42,5 +42,16 @@
             (H_{k}u_{0} - H_{k}u_{1})\odot(H_{k}v_{0} - H_{k}v_{1})
             \end{array}
         \right)
+        \\\\
+        &=
+        \left(
+                \begin{array}{cc}
+                u_{0}*v_{0}+u_{1}*v_{1} \cr
+                u_{0}*v_{1}+u_{1}*v_{0}
+            \end{array}
+        \right)
+        \\\\
+        &=
+        u*v
     \end{aligned}
 ```
