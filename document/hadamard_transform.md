@@ -486,7 +486,15 @@ https://sapphire15.hatenablog.com/entry/2021/09/13/114900
     \begin{aligned} 
         2^{({k+1})/2}  H_{k+1}(H_{k+1}u \odot H_{k+1}v)
         &=
+        \left(
+                \begin{array}{cc}
+                u_{0}*v_{0}+u_{1}*v_{1} \cr
+                u_{0}*v_{1}+u_{1}*v_{0}
+            \end{array}
+        \right)
+        \\\\
+        &=
         u*v
-
+        
     \end{aligned}
 ```
