@@ -2,7 +2,6 @@
 ## XOR畳み込み
 長さ $2^n$ の数列 $X,Y$ に対して、XOR畳み込みを以下を満たす長さ  $2^n$ の数列 $Z$ として定める。<br>
   $$ Z_k = \sum_{k=i\oplus j} X_iY_j $$
-   $$ Z_k = \sum_{k=i\oplus j} X_iY_j $$
 以降、 $ Z = X*Y $ と書く<br>
 
 
