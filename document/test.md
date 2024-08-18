@@ -59,6 +59,5 @@
                 u_{0}*v_{1}+u_{1}*v_{0}
             \end{array}
         \right)
-        \\\\
     \end{aligned}
 ```
