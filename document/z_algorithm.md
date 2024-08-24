@@ -1,6 +1,6 @@
 # z_Algorithm
-長さ $N$文字列 $S$に対し、長さ $N$の配列を返す<br>
- $i$番目の要素は $S[0..n)$と $S[i..n)$のLCP(Longest Common Prefix)の長さ
+長さ $N$文字列 $S$に対し、以下を満たす長さ $N$の配列を　$\mathcal{O}(|S|)$求める<br>
+- $Z[i]$= $S[0..n)$と $S[i..n)$のLCP(Longest Common Prefix)の長さ
 
 # 例
  $S$=abcababcが入力として与えられた時<br>
