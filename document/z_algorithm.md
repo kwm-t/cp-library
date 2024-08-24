@@ -23,16 +23,11 @@ z_algorithmを用いると文字列Tが文字列Sに含まれるかという判�
  $l$ = 0, $r$ = 0, $Z$ = [n,0,0,0,,,,,0]で初期化を行う
 
 $i\in[1,|S|)$に対して以下の処理を繰り返す<br>
-#### Case1: $Z[i-l] < r-i$
-1. update
+- $Z[i-l] < r-i$ の時(Case.1)
     - $Z[i] = Z[i-l]$を代入
-
-#### Case2: $Z[i-l] \geq r-i$
- 1. update
+- $Z[i-l] \geq r-i$  の時(Case.2)
     - $r=max(r,i)$を代入
- 2. increment
     - $r < n$かつ $S[r] = S[r-i]$を満たす間$r$をインクリメントする
- 3. update
     - $Z[i] = r-i$, $l=i$を代入
 
 ## 正当性
@@ -57,12 +52,33 @@ S[l..r) = S[0,r-l)
 $1 < i$に関しては以降で帰納法にて証明する
 
 ### アルゴリズムの解説
-TODO
+ $l\leq i \leq r$を満たす時、以下が成り立つ<br>
+ $S[l..r) = S[0..r-l)より、S[i..r) = S[i-l..r-l)$<br>
+ $S[i-l..i-l + Z[i-l]) = S[0..Z[i-l])かつS[i-l + Z[i-l]] ≠ S[Z[i-l]]を満たす$<br>
+ 後者はz_algorithmの定義より明らか
+
+
+- $i-l + Z[i-l] < r-l  ⇔ Z[i-l] < r-i$　の場合
+    - $S[i..i+Z[i-l]) = S[i-l..i-l+Z[i-l]) = S[0..Z[i-l])$かつ<br>
+ $S[i+Z[i-l]] = S[i-l + Z[i-l]] ≠ S[Z[i-l]]$より<br>
+ $Z[i] = Z[i-l]$を満たす。<br>
+ これは手順内のCase1に相当する
+- $Z[i-l] \geq r-i$　の場合
+    - $i>r$の場合( $i=r+1$)
+        - $l = i,r = i$を代入
+		- $S[r-i] = S[r]$を満たす間$r$++を行う
+        - $Z[i] = r-i$を代入
+    - $i \leq r$の場合
+        - todo
+        - $S[r-i] = S[r]$を満たす間$r$++を行う
+        - $Z[i] = r-i$を代入
+
+
 
 
 ### 計算量解析
 Case2の2. increment内にて $r$をインクリメントする回数に着目します<br>
-$r$は単調増加であり、上限が存在することより$\mathcal{O}(|S|)$となることがわかる。
+$r$は単調増加であり、上限が存在することより $\mathcal{O}(|S|)$となることがわかる。
 
 ## 実装
 ```cpp
@@ -102,3 +118,6 @@ std::vector<int> z_algorithm(const std::string& s) {
 ```
 ## 参考
 https://qiita.com/t_fuki/items/e682238dda6ad832ce05
+
+
+
