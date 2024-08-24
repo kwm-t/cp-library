@@ -75,6 +75,9 @@ $1 < i$に関しては以降で帰納法にて証明する
 - $Z[i] = r-i$
 - $l = i$
 
+### 図示
+<img src="image/z_algorithm.png" alt="z_algorithm.png">
+
 
 
 ### 計算量解析
