@@ -22,7 +22,7 @@ z_algorithmを用いると文字列Tが文字列Sに含まれるかという判�
 初期化<br>
  $l$ = 0, $r$ = 0, $Z$ = [n,0,0,0,,,,,0]で初期化を行う
 
-$i\in[i,|S|)$に対して以下の処理を繰り返す<br>
+$i\in[1,|S|)$に対して以下の処理を繰り返す<br>
 #### Case1: $Z[i-l] < r-i$
 1. update
     - $Z[i] = Z[i-l]$を代入
@@ -35,7 +35,8 @@ $i\in[i,|S|)$に対して以下の処理を繰り返す<br>
  3. update
     - $Z[i] = r-i$, $l=i$を代入
 
-### 正当性
+## 正当性
+### 前提
 変数 $l,r$は上記の手順内のCase1,Case2の終了後に常に以下の性質を満たす。<br>
 ```math
 l\leq i\leq r
@@ -43,3 +44,61 @@ l\leq i\leq r
 ```math
 S[l..r) = S[0,r-l)
 ```
+これは以下と同値<br>
+変数 $l,r$は上記の手順内のCase1,Case2の開始前に常に以下の性質を満たす。<br>
+```math
+l\leq i-1 \leq r
+```
+```math
+S[l..r) = S[0,r-l)
+```
+
+ $i = 1$の時 $0 \leq  0 \leq  0$かつ $S[0..0) = S[0..0)$より成り立つことが確認できる<br>
+$1 < i$に関しては以降で帰納法にて証明する
+
+### アルゴリズムの解説
+TODO
+
+
+### 計算量解析
+Case2の2. increment内にて $r$をインクリメントする回数に着目します<br>
+$r$は単調増加であり、上限が存在することより$\mathcal{O}(|S|)$となることがわかる。
+
+## 実装
+```cpp
+#include <vector>
+#include <string>
+#include <algorithm>
+template <class T>
+std::vector<int> z_algorithm(const std::vector<T>& s) {
+	int n = (int)s.size();
+	if (0 == n)return {};
+	std::vector<int>z(n);
+	z[0] = n;
+	int l = 0, r = 0;
+	for (int i = 1; i < n; ++i) {
+		if (z[i - l] < r - i) {
+			z[i] = z[i - l];
+		}
+		else {
+			r = std::max(r, i);
+			while (r < n && s[r] == s[r - i]) {
+				r++;
+			}
+			z[i] = r - i;
+			l = i;
+		}
+	}
+	return z;
+}
+std::vector<int> z_algorithm(const std::string& s) {
+	int n = (int)s.size();
+	std::vector<int> subS(n);
+	for (int i = 0; i < n; i++) {
+		subS[i] = s[i];
+	}
+	return z_algorithm(subS);
+}
+```
+## 参考
+https://qiita.com/t_fuki/items/e682238dda6ad832ce05
