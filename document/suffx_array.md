@@ -561,6 +561,33 @@ std::vector<int> suffixArray(const std::string &s) {
 	return sa();
 }
 ```
+# 検索
+```cpp
+template <class T, class F>
+T binarySearch(T ok, T ng, const F &f) {
+	while (abs(ok - ng) > 1) {
+		T mid = (ok + ng) / 2;
+		(f(mid) ? ok : ng) = mid;
+	}
+	return ok;
+}
+void search(const std::string &s,std::vector<std::string> ts) {
+	auto sa = suffixArray(s);
+	char c = 'z' + 1;
+	for (auto t : ts) {
+		auto f = [&](int index)->bool {
+			int sz = s.size() - sa[index];
+			sz = min(sz, (int)t.size());
+			string u = s.substr(sa[index], sz);
+			return u < t;
+		};
+		int l = binarySearch(-1, (int)s.size(), f);
+		t += c;
+		int r = binarySearch(-1, (int)s.size(), f);
+		cout << (r - l) << endl;
+	}
+}
+```
 # 参考
 https://shogo82148.github.io/homepage/memo/algorithm/suffix-array/
 https://mametter.hatenablog.com/entry/20180130/p1
