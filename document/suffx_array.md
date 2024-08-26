@@ -60,7 +60,7 @@ LSLLSLLSLLLS
 ```
 
 
-これを求めるには文字列を逆順に走査していけばいい( $\mathcal{O}(|S|)$<br>
+これを求めるには文字列を逆順に走査していけばいい( $\mathcal{O}(|S|)$)<br>
 以降、この配列を $SL$ 配列と呼ぶ。
 
 ### LMS(Left-most S)/LMS部分文字列(LMS-substring)
