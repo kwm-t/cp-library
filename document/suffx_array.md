@@ -589,6 +589,6 @@ void search(const std::string &s,std::vector<std::string> ts) {
 }
 ```
 # 参考
-https://shogo82148.github.io/homepage/memo/algorithm/suffix-array/
-https://mametter.hatenablog.com/entry/20180130/p1
+https://shogo82148.github.io/homepage/memo/algorithm/suffix-array/<br>
+https://mametter.hatenablog.com/entry/20180130/p1<br>
 https://blog.knshnb.com/posts/sa-is/
