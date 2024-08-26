@@ -135,7 +135,7 @@ index,S[SA[i]],SL[SA[i]]
 前半は、Suffix Arrayの定義より明らか<br>
 後半の証明は以下<br>
 #### 証明
-L型のindexを　$i0$,S型のindexを $i1$としたときに<br>
+L型のindexを $i0$,S型のindexを $i1$としたときに<br>
 L型は定義より $S[i0] \geq S[i0+1]$であり<br>
 S型は定義より $S[i1] \leq S[i1+1]$であるため<br>
  $S[i0+1]$と $S[i1+1]$が異なるなら明らか<br>
@@ -238,7 +238,7 @@ Step3.はStep2の逆なので、Step2.と同等の理由で正当です。<br>
 ※ここめちゃめちゃにごまかしているのでざっくりで読んでください。<br>
 
 ### ここまでの纏め(induced sort)
-induced sortを行う際にLMSのsuffixをソートされたindex順( $mississippi\$$の時$[11,7,4,1]$)を与えれば<br>
+induced sortを行う際にLMSのsuffixをソートされたindex順( $mississippi\$$の時 $[11,7,4,1]$)を与えれば<br>
 - 1 LMSのindex列を元にL型をソート
 - 2 ソートされたL型を元にS型をソート
 <br>
