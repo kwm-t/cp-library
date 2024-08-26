@@ -16,8 +16,12 @@ public:
 		build(v);
 	}
 	// rは区間内に収まらなくてもいい
-	// lは区間内::todo...
 	mint get(const long long l, const long long r) {
+		if (l >= size) {
+			long long nl = l % size;
+			long long nr = r + nl - l;
+			return get(nl, nr);
+		}
 		long long width = r - l;
 		long long h = std::min(width, (long long)size - l);
 		long long b = ((width - h) / size) * size;
