@@ -58,9 +58,10 @@ $S[i..|S|) = S[i+1..|S|)$にはならない(文字列長が違うため自明)<b
 mississippi$
 LSLLSLLSLLLS
 ```
-<br>
-これを求めるには文字列を逆順に走査していけばいい( $\mathcal{O}(|S|)$)<br>
-以降、この配列を $SL$配列と呼ぶ。
+
+
+これを求めるには文字列を逆順に走査していけばいい( $\mathcal{O}(|S|)$<br>
+以降、この配列を $SL$ 配列と呼ぶ。
 
 ### LMS(Left-most S)/LMS部分文字列(LMS-substring)
 上記の手順でL型/S型を求めたのち<br>
