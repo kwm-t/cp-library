@@ -577,14 +577,14 @@ void search(const std::string &s,std::vector<std::string> ts) {
 	for (auto t : ts) {
 		auto f = [&](int index)->bool {
 			int sz = s.size() - sa[index];
-			sz = min(sz, (int)t.size());
-			string u = s.substr(sa[index], sz);
+			sz = std::min(sz, (int)t.size());
+			std::string u = s.substr(sa[index], sz);
 			return u < t;
 		};
 		int l = binarySearch(-1, (int)s.size(), f);
 		t += c;
 		int r = binarySearch(-1, (int)s.size(), f);
-		cout << (r - l) << endl;
+		std::cout << r - l << std::endl;
 	}
 }
 ```
