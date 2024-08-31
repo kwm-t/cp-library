@@ -25,7 +25,7 @@ std::vector<int> naive(const std::vector<T> &a, const std::vector<T> &b) {
  - $\sum_{k=0}^{N-1} \zeta_n^{kl}$は $l\equiv0 (modN)$のとき $N$、そうでないときに $0$ である。
 
  # 離散フーリエ変換(DFT)
-  $n$ 次の多項式 $f(x)=\sum_{k=0}^{N-1}C_kx^k $ を考えます。<br>
+  $n$ 次の多項式 $f(x)=\sum_{k=0}^{N-1}C_kx^k$ を考えます。<br>
 これに $x=\zeta_n^k$ を代入すると以下となる。
 
 ```math
