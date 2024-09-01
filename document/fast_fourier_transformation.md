@@ -124,8 +124,8 @@ std::vector<std::complex<double>> fft(const std::vector<std::complex<double>> &a
 		else odd.push_back(a[i]);
 	}
 
-	std::vector<std::complex<double>> d_even = fft(even, inv);
-	std::vector<std::complex<double>> d_odd = fft(odd, inv);
+	auto d_even = fft(even, inv);
+	auto d_odd = fft(odd, inv);
 
 	const std::complex<double> zeta(cos(2 * pi * inv / (double)n), sin(2 * pi * inv / (double)n));
 
@@ -149,13 +149,13 @@ std::vector<double> convolution(std::vector<std::complex<double>> a, std::vector
 	a.resize(n);
 	b.resize(n);
 
-	std::vector<std::complex<double>> da = fft(a, 1);
-	std::vector<std::complex<double>> db = fft(b, 1);
+	auto da = fft(a, 1);
+	auto db = fft(b, 1);
 
 	std::vector<std::complex<double>> dc(n);
 	for (int i = 0; i < n; ++i) dc[i] = da[i] * db[i];
 
-	std::vector<std::complex<double>> c = fft(dc, -1);
+	auto c = fft(dc, -1);
 
 	// IFFT の後は最後に n で割る必要がある
 	std::vector<double> ret(n);
@@ -166,11 +166,110 @@ std::vector<double> convolution(std::vector<std::complex<double>> a, std::vector
 
 # 課題
 上記には課題が残っています。<br>
-与えられた多項式 $A(x)$ $B(x)$が整数多項式の時、実装上で複素数を持ち出して計算を行っているため、場合によっては誤差が発生します。<br>
-どうすればいいでしょうか？
+与えられた多項式 $A(x)$ $B(x)$が整数多項式の時、実装上で複素数を持ち出して少数を扱って計算を行っているため、場合によっては誤差が発生します。<br>
+どうすればいいでしょうか？<br>
+誤差発生した理由は、少数を扱ったからです。<br>
+もし仮に、整数の世界のみで上記と同じことができれば課題は解決されます。<br>
 
-# 解決策
+# 数論変換
+ $\zeta_N$ の代わりになるものがあればよいです。<br>
+ $1のN$乗根の代わりに、 $modP$ の原始根を利用します。<br>
+原始根の説明は省略します。<br>
 
+ところで、 $r_N=r^{(p-1)/N}$と取れば、以下を満たします。
+ - $r_N^N\equiv1(modP)$
+ - $r_N^0$ , $r_N^1$ , $r_N^2$ $\cdots$  $r_N^{n-1}$はmodP上ですべて異なる
+ - $\sum_{k=0}^{N-1} r_N^{kl}$は $l\equiv0 (modN)$のとき $N$、そうでないときに $0$ である。
+
+ただし、$P-1$を$N$が割り切れる必要があります。<br>
+ $N$を2冪で定義していたことを思い出すと、 $P$ は $P-1$ が2を素因数として多く持つ必要があります。<br>
+要するに、FFTをする際に再帰が走る深さより多く2を素因数として保つ必要があるということです。
+このような性質を持つ代表的な素数として $P=998244353$などが知られています。<br>
+実際に $998244353 = 119*2^{23}+1$ となっています。<br>
+また、 $mod998244353$の原始根として $r=3$が知られています。<br>
+原始根を求めるアルゴリズムも存在しますが、今回は触れません。
+
+# 実装
+modは998244353で決め打ちしています
+```cpp
+std::vector<mint> make_root(long long mod) {
+	std::vector<mint> ret(0);
+	long long r = pow_mod(3, 119, mod);
+	for (long long i = 0; i < 23; i++) {
+		ret.push_back(r);
+		r = (r * r) % mod;
+	}
+	reverse(ret.begin(), ret.end());
+	return ret;
+}
+
+std::vector<mint> make_invroot(std::vector<mint> &root, long long mod) {
+	std::vector<mint> ret;
+	for (long long i = 0; i < root.size(); i++) {
+		ret.push_back(root[i].inv());
+	}
+	return ret;
+}
+
+std::vector<mint> ntt(const std::vector<mint> &a, int depth, const std::vector<mint> &root) {
+	int n = (int)a.size();
+	if (n == 1) return a;
+
+	std::vector<mint> ret(0);
+
+	std::vector<mint> even(0);
+	std::vector<mint> odd(0);
+	for (long long i = 0; i < n; ++i) {
+		if (0 == i % 2) even.push_back(a[i]);
+		else odd.push_back(a[i]);
+	}
+
+	auto d_even = ntt(even, depth - 1, root);
+	auto d_odd = ntt(odd, depth - 1, root);
+
+	const mint r = root[depth];
+
+	mint now = 1;
+	for (long long i = 0; i < n; i++) {
+		ret.push_back(d_even[i % (n / 2)] + now * d_odd[i % (n / 2)]);
+		now *= r;
+	}
+	return ret;
+}
+
+
+std::vector<mint> convolution_mint(std::vector<mint> a, std::vector<mint> b) {
+	std::vector<mint> root = make_root(mod);
+	std::vector<mint> invroot = make_invroot(root, mod);
+
+	int sizeA = (int)a.size();
+	int sizeB = (int)b.size();
+	int sizeC = sizeA + sizeB - 1;
+
+	int n = 1;
+	while (n <= sizeC) n *= 2;
+
+	a.resize(n);
+	b.resize(n);
+
+	int log_2n = 1;
+	while ((1 << log_2n) < n) log_2n++;
+
+	auto da = ntt(a, log_2n - 1, root);
+	auto db = ntt(b, log_2n - 1, root);
+
+	std::vector<mint> dc(n);
+	for (int i = 0; i < n; ++i) dc[i] = da[i] * db[i];
+
+	auto c = ntt(dc, log_2n - 1, invroot);
+
+	// INTT の後は最後に n で割ることを忘れずに．
+	std::vector<mint> ret(n);
+	mint invN = mint::raw(n).inv();
+	for (int i = 0; i < n; ++i) ret[i] = c[i] * invN;
+	return ret;
+}
+```
 
 # 参考
 https://qiita.com/AngrySadEight/items/0dfde26060daaf6a2fda
