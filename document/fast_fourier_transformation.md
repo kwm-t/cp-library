@@ -86,24 +86,24 @@ f(x)=f_e(x^2)+xf_o(x^2)
  $f(x)$ に $x=\zeta_N^k$ を代入した結果を使って、DFTができるわけです。<br>
 前述の $f(x)=f_e(x^2)+xf_o(x^2)$ に $x=\zeta_N^k$ を代入した結果を得るためには以下が必要になります。
 
-- $f_e(\zeta_N^{0})$ , $f_e(\zeta_N^{2})$ , $f_e(\zeta_N^{4})$, $\cdots$ $f_e(\zeta_N^{2N-2})$ の$N$個の値
-- $f_o(\zeta_N^{0})$ , $f_o(\zeta_N^{2})$ , $f_o(\zeta_N^{4})$, $\cdots$ $f_o(\zeta_N^{2N-2})$ の$N$個の値
+- $f_e(\zeta_N^{0})$ , $f_e(\zeta_N^{2})$ , $f_e(\zeta_N^{4})$, $\cdots$ $f_e(\zeta_N^{2N-2})$ の $N$ 個の値
+- $f_o(\zeta_N^{0})$ , $f_o(\zeta_N^{2})$ , $f_o(\zeta_N^{4})$, $\cdots$ $f_o(\zeta_N^{2N-2})$ の $N$ 個の値
 
  $\zeta_n^2 = \zeta_{n/2}$が成り立つので上記は以下のようになります。<br>
 
-- $f_e(\zeta_{N/2}^{0})$ , $f_e(\zeta_{N/2}^{1})$ , $f_e(\zeta_{N/2}^{2})$, $\cdots$ $f_e(\zeta_{N/2}^{N-1})$ の$N$個の値
-- $f_o(\zeta_{N/2}^{0})$ , $f_o(\zeta_{N/2}^{1})$ , $f_o(\zeta_{N/2}^{2})$, $\cdots$ $f_o(\zeta_{N/2}^{N-1})$ の$N$個の値
+- $f_e(\zeta_{N/2}^{0})$ , $f_e(\zeta_{N/2}^{1})$ , $f_e(\zeta_{N/2}^{2})$, $\cdots$ $f_e(\zeta_{N/2}^{N-1})$ の $N$ 個の値
+- $f_o(\zeta_{N/2}^{0})$ , $f_o(\zeta_{N/2}^{1})$ , $f_o(\zeta_{N/2}^{2})$, $\cdots$ $f_o(\zeta_{N/2}^{N-1})$ の $N$ 個の値
 
-また、$\zeta_{N/2}^{N/2} = 1$ が成り立つので上記は以下のように纏められます。
+また、 $\zeta_{N/2}^{N/2} = 1$ が成り立つので上記は以下のように纏められます。
 
-- $f_e(\zeta_{N/2}^{0})$ , $f_e(\zeta_{N/2}^{1})$ , $f_e(\zeta_{N/2}^{2})$, $\cdots$ $f_e(\zeta_{N/2}^{N/2-1})$ の$\frac{N}{2}$個の値
-- $f_o(\zeta_{N/2}^{0})$ , $f_o(\zeta_{N/2}^{1})$ , $f_o(\zeta_{N/2}^{2})$, $\cdots$ $f_o(\zeta_{N/2}^{N/2-1})$ の$\frac{N}{2}$個の値
+- $f_e(\zeta_{N/2}^{0})$ , $f_e(\zeta_{N/2}^{1})$ , $f_e(\zeta_{N/2}^{2})$, $\cdots$ $f_e(\zeta_{N/2}^{N/2-1})$ の $\frac{N}{2}$ 個の値
+- $f_o(\zeta_{N/2}^{0})$ , $f_o(\zeta_{N/2}^{1})$ , $f_o(\zeta_{N/2}^{2})$, $\cdots$ $f_o(\zeta_{N/2}^{N/2-1})$ の $\frac{N}{2}$ 個の値
 
 以上より、$f(x)$ に $x=\zeta_N^k$ を代入した $N$個の結果を求めるためには<br>
  $f_e(x)$ と $f_o(x)$ に $x=\zeta_{N/2}^k$ を代入した $\frac{N}{2}$個の結果が求まれば<br>
  $f(\zeta_N^k) = f_e(\zeta_{N/2}^k) + \zeta_N^kf_o(\zeta_{N/2}^k)$ として求めることができます。
-これを $f_e(x)$と$f_o(x)$に対して再帰的に繰り返すと<br>
-再帰が $log(N)$行われ、$\mathcal{O}(Nlog(N))$でFFTを行うことができました。
+これを $f_e(x)$と $f_o(x)$ に対して再帰的に繰り返すと<br>
+再帰が $log(N)$回行われ、 $\mathcal{O}(Nlog(N))$ でFFTを行うことができました。
 
 
 # 実装
