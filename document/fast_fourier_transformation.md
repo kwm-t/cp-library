@@ -24,8 +24,9 @@ std::vector<int> naive(const std::vector<T> &a, const std::vector<T> &b) {
  - $\zeta_n^0$ , $\zeta_n^1$ , $\zeta_n^2$ $\cdots$  $\zeta_n^{n-1}$はすべて異なる
  - $\sum_{k=0}^{N-1} \zeta_n^{kl}$は $l\equiv0 (modN)$のとき $N$、そうでないときに $0$ である。
 
- # 離散フーリエ変換(DFT)
-  $n$ 次の多項式 $f(x)=\sum_{k=0}^{N-1}C_kx^k$ を考えます。<br>
+# 離散フーリエ変換(DFT)
+以降、Nは全て2冪の数とします。<br>
+  $n$ 次の多項式 $f(x)=\sum_{k=0}^{N-1}c_kx^k$ を考えます。<br>
 これに $x=\zeta_n^k$ を代入すると以下となる。
 
 ```math
@@ -68,7 +69,108 @@ c_l= \frac{1}{N}\hat{f}(\zeta_N^{-l})
 - $\hat{C(x)}$に対してIDFTを行い $C(x)=A(x)B(x)$ を得る。
 
 ですが、これを行うためにはDFTとIDFTを高速化しなくてはなりません。
- 
+
+# DFTとIDFTの高速化
+多項式 $f(x)$ に対して、偶数次のみを取り出した多項式 $f_e(x)$ と奇数次のみを取り出した多項式 $f_o(x)$ を考えます。
+すなわち以下について考えます
+```math
+f_e(x) = c_0+c_2x+\cdots
+```
+```math
+f_o(x) = c_1+c_3x+\cdots
+```
+これらは以下を満たします。
+```math
+f(x)=f_e(x^2)+xf_o(x^2)
+```
+ $f(x)$ に $x=\zeta_N^k$ を代入した結果を使って、DFTができるわけです。<br>
+前述の $f(x)=f_e(x^2)+xf_o(x^2)$ に $x=\zeta_N^k$ を代入した結果を得るためには以下が必要になります。
+
+- $f_e(\zeta_N^{0})$ , $f_e(\zeta_N^{2})$ , $f_e(\zeta_N^{4})$, $\cdots$ $f_e(\zeta_N^{2N-2})$ の$N$個の値
+- $f_o(\zeta_N^{0})$ , $f_o(\zeta_N^{2})$ , $f_o(\zeta_N^{4})$, $\cdots$ $f_o(\zeta_N^{2N-2})$ の$N$個の値
+
+ $\zeta_n^2 = \zeta_{n/2}$が成り立つので上記は以下のようになります。<br>
+
+- $f_e(\zeta_{N/2}^{0})$ , $f_e(\zeta_{N/2}^{1})$ , $f_e(\zeta_{N/2}^{2})$, $\cdots$ $f_e(\zeta_{N/2}^{N-1})$ の$N$個の値
+- $f_o(\zeta_{N/2}^{0})$ , $f_o(\zeta_{N/2}^{1})$ , $f_o(\zeta_{N/2}^{2})$, $\cdots$ $f_o(\zeta_{N/2}^{N-1})$ の$N$個の値
+
+また、$\zeta_{N/2}^{N/2} = 1$ が成り立つので上記は以下のように纏められます。
+
+- $f_e(\zeta_{N/2}^{0})$ , $f_e(\zeta_{N/2}^{1})$ , $f_e(\zeta_{N/2}^{2})$, $\cdots$ $f_e(\zeta_{N/2}^{N/2-1})$ の$\frac{N}{2}$個の値
+- $f_o(\zeta_{N/2}^{0})$ , $f_o(\zeta_{N/2}^{1})$ , $f_o(\zeta_{N/2}^{2})$, $\cdots$ $f_o(\zeta_{N/2}^{N/2-1})$ の$\frac{N}{2}$個の値
+
+以上より、$f(x)$ に $x=\zeta_N^k$ を代入した $N$個の結果を求めるためには<br>
+ $f_e(x)$ と $f_o(x)$ に $x=\zeta_{N/2}^k$ を代入した $\frac{N}{2}$個の結果が求まれば<br>
+ $f(\zeta_N^k) = f_e(\zeta_{N/2}^k) + \zeta_N^kf_o(\zeta_{N/2}^k)$ として求めることができます。
+これを $f_e(x)$と$f_o(x)$に対して再帰的に繰り返すと<br>
+再帰が $log(N)$行われ、$\mathcal{O}(Nlog(N))$でFFTを行うことができました。
+
+
+# 実装
+```cpp
+const double pi = acos(-1);
+
+std::vector<std::complex<double>> fft(const std::vector<std::complex<double>> &a, double inv) {
+	// inv = 1 ならば普通の FFT，inv = -1 ならば IFFT になるようにする．
+	int n = (int)a.size();
+	if (1 == n)return a;
+
+	std::vector<std::complex<double>> ret;
+
+	std::vector<std::complex<double>> even;
+	std::vector<std::complex<double>> odd;
+	for (int i = 0; i < n; ++i) {
+		if (0 == i % 2) even.push_back(a[i]);
+		else odd.push_back(a[i]);
+	}
+
+	std::vector<std::complex<double>> d_even = fft(even, inv);
+	std::vector<std::complex<double>> d_odd = fft(odd, inv);
+
+	const std::complex<double> zeta(cos(2 * pi * inv / (double)n), sin(2 * pi * inv / (double)n));
+
+	std::complex<double> now = 1;
+	for (int i = 0; i < n; i++) {
+		ret.push_back(d_even[i % (n / 2)] + now * d_odd[i % (n / 2)]);
+		now *= zeta;
+	}
+	return ret;
+}
+
+
+std::vector<double> convolution(std::vector<std::complex<double>> a, std::vector<std::complex<double>> b) {
+	int sizeA = (int)a.size();
+	int sizeB = (int)b.size();
+	int sizeC = sizeA + sizeB - 1;
+
+	int n = 1;
+	while (n <= sizeC) n *= 2;
+
+	a.resize(n);
+	b.resize(n);
+
+	std::vector<std::complex<double>> da = fft(a, 1);
+	std::vector<std::complex<double>> db = fft(b, 1);
+
+	std::vector<std::complex<double>> dc(n);
+	for (int i = 0; i < n; ++i) dc[i] = da[i] * db[i];
+
+	std::vector<std::complex<double>> c = fft(dc, -1);
+
+	// IFFT の後は最後に n で割る必要がある
+	std::vector<double> ret(n);
+	for (int i = 0; i < n; ++i) ret[i] = c[i].real() / (double)n;
+	return ret;
+}
+```
+
+# 課題
+上記には課題が残っています。<br>
+与えられた多項式 $A(x)$ $B(x)$が整数多項式の時、実装上で複素数を持ち出して計算を行っているため、場合によっては誤差が発生します。<br>
+どうすればいいでしょうか？
+
+# 解決策
+
 
 # 参考
 https://qiita.com/AngrySadEight/items/0dfde26060daaf6a2fda
