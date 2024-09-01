@@ -99,9 +99,9 @@ f(x)=f_e(x^2)+xf_o(x^2)
 - $f_e(\zeta_{N/2}^{0})$ , $f_e(\zeta_{N/2}^{1})$ , $f_e(\zeta_{N/2}^{2})$, $\cdots$ $f_e(\zeta_{N/2}^{N/2-1})$ の $\frac{N}{2}$ 個の値
 - $f_o(\zeta_{N/2}^{0})$ , $f_o(\zeta_{N/2}^{1})$ , $f_o(\zeta_{N/2}^{2})$, $\cdots$ $f_o(\zeta_{N/2}^{N/2-1})$ の $\frac{N}{2}$ 個の値
 
-以上より、$f(x)$ に $x=\zeta_N^k$ を代入した $N$個の結果を求めるためには<br>
+以上より、 $f(x)$ に $x=\zeta_N^k$ を代入した $N$個の結果を求めるためには<br>
  $f_e(x)$ と $f_o(x)$ に $x=\zeta_{N/2}^k$ を代入した $\frac{N}{2}$個の結果が求まれば<br>
- $f(\zeta_N^k) = f_e(\zeta_{N/2}^k) + \zeta_N^kf_o(\zeta_{N/2}^k)$ として求めることができます。
+ $f(\zeta_N^k) = f_e(\zeta_{N/2}^k) + \zeta_N^kf_o(\zeta_{N/2}^k)$ として求めることができます。<br>
 これを $f_e(x)$と $f_o(x)$ に対して再帰的に繰り返すと<br>
 再帰が $log(N)$回行われ、 $\mathcal{O}(Nlog(N))$ でFFTを行うことができました。
 
