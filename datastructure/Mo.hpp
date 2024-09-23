@@ -2,27 +2,30 @@
 #include <vector>
 #include <iostream>
 #include <numeric>
+#include <functional>
 struct Mo {
 	int width;
 	std::vector<int>left, right, order;
-	std::vector<long long>ans;//ÅötodoÅö
+	std::vector<int>ans;
 	//std::vector<long long>horder;
 	int n, q;
 	Mo(int _n, int _q) :n(_n), q(_q) {
 		width = (int)sqrt(_n);
 		order.resize(q);
-		std::iota(order.begin(),order.end(), 0);
+		std::iota(order.begin(), order.end(), 0);
 		ans.resize(q);
 	}
-	// add,query[l,r)
+	// add query[l,r)
 	void query(std::vector<int> &l, std::vector<int> &r) {
 		left = l;
 		right = r;
-		//horder.resize(q);
-		//rep(i, q) horder[i] = hilbertorder(left[i], right[i]);
+		/*
+		horder.resize(q);
+		for (int i = 0; i < q; ++i) horder[i] = hilbertorder(left[i], right[i]);
+		*/
 	}
 	// run
-	void run(const std::vector<int>&data) {
+	void run(const std::function<void(int)> &add, const std::function<void(int)> &del, const std::function<void(int)> &set) {
 		std::sort(order.begin(), order.end(), [&](int lh, int rh) {
 			//return horder[lh] < horder[rh];
 			int lblock = left[lh] / width;
@@ -32,25 +35,12 @@ struct Mo {
 			return right[lh] > right[rh];
 			});
 		int nl = 0, nr = 0;
-		// Ç±Ç±Ç©ÇÁÅötodoÅö
-		std::vector<int>f(1000006, 0);
-		int val = 0;
-		auto add = [&](int idx) {
-			if (f[data[idx]]++ == 0)val++;
-		};
-		auto del = [&](int idx) {
-			if (f[data[idx]]-- == 1)--val;
-		};
-		auto ansset = [&](int idx) {
-			ans[idx] = val;
-		};
-		//Ç±Ç±Ç‹Ç≈ÅötodoÅö
 		for (auto idx : order) {
 			while (nl > left[idx])add(--nl);
 			while (nr < right[idx])add(nr++);
 			while (nl < left[idx])del(nl++);
 			while (nr > right[idx])del(--nr);
-			ansset(idx);
+			set(idx);
 		}
 	}
 	// TLEÇ∑ÇÈÇ∆Ç´ÇÕÇ±Ç¡ÇøÇégÇ§Ç∆í ÇÈÇ©Ç‡
@@ -66,8 +56,27 @@ struct Mo {
 				x = maxn - x;
 				y = maxn - y;
 			}
-			swap(x, y);
+			std::swap(x, y);
 		}
 		return d;
 	}*/
 };
+// Example
+// https://codeforces.com/contest/2014/problem/H
+//Mo mo(n, q);
+//int val = 0;
+//std::vector<int> ans(q);
+//std::vector<int> cnt(n, 0);
+//auto add = [&](int idx) {
+//	cnt[a[idx]]++;
+//	if (1 == cnt[a[idx]] % 2)val++;
+//	else val--;
+//};
+//auto del = [&](int idx) {
+//	cnt[a[idx]]--;
+//	if (0 == cnt[a[idx]] % 2)val--;
+//	else val++;
+//};
+//auto set = [&](int idx) {
+//	ans[idx] = val;
+//};

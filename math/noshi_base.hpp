@@ -4,15 +4,14 @@
 void noshi_base(std:: vector<long long>a) {
 	std::vector<long long>base;
 	for (int i = 0; i < (int)a.size(); ++i) {
-		long long a; std::cin >> a;
 		for (int j = 0; j < base.size(); ++j) {
-			a = std::min(a, a^base[j]);
+			a[i] = std::min(a[i], a[i]^base[j]);
 		}
-		if (a == 0) continue;
+		if (a[i] == 0) continue;
 		for (int j = 0; j < base.size(); ++j) {
-			base[j] = std::min(base[j], a^base[j]);
+			base[j] = std::min(base[j], a[i]^base[j]);
 		}
-		base.push_back(a);
+		base.push_back(a[i]);
 	}
 	std::sort(base.begin(), base.end());
 }
