@@ -1,15 +1,10 @@
 #include <iostream> 
 #include <vector>
-struct UnionFind_Potential {
-	int n;
-	int cnt;// groupの数
-	std::vector<int> par_or_size;// leaderのときはサイズが入る
-	std::vector<long long>weight;
-	std::vector<bool>ng;
-	std::vector<std::vector<int>>group;
+class UnionFind_Potential {
+public:
 	UnionFind_Potential(int sz) :n(sz), weight(sz), par_or_size(sz, -1), ng(sz), cnt(n) {
-		group.resize(n);
-		for (int i = 0; i < n; ++i)group[i].push_back(i);
+		//group.resize(n);
+		//for (int i = 0; i < n; ++i)group[i].push_back(i);
 	}
 	int leader(int v) {
 		if (par_or_size[v] < 0)return v;
@@ -37,8 +32,8 @@ struct UnionFind_Potential {
 		par_or_size[vl] = ul;
 		if (ng[ul])ng[vl] = ng[ul];
 		weight[vl] = w;
-		for (int i = 0; i < group[vl].size(); ++i) group[ul].push_back(group[vl][i]);
-		group[vl].clear();
+		//for (int i = 0; i < group[vl].size(); ++i) group[ul].push_back(group[vl][i]);
+		//group[vl].clear();
 		cnt--;
 		return true;
 	}
@@ -55,6 +50,13 @@ struct UnionFind_Potential {
 			std::cout << i << " " << par_or_size[i] << " " << weight[i] << std::endl;
 		}
 	}
+private:
+	int n;
+	int cnt;// groupの数
+	std::vector<int> par_or_size;// leaderのときはサイズが入る
+	std::vector<long long>weight;
+	std::vector<bool>ng;
+	//std::vector<std::vector<int>>group;
 };
 // xor version
 //https://atcoder.jp/contests/past15-open/submissions/47881880
