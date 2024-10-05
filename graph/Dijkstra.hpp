@@ -4,17 +4,20 @@ template<typename T>
 struct Dijkstra {
 private:
 	int n;
+	bool needRestore;
 	struct Edge {
 		int to;
 		T cost;
 	};
 	std::vector<std::vector<Edge>> g;
+	std::vector<std::vector<Edge>> gR;
 public:
 	const T INF = numeric_limits<T>::max();
 	std::vector<T> dp;
 	Dijkstra() {}
-	Dijkstra(int n) : n(n) {
+	Dijkstra(int n, bool needRestore = false) : n(n), needRestore(needRestore) {
 		g.resize(n);
+		if (needRestore)gR.resize(n);
 	}
 	Dijkstra<T>& operator=(const Dijkstra<T>& obj) {
 		this->v = obj.v;
@@ -24,7 +27,11 @@ public:
 	}
 	void add_edge(int from, int to, T weight, bool twoWay = false) {
 		g[from].push_back({ to,weight });
-		if (twoWay) g[to].push_back({ from,weight });
+		if (needRestore)gR[to].push_back({ from,weight });
+		if (twoWay) {
+			g[to].push_back({ from,weight });
+			if (needRestore)gR[from].push_back({ to,weight });
+		}
 	}
 	int add_vertex() {
 		g.push_back(std::vector<Edge>());
@@ -54,7 +61,7 @@ public:
 		std::vector<int>route = { t };
 		while (s != t) {
 			for (const auto & e : gR[t]) {
-				if (dp[e.to] + e.cost  == dp[t]) {
+				if (dp[e.to] + e.cost == dp[t]) {
 					t = e.to;
 					route.push_back(t);
 					break;
