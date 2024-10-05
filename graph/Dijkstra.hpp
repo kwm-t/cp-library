@@ -28,10 +28,7 @@ public:
 	void add_edge(int from, int to, T weight, bool twoWay = false) {
 		g[from].push_back({ to,weight });
 		if (needRestore)gR[to].push_back({ from,weight });
-		if (twoWay) {
-			g[to].push_back({ from,weight });
-			if (needRestore)gR[from].push_back({ to,weight });
-		}
+		if (twoWay)add_edge(to,from,weight);
 	}
 	int add_vertex() {
 		g.push_back(std::vector<Edge>());
