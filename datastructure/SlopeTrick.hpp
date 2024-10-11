@@ -46,9 +46,9 @@ struct SlopeTrick {
 		return p;
 	}
 	//—İÏmin
-	void CumulativeMin() { Rque = std::<long long, std::vector<long long>, std::greater<long long>>(); }
+	void CumulativeMin() { Rque = std::priority_queue<long long, std::vector<long long>, std::greater<long long>>(); }
 	//‰E‘¤—İÏmin
-	void CumulativeMinR() { Lque = std::<long long>(); }
+	void CumulativeMinR() { Lque = std::priority_queue<long long>(); }
 	//ŠÖ”‚Ì•œŒ³(’x‚¢B”ñ„§H)
 	std::vector<long long> Fx(std::vector<long long> &X) {
 		std::vector<long long>vL;
