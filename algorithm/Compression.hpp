@@ -2,11 +2,11 @@
 #include<cassert>
 #include<vector>
 template <class S>
-struct value_compression : std::vector<S> {
+struct Compression : std::vector<S> {
 	bool built = false;
 	using VS = std::vector<S>;
 	using VS::VS;
-	value_compression(std::vector<S> v = {}) : std::vector<S>(move(v)) {}
+	Compression(std::vector<S> v = {}) : std::vector<S>(move(v)) {}
 	void build() {
 		std::sort(this->begin(), this->end());
 		this->erase(unique(this->begin(), this->end()), this->end());

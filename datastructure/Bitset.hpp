@@ -1,15 +1,15 @@
 #include <vector>
 #include<iostream>
-struct mybitset {
+struct MyBitset {
 	size_t n;
 	std::vector<unsigned long long>bit;
 	const size_t lg = 6;
 	const size_t w = 1 << lg;
 	const size_t mod_w = w - 1;
 	const unsigned long long mask = (((1ULL << (w - 1)) - 1) << 1) + 1;
-	mybitset() :mybitset(0) {}
-	mybitset(size_t n) :mybitset(n, 0) {}
-	mybitset(size_t n, int v) :n(n) {
+	MyBitset() :MyBitset(0) {}
+	MyBitset(size_t n) :MyBitset(n, 0) {}
+	MyBitset(size_t n, int v) :n(n) {
 		bit.resize(ceil(n, w), 0);
 	}
 	int get(size_t pos) {
