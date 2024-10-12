@@ -1,3 +1,4 @@
+// double
 printf("%.16f\n", ans);
 printf("%.16Lf\n", ans);
 cout << fixed << setprecision(16) << endl;
@@ -15,10 +16,10 @@ for (int j = (i - 1)&i; j > 0; j = (j - 1)&i) {
 	if (j & bit) dp[i] += dp[i^j] * h[j] * f[popcount(j)];
 }
 
-•¶š—ñ‚ğ¬•¶š‚É•ÏŠ·
+// •¶š—ñ‚ğ¬•¶š‚É•ÏŠ·
 transform(S.begin(), S.end(), S.begin(), [](char c) {return tolower(c); });
 
-
+// ‡—ñ
 do {
 } while (next_permutation(v.begin(), v.end()));
 
