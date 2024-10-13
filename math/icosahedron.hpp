@@ -1,7 +1,7 @@
 #include <vector>
 const int INF = 1e9;
 
-// ��20�ʑ̂ł�dp
+// 正20面体でのdp
 template<typename T>
 struct Icosahedron {
 	const int sz = 12;

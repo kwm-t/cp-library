@@ -1,9 +1,9 @@
 #include <vector>
 template<class T>
-struct formal_power_series : std::vector<T> {
+struct Formal_power_series : std::vector<T> {
 	using std::vector<T>::vector;
 	using std::vector<T>::operator=;
-	using F = formal_power_series;
+	using F = Formal_power_series;
 	F operator-() const {
 		F res(*this);
 		for (auto &e : res) e = -e;
@@ -44,11 +44,10 @@ struct formal_power_series : std::vector<T> {
 	F divide(const F &g, const int d = -1) const { return F(*this).divide_inplace(g, d); }
 };
 
-
 template<class T>
-struct bostan_mori {
+struct Bostan_mori {
 	std::vector<T> p, q;
-	bostan_mori(std::vector<T> &_p, std::vector<T> &_q) : p(_p), q(_q) {}
+	Bostan_mori(std::vector<T> &_p, std::vector<T> &_q) : p(_p), q(_q) {}
 	void rev(std::vector<T> &f) const {
 		int d = f.size();
 		for (int i = 0; i < d; ++i) if (i & 1) f[i] = -f[i];

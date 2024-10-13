@@ -2,7 +2,7 @@
 #include "sqrt.hpp"
 const long long LINF = 1e18;
 
-//®”‰ğ‚ª‘¶İ‚µ‚È‚¯‚ê‚Î{-LINF,LINF}
+// æ•´æ•°è§£ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°{-LINF,LINF}
 std::pair<long long, long long> calc(long long a, long long b, long long c) {
 	long long d = _sqrt(b * b - 4LL * a * c);
 	if (-1 == d)return { -LINF,LINF };

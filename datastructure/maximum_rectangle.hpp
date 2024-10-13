@@ -2,7 +2,7 @@
 #include <stack>
 #include <vector>
 long long maximum_rectangle(std::vector<int>&a) {
-	// ヒストグラム最大長方形
+	// 繝偵せ繝医げ繝ｩ繝譛螟ｧ髟ｷ譁ｹ蠖｢
 	std::stack<int> st;
 	std::vector<int>l(a.size()), r(a.size());
 	for (int i = 0; i < a.size(); ++i) {

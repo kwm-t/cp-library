@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
-void noshi_base(std:: vector<long long>a) {
+void noshi91_base(std:: vector<long long>a) {
 	std::vector<long long>base;
 	for (int i = 0; i < (int)a.size(); ++i) {
 		for (int j = 0; j < base.size(); ++j) {

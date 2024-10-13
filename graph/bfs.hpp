@@ -7,7 +7,7 @@ struct bfs {// On_Grid
 	const int dx[4] = { 1,0,-1,0 };
 	const int dy[4] = { 0,-1,0,1 };
 	const char c[4] = { 'D','L','U','R' };
-	//const char c[] = { 'v','<','^','>' };
+	// const char c[] = { 'v','<','^','>' };
 	bfs(std::vector<std::string>s) :s(s) {}
 	std::vector<std::string> s;
 	T solve(int h, int w, std::pair<int, int>pS, std::pair<int, int>pE) {

@@ -92,7 +92,7 @@ struct BinaryTrie {
 		}
 		return ret;
 	}
-	// x‚Æxor‚µ‚½Œ‹‰Ê‚ªk–¢–‚É‚È‚é•¨‚Ì”(0ŠÜ‚Ş)
+	// xã¨xorã—ãŸçµæœãŒkæœªæº€ã«ãªã‚‹ç‰©ã®æ•°(0å«ã‚€)
 	int xor_count(const std::vector<int>&x, const std::vector<int>&k) {
 		int ret = 0, now = 0;
 		for (int i = 0; i < (int)k.size(); ++i) {
@@ -108,7 +108,7 @@ struct BinaryTrie {
 		}
 		return ret;
 	}
-	// x‚æ‚è‘å‚«‚¢‚à‚Ì‚ÌŒÂ”
+	// xã‚ˆã‚Šå¤§ãã„ã‚‚ã®ã®å€‹æ•°
 	int over_count(const std::vector<int>&x) {
 		int ret = 0, now = 0;
 		for (int i = 0; i < (int)x.size(); ++i) {

@@ -24,6 +24,6 @@ std::vector<T> mergeSort(std::vector<T> vec, const F &f) {
 	return vec;
 }
 // How To Use
-a = mergeSort(a, [](int l, int r) {
-	return l < r;
-});
+//a = mergeSort(a, [](int l, int r) {
+//	return l < r;
+//});

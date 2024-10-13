@@ -1,6 +1,6 @@
 // 2D累積和
 // 左上(x0,y0)右下(領域外)(x1,y1)
-auto calc = [&](int x0, int y0, int x1, int y1)->long long {
+auto calc2D = [&](int x0, int y0, int x1, int y1)->long long {
 	return  sa[x1][y1] - sa[x1][y0] - sa[x0][y1] + sa[x0][y0];
 };
 auto calc_debug= [&](int x0, int y0, int x1, int y1)->long long {

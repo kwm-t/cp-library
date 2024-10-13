@@ -2,8 +2,8 @@
 #include <vector>
 template<class T>
 std::vector<std::pair<T, T>>convex_hull(std::vector<std::pair<T, T>>V) {
-	// ’ˆÓII
-	// “¯ˆê’¼üã‚ÌO“_‚ğŠÜ‚ŞAœ‚«‚½‚¢‚Æ‚«‚Í >=‚É‚·‚é
+	// æ³¨æ„ï¼ï¼
+	// åŒä¸€ç›´ç·šä¸Šã®ä¸‰ç‚¹ã‚’å«ã‚€ã€é™¤ããŸã„ã¨ãã¯ >=ã«ã™ã‚‹
 	std::sort(V.begin(), V.end());
 	int n = V.size();
 	std::vector<std::pair<T, T>>X;
@@ -31,7 +31,7 @@ std::vector<std::pair<T, T>>convex_hull(std::vector<std::pair<T, T>>V) {
 	for (int i = 1; i < (int)Y.size() - 1; ++i)d.push_back(Y[i]);
 	return d;
 
-	//ü‚è‚Ì’·‚³‚ğ•Ô‚·
+	//å‘¨ã‚Šã®é•·ã•ã‚’è¿”ã™
 	/*double ret = 0;
 	for (int i = 0; i < X.size() - 1; ++i) {
 		ret += sqrt((X[i + 1].first - X[i].first)*(X[i + 1].first - X[i].first) + (X[i + 1].second - X[i].second)*(X[i + 1].second - X[i].second));
@@ -42,10 +42,10 @@ std::vector<std::pair<T, T>>convex_hull(std::vector<std::pair<T, T>>V) {
 	return ret;*/
 }
 #define PL std::pair<long long,long long>
-// index•t‚«
+// indexä»˜ã
 std::vector<std::pair<PL, int>> convex_hull(std::vector<std::pair<PL, int>>v) {
-	// ’ˆÓII
-	// “¯ˆê’¼üã‚ÌO“_‚ğŠÜ‚ŞAœ‚«‚½‚¢‚Æ‚«‚Í >=‚É‚·‚é
+	// æ³¨æ„ï¼ï¼
+	// åŒä¸€ç›´ç·šä¸Šã®ä¸‰ç‚¹ã‚’å«ã‚€ã€é™¤ããŸã„ã¨ãã¯ >=ã«ã™ã‚‹
 	std::sort(v.begin(), v.end());
 	int n = v.size();
 	std::vector<std::pair<PL, int>>x;

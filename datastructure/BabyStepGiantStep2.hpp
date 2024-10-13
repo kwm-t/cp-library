@@ -33,7 +33,7 @@ public:
 		init(g);
 	}
 
-	// g^x = y mod p Å® return x 
+	// g^x = y mod p ‚Üí return x 
 	// not found -1
 	long long solve(long long y) {
 		y = mod(y);

@@ -43,7 +43,6 @@ std::vector<mint> ntt(const std::vector<mint> &a, int depth, const std::vector<m
 	return ret;
 }
 
-
 std::vector<mint> convolution_mint(std::vector<mint> a, std::vector<mint> b) {
 	std::vector<mint> root = make_root(mod);
 	std::vector<mint> invroot = make_invroot(root, mod);

@@ -11,7 +11,7 @@ private:
 			if (!mp.count(cur))mp[cur] = i;
 			(cur *= g) %= p;
 		}
-		// g^x = 1 modp�̂Ƃ���0�Ɠ����Ăق����Ȃ��ꍇ�͈ȉ�
+		// g^x = 1 modpのときに0と答えてほしくない場合は以下
 		//for (int i = 0; i < sqrtp; i++) {
 		//	(cur *= g) %= p;
 		//	if (!mp.count(cur))mp[cur] = i + 1;
@@ -35,7 +35,7 @@ public:
 		init(g);
 	}
 
-	// g^x = y mod p �� return x 
+	// g^x = y mod p → return x 
 	// not found -1
 	long long solve(long long y) {
 		y %= p;

@@ -27,7 +27,6 @@ std::vector<std::complex<double>> fft(const std::vector<std::complex<double>> &a
 	return ret;
 }
 
-
 std::vector<double> convolution(std::vector<std::complex<double>> a, std::vector<std::complex<double>> b) {
 	int sizeA = (int)a.size();
 	int sizeB = (int)b.size();
