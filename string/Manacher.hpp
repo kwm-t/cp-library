@@ -42,7 +42,7 @@ std::vector<int>manacherSub(std::string s) {
 			l = (i + 1) / 2 - sz;
 			sz = sz * 2;
 		}
-		chmax(res[l], sz);
+		res[l] = std::max(res[l], sz);
 	}
 	for(int i = 1;i < res.size();++i) res[i] = std::max(res[i], res[i - 1] - 2);
 	return res;

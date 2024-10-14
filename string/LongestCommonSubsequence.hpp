@@ -1,5 +1,3 @@
-template<typename A, typename B> inline bool chmax(A & a, const B & b) { if (a < b) { a = b; return true; } return false; }
-template<typename A, typename B> inline bool chmin(A & a, const B & b) { if (a > b) { a = b; return true; } return false; }
 #include <vector>
 #include <string>
 std::string lcs(const std::string &s, const std::string &t) {
@@ -7,20 +5,23 @@ std::string lcs(const std::string &s, const std::string &t) {
 	std::vector<std::vector<std::pair<int, int>>> dppre(s.size() + 1, std::vector<std::pair<int, int>>(t.size() + 1, { -1,-1 }));
 	for (int i = 0; i < (int)s.size(); ++i)for (int j = 0; j < (int)t.size(); ++j) {
 		if (s[i] == t[j]) {
-			if (chmax(dp[i + 1][j + 1], dp[i][j] + 1)) {
+			if (dp[i + 1][j + 1] < dp[i][j] + 1) {
+				dp[i + 1][j + 1] = dp[i][j] + 1;
 				dppre[i + 1][j + 1] = { i,j };
 			}
 		}
 		else {
-			if (chmax(dp[i + 1][j + 1], dp[i + 1][j + 0])) {
+			if (dp[i + 1][j + 1] < dp[i + 1][j + 0]) {
+				dp[i + 1][j + 1] = dp[i + 1][j + 0];
 				dppre[i + 1][j + 1] = dppre[i + 1][j + 0];
 			}
-			if (chmax(dp[i + 1][j + 1], dp[i + 0][j + 1])) {
+			if (dp[i + 1][j + 1] < dp[i + 0][j + 1]) {
+				dp[i + 1][j + 1] = dp[i + 0][j + 1];
 				dppre[i + 1][j + 1] = dppre[i + 0][j + 1];
 			}
 		}
 	}
-	//•œŒ³
+	//å¾©å…ƒ
 	std::string str;
 	std::pair<int, int> p = dppre[s.size()][t.size()];
 	while (std::make_pair(-1, -1) != p) {

@@ -1,7 +1,8 @@
 auto dijkstra = [&](const int st)->vector<long long> {
 	vector<long long>dp(n, LINF);
 	dp[st] = 0;
-	std::priority_queue<std::pair<long long, int>, std::vector<std::pair<long long, int>>, std::greater<>> pq;
+	using T = std::pair<long long, int>;
+	std::priority_queue<T, std::vector<T>, std::greater<T>> pq;
 	pq.push({ dp[st], st });
 	while (!pq.empty()) {
 		auto p = pq.top();
