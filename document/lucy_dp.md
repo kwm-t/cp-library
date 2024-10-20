@@ -38,7 +38,7 @@ long long lucyDP(const long long N) {
 
 	std::unordered_map<long long, long long>mp;
 	for (auto q : Q)mp[q] = q - 1;
-	for (int p = 2; p <= sqrtN; ++p) {
+	for (long long p = 2; p <= sqrtN; ++p) {
 		// not prime
 		if (mp[p] == mp[p - 1])continue;
 		auto pre = mp[p - 1];
