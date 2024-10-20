@@ -55,5 +55,5 @@ std::unordered_mapを使用しているが、適切に配列管理すれば不�
 ## 計算量
 $1 \leq x \leq \lfloor \sqrt N \rfloor,n \in Q_N$ であるため $\mathcal{O}(N \sqrt N)$ であるように思えます。<br>
 しかし $S(N,\lfloor \sqrt N \rfloor)$ を求める過程で登場する $S(n,x)$ における $n$ の候補として現れる数の集合は $\mathcal{O}(\sqrt N)$ 個であることがわかります。<br>
-また、素数定理より $N$ 以下の素数の数は $\mathcal{O}(\frac{N^{\frac{1}{4}}}{log_N})$ のため<br>
-計算量は $\mathcal{O}(\frac{N^{\frac{3}{4}}}{log_N})$ となりある程度高速です。
+また、素数定理より $N$ 以下の素数の数は $\mathcal{O}(\frac{N^{\frac{1}{4}}}{logN})$ のため<br>
+計算量は $\mathcal{O}(\frac{N^{\frac{3}{4}}}{logN})$ となりある程度高速です。
