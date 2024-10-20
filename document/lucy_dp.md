@@ -17,15 +17,15 @@ $S(n,x)$ のDPの遷移を考えます。<br>
 - $x$ が素数でない場合<br>
  $x$ によって篩われるものは存在しないため $S(n,x) = S(n,x-1)$
 
-- $x$ が素数かつ、$n < x^2 $の場合<br>
+- $x$ が素数かつ、$n < x^2 $ の場合<br>
 $n$ 以下の $x$ の倍数は、すでに $x$ 未満の素数によって篩われているため $S(n,x) = S(n,x-1)$
 
-- $x$ が素数かつ、 $n \geqq x^2 $ の場合<br>
-$x$ によって篩われる数 $mx$の条件は、「$x$ 未満の素数で篩われなかった数の集合」から「$x$ 未満の素数の集合」を除いたものであるため以下のようになります。<br>
+- $x$ が素数かつ、 $n \geqq x^2$ の場合<br>
+$x$ によって篩われる数 $mx$の条件は、「 $x$ 未満の素数で篩われなかった数の集合」から「 $x$ 未満の素数の集合」を除いたものであるため以下のようになります。<br>
 $S(n,x-1)-S(n,x)=S(\lfloor n/x \rfloor,x-1)-\pi(x-1)$<br>
 すなわち以下であり<br>
 $S(n,x)=S(n,x-1) -S(\lfloor n/x \rfloor,x-1) + \pi(x-1)$<br>
-また、$\pi(x-1)=S(x-1,x-1)$であるため<br>
+また、$\pi(x-1)=S(x-1,x-1)$ であるため<br>
 $S(n,x)=S(n,x-1) -S(\lfloor n/x \rfloor,x-1) + S(x-1,x-1)$<br>
 
 ## 実装
@@ -53,7 +53,7 @@ long long lucyDP(const long long N) {
 in-placeに更新する実装になっていますが、２次元配列で書くとわかりやすい<br>
 std::unordered_mapを使用しているが、適切に配列管理すれば不要になる<br>
 ## 計算量
-$1 \leq x \leq \lfloor \sqrt N \rfloor,n \in Q_N$ であるため$\mathcal{O}(N \sqrt N)$ であるように思えます。<br>
-しかし$S(N,\lfloor \sqrt N \rfloor)$ を求める過程で登場する$S(n,x)$ における$n$ の候補として現れる数の集合は$\mathcal{O}(\sqrt N)$個であることがわかります。<br>
-また、素数定理より$N$ 以下の素数の数は$\mathcal{O}(\frac{N^{\frac{1}{4}}}{log_N})$ のため<br>
-計算量は$\mathcal{O}(\frac{N^{\frac{3}{4}}}{log_N})$ となりある程度高速です。
+$1 \leq x \leq \lfloor \sqrt N \rfloor,n \in Q_N$ であるため $\mathcal{O}(N \sqrt N)$ であるように思えます。<br>
+しかし $S(N,\lfloor \sqrt N \rfloor)$ を求める過程で登場する $S(n,x)$ における$n$ の候補として現れる数の集合は $\mathcal{O}(\sqrt N)$ 個であることがわかります。<br>
+また、素数定理より $N$ 以下の素数の数は $\mathcal{O}(\frac{N^{\frac{1}{4}}}{log_N})$ のため<br>
+計算量は $\mathcal{O}(\frac{N^{\frac{3}{4}}}{log_N})$ となりある程度高速です。
