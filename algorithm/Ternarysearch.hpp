@@ -1,3 +1,4 @@
+template<typename T, typename U>
 U Ternarysearch(T l, T r, const std::function<U(T)> &f) {
 	// 下に凸
 	while (2 < abs(r - l)) {
