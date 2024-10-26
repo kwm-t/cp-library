@@ -1,10 +1,12 @@
 #include <vector>
-struct trie {
+class Trie {
+private:
 	int kind;
 	std::vector<int>node;
 	std::vector<std::vector<int>>next;
 	std::vector<bool>end;
-	trie(int _kind) :kind(_kind) {
+public:
+	Trie(int _kind) :kind(_kind) {
 		node.resize(1);
 		end.resize(1);
 		next.emplace_back(std::vector<int>(kind, -1));
@@ -82,86 +84,13 @@ struct trie {
 		for (int i = 0; i < v.size(); ++i) {
 			if (0 != now) {
 				ret += node[now];
-				for (int j = 0; j < 2; ++j)if (-1 != next[now][j])ret -= node[next[now][j]];
+				for (int j = 0; j < kind; ++j)if (-1 != next[now][j])ret -= node[next[now][j]];
 			}
-			if (0 == v[i]) {
-				if (-1 == next[now][v[i]])break;
-				now = next[now][v[i]];
+			for (int j = 0; j < v[i]; ++j) {
+				if (-1 != next[now][j]) ret += node[next[now][j]];
 			}
-			else {
-				if (-1 != next[now][0]) ret += node[next[now][0]];
-				if (-1 == next[now][v[i]])break;
-				now = next[now][v[i]];
-			}
-		}
-		return ret;
-	}
-	// prefixも取得する
-	std::vector<int> getIndexEx(const std::vector<int>&v) {
-		std::vector<int>ret;
-		int idx = 0, now = 0;
-		for (int i = 0; i < v.size(); ++i) {
-			if (0 != now) {
-				idx += node[now];
-				for (int j = 0; j < 2; ++j)if (-1 != next[now][j])idx -= node[next[now][j]];
-			}
-			if (0 == v[i]) {
-				if (-1 == next[now][v[i]])break;
-				now = next[now][v[i]];
-			}
-			else {
-				if (-1 != next[now][0]) idx += node[next[now][0]];
-				if (-1 == next[now][v[i]])break;
-				now = next[now][v[i]];
-			}
-			ret.push_back(idx);
-		}
-		return ret;
-	}
-	// Binary Trie
-	std::vector<int>xor_max(const std::vector<int>&v) {
-		std::vector<int>ret;
-		int now = 0;
-		for (int i = 0; i < v.size(); ++i) {
-			std::vector<int>tmp = { 1 - v[i],v[i] };
-			for (int j = 0; j < tmp.size(); ++j) {
-				if (-1 == next[now][tmp[j]])continue;
-				if (node[next[now][tmp[j]]] <= 0)continue;
-				ret.emplace_back(tmp[j]);
-				now = next[now][tmp[j]];
-				break;
-			}
-		}
-		return ret;
-	}
-	std::vector<int>xor_min(const std::vector<int>&v) {
-		std::vector<int>ret;
-		int now = 0;
-		for (int i = 0; i < v.size(); ++i) {
-			std::vector<int>tmp = { v[i],1 - v[i] };
-			for (int j = 0; j < tmp.size(); ++j) {
-				if (-1 == next[now][tmp[j]])continue;
-				if (node[next[now][tmp[j]]] <= 0)continue;
-				ret.emplace_back(tmp[j]);
-				now = next[now][tmp[j]];
-				break;
-			}
-		}
-		return ret;
-	}
-	// xとxorした結果がk未満になる物の数(0含む)
-	int xor_count(const std::vector<int>&x, const std::vector<int>&k) {
-		int ret = 0, now = 0;
-		for (int i = 0; i < k.size(); ++i) {
-			if (0 == k[i]) {
-				if (-1 == next[now][x[i]])break;
-				now = next[now][x[i]];
-			}
-			else {
-				if (-1 != next[now][x[i]])ret += node[next[now][x[i]]];
-				if (-1 == next[now][1 - x[i]])break;
-				now = next[now][1 - x[i]];
-			}
+			if (-1 == next[now][v[i]])break;
+			now = next[now][v[i]];
 		}
 		return ret;
 	}
