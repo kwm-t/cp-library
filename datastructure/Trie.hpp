@@ -23,7 +23,7 @@ struct trie {
 		}
 		end[now] = true;
 	}
-	// prefix‚à“Š“ü‚·‚é
+	// prefixã‚‚æŠ•å…¥ã™ã‚‹
 	void insertEx(const std::vector<int>&v) {
 		int now = 0;
 		for (int i = 0; i < (int)v.size(); ++i) {
@@ -96,7 +96,7 @@ struct trie {
 		}
 		return ret;
 	}
-	// prefix‚àæ“¾‚·‚é
+	// prefixã‚‚å–å¾—ã™ã‚‹
 	std::vector<int> getIndexEx(const std::vector<int>&v) {
 		std::vector<int>ret;
 		int idx = 0, now = 0;
@@ -149,7 +149,7 @@ struct trie {
 		}
 		return ret;
 	}
-	// x‚Æxor‚µ‚½Œ‹‰Ê‚ªk–¢–‚É‚È‚é•¨‚Ì”(0ŠÜ‚Ş)
+	// xã¨xorã—ãŸçµæœãŒkæœªæº€ã«ãªã‚‹ç‰©ã®æ•°(0å«ã‚€)
 	int xor_count(const std::vector<int>&x, const std::vector<int>&k) {
 		int ret = 0, now = 0;
 		for (int i = 0; i < k.size(); ++i) {
@@ -182,3 +182,5 @@ struct trie {
 		return ret;
 	}
 };
+// tireæœ¨ä¸Šã«valueã‚’æŒãŸã›ãŸã„ã¨ãã¯ä»¥ä¸‹ã‚’å‚è€ƒã«
+// https://atcoder.jp/contests/abc377/submissions/59182087
