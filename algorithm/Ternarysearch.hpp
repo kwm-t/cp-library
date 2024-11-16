@@ -1,5 +1,4 @@
-template<typename T, typename U>
-U Ternarysearch(T l, T r, const std::function<U(T)> &f) {
+std::pair<T, U> ternarysearch(T l, T r, const std::function<U(T)> &f) {
 	// 下に凸
 	while (2 < abs(r - l)) {
 		T ml = (l * 2 + r) / 3;
@@ -9,6 +8,12 @@ U Ternarysearch(T l, T r, const std::function<U(T)> &f) {
 	}
 	T ret = l;
 	U value = f(l);
-	for (T i = l; i <= r; ++i) value = std::min(value, f(i));
-	return value;
+	for (T i = l + 1; i <= r; ++i) {
+		auto tmp = f(i);
+		if (tmp < value) {
+			ret = i;
+			value = tmp;
+		}
+	}
+	return { ret,value };
 }
