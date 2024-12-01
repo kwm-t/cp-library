@@ -5,7 +5,7 @@ struct BinaryTrie {
 	std::vector<int>node;
 	std::vector<std::array<int, 2>>next;
 	std::array<int, 2> e{ -1,-1 };
-	BinaryTrie(int _kind) :kind(_kind) {
+	BinaryTrie(int _kind = 2) :kind(_kind) {
 		node.resize(1);
 		next.emplace_back(e);
 	}
