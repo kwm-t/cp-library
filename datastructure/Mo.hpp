@@ -25,7 +25,7 @@ struct Mo {
 		*/
 	}
 	// run
-	void run(const std::function<void(int, int, int)> &add, const std::function<void(int, int, int)> &del, const std::function<void(int)> &set) {
+	void run(const std::function<void(int, int, int)> &upd, const std::function<void(int)> &set) {
 		std::sort(order.begin(), order.end(), [&](int lh, int rh) {
 			//return horder[lh] < horder[rh];
 			int lblock = left[lh] / width;
@@ -36,10 +36,10 @@ struct Mo {
 			});
 		int nl = 0, nr = 0;
 		for (auto idx : order) {
-			while (nl > left[idx])del(0, nl--, nr);
-			while (nr < right[idx])add(1, nl, ++nr);
-			while (nl < left[idx])add(0, ++nl, nr);
-			while (nr > right[idx])del(1, nl, nr--);
+			while (nl > left[idx])upd(0, nl--, nr);
+			while (nr < right[idx])upd(1, nl, ++nr);
+			while (nl < left[idx])upd(2, ++nl, nr);
+			while (nr > right[idx])upd(3, nl, nr--);
 			set(idx);
 		}
 	}
@@ -61,18 +61,26 @@ struct Mo {
 		return d;
 	}*/
 };
-// Example
-// https://atcoder.jp/contests/abc384/submissions/60779836
-//Mo mo(n, q);
-//int val = 0;
-//std::vector<int> ans(q);
-//std::vector<int> cnt(n, 0);
-//auto add = [&](int type, int l, int r) {
-// // TODO
-//};
-//auto del = [&](int type, int l, int r) {
-// // TODO
-//};
-//auto set = [&](int idx) {
-//	ans[idx] = val;
-//};
+/*
+	Example
+	https://atcoder.jp/contests/abc384/submissions/60782036
+	Mo mo(n, q);
+	auto upd = [&](int type, int l, int r) {
+		if (type == 0) {// l--
+			// TODO
+		}
+		else if (type == 1) {// r++
+			// TODO
+		}
+		else if (type == 2) {// l++
+			// TODO
+		}
+		else if (type == 3) {// r--
+			// TODO
+		}
+	};
+	auto set = [&](int idx) {
+		// ans[idx] = val;
+	};
+	mo.run(upd, set);
+*/
