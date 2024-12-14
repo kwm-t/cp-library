@@ -25,7 +25,7 @@ struct Mo {
 		*/
 	}
 	// run
-	void run(const std::function<void(int)> &add, const std::function<void(int)> &del, const std::function<void(int)> &set) {
+	void run(const std::function<void(int, int, int)> &add, const std::function<void(int, int, int)> &del, const std::function<void(int)> &set) {
 		std::sort(order.begin(), order.end(), [&](int lh, int rh) {
 			//return horder[lh] < horder[rh];
 			int lblock = left[lh] / width;
@@ -36,10 +36,10 @@ struct Mo {
 			});
 		int nl = 0, nr = 0;
 		for (auto idx : order) {
-			while (nl > left[idx])add(--nl);
-			while (nr < right[idx])add(nr++);
-			while (nl < left[idx])del(nl++);
-			while (nr > right[idx])del(--nr);
+			while (nl > left[idx])del(0, nl--, nr);
+			while (nr < right[idx])add(1, nl, ++nr);
+			while (nl < left[idx])add(0, ++nl, nr);
+			while (nr > right[idx])del(1, nl, nr--);
 			set(idx);
 		}
 	}
@@ -62,20 +62,16 @@ struct Mo {
 	}*/
 };
 // Example
-// https://codeforces.com/contest/2014/problem/H
+// https://atcoder.jp/contests/abc384/submissions/60779836
 //Mo mo(n, q);
 //int val = 0;
 //std::vector<int> ans(q);
 //std::vector<int> cnt(n, 0);
-//auto add = [&](int idx) {
-//	cnt[a[idx]]++;
-//	if (1 == cnt[a[idx]] % 2)val++;
-//	else val--;
+//auto add = [&](int type, int l, int r) {
+// // TODO
 //};
-//auto del = [&](int idx) {
-//	cnt[a[idx]]--;
-//	if (0 == cnt[a[idx]] % 2)val--;
-//	else val++;
+//auto del = [&](int type, int l, int r) {
+// // TODO
 //};
 //auto set = [&](int idx) {
 //	ans[idx] = val;
