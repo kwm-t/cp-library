@@ -10,13 +10,13 @@ struct Mo {
 	//std::vector<long long>horder;
 	int n, q;
 	Mo(int _n, int _q) :n(_n), q(_q) {
-		width = (int)sqrt(_n);
+		width = n / min<int>(n, std::sqrt(q));
 		order.resize(q);
 		std::iota(order.begin(), order.end(), 0);
 		ans.resize(q);
 	}
 	// add query[l,r)
-	void query(std::vector<int> &l, std::vector<int> &r) {
+	void query(const std::vector<int> &l,const std::vector<int> &r) {
 		left = l;
 		right = r;
 		/*
