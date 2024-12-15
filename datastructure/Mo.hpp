@@ -6,14 +6,12 @@
 struct Mo {
 	int width;
 	std::vector<int>left, right, order;
-	std::vector<int>ans;
 	//std::vector<long long>horder;
 	int n, q;
 	Mo(int _n, int _q) :n(_n), q(_q) {
 		width = n / min<int>(n, std::sqrt(q));
 		order.resize(q);
 		std::iota(order.begin(), order.end(), 0);
-		ans.resize(q);
 	}
 	// add query[l,r)
 	void query(const std::vector<int> &l,const std::vector<int> &r) {
