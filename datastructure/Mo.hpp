@@ -36,10 +36,10 @@ struct Mo {
 			});
 		int nl = 0, nr = 0;
 		for (auto idx : order) {
-			while (nl > left[idx])upd(0, nl--, nr);
-			while (nr < right[idx])upd(1, nl, ++nr);
-			while (nl < left[idx])upd(2, ++nl, nr);
-			while (nr > right[idx])upd(3, nl, nr--);
+			while (nl > left[idx])upd(0, --nl, nr);
+			while (nr < right[idx])upd(1, nl, nr++);
+			while (nl < left[idx])upd(2, nl++, nr);
+			while (nr > right[idx])upd(3, nl, --nr);
 			set(idx);
 		}
 	}
@@ -63,7 +63,10 @@ struct Mo {
 };
 /*
 	Example
-	https://atcoder.jp/contests/abc384/submissions/60782036
+	‹æŠÔver‚Æ2D Grid ver‚Å‚ÍL,R‚Ìˆµ‚¢‚ª•Ï‚í‚é‚Ì‚Å’ˆÓB
+	“Á‚ÉŒãÒ
+	https://atcoder.jp/contests/abc384/submissions/60798278
+	
 	Mo mo(n, q);
 	auto upd = [&](int type, int l, int r) {
 		if (type == 0) {// l--
