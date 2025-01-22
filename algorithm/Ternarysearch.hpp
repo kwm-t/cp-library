@@ -1,3 +1,4 @@
+template <class T, class U>
 std::pair<T, U> ternarysearch(T l, T r, const std::function<U(T)> &f) {
 	// 下に凸
 	while (2 < abs(r - l)) {
