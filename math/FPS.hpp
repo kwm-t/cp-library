@@ -45,6 +45,8 @@ template<class T> std::istream &operator>>(std::istream &is, std::vector<T> &v) 
 template<class T> std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) { for (auto &e : v) os << e << ' '; return os; }
 template<class T>
 struct FormalPowerSeries : std::vector<T> {
+	FormalPowerSeries(const std::vector<T>& vec) : std::vector<T>(vec) {}
+	
 	using std::vector<T>::vector;
 	using std::vector<T>::operator=;
 	using F = FormalPowerSeries;
@@ -315,7 +317,7 @@ struct FormalPowerSeries : std::vector<T> {
 				t.resize(m);
 				t /= 2 * m;
 			}
-			else { // ‚±‚Ìê‡•ª‚¯‚ğ‚µ‚Ä‚à”ƒp[ƒZƒ“ƒg‚µ‚©‘¬‚­‚È‚ç‚È‚¢
+			else { // ã“ã®å ´åˆåˆ†ã‘ã‚’ã—ã¦ã‚‚æ•°ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆã—ã‹é€Ÿããªã‚‰ãªã„
 				F g1(g.begin() + m / 2, g.end());
 				F s1(t.begin() + m / 2, t.end());
 				t.resize(m / 2);
@@ -404,7 +406,7 @@ using fps = FormalPowerSeries<mint>;
 using sfps = std::vector<std::pair<int, mint>>;
 
 // https://judge.yosupo.jp/problem/inv_of_formal_power_series
-// f(x)‚É‘Î‚µ‚Ä 1/f(x)‚Ìæ“ªn€‚ğ‹‚ß‚é
+// f(x)ã«å¯¾ã—ã¦ 1/f(x)ã®å…ˆé ­né …ã‚’æ±‚ã‚ã‚‹
 void yosupo_inv() {
 	int n; std::cin >> n;
 	fps a(n); std::cin >> a;
@@ -412,7 +414,7 @@ void yosupo_inv() {
 }
 
 // https://judge.yosupo.jp/problem/log_of_formal_power_series
-// f(x)‚É‘Î‚µ‚Ä log(f(x))‚Ìæ“ªn€‚ğ‹‚ß‚é
+// f(x)ã«å¯¾ã—ã¦ log(f(x))ã®å…ˆé ­né …ã‚’æ±‚ã‚ã‚‹
 void yosupo_log() {
 	int n; std::cin >> n;
 	fps a(n); std::cin >> a;
@@ -420,7 +422,7 @@ void yosupo_log() {
 }
 
 // https://judge.yosupo.jp/problem/exp_of_formal_power_series
-// f(x)‚É‘Î‚µ‚Ä exp(f(x))‚Ìæ“ªn€‚ğ‹‚ß‚é
+// f(x)ã«å¯¾ã—ã¦ exp(f(x))ã®å…ˆé ­né …ã‚’æ±‚ã‚ã‚‹
 void yosupo_exp() {
 	int n; std::cin >> n;
 	fps a(n); std::cin >> a;
@@ -428,7 +430,7 @@ void yosupo_exp() {
 }
 
 // https://judge.yosupo.jp/problem/pow_of_formal_power_series
-// f(x)‚É‘Î‚µ‚Äf(x)^m‚Ìæ“ªn€‚ğ‹‚ß‚é
+// f(x)ã«å¯¾ã—ã¦f(x)^mã®å…ˆé ­né …ã‚’æ±‚ã‚ã‚‹
 void yosupo_pow() {
 	int n, m; std::cin >> n >> m;
 	fps a(n); std::cin >> a;
@@ -436,7 +438,7 @@ void yosupo_pow() {
 }
 
 // https://judge.yosupo.jp/problem/polynomial_taylor_shift
-// f(x)‚É‘Î‚µ‚Äf(x+c)‚Ìæ“ªn€‚ğ‹‚ß‚é
+// f(x)ã«å¯¾ã—ã¦f(x+c)ã®å…ˆé ­né …ã‚’æ±‚ã‚ã‚‹
 void yosupo_shift() {
 	int n, c; std::cin >> n >> c;
 	fps a(n); std::cin >> a;
@@ -444,7 +446,7 @@ void yosupo_shift() {
 }
 
 // https://judge.yosupo.jp/problem/bernoulli_number
-// ƒxƒ‹ƒk[ƒC”‚Ìæ“ªn€‚ğ‹‚ß‚é
+// ãƒ™ãƒ«ãƒŒãƒ¼ã‚¤æ•°ã®å…ˆé ­né …ã‚’æ±‚ã‚ã‚‹
 void yosupo_bernoulli() {
 	int n; std::cin >> n;
 	++n;
@@ -456,7 +458,7 @@ void yosupo_bernoulli() {
 }
 
 // https://judge.yosupo.jp/problem/sharp_p_subset_sum
-// ƒ®(1+x^a)‚Ìæ“ªt+1€‚ğ‹‚ß‚é
+// Î (1+x^a)ã®å…ˆé ­t+1é …ã‚’æ±‚ã‚ã‚‹
 void yosupo_count_subset_sum() {
 	int n, t; std::cin >> n >> t;
 	++t;
