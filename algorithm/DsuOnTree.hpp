@@ -14,29 +14,67 @@ public:
 		dfs2(root);
 	}
 
-	template <typename UPDATE, typename QUERY, typename CLEAR, typename RESET>
-	void run(UPDATE &update, QUERY &query, CLEAR &clear, RESET &reset) {
-		auto dsu = [&](auto self, int v, int p = -1, bool keep = false)->void {
+	template <typename UPDATE, typename QUERY, typename CLEAR>
+	void run(UPDATE &update, QUERY &query, CLEAR &clear) {
+		auto dsu = [&](auto &&self, int v, int p, bool keep)->void {
 			// un heavy path
 			for (int i = 1; i < (int)g[v].size(); ++i) {
-				if (p == g[v][i])continue;
+				if (g[v][i] == p) continue;
 				self(self, g[v][i], v, false);
 			}
 			// not leaf
 			if (sub_size[v] != 1) {
 				self(self, g[v][0], v, true);
 				for (int i = up[g[v][0]]; i < up[v]; i++) {
-					update(euler[i]);
+					update(v, euler[i]);
 				}
 			}
-			update(v);
+			update(v, v);
 			query(v);
 			if (!keep) {
 				for (int i = down[v]; i < up[v]; i++) clear(euler[i]);
-				reset(v);
 			}
 		};
-		dsu(dsu, root);
+		dsu(dsu, root, -1, true);
+	}
+
+	using F = function<void(int)>;
+	using F2 = function<void(int, int)>;
+	void run_every_pair(F update, F query_root, F2 query_light, F clear) {
+		auto dfs = [&](auto &&self, int v, int p, bool keep) -> void {
+			// un heavy path
+			for (int i = 1; i < (int)g[v].size(); i++) {
+				if (g[v][i] == p) continue;
+				self(self, g[v][i], v, false);
+			}
+
+			// not leaf
+			if (sub_size[v] != 1) {
+				self(self, g[v][0], v, true);
+			}
+
+			// update Small Child
+			if (sub_size[v] != 1) {
+				for (int i = 1; i < g[v].size(); i++) {
+					if (g[v][i] == p) continue;
+
+					int ch = g[v][i];
+					// Big Child とすでに処理済みの Small Child に関するクエリを処理
+					for (int u = down[ch]; u < up[ch]; u++) query_light(v, euler[u]);
+					for (int u = down[ch]; u < up[ch]; u++) update(euler[u]);
+				}
+			}
+
+			query_root(v);
+			update(v);
+
+			if (!keep) {
+				for (int i = down[v]; i < up[v]; i++) clear(euler[i]);
+			}
+			return;
+		};
+
+		dfs(dfs, root, -1, true);
 	}
 private:
 	G &g;
@@ -70,3 +108,6 @@ private:
 		up[v] = idx_;
 	}
 };
+// sumple
+// https://yukicoder.me/submissions/1040215
+// run_every_pairのquery_rootは別処理がいる？
