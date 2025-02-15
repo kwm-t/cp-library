@@ -29,7 +29,7 @@ struct Compression : std::vector<S> {
 
 // ä÷êîver
 template<typename T>
-std::pair<std::vector<T>, int> compression(std::vector<T>org) {
+std::pair<std::vector<T>, int> compression(const std::vector<T> &org) {
 	auto copy = org;
 	std::sort(copy.begin(), copy.end());
 	copy.erase(unique(copy.begin(), copy.end()), copy.end());
