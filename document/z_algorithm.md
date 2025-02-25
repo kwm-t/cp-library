@@ -1,5 +1,5 @@
 # z_Algorithm
-長さ $N$文字列 $S$に対し、以下を満たす長さ $N$の配列を　$\mathcal{O}(|S|)$求める<br>
+長さ $N$文字列 $S$に対し、以下を満たす長さ $N$の配列を $\mathcal{O}(|S|)$求める<br>
 - $Z[i]$= $S[0..n)$と $S[i..n)$のLCP(Longest Common Prefix)の長さ
 
 # 例
@@ -7,7 +7,7 @@
  $Z$=[8,0,0,2,0,3,0,0]を返す
 
 # 利用例
-z_algorithmを用いると文字列Tが文字列Sに含まれるかという判定問題を$\mathcal{O}(|S| + |T|)$で行うことが出来る<br>
+z_algorithmを用いると文字列Tが文字列Sに含まれるかという判定問題を $\mathcal{O}(|S| + |T|)$ で行うことが出来る<br>
 
 ## 例
  $S$ = abcba, $T$ = abcの時<br>
