@@ -3,7 +3,7 @@ struct PalindromicTree {
 public:
 	struct Node {
 		std::map<T, int>link;	// child node index
-		int	suffixLink;			// 最長回文suffixのindex
+		int suffixLink;			// 最長回文suffixのindex
 		int length;				// 回分の長さ
 		std::vector<int>index;	// suffixLinkをこのNodeに貼るstring上のindex
 		int deltaLink;			// 差分が異なる最長回文接尾辞のindex
