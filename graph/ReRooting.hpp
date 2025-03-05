@@ -49,6 +49,7 @@ template <typename Data, Data(*e)(), Data(*addEdge)(const Data&, int)
 			for (int i = 0; i++ < n;) head[i] = merge(head[i - 1], tmp[i - 1]);
 			for (int i = n; i-- > 0;) tail[i] = merge(tail[i + 1], tmp[i]);
 			dp[v] = head[n];
+			// dp[v] = addVertex(head[n], v);
 			int index = 0;
 			for (Edge &edge : edges[v]) {
 				if (p != edge.to) {
@@ -59,13 +60,17 @@ template <typename Data, Data(*e)(), Data(*addEdge)(const Data&, int)
 			}
 		}
 };
-// sumple ARC179D
+// sumple
+// AtCoder Regular Contest 179-D
+// https://atcoder.jp/contests/arc179/submissions/55004700
+// AtCoder Beginner Contest 394-F
+// https://atcoder.jp/contests/abc394/submissions/63045664
 // ReRooting<Data, e, addEdge, addVertex, merge> reroot(n);
 struct Data {
-	int e;// •Ó‚Ì”
-	int h;// ‚‚³
-	int v0;// ª‚É–ß‚éê‡‚ÌÅ¬ƒRƒXƒg
-	int v1;// Å¬ƒRƒXƒg
+	int e;// è¾ºã®æ•°
+	int h;// é«˜ã•
+	int v0;// æ ¹ã«æˆ»ã‚‹å ´åˆã®æœ€å°ã‚³ã‚¹ãƒˆ
+	int v1;// æœ€å°ã‚³ã‚¹ãƒˆ
 };
 Data e() {
 	return { 0,0,0,0 };
