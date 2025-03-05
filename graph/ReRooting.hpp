@@ -48,8 +48,7 @@ template <typename Data, Data(*e)(), Data(*addEdge)(const Data&, int)
 			std::vector<Data> head(n + 1, e()), tail(n + 1, e());
 			for (int i = 0; i++ < n;) head[i] = merge(head[i - 1], tmp[i - 1]);
 			for (int i = n; i-- > 0;) tail[i] = merge(tail[i + 1], tmp[i]);
-			dp[v] = head[n];
-			// dp[v] = addVertex(head[n], v);
+			dp[v] = addVertex(head[n], v);
 			int index = 0;
 			for (Edge &edge : edges[v]) {
 				if (p != edge.to) {
