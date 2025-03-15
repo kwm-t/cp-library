@@ -23,7 +23,7 @@ namespace RangeAddRangeMax {
 	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 }
 namespace RangeAddRangeSum {
-	// 区間加算・区間最大値取得
+	// 区間加算・区間和取得
 	struct S {
 		long long value;
 		int size;
