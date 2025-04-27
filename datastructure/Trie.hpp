@@ -32,6 +32,7 @@ public:
 			if (-1 == next[now][v[i]]) {
 				next[now][v[i]] = node.size();
 				node.emplace_back(0);
+				end.push_back(false);
 				next.emplace_back(std::vector<int>(kind, -1));
 			}
 			now = next[now][v[i]];
@@ -113,3 +114,5 @@ public:
 };
 // tire木上にvalueを持たせたいときは以下を参考に
 // https://atcoder.jp/contests/abc377/submissions/59182087
+// 投入indexを持たせる
+// https://atcoder.jp/contests/abc403/submissions/65294148
