@@ -66,6 +66,7 @@ struct Mo {
 	https://atcoder.jp/contests/abc384/submissions/60798278
 	
 	Mo mo(n, q);
+	mo.query(l, r);
 	auto upd = [&](int type, int l, int r) {
 		if (type == 0) {// l--
 			// TODO
@@ -85,3 +86,8 @@ struct Mo {
 	};
 	mo.run(upd, set);
 */
+// tips
+// Moにセグ木を乗せる場合など
+// 更新の回数が取得の回数よりずっと多いときには、セグ木よりも平方分割の方が早くなる
+// O((N*sqrt_Q+Q)log_N)->O(N*sqrt_N+Q*sqrt_N)になる
+// https://atcoder.jp/contests/abc405/submissions/65698565
