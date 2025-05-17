@@ -201,3 +201,6 @@ struct CompressedWaveletMatrix {
 		return ret == -1 ? T(-1) : ys[ret];
 	}
 };
+// Rectangle Sum
+// https://ei1333.github.io/library/structure/wavelet/wavelet-matrix-rectangle-sum.hpp
+// https://atcoder.jp/contests/abc405/submissions/65714285
