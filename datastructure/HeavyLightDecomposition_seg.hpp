@@ -53,6 +53,9 @@ struct HeavyLightDecomposition {
 		for (int i = 0; i < n; ++i)_val[i] = val[rev[i]];
 		seg = segtree<S, op, e>(_val);
 	}
+	S query(int v) {
+		return seg.prod(in[v], out[v]);
+	}
 	S query(int u, int v) {
 		S ret = e();
 		for (;; v = par[head[v]]) {
