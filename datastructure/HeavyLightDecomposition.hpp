@@ -1,5 +1,5 @@
 #include <vector>
-template<class S, class DataStruct>
+template<class S, class F, template<class, class> class DataStruct>
 struct HeavyLightDecomposition {
 	HeavyLightDecomposition(std::vector<std::vector<int>> &_g, std::vector<S>&_val) :g(_g), val(_val) {
 		n = g.size();
@@ -15,7 +15,7 @@ struct HeavyLightDecomposition {
 	std::vector<std::vector<int>>g;
 	std::vector<int>sz, par, in, out, rev, head, deep;
 	std::vector<S>val;
-	DataStruct dataStruct;
+	DataStruct<S, F> dataStruct;
 	void build() {
 		dfs_sz(0);
 		int time = 0;
@@ -49,7 +49,7 @@ struct HeavyLightDecomposition {
 	void initDataStruct() {
 		std::vector<S>_val(n);
 		for (int i = 0; i < n; ++i)_val[i] = val[rev[i]];
-		dataStruct = DataStruct(_val);
+		dataStruct = DataStruct<S,F>(_val);
 	}
 	S query(int v) {
 		return dataStruct.prod(in[v], out[v]);
@@ -83,12 +83,25 @@ struct HeavyLightDecomposition {
 	int dist(int u, int v) {
 		return deep[u] + deep[v] - 2 * deep[lca(u, v)];
 	}
+	// path update
+	void apply_path(int u, int v, F x) {
+		for (;; v = par[head[v]]) {
+			if (in[u] > in[v])std::swap(u, v);
+			if (head[u] == head[v])break;
+			dataStruct.apply(in[head[v]], in[v] + 1, x);
+		}
+		dataStruct.apply(in[u], in[v] + 1, x);
+	}
 	// point update
 	void set_point(int u, S x) {
 		dataStruct.set(in[u], x);
 	}
-	void update_point(int u, S x) {
-		dataStruct.update(in[u], x);
+	void apply_point(int u, F x) {
+		dataStruct.apply(in[u], x);
+	}
+	// subtree_update
+	void apply_subtree(int v, F x) {
+		dataStruct.apply(in[v], out[v], x);
 	}
 	void debug() {
 		for (int i = 0; i < n; ++i) std::cout << dataStruct.prod(i, i + 1) << " ";
@@ -97,7 +110,8 @@ struct HeavyLightDecomposition {
 };
 // example 
 // https://atcoder.jp/contests/abc406/submissions/65942076
-/*template<class S>
+/*
+template<class S, class F>
 struct SegTree {
 	SegTree() {}
 	SegTree(const std::vector<S> data) {
@@ -109,8 +123,11 @@ struct SegTree {
 	void set(int p, S x) {
 		seg.set(p, x);
 	}
-	void update(int p, S x) {
-		seg.set(p, op(seg.get(p), x));
+	void apply(int p, F f) {
+		seg.set(p, op(seg.get(p), f));
+	}
+	void apply(int l, int r, F f) {
+		//seg.apply(l, r, f));
 	}
 	static S op(S a, S b) { return a + b; }
 	static S e() { return 0; }
