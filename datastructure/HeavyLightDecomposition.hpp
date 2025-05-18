@@ -83,7 +83,12 @@ struct HeavyLightDecomposition {
 	int dist(int u, int v) {
 		return deep[u] + deep[v] - 2 * deep[lca(u, v)];
 	}
-	// path update
+	void set_point(int u, S x) {
+		dataStruct.set(in[u], x);
+	}
+	void apply_point(int u, F x) {
+		dataStruct.apply(in[u], x);
+	}
 	void apply_path(int u, int v, F x) {
 		for (;; v = par[head[v]]) {
 			if (in[u] > in[v])std::swap(u, v);
@@ -92,14 +97,6 @@ struct HeavyLightDecomposition {
 		}
 		dataStruct.apply(in[u], in[v] + 1, x);
 	}
-	// point update
-	void set_point(int u, S x) {
-		dataStruct.set(in[u], x);
-	}
-	void apply_point(int u, F x) {
-		dataStruct.apply(in[u], x);
-	}
-	// subtree_update
 	void apply_subtree(int v, F x) {
 		dataStruct.apply(in[v], out[v], x);
 	}
