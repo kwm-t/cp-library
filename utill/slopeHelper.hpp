@@ -1,5 +1,5 @@
 #include <vector>
-std::vector<long long>slopeHelper(std::vector<std::pair<long long, long long>>slope) {
+std::vector<long long>slopeHelper(const std::vector<std::pair<long long, long long>> &slope) {
 	std::vector<long long>ret = { 0 };
 	for (int i = 0; i < (int)slope.size(); ++i) {
 		auto k = slope[i].first;
@@ -15,8 +15,8 @@ std::vector<long long>slopeHelper(std::vector<std::pair<long long, long long>>sl
 	}
 	return ret;
 }
-std::vector<long long>slopeHelper(std::vector<std::pair<long long, long long>>slope, long long big) {
-	auto ret = SlopeHelper(slope);
-	for (int i = 0; i < (int)ret.size(); ++i) ret[i] = big * i - ret[i];
+std::vector<long long>slopeHelper(const std::vector<std::pair<long long, long long>>& slope, long long big) {
+	auto ret = slopeHelper(slope);
+	for (int i = 0; i < (int)ret.size(); ++i) ret[i] -= big * i;
 	return ret;
 }
