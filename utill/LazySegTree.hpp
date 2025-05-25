@@ -80,3 +80,19 @@ namespace RangeUpdateRangeSum {
 	F id() { return ID; }
 	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 }
+namespace AddArithmeticProgression {
+	// 区間等差数列加算・区間和取得
+	// init
+	// seg.set(i,S{a[i],i,1});
+	// update
+	// [l,r)にai+bを加算
+	// seg.apply(l,r,F{a,b});
+	struct S { long long val_sum, index_sum, len; };
+	struct F { long long a, b; };
+	S op(S x, S y) { return S{ x.val_sum + y.val_sum,x.index_sum + y.index_sum,x.len + y.len }; }
+	S e() { return S{ 0,0,0 }; }
+	S mapping(F f, S x) { return S{ x.val_sum + f.a*x.index_sum + f.b*x.len,x.index_sum,x.len }; }
+	F composition(F f, F g) { return F{ f.a + g.a, f.b + g.b }; }
+	F id() { return F{ 0,0 }; }
+	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
+}
