@@ -1,33 +1,72 @@
+using int128 = __int128;// æå‡ºç”¨
+//using int128 = long long;
+template<class T>
 class SternBrocotTree {
 	// https://miscalc.hatenablog.com/entry/2023/12/22/213007
 	// root =(0,1,1,0)
 public:
-	// (p,q,r,s) ‚©‚ç (isleft ? ¶ : ‰E) ‚É d ŒÂi‚ñ‚¾’¸“_‚ğ•Ô‚·
-	static std::tuple<T, T, T, T> child(T p, T q, T r, T s, T d, bool isleft) {
-		if (isleft) {
-			r += d * p, s += d * q;
+	struct Node {
+		T p, q, r, s;
+		Node(T p = 0, T q = 1, T r = 1, T s = 0) :p(p), q(q), r(r), s(s) {}
+		// (p,q,r,s) ã‹ã‚‰ (isleft ? å·¦ : å³) ã« d å€‹é€²ã‚“ã é ‚ç‚¹ã‚’è¿”ã™
+		Node root() {
+			return Node();
 		}
-		else {
-			p += d * r, q += d * s;
+		static Node child(Node node, T d, bool isleft) {
+			if (isleft) {
+				node.r += d * node.p;
+				node.s += d * node.q;
+			}
+			else {
+				node.p += d * node.r;
+				node.q += d * node.s;
+			}
+			return node;
 		}
-		return std::make_tuple(p, q, r, s);
-	}
-	// (p,q,r,s) ‚Ìe‚ğ•Ô‚·
-	// (p,q,r,s) ‚ªª‚È‚ç (0,0,0,0) ‚ğ•Ô‚·
-	static std::tuple<T, T, T, T> parent(T p, T q, T r, T s) {
-		if (p == 0 && q == 1 && r == 1 && s == 0) {
-			return std::make_tuple(0, 0, 0, 0);
+		// (p,q,r,s) ã®è¦ªã‚’è¿”ã™
+		// (p,q,r,s) ãŒæ ¹ãªã‚‰ (0,0,0,0) ã‚’è¿”ã™
+		static Node parent(Node node) {
+			if (node.p == 0 && node.q == 1 && node.r == 1 && node.s == 0) {
+				return Node();
+			}
+			if (node.p < node.r || node.q < node.s) {
+				node.r -= node.p, node.s -= node.q;
+			}
+			else {
+				node.p -= node.r, node.q -= node.s;
+			}
+			return node;
 		}
-		if (p < r || q < s) {
-			r -= p, s -= q;
+		bool operator<(const Node& other) const {
+			auto num = p + r;
+			auto den = q + s;
+			auto num2 = other.p + other.r;
+			auto den2 = other.q + other.s;
+			return (int128)num * den2 < (int128)num2 * den;
 		}
-		else {
-			p -= r, q -= s;
+		bool operator>(const Node& other) const {
+			auto num = p + r;
+			auto den = q + s;
+			auto num2 = other.p + other.r;
+			auto den2 = other.q + other.s;
+			return (int128)num * den2 > (int128)num2 * den;
 		}
-		return std::make_tuple(p, q, r, s);
-	}
-	// 1/1 ‚©‚ç p/q ‚Ö‚ÌƒpƒX‚ª‰E‚É a_1 ‰ñA¶‚É a_2 ‰ñAc ‚Æ‚µ‚½‚Æ‚«‚Ì a ‚ğ•Ô‚·
-	// (a_1, c, a_k + 1) ‚Í p/q ‚Ì˜A•ª”“WŠJ‚É‚È‚Á‚Ä‚¢‚é
+		bool operator==(const Node& other) const {
+			auto num = p + r;
+			auto den = q + s;
+			auto num2 = other.p + other.r;
+			auto den2 = other.q + other.s;
+			return (int128)num * den2 == (int128)num2 * den;
+		}
+		bool operator<=(const Node& other) const {
+			return !((*this) > other);
+		}
+		bool operator>=(const Node& other) const {
+			return !((*this) < other);
+		}
+	};
+	// 1/1 ã‹ã‚‰ p/q ã¸ã®ãƒ‘ã‚¹ãŒå³ã« a_1 å›ã€å·¦ã« a_2 å›ã€â€¦ ã¨ã—ãŸã¨ãã® a ã‚’è¿”ã™
+	// (a_1, â€¦, a_k + 1) ã¯ p/q ã®é€£åˆ†æ•°å±•é–‹ã«ãªã£ã¦ã„ã‚‹
 	static std::vector<T> encode_path(T p, T q) {
 		std::vector<T> a;
 		if (p < q) {
@@ -49,85 +88,132 @@ public:
 		}
 		return a;
 	}
-	// 1/1 ‚©‚ç‰E‚É a_1 ‰ñA¶‚É a_2 ‰ñAc ˆÚ“®‚µ‚½’¸“_ (p, q, r, s) ‚ğ•Ô‚·
-	// (a_1, c, a_k + 1) ‚Í (p+r)/(q+s) ‚Ì˜A•ª”“WŠJ‚É‚È‚Á‚Ä‚¢‚é
-	static std::tuple<T, T, T, T> decode_path(const std::vector<T> &a) {
-		T p = 0, q = 1, r = 1, s = 0;
+	// 1/1 ã‹ã‚‰å³ã« a_1 å›ã€å·¦ã« a_2 å›ã€â€¦ ç§»å‹•ã—ãŸé ‚ç‚¹ (p, q, r, s) ã‚’è¿”ã™
+	// (a_1, â€¦, a_k + 1) ã¯ (p+r)/(q+s) ã®é€£åˆ†æ•°å±•é–‹ã«ãªã£ã¦ã„ã‚‹
+	static Node decode_path(const std::vector<T> &a) {
+		Node node = Node();
 		for (int i = 0; i < (int)a.size(); i++) {
-			std::tie(p, q, r, s) = child(p, q, r, s, a[i], i & 1);
+			node = Node::child(node, a[i], i & 1);
 		}
-		return std::make_tuple(p, q, r, s);
+		return node;
 	}
-	// p/q ‚Æ r/s ‚Ì LCA (f, g, h, k) ‚ğ•Ô‚·
-	static std::tuple<T, T, T, T> lca(T p, T q, T r, T s) {
+	// p/q ã¨ r/s ã® LCA (f, g, h, k) ã‚’è¿”ã™
+	static Node lca(T p, T q, T r, T s) {
 		std::vector<T> a = encode_path(p, q), b = encode_path(r, s);
 		int n = std::min((int)a.size(), (int)b.size());
-		T f = 0, g = 1, h = 1, k = 0;
+		//T f = 0, g = 1, h = 1, k = 0;
+		Node node = Node();
 		for (int i = 0; i < n; i++) {
 			T c = std::min(a[i], b[i]);
-			std::tie(f, g, h, k) = child(f, g, h, k, c, i & 1);
+			node = Node::child(node, c, i & 2);
 			if (a[i] != b[i]) {
 				break;
 			}
 		}
-		return std::make_tuple(f, g, h, k);
+		return node;
 	}
-	// p/q ‚Ì‘cæ‚Å‚ ‚Á‚Ä[‚³‚ª d ‚Ìƒm[ƒh (f, g, h, k) ‚ğ•Ô‚·
-	// ‘¶İ‚µ‚È‚¯‚ê‚Î (0, 0, 0, 0)
-	static std::tuple<T, T, T, T> ancestor(T d, T p, T q) {
+	// p/q ã®ç¥–å…ˆã§ã‚ã£ã¦æ·±ã•ãŒ d ã®ãƒãƒ¼ãƒ‰ (f, g, h, k) ã‚’è¿”ã™
+	// å­˜åœ¨ã—ãªã‘ã‚Œã° (0, 0, 0, 0)
+	static Node ancestor(T d, T p, T q) {
 		std::vector<T> a = encode_path(p, q);
-		T f = 0, g = 1, h = 1, k = 0;
+		//T f = 0, g = 1, h = 1, k = 0;
+		Node node = Node();
 		for (int i = 0; i < (int)a.size(); i++) {
 			T c = std::min(d, a[i]);
-			std::tie(f, g, h, k) = child(f, g, h, k, c, i & 1);
+			node = Node::child(node, c, i & 1);
 			d -= c;
 			if (d == 0) {
 				break;
 			}
 		}
-		return d == 0 ? std::make_tuple(f, g, h, k) : std::make_tuple(0, 0, 0, 0);
+		return d == 0 ? node : Node(0, 0, 0, 0);
 	}
-	// p/q ‚Ìq‘·‚Ì‰ºŒÀ f/g ‚ÆãŒÀ h/k ‚ğ•Ô‚·
-	// p/q ‚É‘Î‰‚·‚é’¸“_ (f, g, h, k) ‚Å‚à‚ ‚é
-	static std::tuple<T, T, T, T> range(T p, T q) {
+	// p/q ã®å­å­«ã®ä¸‹é™ f/g ã¨ä¸Šé™ h/k ã‚’è¿”ã™
+	// p/q ã«å¯¾å¿œã™ã‚‹é ‚ç‚¹ (f, g, h, k) ã§ã‚‚ã‚ã‚‹
+	static Node range(T p, T q) {
 		return decode_path(encode_path(p, q));
 	}
-	// judge: [0, ‡] ¨ {true, false}
-	// judge ‚Í’P’²«‚ğ‚ÂA‚·‚È‚í‚¿A‚ ‚éÀ” ƒ¿ ‚ğ‹«‚É true ‚Æ false ‚ªØ‚è‘Ö‚í‚é
-	// •ª•êE•ªq‚ª max_value ˆÈ‰º‚Ì—L—”‚Ì‚¤‚¿Aƒ¿ ‚ÉÅ‚à‹ß‚¢‚à‚Ì (‰º‘¤: p/q, ã‘¤: r/s) ‚ğ•Ô‚·
-	static std::tuple<T, T, T, T> search(const std::function<bool(T, T)> &judge, const T &max_value) {
-		T p = 0, q = 1, r = 1, s = 0;
+	// judge: [0, âˆ] â†’ {true, false}
+	// judge ã¯å˜èª¿æ€§ã‚’æŒã¤ã€ã™ãªã‚ã¡ã€ã‚ã‚‹å®Ÿæ•° Î± ã‚’å¢ƒã« true ã¨ false ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹
+	// åˆ†æ¯ãƒ»åˆ†å­ãŒ max_value ä»¥ä¸‹ã®æœ‰ç†æ•°ã®ã†ã¡ã€Î± ã«æœ€ã‚‚è¿‘ã„ã‚‚ã® (ä¸‹å´: p/q, ä¸Šå´: r/s) ã‚’è¿”ã™
+	static Node search(const std::function<bool(T, T)> &judge, const T &max_value) {
+		//T p = 0, q = 1, r = 1, s = 0;
+		Node node = Node();
 		const bool judge_01 = judge(0, 1), judge_10 = judge(1, 0);
-		while (p + r <= max_value && q + s <= max_value) {
-			const bool judge_now = judge(p + r, q + s);
+		while (node.p + node.r <= max_value && node.q + node.s <= max_value) {
+			const bool judge_now = judge(node.p + node.r, node.q + node.s);
 			const bool isleft = judge_now ^ judge_01;
 			T maxd;
 			if (isleft) {
-				maxd = p == 0 ? (max_value - s) / q : std::min((max_value - r) / p, (max_value - s) / q);
+				maxd = node.p == 0 ? (max_value - node.s) / node.q : std::min((max_value - node.r) / node.p, (max_value - node.s) / node.q);
 			}
 			else {
-				maxd = s == 0 ? (max_value - p) / r : std::min((max_value - q) / s, (max_value - p) / r);
+				maxd = node.s == 0 ? (max_value - node.p) / node.r : std::min((max_value - node.q) / node.s, (max_value - node.p) / node.r);
 			}
 			T dl = 1, dr = 2;
 			while (dr <= maxd) {
-				auto[np, nq, nr, ns] = child(p, q, r, s, dr, isleft);
-				if (judge(np + nr, nq + ns) != judge_now) {
+				auto node2 = Node::child(node, dr, isleft);
+				if (judge(node2.p + node2.r, node2.q + node2.s) != judge_now) {
 					break;
 				}
 				dl = dr, dr = std::min(2 * dr, maxd + 1);
 			}
 			while (dr - dl > 1) {
 				T dm = dl + (dr - dl) / 2;
-				auto[np, nq, nr, ns] = child(p, q, r, s, dm, isleft);
-				if (judge(np + nr, nq + ns) == judge_now) {
+				auto node2 = Node::child(node, dm, isleft);
+				if (judge(node2.p + node2.r, node2.q + node2.s) == judge_now) {
 					dl = dm;
 				}
 				else {
 					dr = dm;
 				}
 			}
-			std::tie(p, q, r, s) = child(p, q, r, s, dl, isleft);
+			node = Node::child(node, dl, isleft);
 		}
-		return std::make_tuple(p, q, r, s);
+		return node;
+	}
+
+	// (a/b,c/d)ã®åŒºé–“å†…ã«ã‚ã‚‹ã‚‚ã®ã§æœ€ã‚‚åˆ†æ¯ãŒæœ€å°ãªã‚‚ã®ã‚’è¿”ã™
+	// https://atcoder.jp/contests/abc408/tasks/abc408_g
+	template<class F>
+	static T binarySearch(T ok, T ng, F f) {
+		while (abs(ok - ng) > 1) {
+			T mid = (ok + ng) / 2;
+			(f(mid) ? ok : ng) = mid;
+		}
+		return ok;
+	}
+	template<class F>
+	static T expSearch(F f) {
+		long long r = 1;
+		while (!f(r)) r <<= 1;
+		return binarySearch(r, r >> 1, f);
+	}
+	static Node abc408g(T a, T b, T c, T d) {
+		auto l = Node(a, b, 0, 0);
+		auto r = Node(c, d, 0, 0);
+		auto node = Node();
+		while (true) {
+			if (r <= node) {// left
+				auto f = [&](const T x)->bool {
+					auto node2 = Node::child(node, x, true);
+					return node2 < r;
+				};
+				T d = expSearch(f);
+				node = Node::child(node, d, true);
+			}
+			else if (node <= l) {// right
+				auto f = [&](const T x)->bool {
+					auto node2 = Node::child(node, x, false);
+					return l < node2;
+				};
+				T d = expSearch(f);
+				node = Node::child(node, d, false);
+			}
+			else {
+				break;
+			}
+		}
+		return node;
 	}
 };
