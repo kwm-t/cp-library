@@ -29,12 +29,10 @@ std::vector<mint> BarlekampMassey(const std::vector<mint> &A) {
 }
 // 線形漸化式の初めのd項からn項目を求めるための前処理 
 // d次漸化式ならO(d^2+dlogdlogN).
-Bostan_mori<mint> BM_BM(const std::vector<mint> &a) {
-
+Bostan_mori<mint> BM_BM(std::vector<mint> a) {
 	auto q = BarlekampMassey(a);// O(d^2)
-	auto copya = a;
-	copya.resize(q.size() - 1);
-	auto p = atcoder::convolution(copya, q);// O(dlogd)
+	a.resize(q.size() - 1);
+	auto p = atcoder::convolution(a, q);// O(dlogd)
 	p.resize(q.size() - 1);
 
 	Bostan_mori<mint> bm(p, q);
