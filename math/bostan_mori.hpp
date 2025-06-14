@@ -1,4 +1,8 @@
+#ifndef BOSTAN_MORI_HPP
+#define BOSTAN_MORI_HPP
+
 #include <vector>
+#include <atcoder/all>
 template<class T>
 struct Formal_power_series : std::vector<T> {
 	using std::vector<T>::vector;
@@ -37,7 +41,7 @@ struct Formal_power_series : std::vector<T> {
 		int n = this->size();
 		if (d == -1) d = n;
 		assert(d >= 0);
-		*this = convolution(move(*this), g.inv(d));
+		*this = atcoder::convolution(move(*this), g.inv(d));
 		this->resize(d);
 		return *this;
 	}
@@ -66,13 +70,15 @@ struct Bostan_mori {
 		std::vector<T> _p(p), _q(q), _q_rev(q);
 		rev(_q_rev);
 		for (; n; n >>= 1) {
-			_p = convolution(move(_p), _q_rev);
+			_p = atcoder::convolution(move(_p), _q_rev);
 			if (n & 1) odd(_p);
 			else     even(_p);
-			_q = convolution(move(_q), move(_q_rev));
+			_q = atcoder::convolution(move(_q), move(_q_rev));
 			even(_q);
 			_q_rev = _q; rev(_q_rev);
 		}
 		return _p[0] / _q[0];
 	}
 };
+
+#endif
