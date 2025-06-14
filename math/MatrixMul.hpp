@@ -12,15 +12,16 @@ std::vector<vector<T>> matrixMul(const std::vector<std::vector<T>>&A, const std:
 	return C;
 }
 template<typename T>
-std::vector<std::vector<T>> matrixPow(long long n, std::vector<std::vector<T>> mat) {
+std::vector<std::vector<T>> matrixPow(long long n, const std::vector<std::vector<T>> &mat) {
 	int size = (int)mat.size();
 	vector<vector<mint>> mret(size, vector<mint>(size));
 	for (int i = 0; i < size; ++i) {
 		mret[i][i] = 1;
 	}
+	auto cmat = mat;
 	while (n > 0) {
-		if (1 & n) mret = matrixMul(mat, mret);
-		mat = matrixMul(mat, mat);
+		if (1 & n) mret = matrixMul(cmat, mret);
+		cmat = matrixMul(cmat, cmat);
 		n >>= 1;
 	}
 	return mret;
