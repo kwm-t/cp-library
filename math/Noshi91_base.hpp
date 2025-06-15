@@ -1,7 +1,10 @@
+#ifndef NOSHI91_BASE_HPP
+#define NOSHI91_BASE_HPP
+
 #include <algorithm>
 #include <iostream>
 #include <vector>
-void noshi91_base(std:: vector<long long>a) {
+std::vector<long long> noshi91_base(const std:: vector<long long>&a) {
 	std::vector<long long>base;
 	for (int i = 0; i < (int)a.size(); ++i) {
 		for (int j = 0; j < base.size(); ++j) {
@@ -14,4 +17,7 @@ void noshi91_base(std:: vector<long long>a) {
 		base.push_back(a[i]);
 	}
 	std::sort(base.begin(), base.end());
+	return base;
 }
+
+#endif
