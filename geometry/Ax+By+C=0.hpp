@@ -1,4 +1,4 @@
-std::tuple<long long, long long, long long>segment(const std::pair<long long> &p1, const std::pair<long long> &p2) {
+std::tuple<long long, long long, long long>segment(const std::pair<long long, long long> &p1, const std::pair<long long, long long> &p2) {
 	long long a = p2.second - p1.second;
 	long long b = p1.first - p2.first;
 	long long c = p1.second * p2.first - p1.first * p2.second;

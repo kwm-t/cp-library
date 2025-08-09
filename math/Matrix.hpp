@@ -1,107 +1,66 @@
-template<typename T>
-struct Matrix {
-	int row, column;
-	std::vector<std::vector<T>>mat;
-	Matrix(int r = 0, int c = 0, T val = 0) :row(r), column(c) {
-		mat = std::vector<std::vector<T>>(row, std::vector<T>(column, val));
+template<class T, T(*add)(T, T), T(*zero)(), T(*mul)(T, T), T(*one)(), int N>
+struct Matrix : std::array<std::array<T, N>, N> {
+	using M = Matrix<T, add, zero, mul, one, N>;
+	void make_identity() {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				(*this)[i][j] = zero();
+			}
+		}
+		for (int i = 0; i < N; i++) {
+			(*this)[i][i] = one();
+		}
 	}
-	std::vector<T>& operator[](const int i) {
-		return mat[i];
-	}
-	Matrix& operator+=(const Matrix & other) {
-		assert(row == other.row && column == other.column);
-		for (int i = 0; i < row; ++i) {
-			for (int j = 0; j < column; ++j) {
-				mat[i][j] += other.mat[i][j];
+	M& operator+=(const M& rhs) {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				(*this)[i][j] = add((*this)[i][j], rhs[i][j]);
 			}
 		}
 		return *this;
 	}
-	Matrix& operator-=(const Matrix & other) {
-		assert(row == other.row && column == other.column);
-		for (int i = 0; i < row; ++i) {
-			for (int j = 0; j < column; ++j) {
-				mat[i][j] -= other.mat[i][j];
+	M& operator*=(const M& rhs) {
+		static M temp;
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				temp[i][j] = zero();
 			}
 		}
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				for (int k = 0; k < N; k++) {
+					temp[i][k] = add(temp[i][k], mul((*this)[i][j], rhs[j][k]));
+				}
+			}
+		}
+		*this = temp;
 		return *this;
 	}
-	Matrix& operator*=(const Matrix & other) {
-		assert(column == other.row);
-		Matrix ret(row, other.column);
-		for (int i = 0; i < row; ++i) {
-			for (int k = 0; k < column; ++k) {
-				for (int j = 0; j < other.column; ++j) {
-					ret.mat[i][j] += mat[i][k] * other.mat[k][j];
-				}
-			}
-		}
-		return *this = ret;
-	}
-	Matrix& operator*=(T k) {
-		for (int i = 0; i < row; ++i) {
-			for (int j = 0; j < column; ++j) {
-				mat[i][j] *= k;
-			}
-		}
-		return *this;
-	}
-	Matrix operator+(const Matrix other)const { return Matrix(*this) += other; }
-	Matrix operator-(const Matrix other)const { return Matrix(*this) -= other; }
-	Matrix operator*(const Matrix other)const { return Matrix(*this) *= other; }
-	Matrix operator*(const T k)const { return Matrix(*this) *= k; }
-	std::vector<T> operator*(const std::vector<T> other) const {
-		assert(column == (int)other.size());
-		std::vector<T> ret(row);
-		for (int i = 0; i < row; ++i) {
-			for (int j = 0; j < column; ++j) {
-				ret[i] += mat[i][j] * other[j];
-			}
-		}
-		return ret;
-	}
-	Matrix pow(long long n) const {
-		assert(row == column);
-		if (n == 0) {
-			Matrix e(row, column);
-			for (int i = 0; i < row; ++i) e.mat[i][i] = 1;
-			return e;
-		}
-		Matrix ret = pow(n >> 1);
-		ret *= ret;
-		if (n & 1) ret *= *this;
-		return ret;
-	}
-	Matrix debug() {
-		for (int i = 0; i < row; ++i) {
-			for (int j = 0; j < column; ++j) std::cout << mat[i][j] << " ";
-			std::cout << std::endl;
+	template <class I>
+	void inplace_pow(I k) {
+		assert(k >= 0);
+		static M temp;
+		temp = *this;
+		make_identity();
+		while (k) {
+			if (k & 1) *this *= temp;
+			k >>= 1;
+			if (k) temp *= temp;
 		}
 	}
-	mint det() {
-		auto copyMat = mat;
-		mint res = 1;
-		for (int i = 0; i < row; ++i) {
-			for (int j = i; j < row; ++j) {
-				if (0 == copyMat[j][i])continue;
-				if (i != j) {
-					std::swap(copyMat[i], copyMat[j]);
-					res *= -1;
-				}
-			}
-			if (0 == copyMat[i][i])return 0;
-			res *= copyMat[i][i];
-			mint inv = mint(1) / copyMat[i][i];
-			for (int j = 0; j < column; ++j) {
-				copyMat[i][j] *= inv;
-			}
-			for (int j = i + 1; j < row; ++j) {
-				mint c = copyMat[j][i];
-				for (int k = i; k < column; ++k) {
-					copyMat[j][k] -= c * copyMat[i][k];
-				}
+	friend std::ostream& operator<<(std::ostream& os, const M& A) {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				os << A[i][j] << " \n"[j + 1 == N];
 			}
 		}
-		return res;
+		return os;
 	}
 };
+
+// tropical semiring
+long long add(long long x, long long y) { return std::max(x, y); }
+long long zero() { return -1002003004005006007; }
+long long mul(long long x, long long y) { return x + y; }
+long long one() { return 0; }
+using M = Matrix<long long, add, zero, mul, one, 100>;
