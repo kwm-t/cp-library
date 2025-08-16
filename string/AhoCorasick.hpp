@@ -1,61 +1,64 @@
 #include <vector>
 #include <queue>
-template <int kind = 1>
 struct AhoCorasick {
-	std::vector<int>node, fail;
-	std::vector<std::vector<int>>next;
-	std::vector<int>cnt;// endCnt
-	std::vector<int> bfsOrder;// bfs探索順
+	static const int csize = 26;
+	static const int offset = 'a';
+	struct Node {
+		std::vector<int> to;
+		int flink;
+
+		Node() { to = std::vector<int>(csize, -1); }
+
+		// problem-specific process
+		int ends = 0;
+		void mark(int i) { ends = 1 << i; }
+		void marge(const Node &other) { ends |= other.ends; }
+	};
 	AhoCorasick() {
-		node.resize(1);
-		cnt.resize(1);
-		next.emplace_back(std::vector<int>(kind, -1));
+		nodes.resize(1);
 	}
-	// Trieの構築
-	int insert(const std::vector<int>&v) {
+	std::vector<Node> nodes;
+	int add(const std::string& s, int index) {
 		int now = 0;
-		for (int i = 0; i < (int)v.size(); ++i) {
-			if (-1 == next[now][v[i]]) {
-				next[now][v[i]] = node.size();
-				node.emplace_back(0);
-				cnt.push_back(0);
-				next.emplace_back(std::vector<int>(kind, -1));
+		for (auto c : s) {
+			int i = c - offset;
+			int next = nodes[now].to[i];
+			if (next == -1) {
+				next = nodes[now].to[i] = (int)nodes.size();
+				nodes.emplace_back();
 			}
-			now = next[now][v[i]];
-			node[now]++;
+			now = next;
 		}
-		cnt[now] = 1;
+		nodes[now].mark(index);
 		return now;
 	}
-	// insertの終了後に呼び出し必須
 	void build() {
 		// 最長のsuffixに対してfailure-linkを貼る
-		fail.resize(node.size(), -1);
-		std::queue<int>que;
-		que.push(0);
-		while (!que.empty()) {
-			int v = que.front(); que.pop();
-			bfsOrder.push_back(v);
-			for (int i = 0; i < kind; ++i) {
-				if (-1 == next[v][i])continue;
-				fail[next[v][i]] = calcIndex(fail[v], i);
-				cnt[next[v][i]] += cnt[fail[next[v][i]]];
-				que.push(next[v][i]);
+		nodes[0].flink = -1;
+		std::queue<int> q;
+		q.emplace(0);
+		while (!q.empty()) {
+			const int u = q.front();
+			q.pop();
+			for (int c = 0; c < csize; c++) {
+				int v = nodes[u].to[c];
+				if (v == -1) continue;
+				q.emplace(v);
+				int f = next(nodes[u].flink, c);
+				nodes[v].flink = f;
+				nodes[v].marge(nodes[f]);
 			}
 		}
 	}
-	int calcIndex(int v, int idx) {
-		while (-1 != v) {
-			if (-1 != next[v][idx])return next[v][idx];
-			v = fail[v];
+	int next(int now, int index) {
+		while (now != -1) {
+			int next = nodes[now].to[index];
+			if (next != -1) return next;
+			now = nodes[now].flink;
 		}
 		return 0;
 	}
-	void dump() {
-		int sz = node.size();
-		std::cout << node.size() << std::endl;
-		for (int i = 0; i < sz; ++i) {
-			std::cout << node[i] <<" " << fail[i] << " " << cnt[i] << std::endl;
-		}
+	int next(int u, char c) {
+		return next(u, c - offset);
 	}
 };
