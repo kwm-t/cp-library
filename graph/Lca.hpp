@@ -1,105 +1,50 @@
-#include <vector>
-#include <algorithm>
-class Tree {
-public:
-	Tree(int n, int root) : n(n), root(root) {
-		edge.resize(n);
-		for (int i = 0; i < MAXLOGV; i++) parent[i].resize(n);
-		depth.resize(n);
-	}
-	// u‚Æv‚ğ‚Â‚È‚®
-	// lca‚ğ‹‚ß‚é‚±‚Æ‚ªå–Ú“I‚È‚Ì‚Å–³ŒüƒOƒ‰ƒt‚Æ‚µ‚Ä‚¢‚é
-	void unite(int u, int v) {
-		edge[u].push_back(v);
-		edge[v].push_back(u);
-	}
-	// init‚·‚é
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚¾‚¯‚¶‚á‚È‚­‚Ä‚±‚ê‚àŒÄ‚Î‚È‚¢‚Ælca‚ª‹‚ß‚ç‚ê‚È‚¢‚¼
-	void init() {
-		dfs(root, -1, 0);
-		for (int k = 0; k + 1 < MAXLOGV; k++) {
-			for (int v = 0; v < n; v++) {
-				if (parent[k][v] < 0) parent[k + 1][v] = -1;
-				else parent[k + 1][v] = parent[k][parent[k][v]];
-			}
-		}
-	}
-	// u‚Æv‚Ìlca‚ğ‹‚ß‚é
-	int lca(int u, int v) const {
-		if (depth[u] > depth[v]) std::swap(u, v);
-		for (int k = 0; k < MAXLOGV; k++) {
-			if ((depth[v] - depth[u]) >> k & 1) {
-				v = parent[k][v];
-			}
-		}
-		if (u == v) return u;
-		for (int k = MAXLOGV - 1; k >= 0; k--) {
-			if (parent[k][u] != parent[k][v]) {
-				u = parent[k][u];
-				v = parent[k][v];
-			}
-		}
-		return parent[0][u];
-	}
-	// u‚ÌnŒÂe‚ğ‹‚ß‚é
-	int pare(int v, int n) {
-		if (depth[v] < n)return -1;
-		n = std::min(n, depth[v]);
-		int idx = MAXLOGV;
-		while (n) {
-			for (int i = idx - 1; i >= 0; --i) {
-				if (n < (1 << i))continue;
-				if (-1 == parent[i][v])continue;
-				n -= (1 << i);
-				v = parent[i][v];
-				idx = i;
-				break;
-			}
-		}
-		return v;
-	}
-	// u‚©‚çv‚ÉŒü‚©‚Á‚Ädi‚ñ‚¾’¸“_‚ğ•Ô‚·
-	int JumpOnTree(int u, int v, int d) {
-		if (0 == d)return u;
-		int distuv = dist(u, v);
-		if (distuv < d)return -1;
-		int l = lca(u, v);
-		if (l == u)return pare(v, distuv - d);
-		if (l == v)return pare(u, d);
-		int distlu = dist(l, u);
-		if (distlu >= d)return pare(u, d);
-		return pare(v, distuv - d);
-	}
-	// u‚Æv‚Ì‹——£‚ğ‹‚ß‚é
-	// edge‚ğ’è‹`‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚Í‚±‚ê‚¶‚áƒ_ƒ
-	int dist(int u, int v) const {
-		int p = lca(u, v);
-		return (depth[u] - depth[p]) + (depth[v] - depth[p]);
-	}
-	//’¸“_w‚ª’¸“_u,v‚ÌƒpƒXã‚É‘¶İ‚·‚é‚©
-	bool on_path(int u, int v, int w) {
-		return (dist(u, w) + dist(v, w) == dist(u, v));
-	}
-	int dfs(int v, int p, int d) {
-		int ret = 1;
-		parent[0][v] = p;
-		depth[v] = d;
-		for (int next : edge[v]) {
-			if (next == p) continue;
-			auto get = dfs(next, v, d + 1);
-			ret += get;
-		}
-		return ret;
-	}
-	static const int MAXLOGV = 25;
-	// ƒOƒ‰ƒt‚Ì—×ÚƒŠƒXƒg•\Œ»
-	std::vector<std::vector<int>>edge;
-	// ’¸“_‚Ì”
+struct LCA {
 	int n;
-	// ªƒm[ƒh‚Ì”Ô†
-	int root;
-	// eƒm[ƒh
-	std::vector<int> parent[MAXLOGV];
-	// ª‚©‚ç‚Ì[‚³
-	std::vector<int> depth;
+	std::vector<int> idx;
+	struct S {
+		int v, depth;
+		S() {}
+		constexpr S(int v, int depth) : v(v), depth(depth) {}
+	};
+	std::vector<std::vector<S>> spt;
+	static constexpr S min(S x, S y) { return x.depth < y.depth ? x : y; }
+	LCA(const std::vector<std::vector<int>>& g, int root) : n(g.size()), idx(n, -1) {
+		assert(0 <= root && root < n);
+		std::vector<S> tour;
+		auto dfs = [&](auto&& self, int u, int d) -> void {
+			idx[u] = tour.size();
+			tour.emplace_back(u, d);
+			for (int v : g[u]) if (idx[v] == -1) {
+				self(self, v, d + 1);
+				tour.emplace_back(u, d);
+			}
+		};
+		dfs(dfs, root, 0);
+		int m = tour.size();
+		int w = _bit_width(m + 0U);
+		spt.resize(w);
+		spt[0] = move(tour);
+		for (int k = 0; k + 1 < w; k++) {
+			int k2 = 1 << k;
+			int sz = m - 2 * k2 + 1;
+			spt[k + 1].resize(sz);
+			for (int i = 0; i < sz; i++) spt[k + 1][i] = min(spt[k][i], spt[k][i + k2]);
+		}
+	}
+	int lca(int u, int v) {
+		int l = idx[u], r = idx[v];
+		if (l > r) std::swap(l, r);
+		int k = _bit_width(r - l + 1U) - 1;
+		return min(spt[k][l], spt[k][r + 1 - (1 << k)]).v;
+	}
+	static int _bit_width(unsigned int x) noexcept {
+#ifdef _MSC_VER
+		if (x == 0) return 0;
+		unsigned long index;
+		_BitScanReverse(&index, x);
+		return static_cast<int>(index) + 1;
+#else
+		return std::bit_width(x); // C++20ï½
+#endif
+	}
 };
