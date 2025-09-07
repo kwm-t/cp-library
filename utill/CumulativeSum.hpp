@@ -1,25 +1,36 @@
 // 2D累積和
-// 左上(x0,y0)右下(領域外)(x1,y1)
-auto calc2D = [&](int x0, int y0, int x1, int y1)->long long {
-	return  sa[x1][y1] - sa[x1][y0] - sa[x0][y1] + sa[x0][y0];
-};
-auto calc_debug= [&](int x0, int y0, int x1, int y1)->long long {
-	long long val = calc(x0,y0,x1,y1);
-	std::cout << x0 <<" " << y0 << " " << x1 <<" " << y1 << std::endl;
-	std::cout << val << std::endl;
-	return val;	
+template<typename T>
+std::vector<std::vector<T>> create2D(const std::vector<std::vector<T>>& org) {
+	int h = org.size(), w = org[0].size();
+	std::vector res(h + 1, std::vector<T>(w + 1));
+	for (int i = 0; i < h; ++i)for (int j = 0; j < w; ++j)res[i + 1][j + 1] = org[i][j];
+
+	for (int i = 0; i < h + 1; ++i)for (int j = 0; j < w; ++j) res[i][j + 1] += res[i][j];
+	for (int i = 0; i < h; ++i)for (int j = 0; j < w + 1; ++j) res[i + 1][j] += res[i][j];
+	return res;
 }
-for (int i = 0; i < n; ++i)for (int j = 0; j < m; ++j)if ('1' == s[i][j])b[i + 1][j + 1]++;
-for (int i = 0; i < n + 1; ++i)for (int j = 0; j < m; ++j) b[i][j + 1] += b[i][j];
-for (int i = 0; i < m + 1; ++i)for (int j = 0; j < n; ++j)  b[j + 1][i] += b[j][i];
 
+template<typename T>
+T calc2D(const std::vector<std::vector<T>>& mat, int x0, int y0, int x1, int y1) {
+	// min(x0,y0),max(領域外)(x1,y1)
+	return  mat[x1][y1] - mat[x1][y0] - mat[x0][y1] + mat[x0][y0];
+}
 
-// 3D
-for (int i = 0; i < n; ++i)for (int j = 0; j < n; ++j)for (int k = 0; k < n; ++k)b[i + 1][j + 1][k + 1] = a[i][j][k];
-for (int i = 0; i <= n; ++i)for (int j = 0; j <= n; ++j)for (int k = 0; k < n; ++k)b[i + 0][j + 0][k + 1] += b[i][j][k];
-for (int i = 0; i <= n; ++i)for (int j = 0; j < n; ++j)for (int k = 0; k <= n; ++k)b[i + 0][j + 1][k + 0] += b[i][j][k];
-for (int i = 0; i < n; ++i)for (int j = 0; j <= n; ++j)for (int k = 0; k <= n; ++k)b[i + 1][j + 0][k + 0] += b[i][j][k];
-auto calc3D = [&](int x0, int y0, int z0, int x1, int y1, int z1)->long long {
-	return  b[x1][y1][z1] - b[x1][y1][z0] - b[x1][y0][z1] - b[x0][y1][z1]
-		+ b[x0][y0][z1] + b[x0][y1][z0] + b[x1][y0][z0] - b[x0][y0][z0];
-};
+template<typename T>
+std::vector<std::vector<std::vector<T>>> create3D(const std::vector<std::vector<std::vector<T>>>& org) {
+	int h = org.size(), w = org[0].size(), d = org[0][0].size();
+	std::vector res(h + 1, std::vector(w + 1, std::vector<T>(d + 1)));
+	for (int i = 0; i < h; ++i)for (int j = 0; j < w; ++j)for (int k = 0; k < d; ++k)res[i + 1][j + 1][k + 1] = org[i][j][k];
+
+	for (int i = 0; i <= h; ++i)for (int j = 0; j <= w; ++j)for (int k = 0; k < d; ++k)res[i + 0][j + 0][k + 1] += res[i][j][k];
+	for (int i = 0; i <= h; ++i)for (int j = 0; j < w; ++j)for (int k = 0; k <= d; ++k)res[i + 0][j + 1][k + 0] += res[i][j][k];
+	for (int i = 0; i < h; ++i)for (int j = 0; j <= w; ++j)for (int k = 0; k <= d; ++k)res[i + 1][j + 0][k + 0] += res[i][j][k];
+	return res;
+}
+
+template<typename T>
+T calc3D(const std::vector<std::vector<std::vector<T>>>& mat, int x0, int y0, int z0, int x1, int y1, int z1) {
+	// min(x0,y0,z0),max(領域外)(x1,y1,z1)
+	return  mat[x1][y1][z1] - mat[x1][y1][z0] - mat[x1][y0][z1] - mat[x0][y1][z1]
+		+ mat[x0][y0][z1] + mat[x0][y1][z0] + mat[x1][y0][z0] - mat[x0][y0][z0];
+}
