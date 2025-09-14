@@ -31,3 +31,11 @@ const int dx[4] = { 1,0,-1,0 };
 const int dy[4] = { 0,-1,0,1 };
 const int dx[8] = { 1,0,-1,0,1,1,-1,-1 };
 const int dy[8] = { 0,-1,0,1,1,-1,1,-1 };
+
+
+
+#ifdef _MSC_VER
+using int128 = long long;
+#else
+using int128 = __int128;// ’ño—p
+#endif
