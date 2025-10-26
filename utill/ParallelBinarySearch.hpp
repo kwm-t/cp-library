@@ -28,3 +28,4 @@ void ParallelBinarySearch() {
 		}
 	}
 }
+// https://atcoder.jp/contests/past20-open/submissions/70477611

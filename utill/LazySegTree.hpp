@@ -35,6 +35,7 @@ namespace RangeAddRangeSum {
 	F composition(F f, F g) { return f + g; }
 	F id() { return 0; }
 	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
+	// 初期化に注意！
 }
 namespace RangeUpdateRangeMin {
 	// 区間変更・区間最小値取得
@@ -79,6 +80,7 @@ namespace RangeUpdateRangeSum {
 	F composition(F f, F g) { return (f == ID ? g : f); }
 	F id() { return ID; }
 	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
+	// 初期化に注意！
 }
 namespace AddArithmeticProgression {
 	// 区間等差数列加算・区間和取得
