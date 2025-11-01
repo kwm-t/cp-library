@@ -103,7 +103,6 @@ namespace RangeAddRangeMax {
 	// {0,1}で初期化
 	using S = std::pair<long long, int>;
 	using F = long long;
-	//const S INF = {8e18;
 	S op(S a, S b) {
 		if (a.first > b.first)return a;
 		else if (a.first < b.first)return b;

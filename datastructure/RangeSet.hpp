@@ -47,8 +47,8 @@ public:
 	// 区間挿入（マージあり）
 	void insertRange(
 		T l, T r,
-		const std::function<void(int, int)>& onInsert = [](int, int) {},
-		const std::function<void(int, int)>& onErase = [](int, int) {}
+		const std::function<void(T, T)>& onInsert = [](T, T) {},
+		const std::function<void(T, T)>& onErase = [](T, T) {}
 	) {
 		auto it = std::prev(ranges_.lower_bound({ l + 1, l + 1 }));
 
@@ -77,8 +77,8 @@ public:
 	// 1点挿入
 	void insertPoint(
 		T x,
-		const std::function<void(int, int)>& onInsert = [](int, int) {},
-		const std::function<void(int, int)>& onErase = [](int, int) {}
+		const std::function<void(T, T)>& onInsert = [](T, T) {},
+		const std::function<void(T, T)>& onErase = [](T, T) {}
 	) {
 		insertRange(x, x, onInsert, onErase);
 	}
@@ -86,8 +86,8 @@ public:
 	// 区間削除
 	void eraseRange(
 		T l, T r,
-		const std::function<void(int, int)>& onInsert = [](int, int) {},
-		const std::function<void(int, int)>& onErase = [](int, int) {}
+		const std::function<void(T, T)>& onInsert = [](T, T) {},
+		const std::function<void(T, T)>& onErase = [](T, T) {}
 	) {
 		auto it = std::prev(ranges_.lower_bound({ l + 1, l + 1 }));
 
