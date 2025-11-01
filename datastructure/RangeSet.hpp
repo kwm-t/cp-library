@@ -40,68 +40,93 @@ struct RangeSet {
 		return *itr;
 	}
 	// insert
-	T Insert(T l, T r) {
-		//insertでmargeしないver
-		//st.emplace(l, r);
-		//return 0;
-		T sumErase = T(0);
+	void Insert(T l, T r,
+		const std::function<void(int, int)> &insert = [](int, int) {},
+		const std::function<void(int, int)> &erase = [](int, int) {}) {
+
+		auto eraseRange = [&](auto &ite) {
+			erase(ite->first, ite->second);
+			ite = st.erase(ite);
+		};
+		auto insertRange = [&](T l, T r) {
+			insert(l, r);
+			st.emplace(l, r);
+		};
+
 		auto ite = prev(st.lower_bound({ l + 1,l + 1 }));
 		// no need merge
-		if (IsCovered(l, r))return sumErase;
+		if (IsCovered(l, r))return;
+
 		// first merge pos
 		if ((ite->first <= l) && (l <= (ite->second + 1))) {
 			l = ite->first;
-			sumErase += ite->second - ite->first + 1;
-			ite = st.erase(ite);
+			eraseRange(ite);
 		}
 		else ite = next(ite);
 		// merge
 		while (r > ite->second) {
-			sumErase += ite->second - ite->first + 1;
-			ite = st.erase(ite);
+			eraseRange(ite);
 		}
 		if (((ite->first - 1) <= r) && (r <= ite->second)) {
 			r = ite->second;
-			sumErase += ite->second - ite->first + 1;
-			st.erase(ite);
+			eraseRange(ite);
 		}
-		st.emplace(l, r);
-		return (r - l + 1) - sumErase;
+		insertRange(l, r);
 	}
-	T Insert(T x) { return Insert(x, x); }
+	void Insert(T x,
+		const std::function<void(int, int)> &insert = [](int, int) {},
+		const std::function<void(int, int)> &erase = [](int, int) {}
+	) {
+		Insert(x, x, insert, erase);
+	}
 	// erase
-	T Erase(T l, T r) {
-		T ret = T(0);
+	void Erase(T l, T r,
+		const std::function<void(int, int)> &insert = [](int, int) {},
+		const std::function<void(int, int)> &erase = [](int, int) {}) {
+
+		auto eraseRange = [&](auto &ite) {
+			erase(ite->first, ite->second);
+			T len = ite->second - ite->first + 1;
+			ite = st.erase(ite);
+			return len;
+		};
+		auto insertRange = [&](T l, T r) {
+			insert(l, r);
+			st.emplace(l, r);
+		};
+
 		auto get = ByCovered(l, r);
 		if ((-TINF) != get.first) {
+			erase(get.first, get.second);
 			st.erase(get);
-			if (get.first != l)st.emplace(get.first, l - 1);
-			if (get.second != r)st.emplace(r + 1, get.second);
-			ret += r - l + 1;
-			return ret;
+			if (get.first != l) insertRange(get.first, l - 1);
+			if (get.second != r) insertRange(r + 1, get.second);
+			return;
 		}
+
 		auto ite = prev(st.lower_bound({ l + 1,l + 1 }));
+
 		// first erase
 		if ((ite->first <= l) && (l <= ite->second)) {
-			ret += ite->second - l + 1;
-			if (ite->first != l)st.emplace(ite->first, l - 1);
-			ite = st.erase(ite);
+			if (ite->first != l)  insertRange(ite->first, l - 1);
+			eraseRange(ite);
 		}
 		else ite = next(ite);
+
 		// erase
-		while (ite->second <= r) {
-			ret += ite->second - ite->first + 1;
-			ite = st.erase(ite);
-		}
+		while (ite->second <= r) eraseRange(ite);
+
 		// last
 		if ((ite->first <= r) && (r <= ite->second)) {
-			ret += r - ite->first + 1;
-			if (ite->second != r) st.emplace(r + 1, ite->second);
-			st.erase(ite);
+			if (ite->second != r)  insertRange(r + 1, ite->second);
+			eraseRange(ite);
 		}
-		return ret;
 	}
-	T Erase(T x) { return Erase(x, x); }
+	void Erase(T x,
+		const std::function<void(int, int)> &insert = [](int, int) {},
+		const std::function<void(int, int)> &erase = [](int, int) {}) {
+		Erase(x, x, insert, erase);
+	}
 	// range count
 	int size() { return st.size() - 2; }
 	// mex
@@ -115,3 +140,5 @@ struct RangeSet {
 		for (auto[l, r] : st)std::cout << l << " " << r << std::endl;
 	}
 };
+// 区間の変更があるとコールバックが呼ばれるのでセグ木で良い感じにしたい場合とかはいい感じにする
+// https://atcoder.jp/contests/abc430/submissions/70631649
