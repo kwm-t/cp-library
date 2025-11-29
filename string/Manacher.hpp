@@ -69,6 +69,7 @@ std::vector<int> manacher(const std::vector<T>& s) {
 }
 template<typename T>
 std::vector<int> manacherWrapped(const std::vector<T>& v, const T dummy) {
+	if((int)v.size() == 0)return {};
 	std::vector<T>w((int)v.size() * 2 - 1, dummy);
 	for (int i = 0; i < (int)v.size(); ++i)w[i * 2] = v[i];
 	auto mn = manacher(w);
