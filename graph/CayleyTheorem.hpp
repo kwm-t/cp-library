@@ -2,6 +2,7 @@
 	// F(x) = x exp(F(x))
 	// F(x)/exp(F(x)) = x
 	// ラグランジュ反転
+	if (n <= 1) return 1;
 	return atcoder::pow_mod(n, n - 2, mod);
 }
 mint perfectMatching(int n) {
@@ -14,6 +15,6 @@ mint perfectMatching(int n) {
 	//		* (2*2)^(n/2-1)
 	//		= n^(n/2-2)*n!/(n/2)!
 	if (n % 2)return 0;
-	if (n == 2)return 1;
+	if (n <= 2)return 1;
 	return mint(n).pow(n / 2 - 2) * c.fact[n] * c.ifact[n / 2];
 }
