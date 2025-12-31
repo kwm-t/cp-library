@@ -1,4 +1,4 @@
-#ifndef BARLEKAMP_MASSEY_HPP
+﻿#ifndef BARLEKAMP_MASSEY_HPP
 #define BARLEKAMP_MASSEY_HPP
 
 // 線形漸化式の初めのn項の特性方程式を返す k次ならO(k^2)

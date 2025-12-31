@@ -1,12 +1,12 @@
-#ifndef BM_BM_HPP
+ï»¿#ifndef BM_BM_HPP
 #define BM_BM_HPP
 
 #include <atcoder/all>
 #include "Bostan_mori.hpp"
 #include "BarlekampMassey.hpp"
 
-// üŒ`‘Q‰»®‚Ì‰‚ß‚Ìd€‚©‚çn€–Ú‚ğ‹‚ß‚é‚½‚ß‚Ì‘Oˆ— 
-// dŸ‘Q‰»®‚È‚çO(d^2+dlogdlogN).
+// ç·šå½¢æ¼¸åŒ–å¼ã®åˆã‚ã®dé …ã‹ã‚‰né …ç›®ã‚’æ±‚ã‚ã‚‹ãŸã‚ã®å‰å‡¦ç† 
+// dæ¬¡æ¼¸åŒ–å¼ãªã‚‰O(d^2+dlogdlogN).
 template<class T>
 Bostan_mori<T> BM_BM(std::vector<T> a) {
 	auto q = BarlekampMassey(a);// O(d^2)
@@ -15,7 +15,7 @@ Bostan_mori<T> BM_BM(std::vector<T> a) {
 	p.resize(q.size() - 1);
 
 	Bostan_mori<T> bm(p, q);
-	return bm;// O(dlogdlogN)‚Åæ“¾
+	return bm;// O(dlogdlogN)ã§å–å¾—
 }
 
 #endif
