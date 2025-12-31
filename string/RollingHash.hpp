@@ -1,4 +1,4 @@
-namespace RangeSumMint {
+﻿namespace RangeSumMint {
 	// 区間加算
 	mint op(mint a, mint b) { return a + b; }
 	mint e() { return 0; }

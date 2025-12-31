@@ -1,4 +1,4 @@
-bool subset_xor_basis(const std::vector<long long>& a, long long b, std::vector<int>& used) {
+﻿bool subset_xor_basis(const std::vector<long long>& a, long long b, std::vector<int>& used) {
 	int n = (int)a.size();
 	std::vector<long long> basis;
 	std::vector<uint64_t> mask;

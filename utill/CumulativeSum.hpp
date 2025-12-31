@@ -1,4 +1,4 @@
-// 2D累積和
+﻿// 2D累積和
 template<typename T>
 std::vector<std::vector<T>> create2D(const std::vector<std::vector<T>>& org) {
 	int h = org.size(), w = org[0].size();

@@ -1,4 +1,4 @@
-#include <string>
+﻿#include <string>
 #include <vector>
 #include <algorithm>
 // Sの各文字に対して、その文字を中心とする最大サイズの回分の半径のサイズを返す

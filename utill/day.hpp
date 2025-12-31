@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <string>
 // 0001/01/01からの経過日数
 int days(int y, int m, int d) {

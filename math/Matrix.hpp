@@ -1,4 +1,4 @@
-template<class T, T(*add)(T, T), T(*zero)(), T(*mul)(T, T), T(*one)(), int N>
+﻿template<class T, T(*add)(T, T), T(*zero)(), T(*mul)(T, T), T(*one)(), int N>
 struct Matrix : std::array<std::array<T, N>, N> {
 	using M = Matrix<T, add, zero, mul, one, N>;
 	void make_identity() {

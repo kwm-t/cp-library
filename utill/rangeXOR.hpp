@@ -1,4 +1,4 @@
-// [0,r)のXOR
+﻿// [0,r)のXOR
 long long rangeXOR(long long r) {
 	r--;
 	if (r <= 0)return 0;

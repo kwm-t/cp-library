@@ -1,4 +1,4 @@
-// 回転
+﻿// 回転
 std::vector<std::string> rotate(const std::vector<std::string> &org) {
 	int n = org.size();
 	int m = org[0].size();

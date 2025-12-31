@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include "MintBinom.hpp"
 // 二項係数の区間和
 struct ChooseLangeSum {

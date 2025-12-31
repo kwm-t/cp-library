@@ -1,7 +1,7 @@
-#include <string>
+﻿#include <string>
 long long DoubleChangeInt(std::string s, int n) {
-	//小数点以下n桁で与えられるS(double)を
-	//10^n倍したintで返す
+	//蟆乗焚轤ｹ莉･荳杵譯√〒荳弱∴繧峨ｌ繧鬼(double)繧�
+	//10^n蛟阪＠縺殃nt縺ｧ霑斐☆
 	long long ret = 0;
 	int dotPos = s.find(".");
 	int plusZero;

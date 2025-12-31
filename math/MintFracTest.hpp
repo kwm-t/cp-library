@@ -1,4 +1,4 @@
-void fracmintTest() {
+﻿void fracmintTest() {
 	uint_fast64_t seed = 202212022100123456;
 	mt19937_64 engine(seed);
 	long long x, y, z, w;

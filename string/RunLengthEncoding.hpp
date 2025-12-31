@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <string>
 std::vector<std::pair<char, int>> RunLengthEncoding(std::string& s) {
 	std::vector<std::pair<char, int>> ret;

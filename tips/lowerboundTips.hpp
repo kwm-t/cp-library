@@ -1,4 +1,4 @@
-vector<int> v = {1, 4, 4, 7, 7, 8, 8, 11, 13, 19};
+﻿vector<int> v = {1, 4, 4, 7, 7, 8, 8, 11, 13, 19};
 int target;
 //特定の物の個数
 int count = upper_bound(all(v), target) - lower_bound(all(v), target);

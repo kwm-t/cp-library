@@ -1,4 +1,4 @@
-#include <cmath>
+﻿#include <cmath>
 struct ext_double {
 	double value;
 	const double EPS = 1e-10;

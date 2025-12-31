@@ -1,29 +1,29 @@
-// double
+ï»¿// double
 printf("%.16f\n", ans);
 printf("%.16Lf\n", ans);
 cout << fixed << setprecision(16) << endl;
 
-//Ä‹A‚¶‚á‚È‚­‚Ä‰º‚©‚çŒ©‚éƒ^ƒCƒv
+//å†å¸°ã˜ã‚ƒãªãã¦ä¸‹ã‹ã‚‰è¦‹ã‚‹ã‚¿ã‚¤ãƒ—
 rep(i, 1 << n) {
 	for (int j = (i - 1)&i; j > 0; j = (j - 1)&i) {
 		chmin(dp[i], dp[j] + dp[i^j]);
 	}
 }
 
-//‘ã•\‚ğŒˆ‚ß‚éƒ^ƒCƒv(‘ã•\‘¤‚É•Î‚éê‡‚Í•Êˆ—)
+//ä»£è¡¨ã‚’æ±ºã‚ã‚‹ã‚¿ã‚¤ãƒ—(ä»£è¡¨å´ã«åã‚‹å ´åˆã¯åˆ¥å‡¦ç†)
 int bit = i & -i;
 for (int j = (i - 1)&i; j > 0; j = (j - 1)&i) {
 	if (j & bit) dp[i] += dp[i^j] * h[j] * f[popcount(j)];
 }
 
-// •¶š—ñ‚ğ¬•¶š‚É•ÏŠ·
+// æ–‡å­—åˆ—ã‚’å°æ–‡å­—ã«å¤‰æ›
 transform(S.begin(), S.end(), S.begin(), [](char c) {return tolower(c); });
 
-// ‡—ñ
+// é †åˆ—
 do {
 } while (next_permutation(v.begin(), v.end()));
 
-//[l0,r0]‚Æ[l1,r1]‚Ì‹¤’Ê”ÍˆÍ‚Ì’·‚³‚ğŠÈ’P‚É‹‚ß‚é
+//[l0,r0]ã¨[l1,r1]ã®å…±é€šç¯„å›²ã®é•·ã•ã‚’ç°¡å˜ã«æ±‚ã‚ã‚‹
  clamp(r1, l0, r0) - clamp(l0, l0, r0);
  
  
@@ -37,5 +37,5 @@ const int dy[8] = { 0,-1,0,1,1,-1,1,-1 };
 #ifdef _MSC_VER
 using int128 = long long;
 #else
-using int128 = __int128;// ’ño—p
+using int128 = __int128;// æå‡ºç”¨
 #endif

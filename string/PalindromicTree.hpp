@@ -1,4 +1,4 @@
-template<typename T = char>
+﻿template<typename T = char>
 struct PalindromicTree {
 public:
 	struct Node {

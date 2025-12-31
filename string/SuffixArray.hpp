@@ -1,4 +1,4 @@
-class SuffixArray {
+﻿class SuffixArray {
 public:
 	SuffixArray(std::string s) :S(s) {
 		build();

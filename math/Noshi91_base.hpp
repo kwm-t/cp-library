@@ -1,4 +1,4 @@
-#ifndef NOSHI91_BASE_HPP
+﻿#ifndef NOSHI91_BASE_HPP
 #define NOSHI91_BASE_HPP
 
 #include <algorithm>

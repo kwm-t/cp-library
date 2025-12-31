@@ -1,4 +1,4 @@
-#include<array>
+﻿#include<array>
 using point = std::array<long long, 3>;
 long long crossproduct(point p, point q, point x) {
 	//pqからみてxが反時計回りなら正,線分上なら0,時計回りなら負

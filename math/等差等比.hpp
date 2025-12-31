@@ -1,4 +1,4 @@
-using mint2 = atcoder::modint;
+﻿using mint2 = atcoder::modint;
 const int mod2 = mod - 1;
 //mint2::set_mod(mod2);
 // 等差数列*等比数列の和公式(n1項目までの和)

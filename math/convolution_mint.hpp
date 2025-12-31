@@ -1,4 +1,4 @@
-std::vector<mint> make_root(long long mod) {
+﻿std::vector<mint> make_root(long long mod) {
 	std::vector<mint> ret(0);
 	long long r = pow_mod(3, 119, mod);
 	for (long long i = 0; i < 23; i++) {

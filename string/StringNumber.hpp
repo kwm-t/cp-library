@@ -1,4 +1,4 @@
-std::string add(const std::string &s, int d) {
+﻿std::string add(const std::string &s, int d) {
 	int n = d;
 	std::string ret;
 	for (int i = (int)s.size() - 1; i >= 0; --i) {

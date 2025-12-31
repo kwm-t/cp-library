@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <string>
 std::string lcs(const std::string &s, const std::string &t) {
 	std::vector<std::vector<int>> dp(s.size() + 1, std::vector<int>(t.size() + 1));

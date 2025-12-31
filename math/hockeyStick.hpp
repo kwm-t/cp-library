@@ -1,4 +1,4 @@
-// Binom(k,k) + Binom(k+1,k)......Binom(n,k) = Binom(n+1,k+1)
+﻿// Binom(k,k) + Binom(k+1,k)......Binom(n,k) = Binom(n+1,k+1)
 mint hockeyStick(int n, int k) {
 	return c(n + 1, k + 1);
 }

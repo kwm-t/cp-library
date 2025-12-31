@@ -1,4 +1,4 @@
-#include <atcoder/all>
+﻿#include <atcoder/all>
 // 原始根を求める
 int primitive_root(int p) {
 	if (p == 2)  return 1;

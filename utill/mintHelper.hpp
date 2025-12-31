@@ -1,4 +1,4 @@
-#include<iostream>
+﻿#include<iostream>
 void esperHelper(mint m, double d) {
 	printf("%.16f\n", d);
 	const double EPS = 1e-10;

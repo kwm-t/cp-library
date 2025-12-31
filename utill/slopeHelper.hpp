@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 std::vector<long long>slopeHelper(const std::vector<std::pair<long long, long long>> &slope) {
 	std::vector<long long>ret = { 0 };
 	for (int i = 0; i < (int)slope.size(); ++i) {

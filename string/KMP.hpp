@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 // KMP
 template<typename T>
 class KMP {

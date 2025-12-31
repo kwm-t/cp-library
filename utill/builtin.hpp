@@ -1,4 +1,4 @@
-#ifdef _MSC_VER
+﻿#ifdef _MSC_VER
 #define __builtin_popcount (int)__popcnt
 #define __builtin_popcountll (int)__popcnt64
 inline int __builtin_ctz(unsigned int n) { unsigned long i; _BitScanForward(&i, n); return i; }

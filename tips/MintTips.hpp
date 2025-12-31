@@ -1,4 +1,4 @@
-// îCà”mod
+Ôªø// ‰ªªÊÑèmod
 using mint = atcoder::modint;
 int mod;
 main(){
@@ -6,7 +6,7 @@ main(){
 	combination c(200005);
 }
 
-// ï°êîmod
+// Ë§áÊï∞mod
 using modint998244353 = static_modint<998244353>;
 using modint1000000007 = static_modint<1000000007>;
 using mint1 = modint998244353;

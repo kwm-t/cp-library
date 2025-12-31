@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 namespace FastGCDConvolution {
 	std::vector<bool> eratos(int N) {
 		std::vector<bool> isprime(N, true);

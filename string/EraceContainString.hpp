@@ -1,4 +1,4 @@
-#include <string>
+﻿#include <string>
 #include <vector>
 #include "Contain.hpp"
 void eraceContainString(std::vector<std::string> &s) {

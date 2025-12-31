@@ -1,4 +1,4 @@
-// combination mod prime
+ï»¿// combination mod prime
 // https://www.youtube.com/watch?v=8uowVvQ_-Mo&feature=youtu.be&t=1619
 struct combination {
 	std::vector<mint> fact, ifact;
@@ -11,7 +11,7 @@ struct combination {
 	}
 	mint operator()(int n, int k) { return com(n, k); }
 	mint com(int n, int k) {
-		//•‰‚Ì“ñ€ŒW”‚ğl—¶‚·‚éê‡‚ÉƒRƒƒ“ƒgƒAƒEƒg‚ğŠO‚·
+		//è² ã®äºŒé …ä¿‚æ•°ã‚’è€ƒæ…®ã™ã‚‹å ´åˆã«ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã‚’å¤–ã™
 		//if (n < 0) return com(-n, k) * (k % 2 ? -1 : 1);
 		if (k < 0 || k > n) return 0;
 		return fact[n] * ifact[k] * ifact[n - k];

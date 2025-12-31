@@ -1,8 +1,8 @@
-#include <string>
+ï»¿#include <string>
 #include <vector>
 #include <atcoder/all>
 bool contain(const std::string &s, const std::string &t) {
-	// •¶š—ñs‚ª•¶š—ñt‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ì”»’è
+	// æ–‡å­—åˆ—sãŒæ–‡å­—åˆ—tã«å«ã¾ã‚Œã¦ã„ã‚‹ã‹ã®åˆ¤å®š
 	int n = s.size(), m = t.size();
 	std::vector<int> z = atcoder::z_algorithm(s + t);
 	for (int i = n; i <= m; ++i) {

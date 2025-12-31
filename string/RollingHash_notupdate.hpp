@@ -1,4 +1,4 @@
-// startのindexから右にsize分のHashを計算する
+﻿// startのindexから右にsize分のHashを計算する
 // 更新がある場合はSegment Treeを使う
 // pow_modがボトルネックになるなら必要に応じて前計算をしたほうがいい
 mint calcHash(int n, int start, long long size, const std::vector<mint> &hashArray, const int base) {

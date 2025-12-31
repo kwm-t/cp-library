@@ -1,4 +1,4 @@
-template <typename T>
+﻿template <typename T>
 std::vector<std::pair<T, std::pair<T, T>>> enumerate_quotients(T n) {
 	T l = 1;
 	std::vector<std::pair<T, std::pair<T, T>>> quotients;

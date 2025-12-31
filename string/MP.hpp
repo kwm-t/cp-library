@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 // MP
 template<typename T>
 class MP {

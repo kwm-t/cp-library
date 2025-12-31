@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 std::vector<long long>euler_phi_table(int n) {
 	std::vector<long long>euler(n + 1);
 	for (int i = 0; i < n + 1; ++i)euler[i] = i;

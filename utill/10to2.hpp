@@ -1,4 +1,4 @@
-#include <string>
+﻿#include <string>
 #include <algorithm>
 
 std::string exchange10to2(long long num) {

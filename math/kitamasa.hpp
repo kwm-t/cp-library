@@ -1,4 +1,4 @@
-class Kitamasa {
+﻿class Kitamasa {
 	/*
 		https://suikaba.hatenablog.com/entry/2017/08/24/174759
 		ak = d0*a0 + d1*a1 + d2*a2 + ............d(k-1)*a(k-1)

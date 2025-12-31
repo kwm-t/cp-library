@@ -1,4 +1,4 @@
-// LINFを超える場合は-1を返す
+﻿// LINFを超える場合は-1を返す
 long long safePow(long long p, int  q, const long long LINF = 1e18) {
 	long long val = 1;
 	while (q > 0) {

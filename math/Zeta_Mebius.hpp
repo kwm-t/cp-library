@@ -1,5 +1,5 @@
-#include<vector>
-// –ñ”‚Ì‚‘¬ƒ[[ƒ^•ÏŠ·
+ï»¿#include<vector>
+// ç´„æ•°ã®é«˜é€Ÿã‚¼ãƒ¼ã‚¿å¤‰æ›
 void zeta(std::vector<mint> &v) {
 	int n = v.size() - 1;
 	std::vector<bool> isprime(n + 1, true);
@@ -14,7 +14,7 @@ void zeta(std::vector<mint> &v) {
 		}
 	}
 }
-// –ñ”‚Ì‚‘¬ƒƒrƒEƒX•ÏŠ·
+// ç´„æ•°ã®é«˜é€Ÿãƒ¡ãƒ“ã‚¦ã‚¹å¤‰æ›
 void mebius(std::vector<mint> &v) {
 	int n = v.size() - 1;
 	std::vector<bool> isprime(n + 1, true);

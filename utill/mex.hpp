@@ -1,4 +1,4 @@
-#include<utility>
+﻿#include<utility>
 const int INF = 1e9;
 // {count.index}
 // seg.all_prod();

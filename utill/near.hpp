@@ -1,4 +1,4 @@
-std::pair<long long, long long> near(long long x, long long m) {
+﻿std::pair<long long, long long> near(long long x, long long m) {
 	if (0 == x % m)return{ x,x + m };
 	bool flg = false;
 	if (x < 0) {

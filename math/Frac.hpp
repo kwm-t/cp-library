@@ -1,4 +1,4 @@
-#include <numeric>
+﻿#include <numeric>
 #include<iostream>
 struct frac {
 	long long nume, deno;

@@ -1,4 +1,4 @@
-std::vector<long long> sieveOfEratosthenes(long long  n = 1000000) {
+﻿std::vector<long long> sieveOfEratosthenes(long long  n = 1000000) {
 	std::vector<bool>p(n + 1, true);
 	std::vector<long long>ret;
 	p[0] = false;

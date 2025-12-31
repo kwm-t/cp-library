@@ -1,4 +1,4 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include <cassert>
 #include <vector>
 const int INF = 1e9;
@@ -51,19 +51,19 @@ public:
 	}
 };
 namespace RangeAdd {
-	//‹æŠÔ‰ÁZAˆê“_æ“¾
+	//åŒºé–“åŠ ç®—ã€ä¸€ç‚¹å–å¾—
 	using S = long long;
 	S op(S x, S f) { return { x + f }; }
 	S e() { return { 0 }; }
 }
 namespace RangeUpdate {
-	//‹æŠÔXVAˆê“_æ“¾
+	//åŒºé–“æ›´æ–°ã€ä¸€ç‚¹å–å¾—
 	using S = long long;
 	S op(S x, S f) { return (f == -LINF ? x : f); }
 	S e() { return { -LINF }; }
 }
 namespace RangeChangeMin {
-	//‹æŠÔchminAˆê“_æ“¾
+	//åŒºé–“chminã€ä¸€ç‚¹å–å¾—
 	using S = long long;
 	S op(S x, S f) { return std::min(x, f); }
 	S e() { return { INF }; }

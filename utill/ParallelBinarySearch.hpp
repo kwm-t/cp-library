@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 void ParallelBinarySearch() {
 	int k, q;
 	std::vector<int>ok(q, k), ng(q, -1);

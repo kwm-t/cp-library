@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <iostream>
 auto query(std::vector<int>v, int add = 0) {
 	std::cout << "?";

@@ -1,4 +1,4 @@
-template <class T>
+﻿template <class T>
 bool argcmp(std::pair<T, T> p0, std::pair<T, T> p1) {
 	auto[x0, y0] = p0;
 	auto[x1, y1] = p1;

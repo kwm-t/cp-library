@@ -1,4 +1,4 @@
-class Osa_k {
+﻿class Osa_k {
 public:
 	Osa_k(int max = 1000006) {
 		osa_k.resize(max + 1);

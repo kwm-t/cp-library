@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <queue>
 struct AhoCorasick {
 	static const int csize = 26;

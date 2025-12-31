@@ -1,4 +1,4 @@
-#include <cmath>
+﻿#include <cmath>
 
 long long floorSqrt(long long x) {
 	const long long INF = 1e9;

@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 const int INF = 1e9;
 
 // 正20面体でのdp

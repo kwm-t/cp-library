@@ -1,4 +1,4 @@
-// ‘æ“ñíƒXƒ^[ƒŠƒ“ƒO”
+ï»¿// ç¬¬äºŒç¨®ã‚¹ã‚¿ãƒ¼ãƒªãƒ³ã‚°æ•°
 mint StirlingNumbersOfTheSecondKind(int n, int k) {
 	if (n < k)return 0;
 	mint ret = 0;

@@ -1,4 +1,4 @@
-#ifndef BOSTAN_MORI_HPP
+﻿#ifndef BOSTAN_MORI_HPP
 #define BOSTAN_MORI_HPP
 
 #include <vector>

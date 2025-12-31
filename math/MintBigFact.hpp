@@ -1,7 +1,7 @@
-// createTable‚Åo—Í‚µ‚½‚à‚Ì‚ðƒR[ƒh‚É“\‚è•t‚¯calcFact‚ðŒÄ‚Ô
-// BLOCK_SIZE‚Í‹¤’Ê‚Å‚ ‚é•K—v‚ª‚ ‚é
-// BLOCK_SIZE‚ð‘å‚«‚­‚·‚é‚ÆƒR[ƒh‚ª’Z‚­‚È‚è
-// BLOCK_SIZE‚ð¬‚³‚­‚·‚é‚ÆcalcFact‚ª‘‚­‚È‚é
+ï»¿// createTableã§å‡ºåŠ›ã—ãŸã‚‚ã®ã‚’ã‚³ãƒ¼ãƒ‰ã«è²¼ã‚Šä»˜ã‘calcFactã‚’å‘¼ã¶
+// BLOCK_SIZEã¯å…±é€šã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+// BLOCK_SIZEã‚’å¤§ããã™ã‚‹ã¨ã‚³ãƒ¼ãƒ‰ãŒçŸ­ããªã‚Š
+// BLOCK_SIZEã‚’å°ã•ãã™ã‚‹ã¨calcFactãŒæ—©ããªã‚‹
 const int BLOCK_SIZE = 1000000;
 void createTable() {
 #pragma warning(disable : 4996)

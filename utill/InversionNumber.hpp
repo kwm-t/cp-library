@@ -1,4 +1,4 @@
-#include<vector>
+﻿#include<vector>
 #include<algorithm>
 // 転倒数
 long long op(long long a, long long b) { return a + b; }

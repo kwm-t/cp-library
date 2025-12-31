@@ -1,4 +1,4 @@
-#include<iostream>
+﻿#include<iostream>
 struct fracmint {
 	mint x, y;
 	fracmint(long long x, long long y = 1) :x(x), y(y) {}

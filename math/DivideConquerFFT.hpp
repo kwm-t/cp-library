@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <atcoder/all>
 // Π(1+A_i x)のFFT
 std::vector<mint> divideConquerFFT(const std::vector<int> &a, int l, int r) {

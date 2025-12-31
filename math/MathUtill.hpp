@@ -1,12 +1,12 @@
-#include <vector>
+ï»¿#include <vector>
 #include <algorithm>
-//–ñ”‚ÌŒÂ”
+//ç´„æ•°ã®å€‹æ•°
 long long divisorEnumeration(long long n) {
 	std::vector<long long> x;
 	for (long long i = 2; i*i <= n; i++) {
 		int c = 0;
-		while (n%i == 0) { // ‘f”‚ÅŠ„‚èØ‚ê‚È‚­‚È‚é‚Ü‚ÅŠ„‚Á‚Ä‚¢‚­
-			c++;//Š„‚Á‚½ŒÂ”‚ğ”z—ñ‚É‘«‚·
+		while (n%i == 0) { // ç´ æ•°ã§å‰²ã‚Šåˆ‡ã‚Œãªããªã‚‹ã¾ã§å‰²ã£ã¦ã„ã
+			c++;//å‰²ã£ãŸå€‹æ•°ã‚’é…åˆ—ã«è¶³ã™
 			n /= i;
 		}
 		if (0 != c) x.push_back(c);
@@ -19,7 +19,7 @@ long long divisorEnumeration(long long n) {
 	return nAns;
 }
 
-//–ñ”—ñ‹“
+//ç´„æ•°åˆ—æŒ™
 std::vector<long long> divisorEnumeration(long long n) {
 	std::vector<long long> x;
 	for (long long i = 1; i*i <= n; i++) {
@@ -31,13 +31,13 @@ std::vector<long long> divisorEnumeration(long long n) {
 	std::sort(x.begin(),x.end());
 	return x;
 }
-// ‘fˆö”•ª‰ğ
+// ç´ å› æ•°åˆ†è§£
 std::vector<std::pair<long long, int>> primeFactorization(long long n) {
 	std::vector<std::pair<long long, int>> ret;
 	for (long long i = 2; i*i <= n; i++) {
 		int c = 0;
-		while (n%i == 0) { // ‘f”‚ÅŠ„‚èØ‚ê‚È‚­‚È‚é‚Ü‚ÅŠ„‚Á‚Ä‚¢‚­
-			c++;//Š„‚Á‚½ŒÂ”‚ğ”z—ñ‚É‘«‚·
+		while (n%i == 0) { // ç´ æ•°ã§å‰²ã‚Šåˆ‡ã‚Œãªããªã‚‹ã¾ã§å‰²ã£ã¦ã„ã
+			c++;//å‰²ã£ãŸå€‹æ•°ã‚’é…åˆ—ã«è¶³ã™
 			n /= i;
 		}
 		if (0 != c) ret.push_back({ i,c });
@@ -47,7 +47,7 @@ std::vector<std::pair<long long, int>> primeFactorization(long long n) {
 	return ret;
 }
 
-//ƒIƒCƒ‰[‚ÌƒÓŠÖ”(nˆÈ‰º‚ÌŒİ‚¢‚É‘f‚È•¨‚Ì”)
+//ã‚ªã‚¤ãƒ©ãƒ¼ã®Ï†é–¢æ•°(nä»¥ä¸‹ã®äº’ã„ã«ç´ ãªç‰©ã®æ•°)
 long long phi(long long n) {
 	long long ret = n;
 	for (long long i = 2; i*i <= n; i++) {

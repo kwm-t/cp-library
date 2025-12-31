@@ -1,16 +1,16 @@
-#include <vector>
+ï»¿#include <vector>
 #include <iostream> 
 struct Lucas {
 public:
-	//p‚Í‘f”
+	//pã¯ç´ æ•°
 	Lucas(long long p) :mod(p) { Init(); }
 private:
-	//‰º€”õ
+	//ä¸‹æº–å‚™
 	void Init() {
 		CreateFact();
 		CreateComb();
 	}
-	//combŒvZ
+	//combè¨ˆç®—
 	void CreateComb() {
 		comb.resize(mod);
 		for (int i = 0; i < mod; ++i) {
@@ -24,7 +24,7 @@ private:
 			}
 		}
 	}
-	//ŠKæŒvZ
+	//éšä¹—è¨ˆç®—
 	void CreateFact() {
 		fact.resize(mod);
 		ifact.reserve(mod);
@@ -33,7 +33,7 @@ private:
 		ifact[mod - 1] = inv(fact[mod - 1]);
 		for (int i = mod - 1; i >= 0; --i) ifact[i - 1] = (ifact[i] * i) % mod;
 	}
-	//‹tŒ³ŒvZ(x^(y - 2))
+	//é€†å…ƒè¨ˆç®—(x^(y - 2))
 	long long inv(long long x) {
 		long long y = mod - 2;
 		long long tmp = x;
@@ -50,7 +50,7 @@ private:
 		return ret;
 	}
 public:
-	//c(i,j)‚ÌŒvZ
+	//c(i,j)ã®è¨ˆç®—
 	int c(long long i, long long j) {
 		if (i < j) return 0;
 		long long ret = 1;
@@ -64,21 +64,21 @@ public:
 		}
 		return ret;
 	}
-	//ŠKæƒfƒoƒbƒO
+	//éšä¹—ãƒ‡ãƒãƒƒã‚°
 	void debug() {
 		for (int i = 0; i < mod; ++i) std::cout << fact[i] << " ";
 		std::cout << std::endl;
 		for (int i = 0; i < mod; ++i) std::cout << ifact[i] << " ";
 		std::cout << std::endl;
 	}
-	//combƒfƒoƒbƒO
+	//combãƒ‡ãƒãƒƒã‚°
 	void debug2() {
 		for (int i = 0; i < mod; ++i) {
 			for (int j = 0; j < mod; ++j) std::cout << comb[i][j] << " ";
 			std::cout << std::endl;
 		}
 	}
-	//ƒpƒXƒJƒ‹‚ÌOŠpŒ`ƒfƒoƒbƒO
+	//ãƒ‘ã‚¹ã‚«ãƒ«ã®ä¸‰è§’å½¢ãƒ‡ãƒãƒƒã‚°
 	void debug3() {
 		for (int i = 0; i < 10; ++i) {
 			for (int j = 0; j < i + 1; ++j) std::cout << c(i, j) << " ";

@@ -1,4 +1,4 @@
-#include <utility>
+﻿#include <utility>
 template <typename T> struct Gaussian_Integer {
 	T x, y;
 	using G = Gaussian_Integer;

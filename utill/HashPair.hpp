@@ -1,4 +1,4 @@
-#include <utility>
+﻿#include <utility>
 struct HashPair {
 	//注意 constがいる
 	template<class T1, class T2>

@@ -1,4 +1,4 @@
-// https://atcoder.jp/contests/fps-24/submissions/70656364
+ï»¿// https://atcoder.jp/contests/fps-24/submissions/70656364
 // TOMOO - Super Bal
 /*template <class T>
 std::vector<T> FPS_inv(std::vector<T> f, int len = -1) {
@@ -79,7 +79,7 @@ std::vector<T> Multipoint_Evaluation(std::vector<T> f, std::vector<T> p) {
 	}
 
 	std::vector<T> inv = { 1, (T)(1) / (T)(2) };
-	// a, b ‚Ì convolution ‚Ì‚¤‚¿Al, r ‚ÌŠÔ‚¾‚¯—~‚µ‚¢
+	// a, b ã® convolution ã®ã†ã¡ã€l, r ã®é–“ã ã‘æ¬²ã—ã„
 	auto calc = [&](std::vector<T> a, std::vector<T> b, int l, int r) -> std::vector<T> {
 		if (l == r) return {};
 		if (l < 0) l = 0;

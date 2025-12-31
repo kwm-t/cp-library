@@ -1,4 +1,4 @@
-long long ext_gcd(long long a, long long b, long long& x, long long &y) {
+﻿long long ext_gcd(long long a, long long b, long long& x, long long &y) {
 	// gcd(a,b) = ax + by;
 	if (0 == b) {
 		x = 1;

@@ -1,4 +1,4 @@
-template<class S, S op(S l, S r), S e()>
+ï»¿template<class S, S op(S l, S r), S e()>
 struct SegmentTree2D {
 public:
 	SegmentTree2D(int h, int w) {
@@ -10,11 +10,11 @@ public:
 		init(h, w);
 		allSet(h, w, a);
 	}
-	// build‚æ‚è‘O‚ÉŒÄ‚Ô
+	// buildã‚ˆã‚Šå‰ã«å‘¼ã¶
 	void set(const int &h, const int &w, const S &x) {
 		seg[index(h + H, w + W)] = x;
 	}
-	// !!!•K{!!!
+	// !!!å¿…é ˆ!!!
 	void build() {
 		for (int w = W; w < 2 * W; w++) {
 			for (int h = H - 1; h; h--) {
@@ -82,7 +82,7 @@ private:
 		return res;
 	}
 };
-// build()‚ÌŒÄ‚Ño‚µ•K{
+// build()ã®å‘¼ã³å‡ºã—å¿…é ˆ
 // ex.
 // using S = long long;
 // S op(S x, S y) { return std::max(x, y); }

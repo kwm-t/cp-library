@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <algorithm>
 // nの分割数を列挙する
 std::vector<std::vector<int>> numberOfDivisions(const int n, const int maxSize) {

@@ -1,4 +1,4 @@
-//[l,r]
+﻿//[l,r]
 long long rangeAND(long long l, long long r) {
 	long long ret = 0;
 	rep(i, 64) {

@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 // 添字xor畳み込み(アダマール変換)
 template <typename T>
 void walsh_hadamard_transform(std::vector<T>& f) {

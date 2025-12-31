@@ -1,4 +1,4 @@
-namespace RangeAddRangeMin{
+﻿namespace RangeAddRangeMin{
 	// 区間加算・区間最小値取得
 	using S = long long;
 	using F = long long;
