@@ -1,11 +1,11 @@
-#include <set>
+ï»¿#include <set>
 #include <iostream>
 #include <functional>
 
 template<typename T>
 class RangeSet {
 public:
-	// --- ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ---
+	// --- ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ---
 	explicit RangeSet(T limit)
 		: TINF(limit + 1)
 	{
@@ -13,16 +13,16 @@ public:
 		ranges_.emplace(TINF, TINF);
 	}
 
-	// --- ŒöŠJAPI ---
+	// --- å…¬é–‹API ---
 
-	// ‹æŠÔ‚ª‚·‚Å‚ÉƒJƒo[‚³‚ê‚Ä‚¢‚é‚©
+	// åŒºé–“ãŒã™ã§ã«ã‚«ãƒãƒ¼ã•ã‚Œã¦ã„ã‚‹ã‹
 	bool isCovered(T l, T r) const noexcept {
 		auto it = std::prev(ranges_.lower_bound({ l + 1, l + 1 }));
 		return (it->first <= l && r <= it->second);
 	}
 	bool isCovered(T x) const noexcept { return isCovered(x, x); }
 
-	// ƒJƒo[‚µ‚Ä‚¢‚é‹æŠÔ‚ğ•Ô‚·i‘¶İ‚µ‚È‚¯‚ê‚Î {-TINF, -TINF}j
+	// ã‚«ãƒãƒ¼ã—ã¦ã„ã‚‹åŒºé–“ã‚’è¿”ã™ï¼ˆå­˜åœ¨ã—ãªã‘ã‚Œã° {-TINF, -TINF}ï¼‰
 	std::pair<T, T> getCoveringRange(T l, T r) const noexcept {
 		auto it = std::prev(ranges_.lower_bound({ l + 1, l + 1 }));
 		if (it->first <= l && r <= it->second) return *it;
@@ -30,21 +30,21 @@ public:
 	}
 	std::pair<T, T> getCoveringRange(T x) const noexcept { return getCoveringRange(x, x); }
 
-	// æ“ª‹æŠÔ‚ğæ“¾
+	// å…ˆé ­åŒºé–“ã‚’å–å¾—
 	std::pair<T, T> front() const noexcept {
 		auto it = ranges_.begin();
 		++it;
 		return *it;
 	}
 
-	// ––”ö‹æŠÔ‚ğæ“¾
+	// æœ«å°¾åŒºé–“ã‚’å–å¾—
 	std::pair<T, T> back() const noexcept {
 		auto it = ranges_.end();
 		--it; --it;
 		return *it;
 	}
 
-	// ‹æŠÔ‘}“üiƒ}[ƒW‚ ‚èj
+	// åŒºé–“æŒ¿å…¥ï¼ˆãƒãƒ¼ã‚¸ã‚ã‚Šï¼‰
 	void insertRange(
 		T l, T r,
 		const std::function<void(T, T)>& onInsert = [](T, T) {},
@@ -52,9 +52,9 @@ public:
 	) {
 		auto it = std::prev(ranges_.lower_bound({ l + 1, l + 1 }));
 
-		if (isCovered(l, r)) return; // Šù‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é
+		if (isCovered(l, r)) return; // æ—¢ã«å«ã¾ã‚Œã¦ã„ã‚‹
 
-		// ¶’[‚ªŠù‘¶‹æŠÔ‚É—×Ú or “à•ï‚³‚ê‚Ä‚¢‚éê‡‚Íƒ}[ƒW
+		// å·¦ç«¯ãŒæ—¢å­˜åŒºé–“ã«éš£æ¥ or å†…åŒ…ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ãƒãƒ¼ã‚¸
 		if (it->first <= l && l <= it->second + 1) {
 			l = it->first;
 			eraseRange(it, onErase);
@@ -63,7 +63,7 @@ public:
 			++it;
 		}
 
-		// ‰E’[•ûŒü‚Éƒ}[ƒW
+		// å³ç«¯æ–¹å‘ã«ãƒãƒ¼ã‚¸
 		while (r > it->second) eraseRange(it, onErase);
 
 		if (it->first - 1 <= r && r <= it->second) {
@@ -74,7 +74,7 @@ public:
 		addRange(l, r, onInsert);
 	}
 
-	// 1“_‘}“ü
+	// 1ç‚¹æŒ¿å…¥
 	void insertPoint(
 		T x,
 		const std::function<void(T, T)>& onInsert = [](T, T) {},
@@ -83,7 +83,7 @@ public:
 		insertRange(x, x, onInsert, onErase);
 	}
 
-	// ‹æŠÔíœ
+	// åŒºé–“å‰Šé™¤
 	void eraseRange(
 		T l, T r,
 		const std::function<void(T, T)>& onInsert = [](T, T) {},
@@ -91,7 +91,7 @@ public:
 	) {
 		auto it = std::prev(ranges_.lower_bound({ l + 1, l + 1 }));
 
-		// ƒJƒo[‚³‚ê‚Ä‚¢‚é1‹æŠÔ‚Ì‚İ‚ÌƒP[ƒX
+		// ã‚«ãƒãƒ¼ã•ã‚Œã¦ã„ã‚‹1åŒºé–“ã®ã¿ã®ã‚±ãƒ¼ã‚¹
 		if (it->first <= l && r <= it->second) {
 			onErase(it->first, it->second);
 			auto old = *it;
@@ -101,7 +101,7 @@ public:
 			return;
 		}
 
-		// ¶’[ˆ—
+		// å·¦ç«¯å‡¦ç†
 		if (it->first <= l && l <= it->second) {
 			if (it->first < l) addRange(it->first, l - 1, onInsert);
 			eraseRange(it, onErase);
@@ -110,17 +110,17 @@ public:
 			++it;
 		}
 
-		// ’†‰›•”íœ
+		// ä¸­å¤®éƒ¨å‰Šé™¤
 		while (it->second <= r) eraseRange(it, onErase);
 
-		// ‰E’[ˆ—
+		// å³ç«¯å‡¦ç†
 		if (it->first <= r && r <= it->second) {
 			if (r < it->second) addRange(r + 1, it->second, onInsert);
 			eraseRange(it, onErase);
 		}
 	}
 
-	// 1“_íœ
+	// 1ç‚¹å‰Šé™¤
 	void erasePoint(
 		T x,
 		const std::function<void(int, int)>& onInsert = [](int, int) {},
@@ -129,17 +129,17 @@ public:
 		eraseRange(x, x, onInsert, onErase);
 	}
 
-	// “o˜^‹æŠÔ”
+	// ç™»éŒ²åŒºé–“æ•°
 	int rangeCount() const noexcept { return static_cast<int>(ranges_.size()) - 2; }
 
-	// Mexi–¢ƒJƒo[Å¬’lj
+	// Mexï¼ˆæœªã‚«ãƒãƒ¼æœ€å°å€¤ï¼‰
 	T mex(T x = 0) const noexcept {
 		if (!isCovered(x)) return x;
 		auto it = std::prev(ranges_.lower_bound({ x + 1, x + 1 }));
 		return it->second + 1;
 	}
 
-	// ƒfƒoƒbƒO•\¦
+	// ãƒ‡ãƒãƒƒã‚°è¡¨ç¤º
 	void debug() const noexcept {
 		for (auto[l, r] : ranges_)
 			if (std::abs(l) != TINF)
@@ -147,11 +147,11 @@ public:
 	}
 
 private:
-	// --- “à•”ó‘Ô ---
+	// --- å†…éƒ¨çŠ¶æ…‹ ---
 	std::set<std::pair<T, T>> ranges_;
 	T TINF;
 
-	// --- “à•”ƒwƒ‹ƒp[ ---
+	// --- å†…éƒ¨ãƒ˜ãƒ«ãƒ‘ãƒ¼ ---
 	void eraseRange(typename std::set<std::pair<T, T>>::iterator& it,
 		const std::function<void(int, int)>& onErase) {
 		onErase(it->first, it->second);
@@ -164,12 +164,12 @@ private:
 		ranges_.emplace(l, r);
 	}
 };
-// ‹æŠÔ‚Ì•ÏX‚ª‚ ‚é‚ÆƒR[ƒ‹ƒoƒbƒN‚ªŒÄ‚Î‚ê‚é‚Ì‚ÅƒZƒO–Ø‚Å—Ç‚¢Š´‚¶‚É‚µ‚½‚¢ê‡‚Æ‚©‚Í‚¢‚¢Š´‚¶‚É‚·‚é
+// åŒºé–“ã®å¤‰æ›´ãŒã‚ã‚‹ã¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå‘¼ã°ã‚Œã‚‹ã®ã§ã‚»ã‚°æœ¨ã§è‰¯ã„æ„Ÿã˜ã«ã—ãŸã„å ´åˆã¨ã‹ã¯ã„ã„æ„Ÿã˜ã«ã™ã‚‹
 // https://atcoder.jp/contests/abc430/submissions/70631649
 
 
-// ”¼ŠJ‹æŠÔver
-// ÀÑ‚È‚µ
+// åŠé–‹åŒºé–“ver
+// å®Ÿç¸¾ãªã—
 #include <set>
 #include <iostream>
 #include <functional>
@@ -184,7 +184,7 @@ public:
         ranges_.emplace(TINF_, TINF_);
     }
 
-    // ‹æŠÔ [l, r) ‚ğ’Ç‰Á
+    // åŒºé–“ [l, r) ã‚’è¿½åŠ 
     void insertRange(
         T l, T r,
         const std::function<void(T, T)> &onInsert = [](T, T) {},
@@ -205,7 +205,7 @@ public:
         auto it = std::prev(ranges_.lower_bound({ l + 1, l + 1 }));
         if (isCovered(l, r)) return;
 
-        // ¶’[‚Æ˜AŒ‹
+        // å·¦ç«¯ã¨é€£çµ
         if (it->first <= l && l <= it->second) {
             l = it->first;
             eraseRange(it);
@@ -213,10 +213,10 @@ public:
             ++it;
         }
 
-        // ’†‰›‚Ì˜AŒ‹
+        // ä¸­å¤®ã®é€£çµ
         while (it->first <= r) eraseRange(it);
 
-        // ‰E’[‚Ì˜AŒ‹
+        // å³ç«¯ã®é€£çµ
         auto nxt = ranges_.lower_bound({ r, r });
         if (nxt->first <= r && r < nxt->second) {
             r = nxt->second;
@@ -234,7 +234,7 @@ public:
         insertRange(x, x + 1, onInsert, onErase);
     }
 
-    // ‹æŠÔ [l, r) ‚ğíœ
+    // åŒºé–“ [l, r) ã‚’å‰Šé™¤
     void eraseRange(
         T l, T r,
         const std::function<void(T, T)> &onInsert = [](T, T) {},
@@ -256,7 +256,7 @@ public:
 
         auto it = std::prev(ranges_.lower_bound({ l + 1, l + 1 }));
 
-        // 1‚Â‚Ì”ÍˆÍ“à‚É‚·‚×‚ÄŠÜ‚Ü‚ê‚éƒP[ƒX
+        // 1ã¤ã®ç¯„å›²å†…ã«ã™ã¹ã¦å«ã¾ã‚Œã‚‹ã‚±ãƒ¼ã‚¹
         if (it->first <= l && r <= it->second) {
             onErase(it->first, it->second);
             auto old = *it;
@@ -266,7 +266,7 @@ public:
             return;
         }
 
-        // ¶’[•”•ªíœ
+        // å·¦ç«¯éƒ¨åˆ†å‰Šé™¤
         if (it->first <= l && l < it->second) {
             addRange(it->first, l);
             eraseIt(it);
@@ -274,10 +274,10 @@ public:
             ++it;
         }
 
-        // ’†‰›íœ
+        // ä¸­å¤®å‰Šé™¤
         while (it->first < r && it->second <= r) eraseIt(it);
 
-        // ‰E’[•”•ª
+        // å³ç«¯éƒ¨åˆ†
         if (it->first < r && r < it->second) {
             addRange(r, it->second);
             eraseIt(it);
@@ -292,17 +292,17 @@ public:
         eraseRange(x, x + 1, onInsert, onErase);
     }
 
-    // mex: Å¬‚Ì”ñ”í•¢“_‚ğ•Ô‚·
+    // mex: æœ€å°ã®éè¢«è¦†ç‚¹ã‚’è¿”ã™
     T mex(T x = 0) const {
         if (!isCovered(x, x + 1)) return x;
         auto it = std::prev(ranges_.lower_bound({ x + 1, x + 1 }));
         return it->second;
     }
 
-    // ‹æŠÔ”i”Ô•º‚ğœ‚­j
+    // åŒºé–“æ•°ï¼ˆç•ªå…µã‚’é™¤ãï¼‰
     int size() const { return static_cast<int>(ranges_.size()) - 2; }
 
-    // ƒfƒoƒbƒOo—Í
+    // ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
     void debug() const {
         for (auto [l, r] : ranges_) {
             if (abs(l) == TINF_) continue;

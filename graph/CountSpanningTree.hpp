@@ -1,5 +1,5 @@
-mint count_spanning_tree(std::vector<std::vector<mint>> mat) {
-	//�s��ؒ藝
+﻿mint count_spanning_tree(std::vector<std::vector<mint>> mat) {
+	//行列木定理
 	mint ans = 1;
 	for (int i = 0; i < (int)mat.size(); ++i) {
 		if (0 == i)continue;

@@ -1,4 +1,4 @@
-template <typename Index, typename Data, Index(*next_index)(Index), Data(*get_data)(Index), Data(*op)(Data, Data), Data(*e)(), Data(*power)(Data, long long)>
+﻿template <typename Index, typename Data, Index(*next_index)(Index), Data(*get_data)(Index), Data(*op)(Data, Data), Data(*e)(), Data(*power)(Data, long long)>
 struct Period {
 private:
 	std::vector<Data>dat, preData, cycData;

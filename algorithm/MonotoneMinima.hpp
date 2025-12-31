@@ -1,4 +1,4 @@
-// monotoneなn * m行列について
+﻿// monotoneなn * m行列について
 // 各行の最小要素のうち最も左に位置するものの列番号を
 // O(n+m)で求めるアルゴリズム
 template<typename T, typename F>

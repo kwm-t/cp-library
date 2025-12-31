@@ -1,6 +1,6 @@
-#include <vector>
+ï»¿#include <vector>
 #include <set>
-// ‚È‚à‚èƒOƒ‰ƒt‚ğ—^‚¦‚é‚ÆƒTƒCƒNƒ‹‚ÉŠÜ‚Şindex‚ğ•Ô‚·
+// ãªã‚‚ã‚Šã‚°ãƒ©ãƒ•ã‚’ä¸ãˆã‚‹ã¨ã‚µã‚¤ã‚¯ãƒ«ã«å«ã‚€indexã‚’è¿”ã™
 std::vector<int> namori(std::vector<std::vector<int>> &to) {
 	std::vector<int>roop;
 	std::set<int>st;

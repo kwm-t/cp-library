@@ -1,28 +1,28 @@
-class Lowlink {
+ï»¿class Lowlink {
 	typedef std::vector<std::vector<std::pair<int, int>>> Edge;
 public:
-	// ’¸“_”
+	// é ‚ç‚¹æ•°
 	int sz;
-	// –Ø
+	// æœ¨
 	Edge G;
-	// ŠÖß“_
+	// é–¢ç¯€ç‚¹
 	std::vector<int>articulation_points;
-	// ‹´(Key:idx,Value:child)
-	// in[e] < low[q]‚È‚çA‹´‚Æ‚È‚éB
+	// æ©‹(Key:idx,Value:child)
+	// in[è¦ª] < low[å­]ãªã‚‰ã€æ©‹ã¨ãªã‚‹ã€‚
 	std::unordered_map<int, int> bridge;
 	// roots
 	std::unordered_set<int>roots;
 private:
-	// dfs‡
+	// dfsé †
 	std::vector<int>in;
 	std::vector<int>out;
 	std::vector<int>low;
-	// bfs–Øã‚Åq‚ÌƒŠƒXƒg
+	// bfsæœ¨ä¸Šã§å­ã®ãƒªã‚¹ãƒˆ
 	std::vector<std::vector<int>> child;
 public:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	Lowlink(const Edge &G) : G(G) {}
-	// \’z
+	// æ§‹ç¯‰
 	void build() {
 		sz = G.size();
 		in.assign(sz, -1);
@@ -37,7 +37,7 @@ public:
 			}
 		}
 	}
-	// ’¸“_v‚ğæ‚èœ‚¢‚½‚Æ‚«‚É˜AŒ‹¬•ª‚ª1->ret‚É‚È‚é
+	// é ‚ç‚¹vã‚’å–ã‚Šé™¤ã„ãŸã¨ãã«é€£çµæˆåˆ†ãŒ1->retã«ãªã‚‹
 	int remove(int v) {
 		int c = 0;
 		for (auto nv : child[v]) {
@@ -46,7 +46,7 @@ public:
 		if (!roots.count(v))c++;
 		return c;
 	}
-	// G ã‚É‚¨‚¢‚ÄAs-t ƒpƒX‚Í•K‚¸•Ó a ‚ğŠÜ‚Ş‚©‚Ç‚¤‚©”»’è
+	// G ä¸Šã«ãŠã„ã¦ã€s-t ãƒ‘ã‚¹ã¯å¿…ãšè¾º a ã‚’å«ã‚€ã‹ã©ã†ã‹åˆ¤å®š
 	bool query(int a, int s, int t) {
 		if (!bridge.count(a)) return false;
 		int l = in[bridge[a]], r = out[bridge[a]];
@@ -75,17 +75,17 @@ public:
 private:
 	void dfs(int v, int p, int &k) {
 		in[v] = low[v] = k++;
-		bool is_art = false;// ŠÖß“_”»’è
+		bool is_art = false;// é–¢ç¯€ç‚¹åˆ¤å®š
 		for (auto[nv, id] : G[v]) {
 			if (in[nv] < 0) {
 				child[v].push_back(nv);
 				dfs(nv, id, k);
 				low[v] = std::min(low[v], low[nv]);
-				// isŠÖß“_?
+				// isé–¢ç¯€ç‚¹?
 				if (-1 != p && in[v] <= low[nv]) {
 					is_art = true;
 				}
-				// is‹´?
+				// isæ©‹?
 				if (in[v] < low[nv]) {
 					bridge[id] = nv;
 				}
@@ -94,7 +94,7 @@ private:
 				low[v] = std::min(low[v], in[nv]);
 			}
 		}
-		// ª‚Ìê‡A2‚ÂˆÈã‚Ìq‚ª‚ ‚é‚È‚çAŠÖß“_
+		// æ ¹ã®å ´åˆã€2ã¤ä»¥ä¸Šã®å­ãŒã‚ã‚‹ãªã‚‰ã€é–¢ç¯€ç‚¹
 		if (-1 == p && child[v].size() >= 2) {
 			is_art = true;
 		}

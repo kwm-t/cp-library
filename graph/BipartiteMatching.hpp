@@ -1,8 +1,8 @@
-#include<iostream>
+﻿#include<iostream>
 #include <vector>
 /*
-	�񕔃O���t�̍ő�}�b�`���O = �ŏ����_�핢
-	�E�ŏ����_�핢:=���ׂĂ̕ӂ��I���������_����L�тĂ���悤�ɒ��_��I�ԍۂ̍ŏ���
+	二部グラフの最大マッチング = 最小頂点被覆
+	・最小頂点被覆:=すべての辺が選択した頂点から伸びているように頂点を選ぶ際の最小個数
 */
 struct BipartiteMatching {
 	std::vector< std::vector< int > > graph;

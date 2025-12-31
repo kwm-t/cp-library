@@ -1,4 +1,4 @@
-template<class Cap>
+﻿template<class Cap>
 class K_MinCut {
 	int n;
 	int source, sink;

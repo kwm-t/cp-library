@@ -1,17 +1,17 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include <vector>
 const int INF = 1e9;
-// Å¬ƒTƒCƒNƒ‹
+// æœ€å°ã‚µã‚¤ã‚¯ãƒ«
 // https://atcoder.jp/contests/abc308/editorial/6709
-// ƒOƒ‰ƒt‚Æª‚ğ“n‚·
-// overFlow‚É’ˆÓ
+// ã‚°ãƒ©ãƒ•ã¨æ ¹ã‚’æ¸¡ã™
+// overFlowã«æ³¨æ„
 std::pair<long long, std::vector<int>> shortest_cycle(const std::vector<std::vector<long long>> &G, int root) {
 	int n = G.size();
 	std::vector<long long>dist(n, INF * 2), p(n, -1), g(n);
 	std::vector<bool>seen(n);
 	dist[root] = 0;
 	g[root] = root;
-	// root‚É‹ß‚¢‚Æ‚±‚©‚çŠm’è‚³‚¹‚Ä‚¢‚­
+	// rootã«è¿‘ã„ã¨ã“ã‹ã‚‰ç¢ºå®šã•ã›ã¦ã„ã
 	for (int t = 0; t < n; t++) {
 		long long mn = INF * 2;
 		int pos = -1;

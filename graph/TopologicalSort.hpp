@@ -1,6 +1,6 @@
-#include <vector>
+ï»¿#include <vector>
 #include <stack>
-// return‚³‚ê‚évector‚ÌƒTƒCƒY‚ª’¸“_”‚Æˆê’v‚µ‚Ä‚È‚©‚Á‚½‚çdag‚Å‚Í‚È‚¢B
+// returnã•ã‚Œã‚‹vectorã®ã‚µã‚¤ã‚ºãŒé ‚ç‚¹æ•°ã¨ä¸€è‡´ã—ã¦ãªã‹ã£ãŸã‚‰dagã§ã¯ãªã„ã€‚
 std::vector<int>TopologicalSort(int n, std::vector<std::vector<int>>to) {
 	std::vector<int>h(n);
 	for (int i = 0; i < n; ++i) for (auto e : to[i]) ++h[e];

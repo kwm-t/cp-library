@@ -1,7 +1,7 @@
-typedef std::complex<long long> C;
-// ŠOÏ
+ï»¿typedef std::complex<long long> C;
+// å¤–ç©
 long long cross(C a, C b) { return a.real() * b.imag() - a.imag() * b.real(); }
-// “àÏ
+// å†…ç©
 long long dot(C a, C b) { return a.real() * b.real() + a.imag() * b.imag(); }
 struct Segment {
 	C a, b;

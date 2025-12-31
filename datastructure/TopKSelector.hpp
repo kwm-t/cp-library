@@ -1,4 +1,4 @@
-template<typename T>
+﻿template<typename T>
 class TopKSelector {
 public:
 	TopKSelector(int k) :k(k) {}

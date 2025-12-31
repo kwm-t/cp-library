@@ -1,4 +1,4 @@
-#include <cassert>
+ï»¿#include <cassert>
 #include <vector>
 #include <tuple>
 int popcount(long long n) {
@@ -10,41 +10,41 @@ int popcount(long long n) {
 	n = (n & 0x00000000ffffffff) + (n >> 32 & 0x00000000ffffffff);
 	return n;
 }
-// Š®”õ«‘
+// å®Œå‚™è¾æ›¸
 struct SuccinctIndexableDictionary {
 	int  length, blocks;
 	std::vector<unsigned>bit, sum;
 	// default constructor
 	SuccinctIndexableDictionary() = default;
-	// constructor(”z—ñ‚Ì’·‚³‚ğ“n‚·ƒuƒƒbƒN‚Ì‘å‚«‚³‚Í2^5‚ÅŒÅ’è)
+	// constructor(é…åˆ—ã®é•·ã•ã‚’æ¸¡ã™ãƒ–ãƒ­ãƒƒã‚¯ã®å¤§ãã•ã¯2^5ã§å›ºå®š)
 	SuccinctIndexableDictionary(int _length) : length(_length), blocks((length + 31) >> 5) {
 		bit.assign(blocks + 1, 0U);
 		sum.assign(blocks + 1, 0U);
 	}
-	// k”Ô–Ú‚Ébit‚ğset‚·‚é
+	// kç•ªç›®ã«bitã‚’setã™ã‚‹
 	void set(int k) {
 		bit[k >> 5] |= 1U << (k & 31);
 	}
-	// set‚µ‚Ä‚©‚çŒÄ‚Ño‚·
+	// setã—ã¦ã‹ã‚‰å‘¼ã³å‡ºã™
 	void build() {
 		sum[0] = 0U;
 		for (int i = 0; i < blocks - 1; ++i)sum[i + 1] = sum[i] + popcount(bit[i]);
 	}
-	// k”Ô–Ú‚Ìbit‚ğget‚·‚é
+	// kç•ªç›®ã®bitã‚’getã™ã‚‹
 	bool operator[](int k) {
 		return (bool((bit[k >> 5] >> (k & 31)) & 1));
 	}
-	// [0,k)‚É—§‚Á‚Ä‚¢‚ébit‚Ì”
+	// [0,k)ã«ç«‹ã£ã¦ã„ã‚‹bitã®æ•°
 	int rank(int k) {
 		return (sum[k >> 5] + popcount(bit[k >> 5] & ((1U << (k & 31)) - 1)));
 	}
-	// [0,k)‚Ìval‚Ì”
+	// [0,k)ã®valã®æ•°
 	int rank(bool val, int k) {
 		return (val ? rank(k) : k - rank(k));
 	}
 	// select
-	// rank(k+1)=n+1‚ğ–‚½‚·Å¬‚ÌlÌrank(k)=n‚ğ–‚½‚·Å‘å‚Ìk
-	// ‚Â‚Ü‚èbit‚ª—§‚Á‚Ä‚¢‚éˆÊ’u‚ğ‹L˜^‚µ‚½”z—ñA‚ÌA[i]‚ğæ“¾‚µ‚Ä‚¢‚é
+	// rank(k+1)=n+1ã‚’æº€ãŸã™æœ€å°ã®lâ‡”rank(k)=nã‚’æº€ãŸã™æœ€å¤§ã®k
+	// ã¤ã¾ã‚ŠbitãŒç«‹ã£ã¦ã„ã‚‹ä½ç½®ã‚’è¨˜éŒ²ã—ãŸé…åˆ—Aã®A[i]ã‚’å–å¾—ã—ã¦ã„ã‚‹
 	int select(int n) {
 		if (rank(length) <= n)return -1;
 		int ng = length + 1;
@@ -92,7 +92,7 @@ struct WaveletMatrix {
 		for (int i = MAXLOG - 1; i >= 0; --i) {
 			bool flg = matrix[i][k];
 			if (flg) ret |= T(1) << i;
-			// ‚P‚Âi‚ñ‚¾æ‚Ìindex
+			// ï¼‘ã¤é€²ã‚“ã å…ˆã®index
 			k = matrix[i].rank(flg, k) + mid[i] * flg;
 		}
 		return ret;
@@ -101,17 +101,17 @@ struct WaveletMatrix {
 	T operator[](const int &k) {
 		return access(k);
 	}
-	// [l,r)‚Ìbit‚Ìó‘Ô‚ªf‚È‚à‚Ì‹æŠÔ‘JˆÚ
+	// [l,r)ã®bitã®çŠ¶æ…‹ãŒfãªã‚‚ã®åŒºé–“é·ç§»
 	std::pair< int, int > succ(bool f, int l, int r, int level) {
 		return { matrix[level].rank(f, l) + mid[level] * f, matrix[level].rank(f, r) + mid[level] * f };
 	}
-	// [0,r)‚ÉŠÜ‚Ü‚ê‚éx‚Ì”‚ğ•Ô‚·
+	// [0,r)ã«å«ã¾ã‚Œã‚‹xã®æ•°ã‚’è¿”ã™
 	int rank(const T &x, int r) {
 		int l = 0;
 		for (int i = MAXLOG - 1; i >= 0; --i)tie(l, r) = succ((x >> i) & 1, l, r, i);
 		return r - l;
 	}
-	// [l,r)‚ÉŠÜ‚Ü‚ê‚ék”Ô–Ú‚É¬‚³‚¢(0-indexed)‚È‚à‚Ì‚ğ•Ô‚·
+	// [l,r)ã«å«ã¾ã‚Œã‚‹kç•ªç›®ã«å°ã•ã„(0-indexed)ãªã‚‚ã®ã‚’è¿”ã™
 	T kth_smallest(int l, int r, int k) {
 		assert(0 <= k && k < r - l);
 		T ret = 0;
@@ -126,11 +126,11 @@ struct WaveletMatrix {
 		}
 		return ret;
 	}
-	// [l,r)‚ÉŠÜ‚Ü‚ê‚ék”Ô–Ú‚É‘å‚«‚¢(0-indexed)‚È‚à‚Ì‚ğ•Ô‚·
+	// [l,r)ã«å«ã¾ã‚Œã‚‹kç•ªç›®ã«å¤§ãã„(0-indexed)ãªã‚‚ã®ã‚’è¿”ã™
 	T kth_largest(int l, int r, int k) {
 		return kth_smallest(l, r, r - l - k - 1);
 	}
-	// [l,r)‚ÉŠÜ‚Ü‚ê‚év[i] < upper‚È—v‘f‚Ì”
+	// [l,r)ã«å«ã¾ã‚Œã‚‹v[i] < upperãªè¦ç´ ã®æ•°
 	int range_freq(int l, int r, T upper) {
 		int ret = 0;
 		for (int i = MAXLOG - 1; i >= 0; --i) {
@@ -140,16 +140,16 @@ struct WaveletMatrix {
 		}
 		return ret;
 	}
-	// [l,r)‚ÉŠÜ‚Ü‚ê‚élower <= v[i] < upper‚È—v‘f‚Ì”
+	// [l,r)ã«å«ã¾ã‚Œã‚‹lower <= v[i] < upperãªè¦ç´ ã®æ•°
 	int range_freq(int l, int r, T lower, T upper) {
 		return range_freq(l, r, upper) - range_freq(l, r, lower);
 	}
-	// [l,r)‚ÉŠÜ‚Ü‚ê‚éupper‚ÌŸ‚É‘å‚«‚¢‚à‚Ì
+	// [l,r)ã«å«ã¾ã‚Œã‚‹upperã®æ¬¡ã«å¤§ãã„ã‚‚ã®
 	T prev_value(int l, int r, T upper) {
 		int cnt = range_freq(l, r, upper);
 		return cnt == 0 ? T(-1) : kth_smallest(l, r, cnt - 1);
 	}
-	// [l,r)‚ÉŠÜ‚Ü‚ê‚élowerˆÈã‚Ì‚à‚Ì
+	// [l,r)ã«å«ã¾ã‚Œã‚‹lowerä»¥ä¸Šã®ã‚‚ã®
 	T next_value(int l, int r, T lower) {
 		int cnt = range_freq(l, r, lower);
 		return cnt == r - l ? T(-1) : kth_smallest(l, r, cnt);

@@ -1,4 +1,4 @@
-class Xorshift {
+﻿class Xorshift {
 	uint64_t x;
 
 public:

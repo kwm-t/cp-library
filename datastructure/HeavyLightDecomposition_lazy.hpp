@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 struct S {
 	long long sum;	//実際の値
 	int size;		//区間の幅

@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <functional>
 template<class T>
 T squareRootDecomposition(const int l, const int r, const int blockSize,

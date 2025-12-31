@@ -1,4 +1,4 @@
-class AuxiliaryTree {
+﻿class AuxiliaryTree {
 public:
 	AuxiliaryTree(std::vector<std::vector<int>> g) :n(g.size()), g(g) {
 	}

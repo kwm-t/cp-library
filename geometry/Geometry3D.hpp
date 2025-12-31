@@ -1,4 +1,4 @@
-#include <array>
+﻿#include <array>
 #include <numeric>
 
 using point = std::array<long long, 3>;

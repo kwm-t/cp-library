@@ -1,4 +1,4 @@
-std::pair<std::vector<int>, std::vector<int>>eulerTour(int n, const std::vector<std::vector<int>> &e) {
+﻿std::pair<std::vector<int>, std::vector<int>>eulerTour(int n, const std::vector<std::vector<int>> &e) {
 	std::vector<int>l(n), r(n);
 	auto dfs = [&](auto &&self, int &time = 0, int v = 0, int p = -1)->void {
 		l[v] = time;

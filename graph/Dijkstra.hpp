@@ -1,4 +1,4 @@
-#include <queue>
+ï»¿#include <queue>
 #include <vector>
 template<typename T>
 struct Dijkstra {
@@ -54,7 +54,7 @@ public:
 		}
 	}
 	std::vector<int> restore(int s, int t) {
-		// restore‚Ìs‚Íbuild‚Ìs‚Æˆê’v‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚é
+		// restoreã®sã¯buildã®sã¨ä¸€è‡´ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹
 		std::vector<int>route = { t };
 		while (s != t) {
 			for (const auto & e : gR[t]) {

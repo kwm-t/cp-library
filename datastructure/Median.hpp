@@ -1,4 +1,4 @@
-#include <set>
+﻿#include <set>
 template<typename T>
 struct Median {
 	// 中央値管理

@@ -1,4 +1,4 @@
-#include <atcoder/all>
+﻿#include <atcoder/all>
 #include <unordered_map>
 struct BabyStepGiantStep {
 private:

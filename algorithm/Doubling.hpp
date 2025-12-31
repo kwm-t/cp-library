@@ -1,4 +1,4 @@
-class Doubling {
+﻿class Doubling {
 public:
 	Doubling(const std::vector<int> &v, int bitsize = 60) :bitSize(bitsize) {
 		init(v);

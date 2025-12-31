@@ -1,6 +1,6 @@
-template <class T>
+ï»¿template <class T>
 class CrossImos {
-	// Î‚ßimos
+	// æ–œã‚imos
 public:
 	CrossImos(int h, int w) :h(h), w(w) {
 		init();
@@ -9,12 +9,12 @@ public:
 		imos0.assign(h + 1, std::vector<T>(w + 1));
 		imos1.assign(h + 1, std::vector<T>(w + 1));
 	}
-	// 0:¶ã->1;‰E‰º(ˆø”‚Í•Â‹æŠÔ)
+	// 0:å·¦ä¸Š->1;å³ä¸‹(å¼•æ•°ã¯é–‰åŒºé–“)
 	void add0(int i0, int j0, int i1, int j1, T val) {
 		imos0[i0 + 0][j0 + 0] += val;
 		imos0[i1 + 1][j1 + 1] -= val;
 	}
-	// 0:‰Eã¨1;¶‰º(ˆø”‚Í•Â‹æŠÔ)
+	// 0:å³ä¸Šâ†’1;å·¦ä¸‹(å¼•æ•°ã¯é–‰åŒºé–“)
 	void add1(int i0, int j0, int i1, int j1, T val) {
 		imos1[i0 + 0][j0 + 1] += val;
 		imos1[i1 + 1][j1 + 0] -= val;
@@ -50,6 +50,6 @@ public:
 	};
 private:
 	int h, w;
-	std::vector<std::vector<T>>imos0;//¶ã¨‰E‰º
-	std::vector<std::vector<T>>imos1;//‰Eã¨¶‰º
+	std::vector<std::vector<T>>imos0;//å·¦ä¸Šâ†’å³ä¸‹
+	std::vector<std::vector<T>>imos1;//å³ä¸Šâ†’å·¦ä¸‹
 };

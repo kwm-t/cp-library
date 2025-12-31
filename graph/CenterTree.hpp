@@ -1,4 +1,4 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include <string>
 #include <iostream>
 #include <vector>
@@ -48,7 +48,7 @@ private:
 		std::cout << "Center0 " << c0 << std::endl;
 		std::cout << "Center1 " << c1 << std::endl;
 	}
-	// “¯Œ^”»’è
+	// åŒå‹åˆ¤å®š
 	std::string IsomorphicCalc(int v, int p = -1) {
 		std::vector<std::string>vs;
 		for (int e : to[v]) {
@@ -67,5 +67,5 @@ private:
 	int sz, c0, c1, d;//Treesize,Center0,Center1,Diameter
 	std::vector<int> pre;
 	std::vector<std::vector<int>>to;
-	std::vector<int>v;//’¼Œaã‚Ì“_(ˆê—á)
+	std::vector<int>v;//ç›´å¾„ä¸Šã®ç‚¹(ä¸€ä¾‹)
 };

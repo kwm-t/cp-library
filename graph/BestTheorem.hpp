@@ -1,12 +1,12 @@
-class BestTheorem {
+ï»¿class BestTheorem {
 public:
 	BestTheorem(std::vector<std::vector<int>>edge) :n(edge.size()), edge(edge) {}
-	// g—p‚µ‚È‚¢’¸“_‚ª‚ ‚é‚Æ‰ó‚ê‚é‚Ì‚ÅŒÄ‚Ô‘¤‚ÅÀˆ³‚ª•K—v
+	// ä½¿ç”¨ã—ãªã„é ‚ç‚¹ãŒã‚ã‚‹ã¨å£Šã‚Œã‚‹ã®ã§å‘¼ã¶å´ã§åº§åœ§ãŒå¿…è¦
 	mint execute(int startPount = -1, bool cycle = true, bool walk = true, bool distinctEdge = false) {
-		// startPount:cycle‚Æ‚«‚ÌŠJn’¸“_‚ğŒˆ‚ß‘Å‚Â
-		// cycle:•Â˜H‹–—e
-		// walk:walk‹–—e
-		// distinctEdge:•Ó‚Ì‹æ•Ê‚ğ‚·‚é‚©‚Ç‚¤‚©
+		// startPount:cycleã¨ãã®é–‹å§‹é ‚ç‚¹ã‚’æ±ºã‚æ‰“ã¤
+		// cycle:é–‰è·¯è¨±å®¹
+		// walk:walkè¨±å®¹
+		// distinctEdge:è¾ºã®åŒºåˆ¥ã‚’ã™ã‚‹ã‹ã©ã†ã‹
 		std::vector<int>in(n), out(n);
 		for (int i = 0; i < n; ++i) {
 			for (int j = 0; j < n; ++j) {
@@ -31,18 +31,18 @@ public:
 			if (1 == diff)tv = i, cnt++;
 			if (-1 == diff)sv = i;
 		}
-		// cycle ‚Å‚à walk ‚Å‚à‚È‚¢
+		// cycle ã§ã‚‚ walk ã§ã‚‚ãªã„
 		if (cnt >= 2) return 0;
 		// cycle
 		if (-1 == sv) {
 			if (!cycle) return 0;
-			if(-1== startPount)val *= tot;// ŠJn“_‚Ì”‚ğŠ|‚¯‚é
+			if(-1== startPount)val *= tot;// é–‹å§‹ç‚¹ã®æ•°ã‚’æ›ã‘ã‚‹
 			else val *= out[startPount];
 		}
 		// walk
 		else {
 			if (!walk)return 0;
-			// tv->sv‚É•Ó‚ğ‘‚â‚µ‚Äcycle‚É‚·‚é
+			// tv->svã«è¾ºã‚’å¢—ã‚„ã—ã¦cycleã«ã™ã‚‹
 			out[tv]++;
 			in[sv]++;
 			edge[tv][sv]++;
@@ -57,7 +57,7 @@ private:
 	int n;
 	std::vector<std::vector<int>>edge;
 	mint count_spanning_tree() {
-		//s—ñ–Ø’è—
+		//è¡Œåˆ—æœ¨å®šç†
 		std::vector mat(n, std::vector<mint>(n));
 		for (int i = 0; i < n; ++i) {
 			for (int j = 0; j < n; ++j) {

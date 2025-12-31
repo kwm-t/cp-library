@@ -1,4 +1,4 @@
-#include <queue>
+﻿#include <queue>
 struct SlideMin {
 	std::deque<std::pair<int,int>> q;
 	SlideMin() {}

@@ -1,4 +1,4 @@
-#include <algorithm>
+﻿#include <algorithm>
 #include <stack>
 #include <vector>
 long long maximum_rectangle(std::vector<int>&a) {

@@ -1,4 +1,4 @@
-template <typename Index, typename Data, Index(*next_index)(Index), Data(*get_data)(Index), Data(*op)(Data, Data), Data(*e)(), Data(*power)(Data, long long)>
+ï»¿template <typename Index, typename Data, Index(*next_index)(Index), Data(*get_data)(Index), Data(*op)(Data, Data), Data(*e)(), Data(*power)(Data, long long)>
 struct Period {
 private:
 	std::vector<Data>dat, preData, cycData;
@@ -7,7 +7,7 @@ private:
 public:
 	Period(Index start) {
 		Index a = start, b = start;
-		do {// ƒtƒƒCƒh‚ÌzŠÂŒŸo–@
+		do {// ãƒ•ãƒ­ã‚¤ãƒ‰ã®å¾ªç’°æ¤œå‡ºæ³•
 			dat.emplace_back(get_data(a));
 			a = next_index(a);
 			b = next_index(next_index(b));

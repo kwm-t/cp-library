@@ -1,4 +1,4 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include <vector>
 #include <iostream>
 #include <numeric>
@@ -41,7 +41,7 @@ struct Mo {
 			set(idx);
 		}
 	}
-	// TLE‚·‚é‚Æ‚«‚Í‚±‚Á‚¿‚ğg‚¤‚Æ’Ê‚é‚©‚à
+	// TLEã™ã‚‹ã¨ãã¯ã“ã£ã¡ã‚’ä½¿ã†ã¨é€šã‚‹ã‹ã‚‚
 	/*const int logn = 20;
 	const int maxn = 1 << logn;
 	long long hilbertorder(int x, int y) {
@@ -61,8 +61,8 @@ struct Mo {
 };
 /*
 	Example
-	‹æŠÔver‚Æ2D Grid ver‚Å‚ÍL,R‚Ìˆµ‚¢‚ª•Ï‚í‚é‚Ì‚Å’ˆÓB
-	“Á‚ÉŒãÒ
+	åŒºé–“verã¨2D Grid verã§ã¯L,Rã®æ‰±ã„ãŒå¤‰ã‚ã‚‹ã®ã§æ³¨æ„ã€‚
+	ç‰¹ã«å¾Œè€…
 	https://atcoder.jp/contests/abc384/submissions/60798278
 	
 	Mo mo(n, q);
@@ -87,7 +87,7 @@ struct Mo {
 	mo.run(upd, set);
 */
 // tips
-// Mo‚ÉƒZƒO–Ø‚ğæ‚¹‚éê‡‚È‚Ç
-// XV‚Ì‰ñ”‚ªæ“¾‚Ì‰ñ”‚æ‚è‚¸‚Á‚Æ‘½‚¢‚Æ‚«‚É‚ÍAƒZƒO–Ø‚æ‚è‚à•½•û•ªŠ„‚Ì•û‚ª‘‚­‚È‚é
-// O((N*sqrt_Q+Q)log_N)->O(N*sqrt_N+Q*sqrt_N)‚É‚È‚é
+// Moã«ã‚»ã‚°æœ¨ã‚’ä¹—ã›ã‚‹å ´åˆãªã©
+// æ›´æ–°ã®å›æ•°ãŒå–å¾—ã®å›æ•°ã‚ˆã‚Šãšã£ã¨å¤šã„ã¨ãã«ã¯ã€ã‚»ã‚°æœ¨ã‚ˆã‚Šã‚‚å¹³æ–¹åˆ†å‰²ã®æ–¹ãŒæ—©ããªã‚‹
+// O((N*sqrt_Q+Q)log_N)->O(N*sqrt_N+Q*sqrt_N)ã«ãªã‚‹
 // https://atcoder.jp/contests/abc405/submissions/65698565

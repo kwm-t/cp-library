@@ -1,4 +1,4 @@
-template<typename T>
+﻿template<typename T>
 class MergeSortTree {
 public:
 	MergeSortTree(const std::vector<T> &v, const T &INF) {

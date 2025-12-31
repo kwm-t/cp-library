@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 // graph[from][i]={to, edge_index}
 // 多重辺を重複なく持ちたければedge_indexではなく、edge_countにしても良い
 // https://atcoder.jp/contests/codequeen2025-final-Public/submissions/68098334

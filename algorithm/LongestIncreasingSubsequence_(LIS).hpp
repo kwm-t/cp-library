@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 // dp[i] := 長さが i の増加部分列として最後尾の要素のとりうる最小値
 template<class T> int lis(const std::vector<T> &a, bool is_strong = true) {
 	const T INF = 1 << 30; // to be set appropriately

@@ -1,4 +1,4 @@
-// “Æ—§W‡‚Ì”‚¦ã‚° O(n * 2^n)
+ï»¿// ç‹¬ç«‹é›†åˆã®æ•°ãˆä¸Šã’ O(n * 2^n)
 std::vector<mint> countIndependentSet(const std::vector<std::vector<int>>&g) {
 	int n = g.size();
 	std::vector<mint> cnt(1 << n);
@@ -17,7 +17,7 @@ std::vector<mint> countIndependentSet(const std::vector<std::vector<int>>&g) {
 	}
 	return cnt;
 }
-// ÊF” O(n * 2^n)
+// å½©è‰²æ•° O(n * 2^n)
 int chromaticNumber(const std::vector<std::vector<int>>&g) {
 	int n = g.size();
 	if (0 == n)return 0;

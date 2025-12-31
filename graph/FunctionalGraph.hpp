@@ -1,4 +1,4 @@
-class FunctionalGraph {
+﻿class FunctionalGraph {
 public:
 	FunctionalGraph(int size) :size(size) {
 		edge.resize(size);

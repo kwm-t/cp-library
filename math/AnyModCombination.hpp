@@ -1,4 +1,4 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include <vector>
 #include <numeric>
 // referece: https://37zigen.com/linear-sieve/
@@ -36,10 +36,10 @@ private:
 };
 
 template <typename mint>
-// nCk mod m ‚ğ‘S‚Ä‚Ì k = 0, ..., n ‚É‘Î‚µ‚Ä‹‚ß‚éDm ‚Í‘f”‚Å‚È‚­‚Ä‚à‚æ‚¢D
+// nCk mod m ã‚’å…¨ã¦ã® k = 0, ..., n ã«å¯¾ã—ã¦æ±‚ã‚ã‚‹ï¼m ã¯ç´ æ•°ã§ãªãã¦ã‚‚ã‚ˆã„ï¼
 class ArbitraryModBinomialCoefficients {
 public:
-	// nCk mod m ‚ğ‹‚ß‚é
+	// nCk mod m ã‚’æ±‚ã‚ã‚‹
 	ArbitraryModBinomialCoefficients(unsigned int N) :
 		_N(N), _M(mint::mod()), _sieve(LinearSieve(N)), _binom(std::vector<mint>(N + 1)) {
 		solve();
@@ -49,11 +49,11 @@ public:
 		if (k > _N)return 0;
 		return _binom[k];
 	}
-	// return nC0, nC1, ..., nCn mod m ‚ğŠi”[‚µ‚½ vector
+	// return nC0, nC1, ..., nCn mod m ã‚’æ ¼ç´ã—ãŸ vector
 	const std::vector<mint>& get_coeffs() const {
 		return _binom;
 	}
-	// •›Y•¨‚Æ‚µ‚Ä‚ÌüŒ`â¿
+	// å‰¯ç”£ç‰©ã¨ã—ã¦ã®ç·šå½¢ç¯©
 	const LinearSieve& get_sieve() const {
 		return _sieve;
 	}

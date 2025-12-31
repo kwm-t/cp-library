@@ -1,4 +1,4 @@
-template <typename Data, Data(*e)(), Data(*addEdge)(const Data&, int)
+﻿template <typename Data, Data(*e)(), Data(*addEdge)(const Data&, int)
 	, Data(*addVertex)(const Data&, int), Data(*merge)(const Data&, const Data&)>
 	class ReRooting {
 	public:

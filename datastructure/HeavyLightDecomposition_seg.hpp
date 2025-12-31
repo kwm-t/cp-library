@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 using  S = long long;
 S op(S a, S b) { return a + b; }
 S e() { return 0; }

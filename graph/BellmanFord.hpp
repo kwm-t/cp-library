@@ -1,4 +1,4 @@
-#include <vector>
+ï»¿#include <vector>
 const long long LINF = 1e18;
 
 template<typename T>
@@ -11,15 +11,15 @@ public:
 	std::vector<T> solve(int st = 0) {
 		std::vector<T>d(n, INF);
 		d[st] = 0;
-		// ’ÊíXVƒp[ƒg
-		// n-1‰ñÅ’ZŒo˜H–â‘è‚ğ‰ğ‚­‚Æ•‰•Â˜H‚ª‚È‚¢ê‡‚ÌXV‚ªI‚í‚é
+		// é€šå¸¸æ›´æ–°ãƒ‘ãƒ¼ãƒˆ
+		// n-1å›æœ€çŸ­çµŒè·¯å•é¡Œã‚’è§£ãã¨è² é–‰è·¯ãŒãªã„å ´åˆã®æ›´æ–°ãŒçµ‚ã‚ã‚‹
 		for (int i = 0; i < n - 1; ++i) {
 			for (int j = 0; j < (int)g.size(); ++j) {
 				if (INF == d[g[j].from]) continue;
 				if (d[g[j].from] + g[j].cost < d[g[j].to]) d[g[j].to] = d[g[j].from] + g[j].cost;
 			}
 		}
-		// •Â˜H‚Ì“`’Bƒp[ƒg
+		// é–‰è·¯ã®ä¼é”ãƒ‘ãƒ¼ãƒˆ
 		std::vector<bool>update(n);
 		for (int i = 0; i < n; ++i) {
 			for (int j = 0; j < g.size(); ++j) {
@@ -28,7 +28,7 @@ public:
 				if (update[g[j].from]) update[g[j].to] = true;
 			}
 		}
-		// •‰‚Ì•Â˜H‚ª‘¶İ‚·‚é‚È‚çXV
+		// è² ã®é–‰è·¯ãŒå­˜åœ¨ã™ã‚‹ãªã‚‰æ›´æ–°
 		for (int i = 0; i < n; ++i) {
 			if (update[i])d[i] = -INF;
 			if (longestRoot) d[i] *= -1;

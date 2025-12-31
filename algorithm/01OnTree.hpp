@@ -1,4 +1,4 @@
-// https://atcoder.jp/contests/abc376/submissions/60434950
+﻿// https://atcoder.jp/contests/abc376/submissions/60434950
 // https://atcoder.jp/contests/agc023/submissions/60434772
 template <class F, class G>
 std::vector<int> optimalTopologicalTree_Order(std::vector<int>parent, const F merge, G compare) {

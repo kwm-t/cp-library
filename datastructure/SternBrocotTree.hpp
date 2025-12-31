@@ -1,4 +1,4 @@
-using int128 = __int128;// 提出用
+﻿using int128 = __int128;// 提出用
 //using int128 = long long;
 template<class T>
 class SternBrocotTree {

@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 struct UnionFind_Undoable {
 	int n;
 	std::vector<int>par_or_size;

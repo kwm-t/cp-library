@@ -1,20 +1,20 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 #include <atcoder/all>
 namespace beam_search {
 
-	// ƒƒ‚ƒŠ‚ÌÄ—˜—p‚ğs‚¢‚Â‚ÂW‡‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+	// ãƒ¡ãƒ¢ãƒªã®å†åˆ©ç”¨ã‚’è¡Œã„ã¤ã¤é›†åˆã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
 	template<class T>
 	class ObjectPool {
 	public:
-		// ”z—ñ‚Æ“¯‚¶‚æ‚¤‚ÉƒAƒNƒZƒX‚Å‚«‚é
+		// é…åˆ—ã¨åŒã˜ã‚ˆã†ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹
 		T& operator[](int i) {
 			return data_[i];
 		}
-		// ”z—ñ‚Ì’·‚³‚ğ•ÏX‚¹‚¸‚Éƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+		// é…åˆ—ã®é•·ã•ã‚’å¤‰æ›´ã›ãšã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 		void reserve(size_t capacity) {
 			data_.reserve(capacity);
 		}
-		// —v‘f‚ğ’Ç‰Á‚µA’Ç‰Á‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚·
+		// è¦ç´ ã‚’è¿½åŠ ã—ã€è¿½åŠ ã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™
 		int push(const T& x) {
 			if (garbage_.empty()) {
 				data_.push_back(x);
@@ -27,12 +27,12 @@ namespace beam_search {
 				return i;
 			}
 		}
-		// —v‘f‚ğiŒ©‚©‚¯ãjíœ‚·‚é
+		// è¦ç´ ã‚’ï¼ˆè¦‹ã‹ã‘ä¸Šï¼‰å‰Šé™¤ã™ã‚‹
 		void pop(int i) {
 			garbage_.push(i);
 		}
-		// g—p‚µ‚½Å‘å‚ÌƒCƒ“ƒfƒbƒNƒX(+1)‚ğ“¾‚é
-		// ‚±‚Ì’l‚æ‚è­‚µ‘å‚«‚¢’l‚ğreserve‚·‚é‚±‚Æ‚Åƒƒ‚ƒŠ‚ÌÄŠ„‚è“–‚Ä‚ª‚È‚­‚È‚é
+		// ä½¿ç”¨ã—ãŸæœ€å¤§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(+1)ã‚’å¾—ã‚‹
+		// ã“ã®å€¤ã‚ˆã‚Šå°‘ã—å¤§ãã„å€¤ã‚’reserveã™ã‚‹ã“ã¨ã§ãƒ¡ãƒ¢ãƒªã®å†å‰²ã‚Šå½“ã¦ãŒãªããªã‚‹
 		size_t size() {
 			return data_.size();
 		}
@@ -41,11 +41,11 @@ namespace beam_search {
 		std::stack<int> garbage_;
 	};
 
-	// ˜A‘z”z—ñ
-	// Key‚ÉƒnƒbƒVƒ…ŠÖ”‚ğ“K—p‚µ‚È‚¢
+	// é€£æƒ³é…åˆ—
+	// Keyã«ãƒãƒƒã‚·ãƒ¥é–¢æ•°ã‚’é©ç”¨ã—ãªã„
 	// open addressing with linear probing
-	// unordered_map‚æ‚è‚à‘¬‚¢
-	// n‚ÍŠi”[‚·‚é—v‘f”‚æ‚è‚à4~16”{‚Ù‚Ç‘å‚«‚­‚·‚é
+	// unordered_mapã‚ˆã‚Šã‚‚é€Ÿã„
+	// nã¯æ ¼ç´ã™ã‚‹è¦ç´ æ•°ã‚ˆã‚Šã‚‚4~16å€ã»ã©å¤§ããã™ã‚‹
 	template <class Key, class T>
 	struct HashMap {
 	public:
@@ -54,8 +54,8 @@ namespace beam_search {
 			valid_.resize(n_, false);
 			data_.resize(n_);
 		}
-		// –ß‚è’l
-		// - ‘¶İ‚·‚é‚È‚çtrueA‘¶İ‚µ‚È‚¢‚È‚çfalse
+		// æˆ»ã‚Šå€¤
+		// - å­˜åœ¨ã™ã‚‹ãªã‚‰trueã€å­˜åœ¨ã—ãªã„ãªã‚‰false
 		// - index
 		std::pair<bool, int> get_index(Key key) const {
 			Key i = key % n_;
@@ -69,12 +69,12 @@ namespace beam_search {
 			}
 			return { false, i };
 		}
-		// w’è‚µ‚½index‚Ékey‚Ævalue‚ğŠi”[‚·‚é
+		// æŒ‡å®šã—ãŸindexã«keyã¨valueã‚’æ ¼ç´ã™ã‚‹
 		void set(int i, Key key, T value) {
 			valid_[i] = true;
 			data_[i] = { key, value };
 		}
-		// w’è‚µ‚½index‚Ìvalue‚ğ•Ô‚·
+		// æŒ‡å®šã—ãŸindexã®valueã‚’è¿”ã™
 		T get(int i) const {
 			assert(valid_[i]);
 			return data_[i].second;
@@ -90,8 +90,8 @@ namespace beam_search {
 
 	using Hash = uint32_t; // TODO
 
-	// ó‘Ô‘JˆÚ‚ğs‚¤‚½‚ß‚É•K—v‚Èî•ñ
-	// ƒƒ‚ƒŠg—p—Ê‚ğ‚Å‚«‚é‚¾‚¯¬‚³‚­‚µ‚Ä‚­‚¾‚³‚¢
+	// çŠ¶æ…‹é·ç§»ã‚’è¡Œã†ãŸã‚ã«å¿…è¦ãªæƒ…å ±
+	// ãƒ¡ãƒ¢ãƒªä½¿ç”¨é‡ã‚’ã§ãã‚‹ã ã‘å°ã•ãã—ã¦ãã ã•ã„
 	struct Action {
 		// TODO
 
@@ -102,8 +102,8 @@ namespace beam_search {
 
 	using Cost = int; // TODO
 
-	// ó‘Ô‚ÌƒRƒXƒg‚ğ•]‰¿‚·‚é‚½‚ß‚Ì\‘¢‘Ì
-	// ƒƒ‚ƒŠg—p—Ê‚ğ‚Å‚«‚é‚¾‚¯¬‚³‚­‚µ‚Ä‚­‚¾‚³‚¢
+	// çŠ¶æ…‹ã®ã‚³ã‚¹ãƒˆã‚’è©•ä¾¡ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
+	// ãƒ¡ãƒ¢ãƒªä½¿ç”¨é‡ã‚’ã§ãã‚‹ã ã‘å°ã•ãã—ã¦ãã ã•ã„
 	struct Evaluator {
 		// TODO
 
@@ -111,14 +111,14 @@ namespace beam_search {
 			// TODO
 		}
 
-		// ’á‚¢‚Ù‚Ç‚æ‚¢
+		// ä½ã„ã»ã©ã‚ˆã„
 		Cost evaluate() const {
 			// TODO
 		}
 		bool operator<(const Evaluator& other) const { return evaluate() < other.evaluate(); }
 	};
 
-	// “WŠJ‚·‚éƒm[ƒh‚ÌŒó•â‚ğ•\‚·\‘¢‘Ì
+	// å±•é–‹ã™ã‚‹ãƒãƒ¼ãƒ‰ã®å€™è£œã‚’è¡¨ã™æ§‹é€ ä½“
 	struct Candidate {
 		Action action;
 		Evaluator evaluator;
@@ -134,7 +134,7 @@ namespace beam_search {
 			cost(cost) {}
 	};
 
-	// ƒr[ƒ€ƒT[ƒ`‚Ìİ’è
+	// ãƒ“ãƒ¼ãƒ ã‚µãƒ¼ãƒã®è¨­å®š
 	struct Config {
 		int max_turn;
 		size_t beam_width;
@@ -142,7 +142,7 @@ namespace beam_search {
 		uint32_t hash_map_capacity;
 	};
 
-	// íœ‰Â”\‚È—Dæ“x•t‚«ƒLƒ…[
+	// å‰Šé™¤å¯èƒ½ãªå„ªå…ˆåº¦ä»˜ãã‚­ãƒ¥ãƒ¼
 	std::pair<Cost, int> op(std::pair<Cost, int> a, std::pair<Cost, int> b) {
 		if (a.first >= b.first) return a;
 		else return b;
@@ -150,9 +150,9 @@ namespace beam_search {
 	std::pair<Cost, int> e() { return std::make_pair(std::numeric_limits<Cost>::min(), -1); }
 	using MaxSegtree = atcoder::segtree <std::pair<Cost, int>, op, e>;
 
-	// ƒm[ƒh‚ÌŒó•â‚©‚çÀÛ‚É’Ç‰Á‚·‚é‚à‚Ì‚ğ‘I‚ÔƒNƒ‰ƒX
-	// ƒr[ƒ€•‚ÌŒÂ”‚¾‚¯A•]‰¿‚ª‚æ‚¢‚à‚Ì‚ğ‘I‚Ô
-	// ƒnƒbƒVƒ…’l‚ªˆê’v‚µ‚½‚à‚Ì‚É‚Â‚¢‚Ä‚ÍA•]‰¿‚ª‚æ‚¢‚Ù‚¤‚Ì‚İ‚ğc‚·
+	// ãƒãƒ¼ãƒ‰ã®å€™è£œã‹ã‚‰å®Ÿéš›ã«è¿½åŠ ã™ã‚‹ã‚‚ã®ã‚’é¸ã¶ã‚¯ãƒ©ã‚¹
+	// ãƒ“ãƒ¼ãƒ å¹…ã®å€‹æ•°ã ã‘ã€è©•ä¾¡ãŒã‚ˆã„ã‚‚ã®ã‚’é¸ã¶
+	// ãƒãƒƒã‚·ãƒ¥å€¤ãŒä¸€è‡´ã—ãŸã‚‚ã®ã«ã¤ã„ã¦ã¯ã€è©•ä¾¡ãŒã‚ˆã„ã»ã†ã®ã¿ã‚’æ®‹ã™
 	class Selector {
 	public:
 		explicit Selector(const Config& config) :
@@ -164,9 +164,9 @@ namespace beam_search {
 			st_original_.resize(beam_width);
 		}
 
-		// Œó•â‚ğ’Ç‰Á‚·‚é
-		// ƒ^[ƒ“”Å¬‰»Œ^‚Ì–â‘è‚ÅAcandidate‚É‚æ‚Á‚ÄÀs‰Â”\‰ğ‚ª“¾‚ç‚ê‚éê‡‚É‚Ì‚İ finished = true ‚Æ‚·‚é
-		// ƒr[ƒ€••ª‚ÌŒó•â‚ğCandidate‚ğ’Ç‰Á‚µ‚½‚Æ‚«‚Ésegment tree‚ğ\’z‚·‚é
+		// å€™è£œã‚’è¿½åŠ ã™ã‚‹
+		// ã‚¿ãƒ¼ãƒ³æ•°æœ€å°åŒ–å‹ã®å•é¡Œã§ã€candidateã«ã‚ˆã£ã¦å®Ÿè¡Œå¯èƒ½è§£ãŒå¾—ã‚‰ã‚Œã‚‹å ´åˆã«ã®ã¿ finished = true ã¨ã™ã‚‹
+		// ãƒ“ãƒ¼ãƒ å¹…åˆ†ã®å€™è£œã‚’Candidateã‚’è¿½åŠ ã—ãŸã¨ãã«segment treeã‚’æ§‹ç¯‰ã™ã‚‹
 		void push(Action action, const Evaluator& evaluator, Hash hash, int parent, bool finished) {
 			Cost cost = evaluator.evaluate();
 			if (finished) {
@@ -174,7 +174,7 @@ namespace beam_search {
 				return;
 			}
 			if (full_ && cost >= st_.all_prod().first) {
-				// •Û‚µ‚Ä‚¢‚é‚Ç‚ÌŒó•â‚æ‚è‚àƒRƒXƒg‚ª¬‚³‚­‚È‚¢‚Æ‚«
+				// ä¿æŒã—ã¦ã„ã‚‹ã©ã®å€™è£œã‚ˆã‚Šã‚‚ã‚³ã‚¹ãƒˆãŒå°ã•ããªã„ã¨ã
 				return;
 			}
 			auto[valid, i] = hash_to_index_.get_index(hash);
@@ -182,9 +182,9 @@ namespace beam_search {
 			if (valid) {
 				int j = hash_to_index_.get(i);
 				if (hash == candidates_[j].hash) {
-					// ƒnƒbƒVƒ…’l‚ª“™‚µ‚¢‚à‚Ì‚ª‘¶İ‚µ‚Ä‚¢‚é‚Æ‚«
+					// ãƒãƒƒã‚·ãƒ¥å€¤ãŒç­‰ã—ã„ã‚‚ã®ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã¨ã
 					if (cost < candidates_[j].cost) {
-						// XV‚·‚éê‡
+						// æ›´æ–°ã™ã‚‹å ´åˆ
 						candidates_[j] = Candidate(action, evaluator, hash, parent, cost);
 						if (full_) {
 							st_.set(j, { cost, j });
@@ -194,35 +194,35 @@ namespace beam_search {
 				}
 			}
 			if (full_) {
-				// segment tree‚ª\’z‚³‚ê‚Ä‚¢‚éê‡
+				// segment treeãŒæ§‹ç¯‰ã•ã‚Œã¦ã„ã‚‹å ´åˆ
 				int j = st_.all_prod().second;
 				hash_to_index_.set(i, hash, j);
 				candidates_[j] = Candidate(action, evaluator, hash, parent, cost);
 				st_.set(j, { cost, j });
 			}
 			else {
-				// segment tree‚ª\’z‚³‚ê‚Ä‚¢‚È‚¢ê‡
+				// segment treeãŒæ§‹ç¯‰ã•ã‚Œã¦ã„ãªã„å ´åˆ
 				hash_to_index_.set(i, hash, candidates_.size());
 				candidates_.emplace_back(Candidate(action, evaluator, hash, parent, cost));
 
 				if (candidates_.size() == beam_width) {
-					// •Û‚µ‚Ä‚¢‚éŒó•â‚ªƒr[ƒ€••ª‚É‚È‚Á‚½‚Æ‚«
+					// ä¿æŒã—ã¦ã„ã‚‹å€™è£œãŒãƒ“ãƒ¼ãƒ å¹…åˆ†ã«ãªã£ãŸã¨ã
 					construct_segment_tree();
 				}
 			}
 		}
 
-		// ‘I‚ñ‚¾Œó•â‚ğ•Ô‚·
+		// é¸ã‚“ã å€™è£œã‚’è¿”ã™
 		const std::vector<Candidate>& select() const {
 			return candidates_;
 		}
 
-		// Às‰Â”\‰ğ‚ªŒ©‚Â‚©‚Á‚½‚©
+		// å®Ÿè¡Œå¯èƒ½è§£ãŒè¦‹ã¤ã‹ã£ãŸã‹
 		bool have_finished() const {
 			return !finished_candidates_.empty();
 		}
 
-		// Às‰Â”\‰ğ‚É“’B‚·‚éuŒó•âv‚ğ•Ô‚·
+		// å®Ÿè¡Œå¯èƒ½è§£ã«åˆ°é”ã™ã‚‹ã€Œå€™è£œã€ã‚’è¿”ã™
 		std::vector<Candidate> get_finished_candidates() const {
 			return finished_candidates_;
 		}
@@ -251,29 +251,29 @@ namespace beam_search {
 		}
 	};
 
-	// [‚³—Dæ’Tõ‚É‰ˆ‚Á‚ÄXV‚·‚éî•ñ‚ğ‚Ü‚Æ‚ß‚½ƒNƒ‰ƒX
+	// æ·±ã•å„ªå…ˆæ¢ç´¢ã«æ²¿ã£ã¦æ›´æ–°ã™ã‚‹æƒ…å ±ã‚’ã¾ã¨ã‚ãŸã‚¯ãƒ©ã‚¹
 	class State {
 	public:
 		explicit State(/* const Input& input */) {
 			// TODO
 		}
 
-		// Ÿ‚Ìó‘ÔŒó•â‚ğ‘S‚Äselector‚É’Ç‰Á‚·‚é
-		// ˆø”
-		//   evaluator : ¡‚Ì•]‰¿Ší
-		//   hash      : ¡‚ÌƒnƒbƒVƒ…’l
-		//   parent    : ¡‚Ìƒm[ƒhIDiŸ‚Ìƒm[ƒh‚É‚Æ‚Á‚Äe‚Æ‚È‚éj
+		// æ¬¡ã®çŠ¶æ…‹å€™è£œã‚’å…¨ã¦selectorã«è¿½åŠ ã™ã‚‹
+		// å¼•æ•°
+		//   evaluator : ä»Šã®è©•ä¾¡å™¨
+		//   hash      : ä»Šã®ãƒãƒƒã‚·ãƒ¥å€¤
+		//   parent    : ä»Šã®ãƒãƒ¼ãƒ‰IDï¼ˆæ¬¡ã®ãƒãƒ¼ãƒ‰ã«ã¨ã£ã¦è¦ªã¨ãªã‚‹ï¼‰
 		void expand(const Evaluator& evaluator, Hash hash, int parent, Selector& selector) {
 			// TODO
 		}
 
-		// action‚ğÀs‚µ‚ÄŸ‚Ìó‘Ô‚É‘JˆÚ‚·‚é
+		// actionã‚’å®Ÿè¡Œã—ã¦æ¬¡ã®çŠ¶æ…‹ã«é·ç§»ã™ã‚‹
 		void move_forward(Action action) {
 			// TODO
 		}
 
-		// action‚ğÀs‚·‚é‘O‚Ìó‘Ô‚É‘JˆÚ‚·‚é
-		// ¡‚Ìó‘Ô‚ÍAe‚©‚çaction‚ğÀs‚µ‚Ä‘JˆÚ‚µ‚½ó‘Ô‚Å‚ ‚é
+		// actionã‚’å®Ÿè¡Œã™ã‚‹å‰ã®çŠ¶æ…‹ã«é·ç§»ã™ã‚‹
+		// ä»Šã®çŠ¶æ…‹ã¯ã€è¦ªã‹ã‚‰actionã‚’å®Ÿè¡Œã—ã¦é·ç§»ã—ãŸçŠ¶æ…‹ã§ã‚ã‚‹
 		void move_backward(Action action) {
 			// TODO
 		}
@@ -282,14 +282,14 @@ namespace beam_search {
 		// TODO
 	};
 
-	// ’Tõ–Øi“ñd˜A½–Øj‚Ìƒm[ƒh
+	// æ¢ç´¢æœ¨ï¼ˆäºŒé‡é€£é–æœ¨ï¼‰ã®ãƒãƒ¼ãƒ‰
 	struct Node {
 		Action action;
 		Evaluator evaluator;
 		Hash hash;
 		int parent, child, left, right;
 
-		// ª‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// æ ¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		Node(Action action, const Evaluator& evaluator, Hash hash) :
 			action(action),
 			evaluator(evaluator),
@@ -299,7 +299,7 @@ namespace beam_search {
 			left(-1),
 			right(-1) {}
 
-		// ’Êí‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// é€šå¸¸ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		Node(const Candidate& candidate, int right) :
 			action(candidate.action),
 			evaluator(candidate.evaluator),
@@ -310,7 +310,7 @@ namespace beam_search {
 			right(right) {}
 	};
 
-	// “ñd˜A½–Ø‚É‘Î‚·‚é‘€ì‚ğ‚Ü‚Æ‚ß‚½ƒNƒ‰ƒX
+	// äºŒé‡é€£é–æœ¨ã«å¯¾ã™ã‚‹æ“ä½œã‚’ã¾ã¨ã‚ãŸã‚¯ãƒ©ã‚¹
 	class Tree {
 	public:
 		explicit Tree(const State& state, size_t nodes_capacity, const Node& root) :
@@ -320,7 +320,7 @@ namespace beam_search {
 			root_ = nodes_.push(root);
 		}
 
-		// ó‘Ô‚ğXV‚µ‚È‚ª‚ç[‚³—Dæ’Tõ‚ğs‚¢AŸ‚Ìƒm[ƒh‚ÌŒó•â‚ğ‘S‚Äselector‚É’Ç‰Á‚·‚é
+		// çŠ¶æ…‹ã‚’æ›´æ–°ã—ãªãŒã‚‰æ·±ã•å„ªå…ˆæ¢ç´¢ã‚’è¡Œã„ã€æ¬¡ã®ãƒãƒ¼ãƒ‰ã®å€™è£œã‚’å…¨ã¦selectorã«è¿½åŠ ã™ã‚‹
 		void dfs(Selector& selector) {
 			update_root();
 
@@ -336,7 +336,7 @@ namespace beam_search {
 			}
 		}
 
-		// ª‚©‚çƒm[ƒhv‚Ü‚Å‚ÌƒpƒX‚ğæ“¾‚·‚é
+		// æ ¹ã‹ã‚‰ãƒãƒ¼ãƒ‰vã¾ã§ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 		std::vector<Action> get_path(int v) {
 			// cerr << nodes_.size() << endl;
 
@@ -349,7 +349,7 @@ namespace beam_search {
 			return path;
 		}
 
-		// V‚µ‚¢ƒm[ƒh‚ğ’Ç‰Á‚·‚é
+		// æ–°ã—ã„ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹
 		int add_leaf(const Candidate& candidate) {
 			int parent = candidate.parent;
 			int sibling = nodes_[parent].child;
@@ -363,14 +363,14 @@ namespace beam_search {
 			return v;
 		}
 
-		// ƒm[ƒhv‚Éq‚ª‚¢‚È‚©‚Á‚½ê‡Av‚Æ•s—v‚Èæ‘c‚ğíœ‚·‚é
+		// ãƒãƒ¼ãƒ‰vã«å­ãŒã„ãªã‹ã£ãŸå ´åˆã€vã¨ä¸è¦ãªå…ˆç¥–ã‚’å‰Šé™¤ã™ã‚‹
 		void remove_if_leaf(int v) {
 			if (nodes_[v].child == -1) {
 				remove_leaf(v);
 			}
 		}
 
-		// Å‚à•]‰¿‚ª‚æ‚¢ƒm[ƒh‚ğ•Ô‚·
+		// æœ€ã‚‚è©•ä¾¡ãŒã‚ˆã„ãƒãƒ¼ãƒ‰ã‚’è¿”ã™
 		int get_best_leaf(const std::vector<int>& last_nodes) {
 			assert(!last_nodes.empty());
 			int ret = last_nodes[0];
@@ -385,7 +385,7 @@ namespace beam_search {
 		ObjectPool<Node> nodes_;
 		int root_;
 
-		// ª‚©‚çˆê–{“¹‚Ì•”•ª‚Í‰•œ‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+		// æ ¹ã‹ã‚‰ä¸€æœ¬é“ã®éƒ¨åˆ†ã¯å¾€å¾©ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 		void update_root() {
 			int child = nodes_[root_].child;
 			while (child != -1 && nodes_[child].right == -1) {
@@ -395,7 +395,7 @@ namespace beam_search {
 			}
 		}
 
-		// ƒm[ƒhv‚Ìq‘·‚ÅAÅ‚à¶‚É‚ ‚é—t‚ÉˆÚ“®‚·‚é
+		// ãƒãƒ¼ãƒ‰vã®å­å­«ã§ã€æœ€ã‚‚å·¦ã«ã‚ã‚‹è‘‰ã«ç§»å‹•ã™ã‚‹
 		int move_to_leaf(int v) {
 			int child = nodes_[v].child;
 			while (child != -1) {
@@ -406,7 +406,7 @@ namespace beam_search {
 			return v;
 		}
 
-		// ƒm[ƒhv‚Ìæ‘c‚ÅA‰E‚Ö‚Ì•ªŠò‚ª‚ ‚é‚Æ‚±‚ë‚Ü‚ÅˆÚ“®‚·‚é
+		// ãƒãƒ¼ãƒ‰vã®å…ˆç¥–ã§ã€å³ã¸ã®åˆ†å²ãŒã‚ã‚‹ã¨ã“ã‚ã¾ã§ç§»å‹•ã™ã‚‹
 		int move_to_ancestor(int v) {
 			while (v != root_ && nodes_[v].right == -1) {
 				state_.move_backward(nodes_[v].action);
@@ -415,7 +415,7 @@ namespace beam_search {
 			return v;
 		}
 
-		// ƒm[ƒhv‚Ì‰E‚Ìƒm[ƒh‚ÉˆÚ“®‚·‚é
+		// ãƒãƒ¼ãƒ‰vã®å³ã®ãƒãƒ¼ãƒ‰ã«ç§»å‹•ã™ã‚‹
 		int move_to_right(int v) {
 			state_.move_backward(nodes_[v].action);
 			v = nodes_[v].right;
@@ -423,7 +423,7 @@ namespace beam_search {
 			return v;
 		}
 
-		// •s—v‚É‚È‚Á‚½—t‚ğÄ‹A“I‚Éíœ‚·‚é
+		// ä¸è¦ã«ãªã£ãŸè‘‰ã‚’å†å¸°çš„ã«å‰Šé™¤ã™ã‚‹
 		void remove_leaf(int v) {
 			while (true) {
 				int left = nodes_[v].left;
@@ -455,53 +455,53 @@ namespace beam_search {
 		}
 	};
 
-	// ƒr[ƒ€ƒT[ƒ`‚ğs‚¤ŠÖ”
+	// ãƒ“ãƒ¼ãƒ ã‚µãƒ¼ãƒã‚’è¡Œã†é–¢æ•°
 	std::vector<Action> beam_search(const Config& config, State state, Node root) {
 		Tree tree(state, config.nodes_capacity, root);
 
-		// ’Tõ’†‚Ìƒm[ƒhW‡
+		// æ¢ç´¢ä¸­ã®ãƒãƒ¼ãƒ‰é›†åˆ
 		std::vector<int> curr_nodes;
 		curr_nodes.reserve(config.beam_width);
-		// –{—ˆ‚Í curr_nodes = {state.root_} ‚Æ‚·‚×‚«‚¾‚ª, È—ª‚µ‚Ä‚à–â‘è‚È‚¢
+		// æœ¬æ¥ã¯ curr_nodes = {state.root_} ã¨ã™ã¹ãã ãŒ, çœç•¥ã—ã¦ã‚‚å•é¡Œãªã„
 
-		// V‚µ‚¢ƒm[ƒh‚ÌW‡
+		// æ–°ã—ã„ãƒãƒ¼ãƒ‰ã®é›†åˆ
 		std::vector<int> next_nodes;
 		next_nodes.reserve(config.beam_width);
 
-		// V‚µ‚¢ƒm[ƒhŒó•â‚ÌW‡
+		// æ–°ã—ã„ãƒãƒ¼ãƒ‰å€™è£œã®é›†åˆ
 		Selector selector(config);
 
 		for (int turn = 0; turn < config.max_turn; ++turn) {
-			// Euler Tour ‚Å selector ‚ÉŒó•â‚ğ’Ç‰Á‚·‚é
+			// Euler Tour ã§ selector ã«å€™è£œã‚’è¿½åŠ ã™ã‚‹
 			tree.dfs(selector);
 
 			if (selector.have_finished()) {
-				// ƒ^[ƒ“”Å¬‰»Œ^‚Ì–â‘è‚ÅÀs‰Â”\‰ğ‚ªŒ©‚Â‚©‚Á‚½‚Æ‚«
+				// ã‚¿ãƒ¼ãƒ³æ•°æœ€å°åŒ–å‹ã®å•é¡Œã§å®Ÿè¡Œå¯èƒ½è§£ãŒè¦‹ã¤ã‹ã£ãŸã¨ã
 				Candidate candidate = selector.get_finished_candidates()[0];
 				std::vector<Action> ret = tree.get_path(candidate.parent);
 				ret.push_back(candidate.action);
 				return ret;
 			}
-			// V‚µ‚¢ƒm[ƒh‚ğ’Ç‰Á‚·‚é
+			// æ–°ã—ã„ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹
 			for (const Candidate& candidate : selector.select()) {
 				next_nodes.push_back(tree.add_leaf(candidate));
 			}
 			if (next_nodes.empty()) {
-				// V‚µ‚¢ƒm[ƒh‚ª‚È‚¢‚Æ‚«
+				// æ–°ã—ã„ãƒãƒ¼ãƒ‰ãŒãªã„ã¨ã
 				std::cerr << "ERROR: Failed to find any valid solution" << std::endl;
 				return {};
 			}
-			// •s—v‚Èƒm[ƒh‚ğÄ‹A“I‚Éíœ‚·‚é
+			// ä¸è¦ãªãƒãƒ¼ãƒ‰ã‚’å†å¸°çš„ã«å‰Šé™¤ã™ã‚‹
 			for (int v : curr_nodes) {
 				tree.remove_if_leaf(v);
 			}
-			// ƒ_ƒuƒ‹ƒoƒbƒtƒ@ƒŠƒ“ƒO‚Å”z—ñ‚ğg‚¢‰ñ‚·
+			// ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã§é…åˆ—ã‚’ä½¿ã„å›ã™
 			swap(curr_nodes, next_nodes);
 			next_nodes.clear();
 
 			selector.clear();
 		}
-		// ƒ^[ƒ“”ŒÅ’èŒ^‚Ì–â‘è‚Å‘Sƒ^[ƒ“‚ªI—¹‚µ‚½‚Æ‚«
+		// ã‚¿ãƒ¼ãƒ³æ•°å›ºå®šå‹ã®å•é¡Œã§å…¨ã‚¿ãƒ¼ãƒ³ãŒçµ‚äº†ã—ãŸã¨ã
 		int best_leaf = tree.get_best_leaf(curr_nodes);
 		return tree.get_path(best_leaf);
 	}

@@ -1,4 +1,4 @@
-#include<algorithm>
+﻿#include<algorithm>
 #include<complex>
 #include<vector>
 namespace geometry {

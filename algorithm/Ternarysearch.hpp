@@ -1,4 +1,4 @@
-// 狭義凸関数でしか使えないことに注意
+﻿// 狭義凸関数でしか使えないことに注意
 template <class T, class U>
 std::pair<T, U> ternarysearch(T l, T r, const std::function<U(T)> &f) {
 	// 下に凸(最小値)

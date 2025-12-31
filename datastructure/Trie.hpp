@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 class Trie {
 private:
 	int kind;

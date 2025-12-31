@@ -1,4 +1,4 @@
-auto dijkstra = [&](const int st)->vector<long long> {
+﻿auto dijkstra = [&](const int st)->vector<long long> {
 	vector<long long>dp(n, LINF);
 	dp[st] = 0;
 	using T = std::pair<long long, int>;

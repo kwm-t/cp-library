@@ -1,4 +1,4 @@
-// https://ei1333.github.io/library/structure/convex-hull-trick/dynamic-li-chao-tree.hpp
+﻿// https://ei1333.github.io/library/structure/convex-hull-trick/dynamic-li-chao-tree.hpp
 // 最小値を求める
 
 /**

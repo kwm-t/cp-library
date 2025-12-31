@@ -1,4 +1,4 @@
-template <class T, T(*op)(T, T), T(*e)()> struct SparseTable {
+﻿template <class T, T(*op)(T, T), T(*e)()> struct SparseTable {
 	int n, LOG;
 	std::vector<std::vector<T>> table;
 	std::vector<int> log_table;

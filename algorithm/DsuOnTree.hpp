@@ -1,4 +1,4 @@
-template<typename G>
+﻿template<typename G>
 class DsuOnTree {
 public:
 	DsuOnTree(G &g, int root = 0)

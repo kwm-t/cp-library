@@ -1,4 +1,4 @@
-#include <deque>
+﻿#include <deque>
 template< typename T, bool isMin >
 struct ConvexHullTrickAddMonotone {
 	//https://ei1333.github.io/luzhiled/snippets/structure/convex-hull-trick-add-monotone.html

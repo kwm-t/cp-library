@@ -1,44 +1,44 @@
-#include <cmath>
+ï»¿#include <cmath>
 #define _USE_MATH_DEFINES
 const double EPS = 1e-10;
 
 struct Vector2D {
-	// •½–ÊƒxƒNƒgƒ‹
+	// å¹³é¢ãƒ™ã‚¯ãƒˆãƒ«
 	double x, y;
 
 	Vector2D(double x, double y) : x(x), y(y) {}
 
-	// ƒxƒNƒgƒ‹‚Ì˜a
+	// ãƒ™ã‚¯ãƒˆãƒ«ã®å’Œ
 	Vector2D operator+(const Vector2D p) { return Vector2D(x + p.x, y + p.y); }
-	// ƒxƒNƒgƒ‹‚Ì·
+	// ãƒ™ã‚¯ãƒˆãƒ«ã®å·®
 	Vector2D operator-(const Vector2D p) { return Vector2D(x - p.x, y - p.y); }
 
-	// ƒxƒNƒgƒ‹‚ÌƒXƒJƒ‰[”{
+	// ãƒ™ã‚¯ãƒˆãƒ«ã®ã‚¹ã‚«ãƒ©ãƒ¼å€
 	Vector2D operator*(const double d) { return Vector2D(d * x, d * y); }
 	Vector2D operator/(const double d) { return Vector2D(x / d, y / d); }
 
-	// ƒxƒNƒgƒ‹‚Ì’·‚³
+	// ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•
 	double norm() { return std::sqrt(x * x + y * y); }
 
-	// ƒxƒNƒgƒ‹‚Ì‰ñ“]
+	// ãƒ™ã‚¯ãƒˆãƒ«ã®å›è»¢
 	Vector2D rotate(double theta) {
 		return Vector2D(x * cos(theta) - y * sin(theta), x * sin(theta) + y * cos(theta));
 	}
 };
 struct Circle {
-	// ’†S
+	// ä¸­å¿ƒ
 	Vector2D center;
-	// ”¼Œa
+	// åŠå¾„
 	double radius;
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	Circle(Vector2D center, double radius) : center(center), radius(radius) {}
-	//ŠÜ‚Ü‚ê‚Ä‚¢‚é‚©
+	//å«ã¾ã‚Œã¦ã„ã‚‹ã‹
 	bool inside(Vector2D v) {
 		double d = (center - v).norm();
 		return d <= radius + EPS;
 	}
 };
-//Œğ“_
+//äº¤ç‚¹
 std::vector<Vector2D> getIntersections(Circle C1, Circle C2) {
 	double d = (C2.center - C1.center).norm();
 	double rc = (C1.radius * C1.radius + d * d - C2.radius * C2.radius) / (2 * d);

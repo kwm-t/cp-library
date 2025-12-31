@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <iostream> 
 template<typename T>
 struct RangeAddArithmeticProgression {// 区間に等差数列をAddする

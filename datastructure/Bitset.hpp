@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include<iostream>
 struct MyBitset {
 	size_t n;

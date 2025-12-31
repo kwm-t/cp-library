@@ -1,12 +1,12 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include <vector>
 #include <queue>
 const long long LINF = 1e18;
 struct SlopeTrick {
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	SlopeTrick() :minf(0), addR(0), addL(0) {}
 
-	//max(0,x-a)‚ğ‰ÁZ‚·‚é
+	//max(0,x-a)ã‚’åŠ ç®—ã™ã‚‹
 	void pushR(long long a) {
 		if (0 == Lque.size()) {
 			Rque.push(a - addR);
@@ -20,7 +20,7 @@ struct SlopeTrick {
 			minf += std::max((long long)0, l0 - a);
 		}
 	}
-	//max(0,a-x)‚ğ‰ÁZ‚·‚é
+	//max(0,a-x)ã‚’åŠ ç®—ã™ã‚‹
 	void pushL(long long a) {
 		if (0 == Rque.size()) {
 			Lque.push(a - addL);
@@ -34,22 +34,22 @@ struct SlopeTrick {
 			minf += std::max((long long)0, a - r0);
 		}
 	}
-	//max(x-a,a-x)‚ğ‰ÁZ‚·‚é
+	//max(x-a,a-x)ã‚’åŠ ç®—ã™ã‚‹
 	void push(long long a) { pushR(a); pushL(a); }
-	//’è”’Ç‰Á
+	//å®šæ•°è¿½åŠ 
 	void addmin(long long a) { minf += a; }
-	//ŒX‚«‚ª0‚Ì‹æŠÔ‚Ì—¼’[
+	//å‚¾ããŒ0ã®åŒºé–“ã®ä¸¡ç«¯
 	std::pair<long long, long long> getZero() {
 		std::pair<long long, long long>p = { -LINF,LINF };
 		if (0 != Lque.size()) { p.first = Lque.top() + addL; }
 		if (0 != Rque.size()) { p.second = Rque.top() + addR; }
 		return p;
 	}
-	//—İÏmin
+	//ç´¯ç©min
 	void CumulativeMin() { Rque = std::priority_queue<long long, std::vector<long long>, std::greater<long long>>(); }
-	//‰E‘¤—İÏmin
+	//å³å´ç´¯ç©min
 	void CumulativeMinR() { Lque = std::priority_queue<long long>(); }
-	//ŠÖ”‚Ì•œŒ³(’x‚¢B”ñ„§H)
+	//é–¢æ•°ã®å¾©å…ƒ(é…ã„ã€‚éæ¨å¥¨ï¼Ÿ)
 	std::vector<long long> Fx(std::vector<long long> &X) {
 		std::vector<long long>vL;
 		std::vector<long long>vR;
@@ -68,12 +68,12 @@ struct SlopeTrick {
 			for (int j = 0; j < (int)vR.size(); ++j) { num += std::max((long long)0, X[i] - vR[j]); }
 			X[i] = num;
 		}
-		//Œ³‚É–ß‚·•K—v‚ª‚ ‚ê‚Î
+		//å…ƒã«æˆ»ã™å¿…è¦ãŒã‚ã‚Œã°
 		//for (int i = 0; i < (int)vL.size(); ++i) { Lque.push(vL[i] - addL); }
 		//for (int i = 0; i < (int)vR.size(); ++i) { Rque.push(vR[i] - addR); }
 		return ret;
 	}
-	//ŠÖ”‚Ì•œŒ³(’x‚¢B”ñ„§H)
+	//é–¢æ•°ã®å¾©å…ƒ(é…ã„ã€‚éæ¨å¥¨ï¼Ÿ)
 	long long FxSimple(long long X) {
 		std::vector<long long>vL;
 		std::vector<long long>vR;
@@ -88,16 +88,16 @@ struct SlopeTrick {
 		}
 		return ret;
 	}
-	//‰E‘¤ƒXƒ‰ƒCƒh
+	//å³å´ã‚¹ãƒ©ã‚¤ãƒ‰
 	void SlideR(long long x) { addR += x; }
-	//¶‘¤ƒXƒ‰ƒCƒh
+	//å·¦å´ã‚¹ãƒ©ã‚¤ãƒ‰
 	void SlideL(long long x) { addL += x; }
-	//‘S‘ÌƒXƒ‰ƒCƒh(–³§ŒÀ)
+	//å…¨ä½“ã‚¹ãƒ©ã‚¤ãƒ‰(ç„¡åˆ¶é™)
 	void Slid(long long x) { SlideL(x), SlideR(x); };
-	//‘S‘ÌƒXƒ‰ƒCƒh(a <= b‚Å‚È‚¢‚Æ‰ó‚ê‚é)
-	//g(x) = min f(y) y¸[x-b,x-a]
+	//å…¨ä½“ã‚¹ãƒ©ã‚¤ãƒ‰(a <= bã§ãªã„ã¨å£Šã‚Œã‚‹)
+	//g(x) = min f(y) yâˆˆ[x-b,x-a]
 	void Slid(long long b, long long a) { SlideL(a), SlideR(b); };
-	//ƒ}[ƒW(ƒ}[ƒWŒ³‚ÍˆÈ~g‚¦‚È‚­‚È‚éB)
+	//ãƒãƒ¼ã‚¸(ãƒãƒ¼ã‚¸å…ƒã¯ä»¥é™ä½¿ãˆãªããªã‚‹ã€‚)
 	void merge(SlopeTrick &st) {
 		if ((Lque.size() + Rque.size()) < (st.Lque.size() + st.Rque.size())) {
 			std::swap(Lque, st.Lque);
@@ -117,9 +117,9 @@ struct SlopeTrick {
 		minf += st.minf;
 	}
 
-	std::priority_queue<long long> Lque;	//¶‘¤(‘å‚«‚¢‡)
-	std::priority_queue<long long, std::vector<long long>, std::greater<long long>> Rque;	//‰E‘¤(¬‚³‚¢‡)
-	long long minf;					//Å¬’l
-	long long addR;					//‰E‘¤W‡‘S‚Ä‚É‚½‚³‚ê‚é”
-	long long addL;					//¶‘¤W‡‘S‚Ä‚É‚½‚³‚ê‚é”
+	std::priority_queue<long long> Lque;	//å·¦å´(å¤§ãã„é †)
+	std::priority_queue<long long, std::vector<long long>, std::greater<long long>> Rque;	//å³å´(å°ã•ã„é †)
+	long long minf;					//æœ€å°å€¤
+	long long addR;					//å³å´é›†åˆå…¨ã¦ã«ãŸã•ã‚Œã‚‹æ•°
+	long long addL;					//å·¦å´é›†åˆå…¨ã¦ã«ãŸã•ã‚Œã‚‹æ•°
 };

@@ -1,22 +1,22 @@
-template <class T>
+ï»¿template <class T>
 class CrossPrefixSum {
-	// Î‚ß—İÏ˜a
+	// æ–œã‚ç´¯ç©å’Œ
 public:
 	CrossPrefixSum(int h, int w, const std::vector<std::vector<T>> &org) :h(h), w(w) {
 		init(org);
 	}
-	// 0:¶ã->1;‰E‰º(ˆø”‚Í•Â‹æŠÔ)
+	// 0:å·¦ä¸Š->1;å³ä¸‹(å¼•æ•°ã¯é–‰åŒºé–“)
 	T getRui0(int i0, int j0, int i1, int j1) {
 		return rui0[i1 + 1][j1 + 1] - rui0[i0][j0];
 	}
-	// 0:‰Eã¨1;¶‰º(ˆø”‚Í•Â‹æŠÔ)
+	// 0:å³ä¸Šâ†’1;å·¦ä¸‹(å¼•æ•°ã¯é–‰åŒºé–“)
 	T getRui1(int i0, int j0, int i1, int j1) {
 		return rui1[i1 + 1][j1] - rui1[i0][j0 + 1];
 	};
 private:
 	int h, w;
-	std::vector<std::vector<T>>rui0;//¶ã¨‰E‰º
-	std::vector<std::vector<T>>rui1;//‰Eã¨¶‰º
+	std::vector<std::vector<T>>rui0;//å·¦ä¸Šâ†’å³ä¸‹
+	std::vector<std::vector<T>>rui1;//å³ä¸Šâ†’å·¦ä¸‹
 	void init(const std::vector<std::vector<T>> &org) {
 		rui0.assign(h + 1, std::vector<T>(w + 1));
 		rui1.assign(h + 1, std::vector<T>(w + 1));

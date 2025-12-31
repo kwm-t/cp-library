@@ -1,4 +1,4 @@
-#include <vector>
+ï»¿#include <vector>
 template <
 	typename Path,
 	typename Point,
@@ -11,27 +11,27 @@ template <
 class StaticTopTree {
 public:
 	StaticTopTree(int n) :size(n), graph(n), vtoi(n, -1) {}
-	// •Ó‚Ì’Ç‰Á
+	// è¾ºã®è¿½åŠ 
 	void add(int a, int b) {
 		graph[a].push_back(b);
 		graph[b].push_back(a);
 	}
-	// –Ø‚Ì‰Šú‰»
+	// æœ¨ã®åˆæœŸåŒ–
 	void init(int root = 0) {
 		rootTree = root;
-		// HL•ª‰ğAq‚©‚çe‚ÉL‚Ñ‚é•Ó‚ğíœ‚·‚é
+		// HLåˆ†è§£ã€å­ã‹ã‚‰è¦ªã«ä¼¸ã³ã‚‹è¾ºã‚’å‰Šé™¤ã™ã‚‹
 		hldDfs(rootTree);
 
-		// –Ø‚Ì¶¬‰ß’ö‚ğ¶¬‚·‚é
+		// æœ¨ã®ç”Ÿæˆéç¨‹ã‚’ç”Ÿæˆã™ã‚‹
 		Result r = doCompress(rootTree);
 		rootNodes = r.nodeIndex;
 
-		// Path/Point‚Ì‰Šú‰»
+		// Path/Pointã®åˆæœŸåŒ–
 		paths.resize(nodes.size());
 		points.resize(nodes.size());
 		initDfs(rootNodes);
 	}
-	// –Ø‚Ì’¸“_‚ÌXV
+	// æœ¨ã®é ‚ç‚¹ã®æ›´æ–°
 	Point update(int v) {
 		int i = vtoi[v];
 		while (-1 != i) {
@@ -58,20 +58,20 @@ private:
 	std::vector<Node>nodes;
 	std::vector<Point> points;
 	std::vector<Path> paths;
-	std::vector<int> vtoi;	//’¸“_”Ô†‚©‚çNode”Ô†‚Ö‚Ì•ÏŠ·
-	int rootTree = 0;			// –Ø‚Ìª‚Ì’¸“_”Ô†
-	int rootNodes = 0;		// ƒm[ƒh‚Ìª‚Ì”Ô†
+	std::vector<int> vtoi;	//é ‚ç‚¹ç•ªå·ã‹ã‚‰Nodeç•ªå·ã¸ã®å¤‰æ›
+	int rootTree = 0;			// æœ¨ã®æ ¹ã®é ‚ç‚¹ç•ªå·
+	int rootNodes = 0;		// ãƒãƒ¼ãƒ‰ã®æ ¹ã®ç•ªå·
 
 	int hldDfs(int v, int p = -1) {
 		int res = 1;
-		// e‚Ö‚Ì•Ó‚ğæ‚èœ‚­
+		// è¦ªã¸ã®è¾ºã‚’å–ã‚Šé™¤ã
 		for (int &u : graph[v]) if (p == u) {
 			std::swap(u, graph[v].back());
 			graph[v].pop_back();
 			break;
 		}
 		int best = 0;
-		// heavy_edge‚ğæ“ª‚É
+		// heavy_edgeã‚’å…ˆé ­ã«
 		for (int &u : graph[v]) {
 			int r = hldDfs(u, v);
 			res += r;
@@ -107,7 +107,7 @@ private:
 
 	Result doCompress(int v) {
 		std::vector<Result> cs{ doAddVertex(v) };
-		// —t‚É‚½‚Ç‚è’…‚­‚Ü‚Ås‚¤
+		// è‘‰ã«ãŸã©ã‚Šç€ãã¾ã§è¡Œã†
 		while (graph[v].size()) cs.emplace_back(doAddVertex(v = graph[v][0]));
 		return marge(Type::COMPRESS, cs);
 	}
@@ -162,7 +162,7 @@ private:
 	}
 };
 /*
-g—p—á
+ä½¿ç”¨ä¾‹
 https://atcoder.jp/contests/abc351/tasks/abc351_g
 //https://github.com/blue-jam/ProconLibrary/blob/4d1c55deed0a1f39862a72b03d4e18519cd2680b/datastructure/statictoptree.hpp
 namespace abc351G {

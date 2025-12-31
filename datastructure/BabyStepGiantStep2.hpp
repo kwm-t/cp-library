@@ -1,4 +1,4 @@
-#include <unordered_map>
+﻿#include <unordered_map>
 struct BabyStepGiantStep {
 private:
 	long long g, p;

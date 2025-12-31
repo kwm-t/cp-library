@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 template<class S, class F, template<class, class> class DataStruct>
 struct HeavyLightDecomposition {
 	HeavyLightDecomposition(std::vector<std::vector<int>> &_g, std::vector<S>&_val) :g(_g), val(_val) {

@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 const int INF = 1e9;
 
 template<typename T>
@@ -23,7 +23,7 @@ struct Bellman_ford {
 				if (d[g[j].from] != INF && d[g[j].to] > d[g[j].from] + g[j].cost) {
 					d[g[j].to] = d[g[j].from] + g[j].cost;
 					if ((i >= n - 1) && (g[j].to == n - 1)) {
-						//�H�̌��o
+						//閉路の検出
 						return -1;
 					}
 				}

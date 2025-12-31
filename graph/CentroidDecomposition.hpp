@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 // 重心分解
 class CentroidDecomposition {
 private:

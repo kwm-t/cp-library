@@ -1,4 +1,4 @@
-template <class T, class F>
+﻿template <class T, class F>
 T binarySearch(T ok, T ng, const F &f) {
 	while (abs(ok - ng) > 1) {
 		T mid = (ok + ng) / 2;

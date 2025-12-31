@@ -1,4 +1,4 @@
-template<typename T, class F>
+﻿template<typename T, class F>
 std::vector<T> mergeSort(std::vector<T> vec, const F &f) {
 	auto dfs = [&](auto && self, int l, int r) {
 		if (l + 1 == r)return;

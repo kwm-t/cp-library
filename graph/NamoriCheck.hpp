@@ -1,4 +1,4 @@
-bool namoriCheck() {
+ï»¿bool namoriCheck() {
 	int n, m; std::cin >> n >> m;
 	dsu uf(n);
 	std::map<int, int>mp;
@@ -9,7 +9,7 @@ bool namoriCheck() {
 		uf.merge(u, v);
 		mp[uf.leader(u)] = x;
 	}
-	// ’PƒƒTƒCƒNƒ‹‚àŠÜ‚Ş
+	// å˜ç´”ã‚µã‚¤ã‚¯ãƒ«ã‚‚å«ã‚€
 	for (int i = 0; i < n; ++i){
 		if (i != uf.leader(i))continue;
 		if (uf.size(i) == mp[i])continue;

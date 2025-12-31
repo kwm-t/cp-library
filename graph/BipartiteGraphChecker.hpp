@@ -1,6 +1,6 @@
-#include <vector>
+ï»¿#include <vector>
 /*
-	“ñ•”ƒOƒ‰ƒt”»’è
+	äºŒéƒ¨ã‚°ãƒ©ãƒ•åˆ¤å®š
 */
 struct BipartiteGraphChecker {
 

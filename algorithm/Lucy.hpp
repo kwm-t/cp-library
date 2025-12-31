@@ -1,4 +1,4 @@
-// n以下の素数の個数を返す O(N^(3/4)/logN)
+﻿// n以下の素数の個数を返す O(N^(3/4)/logN)
 long long lucyDp_count(const long long N) {
 	const long long sqrtN = std::sqrt(N);
 	std::vector<long long>Q;

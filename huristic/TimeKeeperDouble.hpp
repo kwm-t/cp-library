@@ -1,4 +1,4 @@
-class TimeKeeperDouble {
+﻿class TimeKeeperDouble {
 private:
 	std::chrono::high_resolution_clock::time_point start_time_;
 	double time_threshold_;

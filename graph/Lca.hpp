@@ -1,4 +1,4 @@
-struct LCA {
+﻿struct LCA {
 	int n;
 	std::vector<int> idx;
 	struct S {

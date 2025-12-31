@@ -1,4 +1,4 @@
-#include <iostream> 
+ï»¿#include <iostream> 
 #include <vector>
 class UnionFind_Potential {
 public:
@@ -52,8 +52,8 @@ public:
 	}
 private:
 	int n;
-	int cnt;// group‚Ì”
-	std::vector<int> par_or_size;// leader‚Ì‚Æ‚«‚ÍƒTƒCƒY‚ª“ü‚é
+	int cnt;// groupã®æ•°
+	std::vector<int> par_or_size;// leaderã®ã¨ãã¯ã‚µã‚¤ã‚ºãŒå…¥ã‚‹
 	std::vector<long long>weight;
 	std::vector<bool>ng;
 	//std::vector<std::vector<int>>group;

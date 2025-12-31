@@ -1,4 +1,4 @@
-class TimeKeeper {
+﻿class TimeKeeper {
 private:
 	std::chrono::high_resolution_clock::time_point start_time_;
 	long long time_threshold_;

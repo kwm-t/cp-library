@@ -1,4 +1,4 @@
-#include<algorithm>
+﻿#include<algorithm>
 #include<cassert>
 #include<vector>
 template <class S>
@@ -27,7 +27,7 @@ struct Compression : std::vector<S> {
 	}
 };
 
-// �֐�ver
+// 関数ver
 template<typename T>
 std::pair<std::vector<T>, int> compression(std::vector<T> org) {
 	auto copy = org;

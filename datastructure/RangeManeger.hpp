@@ -1,4 +1,4 @@
-template <typename T>
+﻿template <typename T>
 class RangeManeger {
 private:
 	std::set<std::tuple<int, int, T>> st;

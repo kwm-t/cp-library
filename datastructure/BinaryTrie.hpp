@@ -1,4 +1,4 @@
-#include <array>
+﻿#include <array>
 #include <vector>
 struct BinaryTrie {
 	int kind;

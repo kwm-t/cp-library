@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <queue>
 template<typename W>
 // 区間に変を貼るテク

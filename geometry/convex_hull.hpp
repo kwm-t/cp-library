@@ -1,4 +1,4 @@
-#include<algorithm>
+﻿#include<algorithm>
 #include <vector>
 template<class T>
 std::vector<std::pair<T, T>>convex_hull(std::vector<std::pair<T, T>>V) {
