@@ -1,5 +1,8 @@
 ﻿#include <vector>
 #include <atcoder/all>
+using mint = atcoder::modint998244353;
+const int mod = 998244353;
+
 // Π(1+A_i x)のFFT
 std::vector<mint> divideConquerFFT(const std::vector<int> &a, int l, int r) {
 	if (r == l)return { 1 };
@@ -8,7 +11,6 @@ std::vector<mint> divideConquerFFT(const std::vector<int> &a, int l, int r) {
 	return atcoder::convolution(divideConquerFFT(a, l, m), divideConquerFFT(a, m, r));
 }
 
-
 // O(N log(N)^2)
 // p(x)/q(x)の形で返す p,qはともに高々|A|次式
 std::pair<std::vector<mint>, std::vector<mint>> divideConquerFFT(int l, int r,
@@ -16,8 +18,8 @@ std::pair<std::vector<mint>, std::vector<mint>> divideConquerFFT(int l, int r,
 	if (r == l)return e(-1);
 	if (r - l == 1) return e(l);
 	int m = (l + r) / 2;
-	auto[pl, ql] = divideConquerFFT2(l, m, e);
-	auto[pr, qr] = divideConquerFFT2(m, r, e);
+	auto[pl, ql] = divideConquerFFT(l, m, e);
+	auto[pr, qr] = divideConquerFFT(m, r, e);
 	auto p0 = atcoder::convolution(pl, qr);
 	auto p1 = atcoder::convolution(pr, ql);
 	auto q = atcoder::convolution(ql, qr);

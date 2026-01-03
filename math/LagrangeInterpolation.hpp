@@ -1,4 +1,5 @@
-﻿mint lagrange_interpolation(const std::vector<mint>& y, long long x) {
+﻿// ラグランジュ補間
+mint lagrange_interpolation(const std::vector<mint>& y, long long x) {
 	int N = (int)y.size() - 1;
 	if (x <= N) return y[x];
 

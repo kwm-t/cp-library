@@ -1,4 +1,7 @@
-﻿const double pi = acos(-1);
+﻿#include <vector>
+#include <complex>
+
+const double pi = acos(-1);
 
 std::vector<std::complex<double>> fft(const std::vector<std::complex<double>> &a, double inv) {
 	// inv = 1 ならば普通の FFT，inv = -1 ならば IFFT になるようにする．

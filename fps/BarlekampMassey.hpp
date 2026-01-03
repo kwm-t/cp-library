@@ -1,5 +1,6 @@
 ﻿#ifndef BARLEKAMP_MASSEY_HPP
 #define BARLEKAMP_MASSEY_HPP
+#include <vector>
 
 // 線形漸化式の初めのn項の特性方程式を返す k次ならO(k^2)
 // a_{i} = Σ(c_{j} * a_{i-j})で表されるような数列の先頭前k項(2*k程度で十分)を与えると

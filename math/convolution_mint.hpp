@@ -1,6 +1,11 @@
-﻿std::vector<mint> make_root(long long mod) {
+﻿#include <vector>
+#include <atcoder/all>
+using mint = atcoder::modint998244353;
+const int mod = 998244353;
+
+std::vector<mint> make_root(long long mod) {
 	std::vector<mint> ret(0);
-	long long r = pow_mod(3, 119, mod);
+	long long r = atcoder::pow_mod(3, 119, mod);
 	for (long long i = 0; i < 23; i++) {
 		ret.push_back(r);
 		r = (r * r) % mod;

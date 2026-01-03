@@ -1,13 +1,13 @@
 ﻿#include <vector>
+#include "Lucas.hpp"
 // 二項係数の区間和	
 struct ChooseLangeSum {
 public:
 	//pは素数	
-	ChooseLangeSum(long long n, int p) :mod(p), n(n) { Init(); }
+	ChooseLangeSum(long long n, int p) :mod(p), n(n),lc(p) { Init(); }
 private:
 	//下準備	
 	void Init() {
-		lc = Lucas(mod);
 		Create();
 	}
 	void Create() {
