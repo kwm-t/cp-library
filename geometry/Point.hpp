@@ -7,11 +7,12 @@ public:
 	long long cross(const Point& other) const {
 		return 1LL * x * other.y - 1LL * y * other.x;
 	}
-	// θでsort
+	// θ∈(-pi,pi]でsort
+	// θ∈[0,2pi]にしたいなら	if (h1 != h2) return h1 < h2;
 	bool operator<(const Point& o) const {
 		int h1 = (y < 0 || (y == 0 && x < 0));
 		int h2 = (o.y < 0 || (o.y == 0 && o.x < 0));
-		if (h1 != h2) return h1 < h2;
+		if (h1 != h2) return h1 > h2;
 
 		long long cr = cross(o);
 		if (cr != 0) return cr > 0;
