@@ -151,7 +151,7 @@ H_1=\frac{1}{\sqrt{2}}
         \left(
                 \begin{array}{cc}
                 H_{k-1}&O\cr
-                O&-H_{k-1}
+                O&H_{k-1}
             \end{array}
         \right)
         u

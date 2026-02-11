@@ -3,7 +3,7 @@ printf("%.16f\n", ans);
 printf("%.16Lf\n", ans);
 cout << fixed << setprecision(16) << endl;
 
-//再帰じゃなくて下から見るタイプ
+//再帰じゃなくて下から見るタイプ(i=j,i=0は含まれないのに注意)
 rep(i, 1 << n) {
 	for (int j = (i - 1)&i; j > 0; j = (j - 1)&i) {
 		chmin(dp[i], dp[j] + dp[i^j]);

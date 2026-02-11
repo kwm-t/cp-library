@@ -1,4 +1,4 @@
-// SWAG (Sliding Window Aggregation)
+﻿// SWAG (Sliding Window Aggregation)
 
 template <class T, class Op>
 class QueueAggregation {
