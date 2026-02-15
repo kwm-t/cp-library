@@ -13,7 +13,7 @@ struct BipartiteGraphChecker {
 		graph[u].push_back(v);
 		graph[v].push_back(u);
 	}
-	int n;
+	int n,cnt;
 	std::vector<std::vector< int >> graph;
 	std::vector<int>col;
 
@@ -33,8 +33,10 @@ struct BipartiteGraphChecker {
 	}
 	bool solverAll() {
 		bool chk = true;
+		cnt = 0;
 		for (int i = 0; i < n; ++i) {
 			if (-1 != col[i])continue;
+			cnt++;
 			auto get = solve(i);
 			if (!get)chk = false;
 		}
