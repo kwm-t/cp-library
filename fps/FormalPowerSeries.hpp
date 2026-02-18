@@ -380,7 +380,7 @@ struct FormalPowerSeries : std::vector<T> {
 	// O(n log n)
 	F &shift_inplace(const T c) {
 		int n = this->size();
-		fc = Factorial<T>(n);
+		auto fc = Factorial<T>(n);
 		for (int i = 0; i < n; ++i) (*this)[i] *= fc.fac[i];
 		reverse(this->begin(), this->end());
 		F g(n);
