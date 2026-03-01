@@ -28,7 +28,7 @@ auto after = [&](long long n)->long long {
 auto left = [&](const auto& s, auto x, bool strict = false) {
 	if (strict) return *prev(s.lower_bound(x));
 	else return *prev(s.upper_bound(x));
-	;
+};
 
 // false:x以上(>=) / true:xより大きい(>)
 auto right = [&](const auto& s, auto x, bool strict = false) {
