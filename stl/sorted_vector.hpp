@@ -100,6 +100,22 @@ namespace stl {
 			return std::upper_bound(v.begin(), v.end(), x);
 		}
 
+		// x の最初の出現位置（なければ v.end()）
+		template <class T>
+		auto it_first(const std::vector<T>& v, const T& x) {
+			auto it = std::lower_bound(v.begin(), v.end(), x);
+			if (it != v.end() && *it == x) return it;
+			return v.end();
+		}
 
+		// x の最後の出現位置（なければ v.end()）
+		template <class T>
+		auto it_last(const std::vector<T>& v, const T& x) {
+			auto it = std::upper_bound(v.begin(), v.end(), x);
+			if (it == v.begin()) return v.end();
+			--it;
+			if (*it == x) return it;
+			return v.end();
+		}
 	} // namespace sorted_vector
 } // namespace stl
