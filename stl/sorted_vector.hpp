@@ -67,7 +67,39 @@ namespace stl {
 			if (it == v.begin()) return v.size();
 			--it;
 			return (*it == x) ? std::size_t(it - v.begin()) : v.size();
+
 		}
+
+		// x 未満のうち最大の要素
+		template <class T>
+		auto it_less(const std::vector<T>& v, const T& x) {
+			auto it = std::lower_bound(v.begin(), v.end(), x);
+			if (it == v.begin()) return v.end();
+			--it;
+			return it;
+		}
+
+		// x 以下のうち最大の要素
+		template <class T>
+		auto it_leq(const std::vector<T>& v, const T& x) {
+			auto it = std::upper_bound(v.begin(), v.end(), x);
+			if (it == v.begin()) return v.end();
+			--it;
+			return it;
+		}
+
+		// x 以上のうち最小の要素
+		template <class T>
+		auto it_geq(const std::vector<T>& v, const T& x) {
+			return std::lower_bound(v.begin(), v.end(), x);
+		}
+
+		// x より大きい最小の要素
+		template <class T>
+		auto it_greater(const std::vector<T>& v, const T& x) {
+			return std::upper_bound(v.begin(), v.end(), x);
+		}
+
 
 	} // namespace sorted_vector
 } // namespace stl
