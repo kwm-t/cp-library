@@ -14,7 +14,7 @@ std::vector<std::vector<T>> matrixMul(const std::vector<std::vector<T>>&A, const
 template<typename T>
 std::vector<std::vector<T>> matrixPow(long long n, const std::vector<std::vector<T>> &mat) {
 	int size = (int)mat.size();
-	vector<vector<mint>> mret(size, vector<mint>(size));
+	vector<vector<T>> mret(size, vector<T>(size));
 	for (int i = 0; i < size; ++i) {
 		mret[i][i] = 1;
 	}
