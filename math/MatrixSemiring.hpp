@@ -4,11 +4,14 @@ struct MatrixSemiring : std::array<std::array<T, N>, N> {
 
 	static M identity() {
 		M r{};
-		for (int i = 0; i < N; i++)
-			for (int j = 0; j < N; j++)
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
 				r[i][j] = zero();
-		for (int i = 0; i < N; i++)
+			}
+		}
+		for (int i = 0; i < N; i++) {
 			r[i][i] = one();
+		}
 		return r;
 	}
 
@@ -16,9 +19,11 @@ struct MatrixSemiring : std::array<std::array<T, N>, N> {
 
 	// ---- +, += ----
 	M& operator+=(const M& rhs) {
-		for (int i = 0; i < N; i++)
-			for (int j = 0; j < N; j++)
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
 				(*this)[i][j] = add((*this)[i][j], rhs[i][j]);
+			}
+		}
 		return *this;
 	}
 	friend M operator+(M lhs, const M& rhs) {
@@ -28,14 +33,19 @@ struct MatrixSemiring : std::array<std::array<T, N>, N> {
 	// ---- *, *= ----
 	M& operator*=(const M& rhs) {
 		M temp{};
-		for (int i = 0; i < N; i++)
-			for (int k = 0; k < N; k++)
+		for (int i = 0; i < N; i++) {
+			for (int k = 0; k < N; k++) {
 				temp[i][k] = zero();
+			}
+		}
 
-		for (int i = 0; i < N; i++)
-			for (int j = 0; j < N; j++)
-				for (int k = 0; k < N; k++)
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				for (int k = 0; k < N; k++) {
 					temp[i][k] = add(temp[i][k], mul((*this)[i][j], rhs[j][k]));
+				}
+			}
+		}
 
 		*this = temp;
 		return *this;
@@ -66,10 +76,11 @@ struct MatrixSemiring : std::array<std::array<T, N>, N> {
 	}
 };
 
-
 //// tropical semiring 
-//long long add(long long x, long long y) { return std::max(x, y); } 
-//long long zero() { return -1002003004005006007; } 
-//long long mul(long long x, long long y) { return x + y; } 
-//long long one() { return 0; } 
-//using M = Matrix<long long, add, zero, mul, one, 100>;
+long long add(long long x, long long y) { return std::max(x, y); }
+long long zero() { return -1002003004005006007; }
+long long mul(long long x, long long y) { return x + y; }
+long long one() { return 0; }
+using M = MatrixSemiring<long long, add, zero, mul, one, 2>;
+// M mat
+// mat[0] ={0,1,2}....;
