@@ -52,16 +52,14 @@
  *   https://atcoder.jp/contests/awc0025/submissions/74048140
  *   https://atcoder.jp/contests/abc438/submissions/74048565
  */
-
-template<class T = int, class Merge = std::plus<T>>
+namespace{ struct DoublingNoValue {};}
+template<class T = DoublingNoValue, class Merge = std::plus<T>>
 class Doubling {
 public:
 	int N;
 	int LOG;
 
-	Doubling(const std::vector<int>& nxt,
-		int log = 60)
-		: N((int)nxt.size()), LOG(log)
+	Doubling(const std::vector<int>& nxt, int log = 60) : N((int)nxt.size()), LOG(log)
 	{
 		init(nxt);
 	}
@@ -96,9 +94,11 @@ public:
 	}
 
 	// f(jump(v,k)) が true になる最小 k (存在しなければ -1)
+	// verifiedしていません。
 	template<class F>
 	long long first_true(int v, long long limit, F f) const {
-		if (f(v)) return 0;
+		T acc{};
+		if (f(v, acc)) return 0;
 
 		long long k = 0;
 
@@ -106,9 +106,13 @@ public:
 			if (k + (1LL << i) > limit) continue;
 
 			int nv = to[i][v];
+			T nacc;
+			if constexpr (std::is_same_v<T, DoublingNoValue>) nacc = acc;
+			else nacc = merge(acc, val[i][v]);
 
-			if (!f(nv)) {
+			if (!f(nv, nacc)) {
 				v = nv;
+				acc = nacc;
 				k += 1LL << i;
 			}
 		}
