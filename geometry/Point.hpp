@@ -1,26 +1,138 @@
-﻿class Point {
-public:
-	int x, y;
+﻿#ifndef GEOMETRY_POINT_HPP
+#define GEOMETRY_POINT_HPP
 
-	Point(int x = 0, int y = 0) : x(x), y(y) {}
+#include <cstdint>
+#include <cmath>
 
-	long long cross(const Point& other) const {
-		return 1LL * x * other.y - 1LL * y * other.x;
+/**
+ * @brief 2D integer point / vector
+ *
+ * 整数座標の2次元点（ベクトル）構造体。
+ * 幾何・格子問題で使用。
+ *
+ * 典型用途:
+ *   ・cross / dot
+ *   ・偏角ソート
+ *   ・ベクトル演算
+ *
+ * 使用例:
+ *
+ *   Point a(1,2), b(3,4);
+ *   auto c = a + b;
+ *   long long cr = a.cross(b);
+ *
+ * verified:
+ *   ・偏角ソート
+ *   ・凸包
+ *   ・格子幾何
+ */
+
+namespace geometry {
+
+	template<class T>
+	struct Point {
+
+		T x;
+		T y;
+
+
+		constexpr Point() : x(0), y(0) {}
+		constexpr Point(T x, T y) : x(x), y(y) {}
+
+		/* lexicographic order */
+
+		constexpr bool operator<(const Point& o) const {
+			if (x != o.x) return x < o.x;
+			return y < o.y;
+		}
+
+		constexpr bool operator==(const Point& o) const {
+			return x == o.x && y == o.y;
+		}
+
+		constexpr bool operator!=(const Point& o) const {
+			return !(*this == o);
+		}
+
+		/* vector operators */
+
+		constexpr Point operator+(const Point& o) const {
+			return { x + o.x, y + o.y };
+		}
+
+		constexpr Point operator-(const Point& o) const {
+			return { x - o.x, y - o.y };
+		}
+
+		constexpr Point operator*(T k) const {
+			return { x * k, y * k };
+		}
+
+		constexpr Point operator/(T k) const {
+			return { x / k, y / k };
+		}
+
+		/* inner / outer products */
+
+		auto dot(const Point& o) const {
+			return x * o.x + y * o.y;
+		}
+
+		auto cross(const Point& o) const {
+			return x * o.y - y * o.x;
+		}
+
+		/* squared norm */
+
+		auto norm2() const {
+			return x * x + y * y;
+		}
+
+		/* rotate 90° counterclockwise */
+
+		constexpr Point rot90() const {
+			return { -y, x };
+		}
+
+		/* rotate 90° clockwise */
+
+		constexpr Point rot90_cw() const {
+			return { y, -x };
+		}
+	};
+
+	/**
+	 * 任意角回転（浮動小数用）
+	 */
+	template<class T>
+	Point<double> rotate(const Point<T>& p, double rad) {
+
+		double c = std::cos(rad);
+		double s = std::sin(rad);
+
+		return {
+			p.x * c - p.y * s,
+			p.x * s + p.y * c
+		};
 	}
-	// θ∈(-pi,pi]でsort
-	// θ∈[0,2pi]にしたいなら	if (h1 != h2) return h1 < h2;
-	bool operator<(const Point& o) const {
-		int h1 = (y < 0 || (y == 0 && x < 0));
-		int h2 = (o.y < 0 || (o.y == 0 && o.x < 0));
-		if (h1 != h2) return h1 > h2;
 
-		long long cr = cross(o);
+	/**
+	 * 偏角ソート comparator
+	 */
+	template<class T>
+	bool polar_cmp(const Point<T>& a, const Point<T>& b) {
+
+		bool ha = (a.y < 0 || (a.y == 0 && a.x < 0));
+		bool hb = (b.y < 0 || (b.y == 0 && b.x < 0));
+
+		if (ha != hb) return ha > hb;
+
+		auto cr = a.cross(b);
 		if (cr != 0) return cr > 0;
 
-		// 同一直線上の場合は原点からの距離が近い方
-		return 1LL * x * x + 1LL * y * y < 1LL * o.x * o.x + 1LL * o.y * o.y;
+		return a.norm2() < b.norm2();
 	}
-};
-// 同じ角度のが複数ある場合は、角度のみが必要な時は
-// {x,y}->{x/gcd(x,y),y/gcd(x,y)} とかして適当に
-// https://atcoder.jp/contests/abc442/submissions/72734656
+
+} // namespace geometry
+
+#endif

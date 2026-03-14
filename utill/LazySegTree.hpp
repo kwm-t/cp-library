@@ -115,3 +115,20 @@ namespace RangeAddRangeMax {
 	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 	std::vector<S>init(int size) { return std::vector<S>(size, { 0,1 }); }
 }
+namespace RangeAddRangeMin {
+	// 区間加算・区間最小値(個数付き)
+	// {0,1}で初期化
+	using S = std::pair<long long, int>;
+	using F = long long;
+	S op(S a, S b) {
+		if (a.first < b.first)return a;
+		else if (a.first > b.first)return b;
+		return { a.first,a.second + b.second };
+	}
+	S e() { return { 8e18,0 }; }
+	S mapping(F f, S x) { return { x.first + f,x.second }; }
+	F composition(F f, F g) { return f + g; }
+	F id() { return 0; }
+	using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
+	std::vector<S>init(int size) { return std::vector<S>(size, { 0,1 }); }
+}

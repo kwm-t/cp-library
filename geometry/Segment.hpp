@@ -1,41 +1,89 @@
-﻿typedef std::complex<long long> C;
-// 外積
-long long cross(C a, C b) { return a.real() * b.imag() - a.imag() * b.real(); }
-// 内積
-long long dot(C a, C b) { return a.real() * b.real() + a.imag() * b.imag(); }
-struct Segment {
-	C a, b;
-	Segment(C a = {}, C b = {}) :a(a), b(b) {}
-	bool isOn(C c) {
-		if (c == a) return true;
-		if (c == b) return true;
-		C v0 = a - c;
-		C v1 = b - c;
-		if (cross(v0, v1) != 0) return false;
-		return dot(v0, v1) < 0;
-	}
-	bool isParallel(Segment seg) {
-		C v = a - b;
-		C w = seg.a - seg.b;
-		return cross(v, w) == 0;
-	}
-	bool isIntersect(Segment seg) {
-		if (isParallel(seg)) {
-			if (isOn(seg.a)) return true;
-			if (isOn(seg.b)) return true;
-			if (seg.isOn(a)) return true;
-			if (seg.isOn(b)) return true;
-			return false;
+﻿#ifndef GEOMETRY_SEGMENT_HPP
+#define GEOMETRY_SEGMENT_HPP
+
+#include "point.hpp"
+
+/**
+ * @brief Line Segment
+ *
+ * 線分ライブラリ
+ *
+ * 典型用途:
+ *   ・線分交差判定
+ *   ・点が線分上にあるか
+ *   ・平行判定
+ *
+ * 計算量:
+ *   O(1)
+ *
+ * @tparam T 座標型
+ *
+ * verified:
+ *   AOJ CGL 系
+ */
+
+namespace geometry {
+
+	template<class T>
+	struct Segment {
+
+		Point<T> a, b;
+
+		Segment() {}
+		Segment(Point<T> a, Point<T> b) : a(a), b(b) {}
+
+		/**
+		 * @brief 点が線分上にあるか
+		 */
+		bool contains(const Point<T>& p) const {
+
+			if (p == a || p == b) return true;
+
+			Point<T> v0 = a - p;
+			Point<T> v1 = b - p;
+
+			if (v0.cross(v1) != 0) return false;
+
+			return v0.dot(v1) < 0;
 		}
-		auto v0 = b - a;
-		auto v1 = seg.a - a;
-		auto v2 = seg.b - a;
-		if (cross(v0, v1) * cross(v0, v2) > 0) return false;
-		
-		v0 = seg.b - seg.a;
-		v1 = a - seg.a;
-		v2 = b - seg.a;
-		if (cross(v0, v1) * cross(v0, v2) > 0) return false;
-		return true;
-	}
-};
+
+		/**
+		 * @brief 平行判定
+		 */
+		bool parallel(const Segment& s) const {
+			return (b - a).cross(s.b - s.a) == 0;
+		}
+
+		/**
+		 * @brief 線分交差判定（端点含む）
+		 */
+		bool intersect(const Segment& s) const {
+
+			if (parallel(s)) {
+				if (contains(s.a)) return true;
+				if (contains(s.b)) return true;
+				if (s.contains(a)) return true;
+				if (s.contains(b)) return true;
+				return false;
+			}
+
+			auto v0 = b - a;
+			auto v1 = s.a - a;
+			auto v2 = s.b - a;
+
+			if (v0.cross(v1) * v0.cross(v2) > 0) return false;
+
+			v0 = s.b - s.a;
+			v1 = a - s.a;
+			v2 = b - s.a;
+
+			if (v0.cross(v1) * v0.cross(v2) > 0) return false;
+
+			return true;
+		}
+
+	};
+
+}
+
+#endif
