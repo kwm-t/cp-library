@@ -1,5 +1,5 @@
-#ifndef SUBSET_PARTITION_DP_HPP
-#define SUBSET_PARTITION_DP_HPP
+#ifndef ALGORITHM_DP_SUBSET_PARTITION_HPP
+#define ALGORITHM_DP_SUBSET_PARTITION_HPP
 
 #include <vector>
 
@@ -28,22 +28,24 @@
  * https://atcoder.jp/contests/awc0023/submissions/74011888
  * dpテーブルの初期化は呼び出し元で行うこと
  */
-template<class T, class Merge>
-void subset_partition_dp(
-	std::vector<T>& dp,
-	Merge merge,
-	bool allow_full = true,
-	bool allow_empty = false
-) {
-	int N = dp.size();
-	for (int mask = 1; mask < N; mask++) {
-		int sub = allow_full ? mask : (mask - 1) & mask;
-		for (;; sub = (sub - 1) & mask) {
-			if (sub == 0 && !allow_empty) break;
-			merge(mask, sub, dp);
-			if (sub == 0) break;
+namespace algorithm::dp {
+	template<class T, class Merge>
+	void subset_partition_dp(
+		std::vector<T>& dp,
+		Merge merge,
+		bool allow_full = true,
+		bool allow_empty = false
+	) {
+		int N = dp.size();
+		for (int mask = 1; mask < N; mask++) {
+			int sub = allow_full ? mask : (mask - 1) & mask;
+			for (;; sub = (sub - 1) & mask) {
+				if (sub == 0 && !allow_empty) break;
+				merge(mask, sub, dp);
+				if (sub == 0) break;
+			}
 		}
 	}
 }
 
-#endif // SUBSET_PARTITION_DP_HPP
+#endif // ALGORITHM_DP_SUBSET_PARTITION_HPP

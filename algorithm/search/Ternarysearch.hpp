@@ -80,50 +80,52 @@ namespace algorithm::search {
 
 		return std::pair{ best, val };
 	}
+}
 
-	/**
-	 * @brief 三分探索 (実数)
-	 *
-	 * @details
-	 *  実数区間に対する三分探索。
-	 *  counter 回反復することで近似解を求める。
-	 *
-	 * Typical Use:
-	 *  実数値の最小値 / 最大値探索
-	 *
-	 * Complexity:
-	 *  Time: O(counter)
-	 *
-	 * Template Parameters:
-	 *  T : 浮動小数点型 (double / long double)
-	 *  F : 評価関数 f(T)
-	 *  Compare : 比較関数
-	 *
-	 * Parameters:
-	 *  l : 探索区間左端
-	 *  r : 探索区間右端
-	 *  f : 評価関数
-	 *  counter : 反復回数
-	 *  comp : 比較関数
-	 *
-	 * Return:
-	 *  {近似位置, その値}
-	 *
-	 * Requirements:
-	 *  f は単峰関数であること
-	 *
-	 * Example:
-	 *  ```cpp
-	 *  auto f = [&](double x){
-	 *      return (x - 3.14) * (x - 3.14);
-	 *  };
-	 *
-	 *  auto res = ternary_search_double(0.0, 10.0, f);
-	 *  ```
-	 *
-	 * Verified:
-	 *
-	 */
+/**
+ * @brief 三分探索 (実数)
+ *
+ * @details
+ *  実数区間に対する三分探索。
+ *  counter 回反復することで近似解を求める。
+ *
+ * Typical Use:
+ *  実数値の最小値 / 最大値探索
+ *
+ * Complexity:
+ *  Time: O(counter)
+ *
+ * Template Parameters:
+ *  T : 浮動小数点型 (double / long double)
+ *  F : 評価関数 f(T)
+ *  Compare : 比較関数
+ *
+ * Parameters:
+ *  l : 探索区間左端
+ *  r : 探索区間右端
+ *  f : 評価関数
+ *  counter : 反復回数
+ *  comp : 比較関数
+ *
+ * Return:
+ *  {近似位置, その値}
+ *
+ * Requirements:
+ *  f は単峰関数であること
+ *
+ * Example:
+ *  ```cpp
+ *  auto f = [&](double x){
+ *      return (x - 3.14) * (x - 3.14);
+ *  };
+ *
+ *  auto res = ternary_search_double(0.0, 10.0, f);
+ *  ```
+ *
+ * Verified:
+ *
+ */
+namespace algorithm::search {
 	template <class T, class F, class Compare = std::less<>>
 	auto ternary_search_double(T l, T r, F f, int counter = 100, Compare comp = Compare()) {
 		using U = decltype(f(l));
