@@ -1,7 +1,7 @@
-#ifndef XXX_HPP
-#define XXX_HPP
+#ifndef TEMPLATE_HPP
+#define TEMPLATE_HPP
 
-//#include <>
+// #include
 
 /**
  * @brief 
@@ -25,10 +25,8 @@
  *   
  * verified:
  */
-
-//template<class ...>
-//void xxx() {
-//
-//}
-
-#endif // XXX_HPP
+namespace temperaturelib {
+    class tempalateClass{
+    };
+}
+#endif // TEMPLATE_HPP
