@@ -25,8 +25,11 @@
  *   
  * verified:
  */
-namespace temperaturelib {
+namespace temperature {
     class tempalateClass{
     };
 }
 #endif // TEMPLATE_HPP
+
+// #ifndef TEMPLATE_HPP はフォルダ階層とファイル名から
+// namespace temperature はフォルダ階層から

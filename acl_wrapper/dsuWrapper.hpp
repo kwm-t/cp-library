@@ -1,0 +1,113 @@
+﻿#ifndef ACLWRAPPER_DSU_WRAPPER_HPP
+#define ACLWRAPPER_DSU_WRAPPER_HPP
+
+#include <vector>
+#include <cassert>
+#include <utility>
+#include <atcoder/dsu>
+
+/**
+ * @brief データ付きDSU (Union-Find)
+ *
+ * 各連結成分に対してデータを持ち、merge時にそれらを統合する。
+ *
+ * @tparam Data   各頂点(成分)に持たせるデータ型
+ * @tparam Merge  データをマージする関数オブジェクト
+ *
+ * 典型用途:
+ *   - 連結成分ごとのサイズ/和/最大値などの管理
+ *   - union時に情報を集約したいとき
+ *
+ * 計算量:
+ *   - merge / leader / same : amortized O(α(N))
+ *
+ * 制約 / 注意:
+ *   - Merge は以下の形である必要がある:
+ *       Data operator()(const Data&, const Data&)
+ *   - merge後、非代表元のデータは使用されない
+ *
+ * 使用例:
+ *   auto merge = [](int a, int b) { return a + b; };
+ *   aclwrapper::DsuWrapper<int, decltype(merge)> dsu(n, init, merge);
+ *
+ * verified:
+ *   - (未)
+ */
+
+namespace aclwrapper {
+
+	template<typename Data, class Merge>
+	struct DsuWrapper : private atcoder::dsu {
+	public:
+		using Base = atcoder::dsu;
+
+		/**
+		 * @brief コンストラクタ
+		 * @param n 頂点数
+		 * @param init_data 各頂点の初期データ (size == n)
+		 * @param merge_fn データ統合関数
+		 */
+		DsuWrapper(int n, std::vector<Data> init_data, Merge merge_fn)
+			: Base(n), data(std::move(init_data)), merge_fn(merge_fn) {
+			assert((int)data.size() == n);
+		}
+
+		/**
+		 * @brief a と b をマージする
+		 * @return 新しいリーダー
+		 */
+		int merge(int a, int b) {
+			a = leader(a);
+			b = leader(b);
+			if (a == b) return a;
+
+			int l = Base::merge(a, b);
+			int r = (l == a ? b : a);
+
+			data[l] = merge_fn(data[a], data[b]);
+			return l;
+		}
+
+		/**
+		 * @brief a の属する連結成分のデータ取得
+		 */
+		const Data& get(int a) const {
+			return data[leader(a)];
+		}
+
+		/**
+		 * @brief a と b が同一連結成分か
+		 */
+		bool same(int a, int b) const {
+			return Base::same(a, b);
+		}
+
+		/**
+		 * @brief a の属する連結成分の代表元
+		 */
+		int leader(int a) const {
+			return const_cast<Base*>(static_cast<const Base*>(this))->leader(a);
+		}
+
+		/**
+		 * @brief a の属する連結成分のサイズ
+		 */
+		int size(int a) const {
+			return Base::size(a);
+		}
+
+		/**
+		 * @brief 全グループ取得 (ACLそのまま)
+		 */
+		std::vector<std::vector<int>> groups() const {
+			return const_cast<Base*>(static_cast<const Base*>(this))->groups();
+		}
+
+	private:
+		std::vector<Data> data;
+		Merge merge_fn;
+	};
+
+} // namespace aclwrapper
+
+#endif // ACLWRAPPER_DSU_WRAPPER_HPP
