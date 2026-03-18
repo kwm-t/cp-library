@@ -6,6 +6,8 @@
 #include <type_traits>
 #include <cstdlib>
 
+#include "point.hpp"
+
 /**
  * @brief Line from two points (normalized)
  *
@@ -54,13 +56,6 @@
  */
 
 namespace geometry {
-
-	template<class T>
-	struct Point {
-		T x;
-		T y;
-	};
-
 	template<class T>
 	inline std::tuple<T, T, T>
 		line_from_points(const Point<T>& p1, const Point<T>& p2) {
