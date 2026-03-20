@@ -1,4 +1,6 @@
-#pragma once
+#ifndef KWM_T_STL_SORTED_SET_SENTINEL_HPP
+#define KWM_T_STL_SORTED_SET_SENTINEL_HPP
+
 #include <set>
 #include <iterator>
 #include <cstddef>
@@ -192,3 +194,5 @@ namespace stl {
 		}
 	}
 }
+
+#endif // KWM_T_STL_SORTED_SET_SENTINEL_HPP

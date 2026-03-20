@@ -1,4 +1,6 @@
-﻿#pragma once
+﻿#ifndef KWM_T_STL_SORTED_VECTOR_HPP
+#define KWM_T_STL_SORTED_VECTOR_HPP
+
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -119,3 +121,5 @@ namespace stl {
 		}
 	} // namespace sorted_vector
 } // namespace stl
+
+#endif // KWM_T_STL_SORTED_VECTOR_HPP

@@ -1,9 +1,11 @@
-﻿#pragma once
+﻿#ifndef KWM_T_STL_SORTED_SET_SAFE_HPP
+#define KWM_T_STL_SORTED_SET_SAFE_HPP
+
 #include <set>
 #include <iterator>
 #include <cstddef>
 
-namespace stl {
+namespace kwm_t::stl {
 	namespace sorted_set_safe {
 
 		// ===== 近傍探索 =====
@@ -195,3 +197,4 @@ namespace stl {
 
 	}
 }
+#endif // KWM_T_STL_SORTED_SET_SAFE_HPP
