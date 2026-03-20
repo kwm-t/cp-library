@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#ifndef KWM_T_TEMPLATE_HPP
+#define KWM_T_TEMPLATE_HPP
 
 // #include
 
@@ -25,11 +25,11 @@
  *   
  * verified:
  */
-namespace temperature {
+namespace kwm_t::temperature {
     class tempalateClass{
     };
 }
-#endif // TEMPLATE_HPP
+#endif // KWM_T_TEMPLATE_HPP
 
-// #ifndef TEMPLATE_HPP はフォルダ階層とファイル名から
-// namespace temperature はフォルダ階層から
+// #ifndef KWM_T_TEMPLATE_HPP はフォルダ階層とファイル名から
+// namespace kwm_t::temperature はフォルダ階層から
