@@ -2,6 +2,7 @@
 #define KWM_T_TEMPLATE_HPP
 
 // #include
+// #include <bits/stdc++.h>はNG!!
 
 /**
  * @brief 
