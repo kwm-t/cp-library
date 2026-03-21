@@ -1,11 +1,11 @@
-#ifndef RECTANGLE_UNION_AREA_HPP
-#define RECTANGLE_UNION_AREA_HPP
+#ifndef KWM_T_RECTANGLE_UNION_AREA_HPP
+#define KWM_T_RECTANGLE_UNION_AREA_HPP
 
 #include <vector>
 #include <algorithm>
 #include <atcoder/lazysegtree>
 
-namespace rectangle_union_area {
+namespace kwm_t::rectangle_union_area {
 
 /**
  * @brief Area of Union of Rectangles
@@ -141,6 +141,6 @@ long long solve(const std::vector<Rect>& rects) {
 	return area;
 }
 
-} // namespace rectangle_union_area
+} // namespace kwm_t::rectangle_union_area
 
-#endif // RECTANGLE_UNION_AREA_HPP
+#endif // KWM_T_RECTANGLE_UNION_AREA_HPP

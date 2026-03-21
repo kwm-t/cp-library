@@ -1,5 +1,5 @@
-﻿#ifndef GEOMETRY_CONVEX_HULL_HPP
-#define GEOMETRY_CONVEX_HULL_HPP
+﻿#ifndef KWM_T_GEOMETRY_CONVEX_HULL_HPP
+#define KWM_T_GEOMETRY_CONVEX_HULL_HPP
 
 #include <vector>
 #include <algorithm>
@@ -31,7 +31,7 @@
  *   AOJ CGL_4_A
  */
 
-namespace geometry {
+namespace kwm_t::geometry {
 
 	template<class T>
 	std::vector<Point<T>> convex_hull(std::vector<Point<T>> pts, bool strict = true) {

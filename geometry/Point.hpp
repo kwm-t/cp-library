@@ -1,5 +1,5 @@
-﻿#ifndef GEOMETRY_POINT_HPP
-#define GEOMETRY_POINT_HPP
+﻿#ifndef KWM_T_GEOMETRY_POINT_HPP
+#define KWM_T_GEOMETRY_POINT_HPP
 
 #include <cstdint>
 #include <cmath>
@@ -27,7 +27,7 @@
  *   ・格子幾何
  */
 
-namespace geometry {
+namespace kwm_t::geometry {
 
 	template<class T>
 	struct Point {
@@ -133,6 +133,6 @@ namespace geometry {
 		return a.norm2() < b.norm2();
 	}
 
-} // namespace geometry
+} // namespace kwm_t::geometry
 
-#endif
+#endif //KWM_T_GEOMETRY_POINT_HPP

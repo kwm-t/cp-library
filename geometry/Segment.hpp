@@ -1,5 +1,5 @@
-﻿#ifndef GEOMETRY_SEGMENT_HPP
-#define GEOMETRY_SEGMENT_HPP
+﻿#ifndef KWM_T_GEOMETRY_SEGMENT_HPP
+#define KWM_T_GEOMETRY_SEGMENT_HPP
 
 #include "point.hpp"
 
@@ -22,7 +22,7 @@
  *   AOJ CGL 系
  */
 
-namespace geometry {
+namespace kwm_t::geometry {
 
 	template<class T>
 	struct Segment {
@@ -86,4 +86,4 @@ namespace geometry {
 
 }
 
-#endif
+#endif // KWM_T_GEOMETRY_SEGMENT_HPP

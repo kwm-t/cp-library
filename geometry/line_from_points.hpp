@@ -1,5 +1,5 @@
-﻿#ifndef GEOMETRY_LINE_FROM_POINTS_HPP
-#define GEOMETRY_LINE_FROM_POINTS_HPP
+﻿#ifndef KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
+#define KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
 
 #include <tuple>
 #include <numeric>
@@ -55,7 +55,7 @@
  *   ・直線同一判定
  */
 
-namespace geometry {
+namespace kwm_t::geometry {
 	template<class T>
 	inline std::tuple<T, T, T>
 		line_from_points(const Point<T>& p1, const Point<T>& p2) {
@@ -83,6 +83,6 @@ namespace geometry {
 		return { a,b,c };
 	}
 
-} // namespace geometry
+} // namespace kwm_t::geometry
 
-#endif // GEOMETRY_LINE_FROM_POINTS_HPP
+#endif // KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
