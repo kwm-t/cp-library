@@ -402,6 +402,29 @@ struct FormalPowerSeries : std::vector<T> {
 	F operator*(std::vector<std::pair<int, T>> g) const { return F(*this) *= g; }
 	F operator/(std::vector<std::pair<int, T>> g) const { return F(*this) /= g; }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 using fps = FormalPowerSeries<mint>;
 using sfps = std::vector<std::pair<int, mint>>;
 
