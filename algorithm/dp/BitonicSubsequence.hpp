@@ -1,5 +1,5 @@
-﻿#ifndef ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
-#define ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
+﻿#ifndef KWM_T_ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
+#define KWM_T_ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
 
 #include <vector>
 #include <algorithm>
@@ -48,71 +48,71 @@
  *
  */
 
-namespace algorithm::dp {
+namespace kwm_t::algorithm::dp {
 
-	/**
-	 * @brief LIS の長さ
-	 */
-	template<class T>
-	int lis(const std::vector<T>& a, bool is_strong = true) {
+/**
+ * @brief LIS の長さ
+ */
+template<class T>
+int lis(const std::vector<T>& a, bool is_strong = true) {
 
-		int n = (int)a.size();
-		const T INF = std::numeric_limits<T>::max();
+	int n = (int)a.size();
+	const T INF = std::numeric_limits<T>::max();
 
-		std::vector<T> dp(n, INF);
+	std::vector<T> dp(n, INF);
 
-		for (const auto& x : a) {
-			if (is_strong) *std::lower_bound(dp.begin(), dp.end(), x) = x;
-			else *std::upper_bound(dp.begin(), dp.end(), x) = x;
-		}
-
-		return std::lower_bound(dp.begin(), dp.end(), INF) - dp.begin();
+	for (const auto& x : a) {
+		if (is_strong) *std::lower_bound(dp.begin(), dp.end(), x) = x;
+		else *std::upper_bound(dp.begin(), dp.end(), x) = x;
 	}
 
+	return std::lower_bound(dp.begin(), dp.end(), INF) - dp.begin();
+}
 
-	/**
-	 * @brief LIS を復元（インデックス）
-	 */
-	template<class T>
-	std::vector<int> lis_restore(const std::vector<T>& a, bool is_strong = true) {
 
-		int n = (int)a.size();
+/**
+ * @brief LIS を復元（インデックス）
+ */
+template<class T>
+std::vector<int> lis_restore(const std::vector<T>& a, bool is_strong = true) {
 
-		const T INF = std::numeric_limits<T>::max();
+	int n = (int)a.size();
 
-		std::vector<T> dp(n, INF);
-		std::vector<int> pos(n);
-		std::vector<int> pre(n, -1);
+	const T INF = std::numeric_limits<T>::max();
 
-		int len = 0;
+	std::vector<T> dp(n, INF);
+	std::vector<int> pos(n);
+	std::vector<int> pre(n, -1);
 
-		for (int i = 0; i < n; ++i) {
+	int len = 0;
 
-			int k;
+	for (int i = 0; i < n; ++i) {
 
-			if (is_strong) k = std::lower_bound(dp.begin(), dp.begin() + len, a[i]) - dp.begin();
-			else k = std::upper_bound(dp.begin(), dp.begin() + len, a[i]) - dp.begin();
+		int k;
 
-			dp[k] = a[i];
-			pos[k] = i;
+		if (is_strong) k = std::lower_bound(dp.begin(), dp.begin() + len, a[i]) - dp.begin();
+		else k = std::upper_bound(dp.begin(), dp.begin() + len, a[i]) - dp.begin();
 
-			if (k > 0) pre[i] = pos[k - 1];
+		dp[k] = a[i];
+		pos[k] = i;
 
-			if (k == len) ++len;
-		}
+		if (k > 0) pre[i] = pos[k - 1];
 
-		std::vector<int> res(len);
-
-		int cur = pos[len - 1];
-
-		for (int i = len - 1; i >= 0; --i) {
-			res[i] = cur;
-			cur = pre[cur];
-		}
-
-		return res;
+		if (k == len) ++len;
 	}
+
+	std::vector<int> res(len);
+
+	int cur = pos[len - 1];
+
+	for (int i = len - 1; i >= 0; --i) {
+		res[i] = cur;
+		cur = pre[cur];
+	}
+
+	return res;
+}
 
 }
 
-#endif // ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
+#endif // KWM_T_ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP

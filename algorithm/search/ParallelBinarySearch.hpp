@@ -1,5 +1,5 @@
-﻿#ifndef ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP
-#define ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP
+﻿#ifndef KWM_T_ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP
+#define KWM_T_ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP
 
 #include <vector>
 #include <cstdlib>
@@ -60,49 +60,49 @@
  * Verified:
  * https://atcoder.jp/contests/past20-open/submissions/74142387
  */
-namespace algorithm::search {
+namespace kwm_t::algorithm::search {
 
-	template<class Reset, class Add, class Check>
-	std::vector<int> parallel_binary_search(
-		int q,
-		int k,
-		Reset reset,
-		Add add,
-		Check check
-	) {
-		std::vector<int> ok(q, k);
-		std::vector<int> ng(q, -1);
+template<class Reset, class Add, class Check>
+std::vector<int> parallel_binary_search(
+	int q,
+	int k,
+	Reset reset,
+	Add add,
+	Check check
+) {
+	std::vector<int> ok(q, k);
+	std::vector<int> ng(q, -1);
 
-		while (true) {
-			bool fin = true;
+	while (true) {
+		bool fin = true;
 
-			std::vector<std::vector<int>> mid(k);
+		std::vector<std::vector<int>> mid(k);
 
-			for (int i = 0; i < q; ++i) {
-				if (std::abs(ok[i] - ng[i]) > 1) {
-					fin = false;
-					int m = (ok[i] + ng[i]) / 2;
-					mid[m].push_back(i);
-				}
-			}
-
-			if (fin) break;
-
-			reset();
-
-			for (int i = 0; i < k; ++i) {
-				add(i);
-
-				for (int id : mid[i]) {
-					if (check(id)) ok[id] = i;
-					else ng[id] = i;
-				}
+		for (int i = 0; i < q; ++i) {
+			if (std::abs(ok[i] - ng[i]) > 1) {
+				fin = false;
+				int m = (ok[i] + ng[i]) / 2;
+				mid[m].push_back(i);
 			}
 		}
 
-		return ok;
+		if (fin) break;
+
+		reset();
+
+		for (int i = 0; i < k; ++i) {
+			add(i);
+
+			for (int id : mid[i]) {
+				if (check(id)) ok[id] = i;
+				else ng[id] = i;
+			}
+		}
 	}
 
-} // namespace algorithm::search
+	return ok;
+}
 
-#endif // ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP
+} // namespace kwm_t::algorithm::search
+
+#endif // KWM_T_ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP

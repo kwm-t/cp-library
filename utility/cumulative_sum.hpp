@@ -1,5 +1,5 @@
-#ifndef UTILITY_CUMULATIVE_SUM_HPP
-#define UTILITY_CUMULATIVE_SUM_HPP
+#ifndef KWM_T_UTILITY_CUMULATIVE_SUM_HPP
+#define KWM_T_UTILITY_CUMULATIVE_SUM_HPP
 
 #include <vector>
 #include <cassert>
@@ -31,49 +31,49 @@
  *
  * verified:
  */
-namespace utility {
+namespace kwm_t::utility {
 
-	template <class T>
-	struct CumulativeSum {
-	private:
-		std::vector<T> s; // s[i] = a[0] + ... + a[i-1]
+template <class T>
+struct CumulativeSum {
+private:
+	std::vector<T> s; // s[i] = a[0] + ... + a[i-1]
 
-	public:
-		CumulativeSum() = default;
+public:
+	CumulativeSum() = default;
 
-		explicit CumulativeSum(const std::vector<T>& a) {
-			build(a);
+	explicit CumulativeSum(const std::vector<T>& a) {
+		build(a);
+	}
+
+	void build(const std::vector<T>& a) {
+		int n = (int)a.size();
+		s.assign(n + 1, T{});
+		for (int i = 0; i < n; i++) {
+			s[i + 1] = s[i] + a[i];
 		}
+	}
 
-		void build(const std::vector<T>& a) {
-			int n = (int)a.size();
-			s.assign(n + 1, T{});
-			for (int i = 0; i < n; i++) {
-				s[i + 1] = s[i] + a[i];
-			}
-		}
+	int size() const {
+		return (int)s.size() - 1;
+	}
 
-		int size() const {
-			return (int)s.size() - 1;
-		}
+	// [l, r)
+	T sum(int l, int r) const {
+		assert(0 <= l && l <= r && r <= size());
+		return s[r] - s[l];
+	}
 
-		// [l, r)
-		T sum(int l, int r) const {
-			assert(0 <= l && l <= r && r <= size());
-			return s[r] - s[l];
-		}
+	// [0, r)
+	T prefix(int r) const {
+		return sum(0, r);
+	}
 
-		// [0, r)
-		T prefix(int r) const {
-			return sum(0, r);
-		}
+	// [l, n)
+	T suffix(int l) const {
+		return sum(l, size());
+	}
+};
 
-		// [l, n)
-		T suffix(int l) const {
-			return sum(l, size());
-		}
-	};
+} // namespace kwm_t::utility
 
-} // namespace utility
-
-#endif // UTILITY_CUMULATIVE_SUM_HPP
+#endif // KWM_T_UTILITY_CUMULATIVE_SUM_HPP

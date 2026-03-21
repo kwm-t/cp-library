@@ -43,30 +43,30 @@
  */
 namespace kwm_t::algorithm::dp {
 
-	template <class T, class F>
-	void bit_dp_transition(
-		std::vector<std::vector<T>> &dp,
-		int k,
-		F cost,
-		T INF
-	) {
-		for (int mask = 0; mask < (1 << k); ++mask) {
-			for (int last = 0; last < k; ++last) {
-				if (!(mask & (1 << last))) continue;
-				if (dp[mask][last] == INF) continue;
+template <class T, class F>
+void bit_dp_transition(
+	std::vector<std::vector<T>> &dp,
+	int k,
+	F cost,
+	T INF
+) {
+	for (int mask = 0; mask < (1 << k); ++mask) {
+		for (int last = 0; last < k; ++last) {
+			if (!(mask & (1 << last))) continue;
+			if (dp[mask][last] == INF) continue;
 
-				for (int nxt = 0; nxt < k; ++nxt) {
-					if (mask & (1 << nxt)) continue;
+			for (int nxt = 0; nxt < k; ++nxt) {
+				if (mask & (1 << nxt)) continue;
 
-					int nmask = mask | (1 << nxt);
-					dp[nmask][nxt] = std::min(
-						dp[nmask][nxt],
-						dp[mask][last] + cost(last, nxt)
-					);
-				}
+				int nmask = mask | (1 << nxt);
+				dp[nmask][nxt] = std::min(
+					dp[nmask][nxt],
+					dp[mask][last] + cost(last, nxt)
+				);
 			}
 		}
 	}
+}
 
 } // namespace kwm_t::algorithm::dp
 

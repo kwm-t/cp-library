@@ -1,5 +1,5 @@
-﻿#ifndef ALGORITHM_SEARCH_TERNARYSEARCH_HPP
-#define ALGORITHM_SEARCH_TERNARYSEARCH_HPP
+﻿#ifndef KWM_T_ALGORITHM_SEARCH_TERNARYSEARCH_HPP
+#define KWM_T_ALGORITHM_SEARCH_TERNARYSEARCH_HPP
 
 #include <functional>
 #include <utility>
@@ -53,34 +53,34 @@
  * Verified:
  *
  */
-namespace algorithm::search {
+namespace kwm_t::algorithm::search {
 
-	template <class T, class F, class Compare = std::less<>>
-	auto ternary_search(T l, T r, F f, Compare comp = Compare()) {
-		using U = decltype(f(l));
+template <class T, class F, class Compare = std::less<>>
+auto ternary_search(T l, T r, F f, Compare comp = Compare()) {
+	using U = decltype(f(l));
 
-		while (r - l > 2) {
-			T ml = l + (r - l) / 3;
-			T mr = r - (r - l) / 3;
+	while (r - l > 2) {
+		T ml = l + (r - l) / 3;
+		T mr = r - (r - l) / 3;
 
-			if (comp(f(ml), f(mr))) r = mr;
-			else l = ml;
-		}
-
-		T best = l;
-		U val = f(l);
-
-		for (T i = l + 1; i <= r; ++i) {
-			U v = f(i);
-			if (comp(v, val)) {
-				best = i;
-				val = v;
-			}
-		}
-
-		return std::pair{ best, val };
+		if (comp(f(ml), f(mr))) r = mr;
+		else l = ml;
 	}
+
+	T best = l;
+	U val = f(l);
+
+	for (T i = l + 1; i <= r; ++i) {
+		U v = f(i);
+		if (comp(v, val)) {
+			best = i;
+			val = v;
+		}
+	}
+
+	return std::pair{ best, val };
 }
+} // namespace kwm_t::algorithm::search
 
 /**
  * @brief 三分探索 (実数)
@@ -125,22 +125,22 @@ namespace algorithm::search {
  * Verified:
  *
  */
-namespace algorithm::search {
-	template <class T, class F, class Compare = std::less<>>
-	auto ternary_search_double(T l, T r, F f, int counter = 100, Compare comp = Compare()) {
-		using U = decltype(f(l));
+namespace kwm_t::algorithm::search {
+template <class T, class F, class Compare = std::less<>>
+auto ternary_search_double(T l, T r, F f, int counter = 100, Compare comp = Compare()) {
+	using U = decltype(f(l));
 
-		while (counter--) {
-			T ml = l + (r - l) / 3;
-			T mr = r - (r - l) / 3;
+	while (counter--) {
+		T ml = l + (r - l) / 3;
+		T mr = r - (r - l) / 3;
 
-			if (comp(f(ml), f(mr))) r = mr;
-			else l = ml;
-		}
-
-		return std::pair{ l, f(l) };
+		if (comp(f(ml), f(mr))) r = mr;
+		else l = ml;
 	}
 
-} // namespace algorithm::search
+	return std::pair{ l, f(l) };
+}
 
-#endif // ALGORITHM_SEARCH_TERNARYSEARCH_HPP
+} // namespace kwm_t::algorithm::search
+
+#endif // KWM_T_ALGORITHM_SEARCH_TERNARYSEARCH_HPP

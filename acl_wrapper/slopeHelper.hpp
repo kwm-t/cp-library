@@ -1,5 +1,5 @@
-﻿#ifndef ACLWRAPPER_SLOPE_HELPER_HPP
-#define ACLWRAPPER_SLOPE_HELPER_HPP
+﻿#ifndef KWM_T_ACLWRAPPER_SLOPE_HELPER_HPP
+#define KWM_T_ACLWRAPPER_SLOPE_HELPER_HPP
 
 #include <vector>
 #include <utility>
@@ -36,71 +36,71 @@
  *   https://atcoder.jp/contests/abc407/submissions/74186930
  *   https://atcoder.jp/contests/abc407/submissions/74187074
  */
-namespace aclwrapper {
+namespace kwm_t::aclwrapper {
 
-	template <class Cap, class Cost>
-	std::vector<Cost> slope_helper(const std::vector<std::pair<Cap, Cost>>& slope) {
-		std::vector<Cost> ret;
-		if (slope.empty()) return ret;
+template <class Cap, class Cost>
+std::vector<Cost> slope_helper(const std::vector<std::pair<Cap, Cost>>& slope) {
+	std::vector<Cost> ret;
+	if (slope.empty()) return ret;
 
-		ret.reserve(slope.back().first + 1);
-		ret.push_back(Cost(0));
+	ret.reserve(slope.back().first + 1);
+	ret.push_back(Cost(0));
 
-		for (int i = 1; i < (int)slope.size(); ++i) {
-			Cap k = slope[i].first;
-			Cost v = slope[i].second;
+	for (int i = 1; i < (int)slope.size(); ++i) {
+		Cap k = slope[i].first;
+		Cost v = slope[i].second;
 
-			Cap pk = slope[i - 1].first;
-			Cost pv = slope[i - 1].second;
+		Cap pk = slope[i - 1].first;
+		Cost pv = slope[i - 1].second;
 
-			Cost slope_val = (v - pv) / (k - pk);
+		Cost slope_val = (v - pv) / (k - pk);
 
-			for (Cap j = pk + 1; j <= k; ++j) {
-				ret.push_back(pv + slope_val * (j - pk));
-			}
+		for (Cap j = pk + 1; j <= k; ++j) {
+			ret.push_back(pv + slope_val * (j - pk));
 		}
-
-		return ret;
 	}
 
-	/**
-	 * @brief cost[i] - big * i を返す版（ラグランジュ緩和用）
-	 */
-	template <class Cap, class Cost>
-	std::vector<Cost> slope_helper(
-		const std::vector<std::pair<Cap, Cost>>& slope,
-		Cost big
-	) {
-		auto ret = slope_helper<Cap, Cost>(slope);
-		for (int i = 0; i < (int)ret.size(); ++i) {
-			ret[i] -= big * i;
-		}
-		return ret;
+	return ret;
+}
+
+/**
+ * @brief cost[i] - big * i を返す版（ラグランジュ緩和用）
+ */
+template <class Cap, class Cost>
+std::vector<Cost> slope_helper(
+	const std::vector<std::pair<Cap, Cost>>& slope,
+	Cost big
+) {
+	auto ret = slope_helper<Cap, Cost>(slope);
+	for (int i = 0; i < (int)ret.size(); ++i) {
+		ret[i] -= big * i;
 	}
-	
-	/**
-	 * @brief min_x (g(x) - big * x) を高速に求める
-	 *
-	 * slope: (flow, cost) の折れ線（ACL slope）
-	 *
-	 * 計算量:
-	 *   O(K) (K = 折れ線の点数)
-	 */
-	template <class Cap, class Cost>
-	Cost slope_min_value(
-		const std::vector<std::pair<Cap, Cost>>& slope,
-		Cost big
-	) {
-		Cost ans = std::numeric_limits<Cost>::max();
+	return ret;
+}
 
-		for (const auto&[x, gx] : slope) {
-			Cost val = gx - big * x;
-			if (val < ans) ans = val;
-		}
+/**
+ * @brief min_x (g(x) - big * x) を高速に求める
+ *
+ * slope: (flow, cost) の折れ線（ACL slope）
+ *
+ * 計算量:
+ *   O(K) (K = 折れ線の点数)
+ */
+template <class Cap, class Cost>
+Cost slope_min_value(
+	const std::vector<std::pair<Cap, Cost>>& slope,
+	Cost big
+) {
+	Cost ans = std::numeric_limits<Cost>::max();
 
-		return ans;
+	for (const auto&[x, gx] : slope) {
+		Cost val = gx - big * x;
+		if (val < ans) ans = val;
 	}
 
-} // namespace aclwrapper
+	return ans;
+}
 
-#endif // ACLWRAPPER_SLOPE_HELPER_HPP
+} // namespace kwm_t::aclwrapper
+
+#endif // KWM_T_ACLWRAPPER_SLOPE_HELPER_HPP

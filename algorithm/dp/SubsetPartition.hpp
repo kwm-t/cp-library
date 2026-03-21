@@ -1,5 +1,5 @@
-#ifndef ALGORITHM_DP_SUBSET_PARTITION_HPP
-#define ALGORITHM_DP_SUBSET_PARTITION_HPP
+#ifndef KWM_T_ALGORITHM_DP_SUBSET_PARTITION_HPP
+#define KWM_T_ALGORITHM_DP_SUBSET_PARTITION_HPP
 
 #include <vector>
 
@@ -28,24 +28,24 @@
  * https://atcoder.jp/contests/awc0023/submissions/74011888
  * dpテーブルの初期化は呼び出し元で行うこと
  */
-namespace algorithm::dp {
-	template<class T, class Merge>
-	void subset_partition_dp(
-		std::vector<T>& dp,
-		Merge merge,
-		bool allow_full = true,
-		bool allow_empty = false
-	) {
-		int N = dp.size();
-		for (int mask = 1; mask < N; mask++) {
-			int sub = allow_full ? mask : (mask - 1) & mask;
-			for (;; sub = (sub - 1) & mask) {
-				if (sub == 0 && !allow_empty) break;
-				merge(mask, sub, dp);
-				if (sub == 0) break;
-			}
+namespace kwm_t::algorithm::dp {
+template<class T, class Merge>
+void subset_partition_dp(
+	std::vector<T>& dp,
+	Merge merge,
+	bool allow_full = true,
+	bool allow_empty = false
+) {
+	int N = dp.size();
+	for (int mask = 1; mask < N; mask++) {
+		int sub = allow_full ? mask : (mask - 1) & mask;
+		for (;; sub = (sub - 1) & mask) {
+			if (sub == 0 && !allow_empty) break;
+			merge(mask, sub, dp);
+			if (sub == 0) break;
 		}
 	}
 }
+}
 
-#endif // ALGORITHM_DP_SUBSET_PARTITION_HPP
+#endif // KWM_T_ALGORITHM_DP_SUBSET_PARTITION_HPP

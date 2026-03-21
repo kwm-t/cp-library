@@ -1,5 +1,5 @@
-﻿#ifndef ALGORITHM_SEARCH_BINARYSEARCH_HPP
-#define ALGORITHM_SEARCH_BINARYSEARCH_HPP
+﻿#ifndef KWM_T_ALGORITHM_SEARCH_BINARYSEARCH_HPP
+#define KWM_T_ALGORITHM_SEARCH_BINARYSEARCH_HPP
 
 #include <cstdlib>
 
@@ -47,16 +47,16 @@
  * Verified:
  *
  */
-namespace algorithm::search {
+namespace kwm_t::algorithm::search {
 
-	template <class T, class F>
-	T binarySearch(T ok, T ng, const F &f) {
-		while (std::abs(ok - ng) > 1) {
-			T mid = (ok + ng) / 2;
-			(f(mid) ? ok : ng) = mid;
-		}
-		return ok;
+template <class T, class F>
+T binarySearch(T ok, T ng, const F &f) {
+	while (std::abs(ok - ng) > 1) {
+		T mid = (ok + ng) / 2;
+		(f(mid) ? ok : ng) = mid;
 	}
+	return ok;
+}
 }
 
 /**
@@ -102,16 +102,16 @@ namespace algorithm::search {
  *
  */
 
-namespace algorithm::search {
-	template <class T, class F>
-	T binarySearchDouble(T ok, T ng, const F &f, int counter = 100) {
-		while (counter--) {
-			T mid = (ok + ng) / 2;
-			(f(mid) ? ok : ng) = mid;
-		}
-		return ok;
+namespace kwm_t::algorithm::search {
+template <class T, class F>
+T binarySearchDouble(T ok, T ng, const F &f, int counter = 100) {
+	while (counter--) {
+		T mid = (ok + ng) / 2;
+		(f(mid) ? ok : ng) = mid;
 	}
+	return ok;
+}
 
-} // namespace temperaturelib::algorithm::search
+} // namespace kwm_t::algorithm::search
 
-#endif // ALGORITHM_SEARCH_BINARYSEARCH_HPP
+#endif // KWM_T_ALGORITHM_SEARCH_BINARYSEARCH_HPP

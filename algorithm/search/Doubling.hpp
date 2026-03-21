@@ -1,5 +1,5 @@
-﻿#ifndef ALGORITHM_SEARCH_DOUBLING_HPP
-#define ALGORITHM_SEARCH_DOUBLING_HPP
+﻿#ifndef KWM_T_ALGORITHM_SEARCH_DOUBLING_HPP
+#define KWM_T_ALGORITHM_SEARCH_DOUBLING_HPP
 
 #include <vector>
 #include <functional>
@@ -47,115 +47,115 @@
  *   auto merge = [](auto a, auto b) { return a + b; };
  *   Doubling<long long, decltype(merge)> db2(nxt, cost, merge);
  *   auto [to, sum] = db2.jump_value(0, k);
- * 
+ *
  * verified:
  *   https://atcoder.jp/contests/awc0025/submissions/74048140
  *   https://atcoder.jp/contests/abc438/submissions/74048565
  */
 
-namespace temperaturelib::algorithm::search {
-	struct DoublingNoValue {};
-	template<class T = DoublingNoValue, class Merge = std::plus<T>>
-	class Doubling {
-	public:
-		int N;
-		int LOG;
+namespace kwm_t::algorithm::search {
+struct DoublingNoValue {};
+template<class T = DoublingNoValue, class Merge = std::plus<T>>
+class Doubling {
+public:
+	int N;
+	int LOG;
 
-		Doubling(const std::vector<int>& nxt, int log = 60) : N((int)nxt.size()), LOG(log)
-		{
-			init(nxt);
+	Doubling(const std::vector<int>& nxt, int log = 60) : N((int)nxt.size()), LOG(log)
+	{
+		init(nxt);
+	}
+
+	Doubling(const std::vector<int>& nxt,
+		const std::vector<T>& value,
+		Merge m = Merge(),
+		int log = 60)
+		: N((int)nxt.size()), LOG(log), merge(m)
+	{
+		init(nxt, value);
+	}
+
+	// k回遷移
+	int jump(int v, long long k) const {
+		for (int i = 0; i < LOG; ++i) {
+			if (k >> i & 1) v = to[i][v];
 		}
+		return v;
+	}
 
-		Doubling(const std::vector<int>& nxt,
-			const std::vector<T>& value,
-			Merge m = Merge(),
-			int log = 60)
-			: N((int)nxt.size()), LOG(log), merge(m)
-		{
-			init(nxt, value);
-		}
-
-		// k回遷移
-		int jump(int v, long long k) const {
-			for (int i = 0; i < LOG; ++i) {
-				if (k >> i & 1) v = to[i][v];
+	// value付き k回遷移
+	std::pair<int, T> jump_value(int v, long long k) const {
+		T res{};
+		for (int i = 0; i < LOG; ++i) {
+			if (k >> i & 1) {
+				res = merge(res, val[i][v]);
+				v = to[i][v];
 			}
-			return v;
 		}
+		return { v, res };
+	}
 
-		// value付き k回遷移
-		std::pair<int, T> jump_value(int v, long long k) const {
-			T res{};
-			for (int i = 0; i < LOG; ++i) {
-				if (k >> i & 1) {
-					res = merge(res, val[i][v]);
-					v = to[i][v];
-				}
-			}
-			return { v, res };
-		}
+	// f(jump(v,k)) が true になる最小 k (存在しなければ -1)
+	// verifiedしていません。
+	template<class F>
+	long long first_true(int v, long long limit, F f) const {
+		T acc{};
+		if (f(v, acc)) return 0;
 
-		// f(jump(v,k)) が true になる最小 k (存在しなければ -1)
-		// verifiedしていません。
-		template<class F>
-		long long first_true(int v, long long limit, F f) const {
-			T acc{};
-			if (f(v, acc)) return 0;
+		long long k = 0;
 
-			long long k = 0;
+		for (int i = LOG - 1; i >= 0; --i) {
+			if (k + (1LL << i) > limit) continue;
 
-			for (int i = LOG - 1; i >= 0; --i) {
-				if (k + (1LL << i) > limit) continue;
+			int nv = to[i][v];
+			T nacc;
+			if constexpr (std::is_same_v<T, DoublingNoValue>) nacc = acc;
+			else nacc = merge(acc, val[i][v]);
 
-				int nv = to[i][v];
-				T nacc;
-				if constexpr (std::is_same_v<T, DoublingNoValue>) nacc = acc;
-				else nacc = merge(acc, val[i][v]);
-
-				if (!f(nv, nacc)) {
-					v = nv;
-					acc = nacc;
-					k += 1LL << i;
-				}
-			}
-
-			if (k == limit) return -1;
-			return k + 1;
-		}
-
-	private:
-
-		std::vector<std::vector<int>> to;
-		std::vector<std::vector<T>> val;
-		Merge merge;
-
-		void init(const std::vector<int>& nxt) {
-			to.assign(LOG, std::vector<int>(N));
-			to[0] = nxt;
-
-			for (int i = 1; i < LOG; ++i) {
-				for (int v = 0; v < N; ++v) {
-					to[i][v] = to[i - 1][to[i - 1][v]];
-				}
+			if (!f(nv, nacc)) {
+				v = nv;
+				acc = nacc;
+				k += 1LL << i;
 			}
 		}
 
-		void init(const std::vector<int>& nxt, const std::vector<T>& value) {
-			to.assign(LOG, std::vector<int>(N));
-			val.assign(LOG, std::vector<T>(N));
+		if (k == limit) return -1;
+		return k + 1;
+	}
 
-			to[0] = nxt;
-			val[0] = value;
+private:
 
-			for (int i = 1; i < LOG; ++i) {
-				for (int v = 0; v < N; ++v) {
-					int u = to[i - 1][v];
-					to[i][v] = to[i - 1][u];
-					val[i][v] = merge(val[i - 1][v], val[i - 1][u]);
-				}
+	std::vector<std::vector<int>> to;
+	std::vector<std::vector<T>> val;
+	Merge merge;
+
+	void init(const std::vector<int>& nxt) {
+		to.assign(LOG, std::vector<int>(N));
+		to[0] = nxt;
+
+		for (int i = 1; i < LOG; ++i) {
+			for (int v = 0; v < N; ++v) {
+				to[i][v] = to[i - 1][to[i - 1][v]];
 			}
 		}
-	};
-} // namespace temperaturelib::algorithm::search
+	}
 
-#endif // ALGORITHM_SEARCH_DOUBLING_HPP
+	void init(const std::vector<int>& nxt, const std::vector<T>& value) {
+		to.assign(LOG, std::vector<int>(N));
+		val.assign(LOG, std::vector<T>(N));
+
+		to[0] = nxt;
+		val[0] = value;
+
+		for (int i = 1; i < LOG; ++i) {
+			for (int v = 0; v < N; ++v) {
+				int u = to[i - 1][v];
+				to[i][v] = to[i - 1][u];
+				val[i][v] = merge(val[i - 1][v], val[i - 1][u]);
+			}
+		}
+	}
+};
+} // namespace kwm_t::algorithm::search
+
+#endif // KWM_T_ALGORITHM_SEARCH_DOUBLING_HPP

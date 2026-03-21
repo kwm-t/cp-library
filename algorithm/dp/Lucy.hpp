@@ -1,5 +1,5 @@
-﻿#ifndef ALGORITHM_DP_LUCY_HPP
-#define ALGORITHM_DP_LUCY_HPP
+﻿#ifndef KWM_T_ALGORITHM_DP_LUCY_HPP
+#define KWM_T_ALGORITHM_DP_LUCY_HPP
 
 #include <vector>
 #include <unordered_map>
@@ -39,66 +39,66 @@
  *
  */
 
-namespace algorithm::dp {
-	/**
-	 * @brief n 以下の素数の個数 π(n)
-	 */
-	inline long long lucyDp_count(const long long N) {
-		const long long sqrtN = std::sqrt((long double)N);
+namespace kwm_t::algorithm::dp {
+/**
+ * @brief n 以下の素数の個数 π(n)
+ */
+inline long long lucyDp_count(const long long N) {
+	const long long sqrtN = std::sqrt((long double)N);
 
-		std::vector<long long> Q;
-		Q.reserve(sqrtN * 2);
+	std::vector<long long> Q;
+	Q.reserve(sqrtN * 2);
 
-		for (long long i = 1; i <= sqrtN; ++i) Q.push_back(N / i);
+	for (long long i = 1; i <= sqrtN; ++i) Q.push_back(N / i);
 
-		while (Q.back() != 1) Q.push_back(Q.back() - 1);
+	while (Q.back() != 1) Q.push_back(Q.back() - 1);
 
-		std::unordered_map<long long, long long> mp;
-		mp.reserve(Q.size() * 2);
+	std::unordered_map<long long, long long> mp;
+	mp.reserve(Q.size() * 2);
 
-		for (auto q : Q) mp[q] = q - 1;
+	for (auto q : Q) mp[q] = q - 1;
 
-		for (long long p = 2; p <= sqrtN; ++p) {
-			if (mp[p] == mp[p - 1]) continue;
-			auto pre = mp[p - 1];
-			for (auto q : Q) {
-				if (q < p * p) break;
-				mp[q] -= mp[q / p] - pre;
-			}
+	for (long long p = 2; p <= sqrtN; ++p) {
+		if (mp[p] == mp[p - 1]) continue;
+		auto pre = mp[p - 1];
+		for (auto q : Q) {
+			if (q < p * p) break;
+			mp[q] -= mp[q / p] - pre;
 		}
-
-		return mp[N];
 	}
 
-	/**
-	 * @brief n 以下の素数の総和
-	 */
-	inline long long lucyDp_sum(const long long N) {
-		const long long sqrtN = std::sqrt((long double)N);
+	return mp[N];
+}
 
-		std::vector<long long> Q;
-		Q.reserve(sqrtN * 2);
+/**
+ * @brief n 以下の素数の総和
+ */
+inline long long lucyDp_sum(const long long N) {
+	const long long sqrtN = std::sqrt((long double)N);
 
-		for (long long i = 1; i <= sqrtN; ++i) Q.push_back(N / i);
-		while (Q.back() != 1) Q.push_back(Q.back() - 1);
+	std::vector<long long> Q;
+	Q.reserve(sqrtN * 2);
 
-		std::unordered_map<long long, long long> mp;
-		mp.reserve(Q.size() * 2);
+	for (long long i = 1; i <= sqrtN; ++i) Q.push_back(N / i);
+	while (Q.back() != 1) Q.push_back(Q.back() - 1);
 
-		for (auto q : Q) mp[q] = q * (q + 1) / 2 - 1;
+	std::unordered_map<long long, long long> mp;
+	mp.reserve(Q.size() * 2);
 
-		for (long long p = 2; p <= sqrtN; ++p) {
-			if (mp[p] == mp[p - 1]) continue;
-			auto pre = mp[p - 1];
-			for (auto q : Q) {
-				if (q < p * p) break;
-				mp[q] -= p * (mp[q / p] - pre);
-			}
+	for (auto q : Q) mp[q] = q * (q + 1) / 2 - 1;
+
+	for (long long p = 2; p <= sqrtN; ++p) {
+		if (mp[p] == mp[p - 1]) continue;
+		auto pre = mp[p - 1];
+		for (auto q : Q) {
+			if (q < p * p) break;
+			mp[q] -= p * (mp[q / p] - pre);
 		}
-
-		return mp[N];
 	}
 
-} // namespace algorithm::dp
+	return mp[N];
+}
 
-#endif // ALGORITHM_DP_LUCY_HPP
+} // namespace kwm_t::algorithm::dp
+
+#endif // KWM_T_ALGORITHM_DP_LUCY_HPP

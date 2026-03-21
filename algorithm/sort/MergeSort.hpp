@@ -1,5 +1,5 @@
-﻿#ifndef ALGORITHM_SORT_MERGESORT_HPP
-#define ALGORITHM_SORT_MERGESORT_HPP
+﻿#ifndef KWM_T_ALGORITHM_SORT_MERGESORT_HPP
+#define KWM_T_ALGORITHM_SORT_MERGESORT_HPP
 
 #include <vector>
 #include <utility>
@@ -43,52 +43,52 @@
  *
  */
 
-namespace algorithm::sort {
+namespace kwm_t::algorithm::sort {
 
-	template<typename T, class F>
-	std::vector<T> mergeSort(std::vector<T> vec, const F &f) {
+template<typename T, class F>
+std::vector<T> mergeSort(std::vector<T> vec, const F &f) {
 
-		auto dfs = [&](auto &&self, size_t l, size_t r) -> void {
+	auto dfs = [&](auto &&self, size_t l, size_t r) -> void {
 
-			if (l + 1 >= r) return;
+		if (l + 1 >= r) return;
 
-			size_t m = (l + r) / 2;
+		size_t m = (l + r) / 2;
 
-			self(self, l, m);
-			self(self, m, r);
+		self(self, l, m);
+		self(self, m, r);
 
-			std::vector<T> d;
-			d.reserve(r - l);
+		std::vector<T> d;
+		d.reserve(r - l);
 
-			size_t i0 = l;
-			size_t i1 = m;
+		size_t i0 = l;
+		size_t i1 = m;
 
-			while (i0 < m || i1 < r) {
+		while (i0 < m || i1 < r) {
 
-				if (i0 == m) {
-					d.push_back(std::move(vec[i1++]));
-				}
-				else if (i1 == r) {
+			if (i0 == m) {
+				d.push_back(std::move(vec[i1++]));
+			}
+			else if (i1 == r) {
+				d.push_back(std::move(vec[i0++]));
+			}
+			else {
+				if (f(vec[i0], vec[i1]))
 					d.push_back(std::move(vec[i0++]));
-				}
-				else {
-					if (f(vec[i0], vec[i1]))
-						d.push_back(std::move(vec[i0++]));
-					else
-						d.push_back(std::move(vec[i1++]));
-				}
+				else
+					d.push_back(std::move(vec[i1++]));
 			}
+		}
 
-			for (size_t i = l; i < r; ++i) {
-				vec[i] = std::move(d[i - l]);
-			}
-		};
+		for (size_t i = l; i < r; ++i) {
+			vec[i] = std::move(d[i - l]);
+		}
+	};
 
-		dfs(dfs, 0, vec.size());
+	dfs(dfs, 0, vec.size());
 
-		return vec;
-	}
-
+	return vec;
 }
 
-#endif // ALGORITHM_SORT_MERGESORT_HPP
+} // namespace kwm_t::algorithm::sort
+
+#endif // KWM_T_ALGORITHM_SORT_MERGESORT_HPP
