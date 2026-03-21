@@ -1,5 +1,5 @@
-#ifndef GRAPH_SHORTEST_PATH_BFS_HPP
-#define GRAPH_SHORTEST_PATH_BFS_HPP
+#ifndef KWM_T_GRAPH_SHORTEST_PATH_BFS_HPP
+#define KWM_T_GRAPH_SHORTEST_PATH_BFS_HPP
 
 #include <vector>
 #include <queue>
@@ -20,7 +20,7 @@
  *
  * @return pair(dist, prev)
  */
-namespace graph::shortest_path {
+namespace kwm_t::graph::shortest_path {
 
 	inline std::pair<std::vector<int>, std::vector<int>>
 		bfs(const std::vector<std::vector<int>> &g, int s) {
@@ -56,6 +56,6 @@ namespace graph::shortest_path {
 		return path;
 	}
 
-} // namespace graph::shortest_path
+} // namespace kwm_t::graph::shortest_path
 
-#endif // GRAPH_SHORTEST_PATH_BFS_HPP
+#endif // KWM_T_GRAPH_SHORTEST_PATH_BFS_HPP

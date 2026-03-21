@@ -1,5 +1,5 @@
-#ifndef GRAPH_SHORTEST_PATH_GRID_BFS_HPP
-#define GRAPH_SHORTEST_PATH_GRID_BFS_HPP
+#ifndef KWM_T_GRAPH_SHORTEST_PATH_GRID_BFS_HPP
+#define KWM_T_GRAPH_SHORTEST_PATH_GRID_BFS_HPP
 
 #include <vector>
 #include <queue>
@@ -21,7 +21,7 @@
  *
  * @return dist, prev（1次元 index）
  */
-namespace graph::shortest_path {
+namespace kwm_t::graph::shortest_path {
 
 	struct GridBFSResult {
 		std::vector<int> dist;
@@ -92,6 +92,6 @@ namespace graph::shortest_path {
 		return path;
 	}
 
-} // namespace graph::shortest_path
+} // namespace kwm_t::graph::shortest_path
 
-#endif // GRAPH_SHORTEST_PATH_GRID_BFS_HPP
+#endif // KWM_T_GRAPH_SHORTEST_PATH_GRID_BFS_HPP

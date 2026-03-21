@@ -1,5 +1,5 @@
-﻿#ifndef GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP
-#define GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP
+﻿#ifndef KWM_T_GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP
+#define KWM_T_GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP
 
 #include <vector>
 #include <limits>
@@ -22,7 +22,7 @@
  * verified:
  *   https://atcoder.jp/contests/abc404/submissions/74224294
  */
-namespace graph::shortest_path {
+namespace kwm_t::graph::shortest_path {
 
 	template<typename T>
 	std::vector<T> bellman_ford_negative(
@@ -77,6 +77,6 @@ namespace graph::shortest_path {
 		return dist;
 	}
 
-} // namespace graph::shortest_path
+} // namespace kwm_t::graph::shortest_path
 
-#endif // GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP
+#endif // KWM_T_GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP

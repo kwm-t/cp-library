@@ -1,5 +1,5 @@
-#ifndef GRAPH_SHORTEST_PATH_BFS_01_HPP
-#define GRAPH_SHORTEST_PATH_BFS_01_HPP
+#ifndef KWM_T_GRAPH_SHORTEST_PATH_BFS_01_HPP
+#define KWM_T_GRAPH_SHORTEST_PATH_BFS_01_HPP
 
 #include <vector>
 #include <deque>
@@ -22,7 +22,7 @@
  *
  * @return pair(dist, prev)
  */
-namespace graph::shortest_path {
+namespace kwm_t::graph::shortest_path {
 
 	template<typename T>
 	std::pair<std::vector<T>, std::vector<int>>
@@ -66,6 +66,6 @@ namespace graph::shortest_path {
 		return path;
 	}
 
-} // namespace graph::shortest_path
+} // namespace kwm_t::graph::shortest_path
 
-#endif // GRAPH_SHORTEST_PATH_BFS_01_HPP
+#endif // KWM_T_GRAPH_SHORTEST_PATH_BFS_01_HPP

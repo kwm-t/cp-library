@@ -1,5 +1,5 @@
-#ifndef GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
-#define GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
+#ifndef KWM_T_GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
+#define KWM_T_GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
 
 #include <vector>
 #include <algorithm>
@@ -43,7 +43,7 @@
  *   https://atcoder.jp/contests/awc0029/submissions/74223310
  *   https://atcoder.jp/contests/abc416/submissions/74223415
  */
-namespace graph::shortest_path {
+namespace kwm_t::graph::shortest_path {
 
 	template<typename T>
 	void warshall_floyd(std::vector<std::vector<T>> &d, T inf) {
@@ -92,6 +92,6 @@ namespace graph::shortest_path {
 		return diff;
 	}
 
-} // namespace graph::shortest_path
+} // namespace kwm_t::graph::shortest_path
 
-#endif // GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
+#endif // KWM_T_GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
