@@ -38,7 +38,7 @@
  *   auto path = restore_path(prev, s, t);
  *
  * verified:
- *   - AtCoder ABC / typical90
+ *   https://atcoder.jp/contests/awc0033/submissions/74392079
  */
 namespace kwm_t::graph::shortest_path {
 
@@ -50,8 +50,7 @@ namespace kwm_t::graph::shortest_path {
 		std::vector<T> dist(n, inf);
 		std::vector<int> prev(n, -1);
 
-		using P = std::pair<T, int>;
-		std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
+		std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> pq;
 
 		dist[s] = 0;
 		pq.emplace(0, s);
