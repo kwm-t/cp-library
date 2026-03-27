@@ -35,7 +35,7 @@ private:
 		for (int i = 0; i < n; ++i) {
 			while (j != -1 && t[j] != t[i]) j = a[j];
 			j++;
-			if (t[i + 1] == t[j])a[i + 1] = a[j];
+			if (i + 1 < n && t[i + 1] == t[j])a[i + 1] = a[j];
 			else a[i + 1] = j;
 		}
 	}

@@ -112,12 +112,7 @@ std::vector<int> z_algorithm(const std::vector<T>& s) {
 	return z;
 }
 std::vector<int> z_algorithm(const std::string& s) {
-	int n = (int)s.size();
-	std::vector<int> subS(n);
-	for (int i = 0; i < n; i++) {
-		subS[i] = s[i];
-	}
-	return z_algorithm(subS);
+    return z_algorithm(std::vector<char>(s.begin(), s.end()));
 }
 ```
 ## 参考
