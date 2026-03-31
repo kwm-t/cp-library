@@ -1,93 +1,100 @@
-﻿#include <vector>
-#include <iostream> 
+﻿#ifndef KWM_T_MATH_LUCAS_HPP
+#define KWM_T_MATH_LUCAS_HPP
+
+#include <vector>
+
+/**
+ * @brief Lucasの定理による nCk mod p (pは素数)
+ *
+ * n, k が大きくても計算可能
+ *
+ * 典型用途:
+ *   ・n, k <= 1e18 などの組み合わせ
+ *   ・mod が小さい素数
+ *
+ * 計算量:
+ *   前処理: O(p)
+ *   クエリ: O(log_p n)
+ *
+ * @param p 素数
+ *
+ * 制約 / 注意:
+ *   ・p は素数
+ *   ・p が大きすぎると前処理が重い
+ *
+ * 使用例:
+ *   Lucas lc(p);
+ *   auto res = lc.comb(n, k);
+ *
+ * verified:
+ *   ・基本ケース
+ */
+namespace kwm_t::math {
+
 struct Lucas {
-public:
-	//pは素数
-	Lucas(long long p) :mod(p) { Init(); }
 private:
-	//下準備
-	void Init() {
-		CreateFact();
-		CreateComb();
-	}
-	//comb計算
-	void CreateComb() {
-		comb.resize(mod);
-		for (int i = 0; i < mod; ++i) {
-			comb[i].resize(mod);
-			for (int j = 0; j < mod; ++j) {
-				if (i < j) {
-					comb[i][j] = 0;
-					continue;
-				}
-				comb[i][j] = (((fact[i] * ifact[j]) % mod) * ifact[i - j]) % mod;
-			}
+	long long p;
+	std::vector<long long> fact, ifact;
+
+	long long mod_pow(long long a, long long e) const {
+		long long r = 1;
+		while (e) {
+			if (e & 1) r = r * a % p;
+			a = a * a % p;
+			e >>= 1;
 		}
+		return r;
 	}
-	//階乗計算
-	void CreateFact() {
-		fact.resize(mod);
-		ifact.reserve(mod);
+
+	long long inv(long long x) const {
+		return mod_pow(x, p - 2);
+	}
+
+	void build() {
+		fact.resize(p);
+		ifact.resize(p);
+
 		fact[0] = 1;
-		for (int i = 1; i < mod; ++i) fact[i] = (fact[i - 1] * i) % mod;
-		ifact[mod - 1] = inv(fact[mod - 1]);
-		for (int i = mod - 1; i >= 0; --i) ifact[i - 1] = (ifact[i] * i) % mod;
-	}
-	//逆元計算(x^(y - 2))
-	long long inv(long long x) {
-		long long y = mod - 2;
-		long long tmp = x;
-		long long ret = 1;
-		while (y > 0) {
-			if (1 == y % 2) {
-				ret *= tmp;
-				ret %= mod;
-			}
-			y /= 2;
-			tmp *= tmp;
-			tmp %= mod;
+		for (int i = 1; i < p; ++i) {
+			fact[i] = fact[i - 1] * i % p;
 		}
-		return ret;
+
+		ifact[p - 1] = inv(fact[p - 1]);
+		for (int i = p - 1; i > 0; --i) {
+			ifact[i - 1] = ifact[i] * i % p;
+		}
 	}
+
+	// nCk mod p (n, k < p)
+	long long small_comb(long long n, long long k) const {
+		if (n < k) return 0;
+		return fact[n] * ifact[k] % p * ifact[n - k] % p;
+	}
+
 public:
-	//c(i,j)の計算
-	int c(long long i, long long j) {
-		if (i < j) return 0;
-		long long ret = 1;
-		while (i > 0) {
-			long long x = i % mod;
-			long long y = j % mod;
-			ret *= comb[x][y];
-			ret %= mod;
-			i /= mod;
-			j /= mod;
+	explicit Lucas(long long p) : p(p) {
+		build();
+	}
+
+	long long comb(long long n, long long k) const {
+		if (n < k) return 0;
+
+		long long res = 1;
+		while (n > 0 || k > 0) {
+			long long ni = n % p;
+			long long ki = k % p;
+
+			if (ni < ki) return 0;
+
+			res = res * small_comb(ni, ki) % p;
+
+			n /= p;
+			k /= p;
 		}
-		return ret;
+		return res;
 	}
-	//階乗デバッグ
-	void debug() {
-		for (int i = 0; i < mod; ++i) std::cout << fact[i] << " ";
-		std::cout << std::endl;
-		for (int i = 0; i < mod; ++i) std::cout << ifact[i] << " ";
-		std::cout << std::endl;
-	}
-	//combデバッグ
-	void debug2() {
-		for (int i = 0; i < mod; ++i) {
-			for (int j = 0; j < mod; ++j) std::cout << comb[i][j] << " ";
-			std::cout << std::endl;
-		}
-	}
-	//パスカルの三角形デバッグ
-	void debug3() {
-		for (int i = 0; i < 10; ++i) {
-			for (int j = 0; j < i + 1; ++j) std::cout << c(i, j) << " ";
-			std::cout << std::endl;
-		}
-	}
-private:
-	long long mod;
-	std::vector<std::vector<long long>> comb;
-	std::vector<long long>fact;
-	std::vector<long long>ifact;
 };
+
+} // namespace kwm_t::math
+
+#endif // KWM_T_MATH_LUCAS_HPP
