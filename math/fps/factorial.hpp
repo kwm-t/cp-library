@@ -29,7 +29,10 @@ struct Factorial {
     mint comb(int n, int k) const {
         if (k < 0 || n < k) return 0;
         return fac[n] * finv[k] * finv[n - k];
-    }
+    }	
+    mint binom(int n, int k) const {
+		return comb(n, k);
+	}
 
     // nPk
     mint perm(int n, int k) const {
