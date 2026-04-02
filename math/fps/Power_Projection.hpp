@@ -11,7 +11,7 @@ namespace kwm_t::math::fps {
 
 namespace detail {
 
-// v の偶数/奇数項を抽出（NTT用のやつ）
+// v の偶数/奇数項を抽出（NTT用）
 // odd = 0 : even
 // odd = 1 : odd
 template <class T>
@@ -71,6 +71,7 @@ void pick_even_odd(std::vector<T>& v, bool odd) {
  *
  * 計算量:
  *   O(n log n + m log m)
+ *
  * verified
  *   https://atcoder.jp/contests/fps-24/submissions/74606486
  *   https://atcoder.jp/contests/abc439/submissions/74606553
