@@ -4,3 +4,6 @@ sum i = 0 to n,i^2
 
 //コンビネーション
 binom(i,j)
+
+
+todo!!!
