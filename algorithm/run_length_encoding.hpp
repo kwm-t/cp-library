@@ -15,6 +15,8 @@
  *
  * 制約:
  *   - 要素型に == が定義されていること
+ * verified
+ *  https://atcoder.jp/contests/abc452/submissions/74695137
  */
 namespace kwm_t::algorithm {
 
