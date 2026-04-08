@@ -77,6 +77,17 @@ const int dx8[8] = {1,0,-1,0,1,1,-1,-1};
 const int dy8[8] = {0,-1,0,1,1,-1,1,-1};
 ```
 
+##  🔹 dfs
+```cpp
+auto dfs = [&](auto &&self, int v, int p = -1)->void {
+	for (auto nv : to[v]) {
+		if (nv == p)continue;
+		self(self, nv, v);
+	}
+}
+dfs(dfs, 0);
+```
+
 ---
 
 ## 🔹 int128
