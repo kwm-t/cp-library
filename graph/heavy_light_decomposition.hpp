@@ -50,6 +50,7 @@
  *   - https://atcoder.jp/contests/pakencamp-2022-day1/submissions/74815849
  *   - https://yukicoder.me/submissions/1157023
  *   - https://yukicoder.me/submissions/1157028
+ *   - https://judge.yosupo.jp/submission/365669
  */
 namespace kwm_t::graph {
 
