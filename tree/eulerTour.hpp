@@ -19,7 +19,7 @@ namespace kwm_t::tree {
  *   O(N)
  * 
  * Verified:
- *  未検証
+ *  https://judge.yosupo.jp/submission/365628
  */
 struct EulerTourSubtree {
     std::vector<int> in, out;
