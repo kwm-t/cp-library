@@ -21,14 +21,13 @@ namespace kwm_t::data_structure {
  *
  * 制約:
  *   - op は冪等・結合則を満たす必要あり
- *   - e() は単位元
  *
  * 区間:
  *   [l, r) 半開区間
  * verified
  *  https://judge.yosupo.jp/submission/365493
  */
-template <class T, T(*op)(T, T), T(*e)()>
+template <class T, T(*op)(T, T)>
 class SparseTable {
 private:
     int n = 0;
@@ -67,7 +66,6 @@ public:
 
     // query on [l, r)
     T prod(int l, int r) const {
-        if (l >= r) return e();
         int len = r - l;
         int k = log_table[len];
         return op(table[k][l], table[k][r - (1 << k)]);
