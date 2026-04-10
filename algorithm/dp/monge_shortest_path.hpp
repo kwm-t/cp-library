@@ -4,6 +4,7 @@
 #include <vector>
 #include <limits>
 #include <utility>
+#include "monotone_minima.hpp"
 
 namespace kwm_t::algorithm::dp {
 
