@@ -72,6 +72,7 @@ auto len = clamp(r1, l0, r0) - clamp(l1, l0, r0);
 ```cpp
 const int dx4[4] = {1, 0, -1, 0};
 const int dy4[4] = {0, -1, 0, 1};
+const char dc4[4] = { 'D', 'L', 'U', 'R' };
 
 const int dx8[8] = {1,0,-1,0,1,1,-1,-1};
 const int dy8[8] = {0,-1,0,1,1,-1,1,-1};
