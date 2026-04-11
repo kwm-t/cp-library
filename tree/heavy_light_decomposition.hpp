@@ -1,5 +1,5 @@
-#ifndef KWM_T_GRAPH_HEAVY_LIGHT_DECOMPOSITION_HPP
-#define KWM_T_GRAPH_HEAVY_LIGHT_DECOMPOSITION_HPP
+#ifndef KWM_T_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
+#define KWM_T_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
 
 #include <vector>
 #include <algorithm>
@@ -50,9 +50,9 @@
  *   - https://atcoder.jp/contests/pakencamp-2022-day1/submissions/74815849
  *   - https://yukicoder.me/submissions/1157023
  *   - https://yukicoder.me/submissions/1157028
- *   - https://judge.yosupo.jp/submission/365669
+ *   - https://judge.yosupo.jp/submission/365677
  */
-namespace kwm_t::graph {
+namespace kwm_t::tree {
 
 class HeavyLightDecomposition {
 private:
@@ -180,4 +180,4 @@ public:
 
 }
 
-#endif // KWM_T_GRAPH_HEAVY_LIGHT_DECOMPOSITION_HPP
+#endif // KWM_T_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
