@@ -6,6 +6,9 @@
 
 /**
  * @brief AND畳み込み
+ * 
+ * verified
+ *  - https://judge.yosupo.jp/submission/365950
  */
 namespace kwm_t::math::convolution {
 
