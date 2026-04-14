@@ -27,45 +27,49 @@
 
 namespace kwm_t::segtree {
 
-    static constexpr long long INF  = (long long)4e18;
-    static constexpr long long NINF = -(long long)4e18;
+static constexpr long long INF = (long long)4e18;
+static constexpr long long NINF = -(long long)4e18;
 
-    // ================= Range Add =================
-    namespace RangeAdd {
-        // 区間加算 / 一点取得
-        using S = long long;
+// ================= Range Add =================
+namespace RangeAdd {
+// 区間加算 / 一点取得
+using S = long long;
 
-        S op(S x, S f) { return x + f; }
-        S e() { return 0; }
-    }
+S op(S x, S f) { return x + f; }
+S e() { return 0; }
+using dual_segtree = kwm_t::segtree::DualSegtree<S, op, e>;
+}
 
-    // ================= Range Update =================
-    namespace RangeUpdate {
-        // 区間更新（後勝ち） / 一点取得
-        using S = long long;
-        static constexpr long long ID = NINF;
+// ================= Range Update =================
+namespace RangeUpdate {
+// 区間更新（後勝ち） / 一点取得
+using S = long long;
+static constexpr long long ID = NINF;
 
-        S op(S x, S f) { return (f == ID ? x : f); }
-        S e() { return ID; }
-    }
+S op(S x, S f) { return (f == ID ? x : f); }
+S e() { return ID; }
+using dual_segtree = kwm_t::segtree::DualSegtree<S, op, e>;
+}
 
-    // ================= Range Chmin =================
-    namespace RangeChmin {
-        // 区間chmin / 一点取得
-        using S = long long;
+// ================= Range Chmin =================
+namespace RangeChmin {
+// 区間chmin / 一点取得
+using S = long long;
 
-        S op(S x, S f) { return std::min(x, f); }
-        S e() { return INF; }
-    }
+S op(S x, S f) { return std::min(x, f); }
+S e() { return INF; }
+using dual_segtree = kwm_t::segtree::DualSegtree<S, op, e>;
+}
 
-    // ================= Range Chmax =================
-    namespace RangeChmax {
-        // 区間chmax / 一点取得
-        using S = long long;
+// ================= Range Chmax =================
+namespace RangeChmax {
+// 区間chmax / 一点取得
+using S = long long;
 
-        S op(S x, S f) { return std::max(x, f); }
-        S e() { return NINF; }
-    }
+S op(S x, S f) { return std::max(x, f); }
+S e() { return NINF; }
+using dual_segtree = kwm_t::segtree::DualSegtree<S, op, e>;
+}
 
 } // namespace kwm_t::segtree
 
