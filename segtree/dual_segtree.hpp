@@ -43,6 +43,17 @@ private:
 	int log = 0;      // 高さ
 	std::vector<S> data;
 
+	// 初期化
+	void init() {
+		size = 1;
+		log = 0;
+		while (size < n) {
+			size <<= 1;
+			log++;
+		}
+		data.assign(size * 2, e());
+	}
+
 	// 子に遅延を伝播
 	void propagate(int k) {
 		if (k >= size) return;
@@ -60,25 +71,12 @@ private:
 
 public:
 	DualSegtree(int n_ = 0) : n(n_) {
-		size = 1;
-		log = 0;
-		while (size < n) {
-			size <<= 1;
-			log++;
-		}
-		data.assign(size * 2, e());
+		init();
 	}
 
 	DualSegtree(const std::vector<S>& v) : n((int)v.size()) {
-		size = 1;
-		log = 0;
-		while (size < n) {
-			size <<= 1;
-			log++;
-		}
-		data.assign(size * 2, e());
+		init();
 
-		// 葉に初期値をセット
 		for (int i = 0; i < n; i++) {
 			data[size + i] = v[i];
 		}
