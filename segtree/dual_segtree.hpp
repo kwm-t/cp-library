@@ -29,6 +29,8 @@
  *   DualSegtree<S, op, e> seg(n);
  *   seg.apply(l, r, x);
  *   auto val = seg.get(i);
+ *  verified
+ *   https://atcoder.jp/contests/awc0047/submissions/74964021
  */
 
 namespace kwm_t::segtree {
