@@ -4,6 +4,45 @@
 #include <vector>
 #include <cassert>
 
+/**
+ * @brief 2次元累積和（2D Prefix Sum）
+ *
+ * 典型用途:
+ *   - グリッド上の長方形領域の総和を高速に求める
+ *   - 「部分矩形和クエリ」を大量に処理する問題
+ *   - imos法や二次元DPの前処理
+ *
+ * 計算量:
+ *   - 構築: O(HW)
+ *   - クエリ: O(1)
+ *
+ * @tparam T
+ *   加算・減算が定義されている型（int, long long, double など）
+ *
+ * @param a
+ *   元となる H×W の2次元配列
+ *
+ * 制約 / 注意:
+ *   - 内部的に (H+1)×(W+1) の配列を持つ
+ *   - sum(x0, y0, x1, y1) は半開区間 [x0, x1) × [y0, y1)
+ *   - 0-indexed を前提とする
+ *   - a は長方形（各行のサイズが同じ）であること
+ *
+ * 使用例:
+ *   std::vector<std::vector<int>> a = {
+ *       {1, 2, 3},
+ *       {4, 5, 6},
+ *       {7, 8, 9}
+ *   };
+ *
+ *   kwm_t::utility::CumulativeSum2D<int> cs(a);
+ *
+ *   // (0,0) から (2,2) の和 → 1+2+4+5 = 12
+ *   int res = cs.sum(0, 0, 2, 2);
+ *
+ * verified:
+ *   - https://atcoder.jp/contests/awc0048/submissions/74980601
+ */
 namespace kwm_t::utility {
 
 template <class T>
