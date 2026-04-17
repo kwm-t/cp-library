@@ -1,5 +1,14 @@
 # 🧠 競プロ Tips 集
 
+## 🔹 出力が遅いとき
+```cpp
+#define endl "\n"
+```
+
+## 🔹 interractive
+```cpp
+std::fflush(stdout);
+```
 ## 🔹 浮動小数出力
 
 ```cpp
