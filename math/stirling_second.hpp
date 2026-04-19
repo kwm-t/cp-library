@@ -1,5 +1,5 @@
-﻿#ifndef KWM_T_MATH_COMBINATORICS_STIRLING_SECOND_HPP
-#define KWM_T_MATH_COMBINATORICS_STIRLING_SECOND_HPP
+﻿#ifndef KWM_T_MATH_STIRLING_SECOND_HPP
+#define KWM_T_MATH_STIRLING_SECOND_HPP
 
 #include <vector>
 
@@ -65,4 +65,4 @@ std::vector<std::vector<Mint>> stirling_second_table(int n) {
 
 } // namespace kwm_t::math
 
-#endif // KWM_T_MATH_COMBINATORICS_STIRLING_SECOND_HPP
+#endif // KWM_T_MATH_STIRLING_SECOND_HPP
