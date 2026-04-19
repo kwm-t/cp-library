@@ -1,10 +1,10 @@
-﻿#ifndef KWM_T_MATH_LINEAR_ALGEBRA_GAUSS_JORDAN_HPP
-#define KWM_T_MATH_LINEAR_ALGEBRA_GAUSS_JORDAN_HPP
+﻿#ifndef KWM_T_MATH_MATRIX_GAUSS_JORDAN_HPP
+#define KWM_T_MATH_MATRIX_GAUSS_JORDAN_HPP
 
 #include <vector>
 #include <utility>
 
-namespace kwm_t::math {
+namespace kwm_t::math::matrix {
 
 /**
  * @brief Gauss-Jordan elimination（掃き出し法）
@@ -138,6 +138,6 @@ private:
     std::vector<T> b;
 };
 
-} // namespace kwm_t::math
+} // namespace kwm_t::math::matrix
 
 #endif
