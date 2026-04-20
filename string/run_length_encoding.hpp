@@ -28,7 +28,7 @@
  *   // {{'a',3},{'b',2}}
  *
  * verified:
- *   - AtCoder ABC系
+ *   - https://atcoder.jp/contests/awc0051/submissions/75131286
  */
 namespace kwm_t::string {
 
