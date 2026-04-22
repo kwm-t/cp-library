@@ -6,6 +6,40 @@
 #include <optional>
 #include <cassert>
 
+/**
+ * @brief 半開区間 [l, r) の集合を管理するデータ構造（Interval Set）
+ *
+ * 典型用途:
+ *   - 区間の追加・削除・被覆判定
+ *   - 区間のマージ管理（重なり・隣接の統合）
+ *   - mex（最小未被覆値）の取得
+ *   - 区間被覆を利用した貪欲・シミュレーション問題
+ *
+ * 計算量:
+ *   - 各操作: O(k log N)
+ *     (k はマージ・削除される区間数)
+ *
+ * @tparam T
+ *   - 区間の座標型（int, long long など）
+ *
+ * @param limit
+ *   - 管理する座標の上限（番兵として使用）
+ *
+ * 制約 / 注意:
+ *   - 半開区間 [l, r) を扱う
+ *   - 内部で番兵（-INF, INF）を保持
+ *   - 区間は常に「互いに素かつ最大限マージされた状態」を保つ
+ *   - erase により「未被覆（穴）」が生じる
+ *
+ * 使用例:
+ *   IntervalSet<int> st(1e9);
+ *   st.insertRange(2, 5);
+ *   st.eraseRange(3, 4);
+ *   bool ok = st.isCovered(2, 3);
+ *
+ * verified:
+ *   https://atcoder.jp/contests/awc0053/submissions/75170416
+ */
 namespace kwm_t::data_structure {
 
 template <typename T>
