@@ -32,7 +32,7 @@
  *   auto B = matrixPow(10, A);
  *
  * verified:
- *   - 未検証
+ *   - https://atcoder.jp/contests/awc0053/submissions/75169363
  */
 namespace kwm_t::math::matrix {
 
