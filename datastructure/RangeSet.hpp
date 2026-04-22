@@ -153,13 +153,13 @@ private:
 
 	// --- 内部ヘルパー ---
 	void eraseRange(typename std::set<std::pair<T, T>>::iterator& it,
-		const std::function<void(int, int)>& onErase) {
+		const std::function<void(T, T)>& onErase) {
 		onErase(it->first, it->second);
 		it = ranges_.erase(it);
 	}
 
 	void addRange(T l, T r,
-		const std::function<void(int, int)>& onInsert) {
+		const std::function<void(T, T)>& onInsert) {
 		onInsert(l, r);
 		ranges_.emplace(l, r);
 	}
@@ -214,7 +214,7 @@ public:
         }
 
         // 中央の連結
-        while (it->first <= r) eraseRange(it);
+        while (it->first < r) eraseRange(it);
 
         // 右端の連結
         auto nxt = ranges_.lower_bound({ r, r });
