@@ -1,5 +1,5 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNION_FIND_UNDO_HPP
-#define KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNION_FIND_UNDO_HPP
+﻿#ifndef KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNDO_UNION_FIND_HPP
+#define KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNDO_UNION_FIND_HPP
 
 #include <vector>
 
@@ -21,9 +21,9 @@
  */
 namespace kwm_t::data_structure::disjoint_set_union {
 
-class UnionFindUndo {
+class UndoUnionFind {
 public:
-    explicit UnionFindUndo(int n)
+    explicit UndoUnionFind(int n)
         : n(n), par_or_size(n, -1) {}
 
     int leader(int v) const {
@@ -92,4 +92,4 @@ private:
 
 } // namespace kwm_t::data_structure::disjoint_set_union
 
-#endif // KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNION_FIND_UNDO_HPP
+#endif // KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNDO_UNION_FIND_HPP
