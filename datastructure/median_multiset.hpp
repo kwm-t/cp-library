@@ -11,6 +11,9 @@
  * 計算量:
  *   add / del : O(log N)
  *   get       : O(1)
+ * 
+ * verified
+ *   - https://atcoder.jp/contests/awc0055/submissions/75205292
  */
 
 namespace kwm_t::data_structure {
@@ -58,7 +61,7 @@ public:
         if (auto it = x.find(val); it != x.end()) {
             x.erase(it);
         } else {
-            auto it = y.find(val);
+            it = y.find(val);
             y.erase(it);
         }
         rebalance();
