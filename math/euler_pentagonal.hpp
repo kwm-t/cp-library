@@ -36,12 +36,13 @@
  *
  * verified:
  *   - https://yukicoder.me/submissions/1154654
+ *   - https://atcoder.jp/contests/abc279/submissions/75200580
  */
 namespace kwm_t::math {
 
-template <class mint>
-std::vector<mint> euler_pentagonal(int n, int k = 1) {
-    std::vector<mint> result(n + 1);
+template <class T>
+std::vector<T> euler_pentagonal(int n, int k = 1) {
+    std::vector<T> result(n + 1);
 
     for (long long i = 0;; ++i) {
         long long g1 = i * (3 * i - 1) / 2;
@@ -49,13 +50,35 @@ std::vector<mint> euler_pentagonal(int n, int k = 1) {
 
         if (g1 * k > n && g2 * k > n) break;
 
-        mint sign = (i % 2 == 0 ? 1 : -1);
+        T sign = (i % 2 == 0 ? 1 : -1);
 
         if (g1 * k <= n) result[g1 * k] += sign;
         if (i != 0 && g2 * k <= n) result[g2 * k] += sign;
     }
 
     return result;
+}
+
+// 非零項のみをスパース形式で返す
+template <typename T>
+std::vector<std::pair<long long, T>> euler_pentagonal_sparse(long long n) {
+	std::vector<std::pair<long long, T>> res;
+	if (n <= 0) return res;
+
+	res.emplace_back(0LL, T(1));
+
+	for (long long k = 1;; ++k) {
+		long long g1 = k * (3 * k - 1) / 2;
+		if (g1 >= n) break;
+
+		T sgn = (k & 1) ? T(-1) : T(1);
+		res.emplace_back(g1, sgn);
+
+		long long g2 = k * (3 * k + 1) / 2;
+		if (g2 < n) res.emplace_back(g2, sgn);
+	}
+
+	return res;
 }
 
 } // namespace kwm_t::math
