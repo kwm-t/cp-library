@@ -5,6 +5,7 @@
 #include <vector>
 #include <atcoder/all>
 
+namespace kwm_t::string {
 /**
  * @brief 文字列 s が文字列 t に含まれるか判定（Z-algorithm）
  *
@@ -27,7 +28,6 @@
  * verified:
  *   - AtCoder ABC系
  */
-namespace kwm_t::string {
 
 inline bool contain(const std::string& s, const std::string& t, char sep = '#') {
 	const int n = (int)s.size();
@@ -42,6 +42,45 @@ inline bool contain(const std::string& s, const std::string& t, char sep = '#') 
 		if (z[i] >= n) return true;
 	}
 	return false;
+}
+
+/**
+ * @brief 文字列 s が文字列 t に部分列として含まれるか判定
+ *
+ * 「連続である必要はない」包含判定。
+ * つまり s の各文字を順番を保ったまま t から取り出せるかを判定する。
+ *
+ * 例:
+ *   - "ace" は "abcde" に部分列として含まれる → true
+ *   - "aec" は "abcde" に部分列として含まれない → false
+ *
+ * 典型用途:
+ *   - subsequence 判定
+ *
+ * 計算量:
+ *   O(|t|)
+ *
+ * @param s 探す側（パターン）
+ * @param t 探される側（テキスト）
+ *
+ * @return s が t に部分列として含まれるなら true
+ *
+ * 制約 / 注意:
+ *   - 連続部分文字列ではなく、部分列判定
+ *
+ * verified:
+ *   - https://atcoder.jp/contests/awc0057/submissions/75334826
+ */
+inline bool contain_subsequence(const std::string& s, const std::string& t) {
+	std::size_t idx = 0;
+
+	for (char c : t) {
+		if (idx < s.size() && s[idx] == c) {
+			++idx;
+		}
+	}
+
+	return idx == s.size();
 }
 
 } // namespace kwm_t::string

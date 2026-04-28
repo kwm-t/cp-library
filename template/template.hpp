@@ -57,32 +57,32 @@
 //
 // ============================================
 
+namespace kwm_t::REPLACE_NAMESPACE {
 /**
- * @brief 
+ * @brief
  *
  * 典型用途:
- *   
+ *
  *
  * 計算量:
- *   
+ *
  *
  * @tparam
  *
  * @param
  *
  * 制約 / 注意:
- *   
+ *
  *
  * 使用例:
- *   
+ *
  *
  * verified:
  */
-namespace kwm_t::REPLACE_NAMESPACE {
 
-    class TemplateClass {
-        // 実装を書く
-    };
+class TemplateClass {
+	// 実装を書く
+};
 
 } // namespace kwm_t::REPLACE_NAMESPACE
 
