@@ -20,6 +20,7 @@ namespace kwm_t::tree {
  *   - LCA / k-th ancestor: O(log N)
  *
  * verified:
+ *  - https://atcoder.jp/contests/awc0059/submissions/75370597
  */
 class LcaTree {
 public:
@@ -32,23 +33,15 @@ public:
 	std::vector<int> in, out;
 	std::vector<int> parent[MAXLOGV];
 
-public:
-	LcaTree(int n, int root = 0)
-		: n(n), root(root),
-		  g(n), depth(n), in(n), out(n) {
+	// 前処理
+	void build() {
+		depth.resize(n);
+		in.resize(n);
+		out.resize(n);
 		for (int i = 0; i < MAXLOGV; i++) {
 			parent[i].assign(n, -1);
 		}
-	}
 
-	// 無向辺追加
-	void add_edge(int u, int v) {
-		g[u].push_back(v);
-		g[v].push_back(u);
-	}
-
-	// 前処理
-	void build() {
 		int timer = 0;
 
 		auto dfs = [&](auto&& self, int v, int p, int d) -> void {
@@ -70,11 +63,18 @@ public:
 			for (int v = 0; v < n; v++) {
 				if (parent[k][v] < 0) {
 					parent[k + 1][v] = -1;
-				} else {
+				}
+				else {
 					parent[k + 1][v] = parent[k][parent[k][v]];
 				}
 			}
 		}
+	}
+public:
+	LcaTree(std::vector<std::vector<int>> g, int root = 0)
+		: n((int)g.size()), root(root),
+		g(g) {
+		build();
 	}
 
 	// LCA
