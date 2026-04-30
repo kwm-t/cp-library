@@ -33,43 +33,6 @@ public:
 	std::vector<int> in, out;
 	std::vector<int> parent[MAXLOGV];
 
-	// 前処理
-	void build() {
-		depth.resize(n);
-		in.resize(n);
-		out.resize(n);
-		for (int i = 0; i < MAXLOGV; i++) {
-			parent[i].assign(n, -1);
-		}
-
-		int timer = 0;
-
-		auto dfs = [&](auto&& self, int v, int p, int d) -> void {
-			in[v] = timer++;
-			parent[0][v] = p;
-			depth[v] = d;
-
-			for (int to : g[v]) {
-				if (to == p) continue;
-				self(self, to, v, d + 1);
-			}
-
-			out[v] = timer;
-		};
-
-		dfs(dfs, root, -1, 0);
-
-		for (int k = 0; k + 1 < MAXLOGV; k++) {
-			for (int v = 0; v < n; v++) {
-				if (parent[k][v] < 0) {
-					parent[k + 1][v] = -1;
-				}
-				else {
-					parent[k + 1][v] = parent[k][parent[k][v]];
-				}
-			}
-		}
-	}
 public:
 	LcaTree(std::vector<std::vector<int>> g, int root = 0)
 		: n((int)g.size()), root(root),
@@ -145,6 +108,45 @@ public:
 			return kth_ancestor(u, d);
 		}
 		return kth_ancestor(v, uv - d);
+	}
+
+private:
+	// 前処理
+	void build() {
+		depth.resize(n);
+		in.resize(n);
+		out.resize(n);
+		for (int i = 0; i < MAXLOGV; i++) {
+			parent[i].assign(n, -1);
+		}
+
+		int timer = 0;
+
+		auto dfs = [&](auto&& self, int v, int p, int d) -> void {
+			in[v] = timer++;
+			parent[0][v] = p;
+			depth[v] = d;
+
+			for (int to : g[v]) {
+				if (to == p) continue;
+				self(self, to, v, d + 1);
+			}
+
+			out[v] = timer;
+		};
+
+		dfs(dfs, root, -1, 0);
+
+		for (int k = 0; k + 1 < MAXLOGV; k++) {
+			for (int v = 0; v < n; v++) {
+				if (parent[k][v] < 0) {
+					parent[k + 1][v] = -1;
+				}
+				else {
+					parent[k + 1][v] = parent[k][parent[k][v]];
+				}
+			}
+		}
 	}
 };
 
