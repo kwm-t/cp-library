@@ -5,6 +5,7 @@
 #include <functional>
 #include <utility>
 
+namespace kwm_t::algorithm::search {
 /**
  * @brief Doubling (Binary Lifting)
  *
@@ -51,9 +52,9 @@
  * verified:
  *   https://atcoder.jp/contests/awc0025/submissions/74048140
  *   https://atcoder.jp/contests/abc438/submissions/74048565
+ *   first_true
+ *   https://atcoder.jp/contests/arc218/submissions/75493507
  */
-
-namespace kwm_t::algorithm::search {
 struct DoublingNoValue {};
 template<class T = DoublingNoValue, class Merge = std::plus<T>>
 class Doubling {
@@ -96,7 +97,6 @@ public:
 	}
 
 	// f(jump(v,k)) が true になる最小 k (存在しなければ -1)
-	// verifiedしていません。
 	template<class F>
 	long long first_true(int v, long long limit, F f) const {
 		T acc{};
