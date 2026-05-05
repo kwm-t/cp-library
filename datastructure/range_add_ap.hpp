@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 
+namespace kwm_t::datastructure {
 /**
  * @brief 区間に等差数列を加算（オフライン）
  *
@@ -34,10 +35,8 @@
  *   ra.build();
  *
  * verified:
- *   ・自作
+ *   https://atcoder.jp/contests/awc0062/submissions/75532999
  */
-namespace kwm_t::datastructure {
-
 template<typename T>
 struct RangeAddAP {
 private:

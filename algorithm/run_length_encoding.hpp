@@ -5,6 +5,7 @@
 #include <utility>
 #include <iterator>
 
+namespace kwm_t::algorithm {
 /**
  * @brief Run Length Encoding（連長圧縮）
  *
@@ -19,8 +20,6 @@
  *  https://atcoder.jp/contests/abc452/submissions/74695137
  *  https://atcoder.jp/contests/awc0051/submissions/75170743
  */
-namespace kwm_t::algorithm {
-
 template<class It>
 std::vector<std::pair<typename std::iterator_traits<It>::value_type, int>>
 run_length_encoding(It first, It last) {
