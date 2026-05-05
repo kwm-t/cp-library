@@ -4,6 +4,8 @@
 #include <vector>
 #include <queue>
 
+
+namespace kwm_t::graph {
 /**
  * @brief トポロジカルソート（Kahn法）
  *
@@ -30,8 +32,8 @@
  *
  * verified:
  *   - https://atcoder.jp/contests/arc197/submissions/74911405
+ *   - https://atcoder.jp/contests/ndpc/submissions/75521703
  */
-namespace kwm_t::graph {
 
 /**
  * @brief トポロジカルソート

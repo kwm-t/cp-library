@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <limits>
+#include "dual_segtree.hpp"
 
 /**
  * @brief DualSegtree 用の典型パターン集
