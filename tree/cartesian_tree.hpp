@@ -4,6 +4,8 @@
 #include <vector>
 #include <functional>
 
+
+namespace kwm_t::tree {
 /**
  * @brief Cartesian Tree (Min / Max Heap + Inorder = original order)
  *
@@ -21,9 +23,8 @@
  *   std::greater<T> → max Cartesian Tree
  * verified:
  *   https://atcoder.jp/contests/arc216/submissions/74357931
+ *   https://atcoder.jp/contests/ndpc/submissions/75532125
  */
-namespace kwm_t::tree {
-
 template<class T, class Compare = std::less<T>>
 struct CartesianTree {
 	int n;
@@ -80,5 +81,4 @@ struct CartesianTree {
 };
 
 } // namespace kwm_t::tree
-
 #endif // KWM_T_TREE_CARTESIAN_TREE_HPP
