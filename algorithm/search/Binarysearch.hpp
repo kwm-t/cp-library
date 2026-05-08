@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 
+namespace kwm_t::algorithm::search {
 /**
  * @brief 二分探索 (整数)
  *
@@ -47,7 +48,6 @@
  * Verified:
  *
  */
-namespace kwm_t::algorithm::search {
 
 template <class T, class F>
 T binarySearch(T ok, T ng, const F &f) {
@@ -56,7 +56,6 @@ T binarySearch(T ok, T ng, const F &f) {
 		(f(mid) ? ok : ng) = mid;
 	}
 	return ok;
-}
 }
 
 /**
@@ -102,7 +101,6 @@ T binarySearch(T ok, T ng, const F &f) {
  *
  */
 
-namespace kwm_t::algorithm::search {
 template <class T, class F>
 T binarySearchDouble(T ok, T ng, const F &f, int counter = 100) {
 	while (counter--) {
