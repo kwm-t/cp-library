@@ -4,6 +4,7 @@
 #include <vector>
 #include <cassert>
 
+namespace kwm_t::utility {
 /**
  * @brief 2次元累積和（2D Prefix Sum）
  *
@@ -43,19 +44,10 @@
  * verified:
  *   - https://atcoder.jp/contests/awc0048/submissions/74980601
  */
-namespace kwm_t::utility {
-
 template <class T>
 struct CumulativeSum2D {
 private:
 	std::vector<std::vector<T>> s;
-
-public:
-	CumulativeSum2D() = default;
-
-	explicit CumulativeSum2D(const std::vector<std::vector<T>>& a) {
-		build(a);
-	}
 
 	void build(const std::vector<std::vector<T>>& a) {
 		int h = a.size();
@@ -74,6 +66,12 @@ public:
 		for (int i = 0; i < h; i++)
 			for (int j = 0; j <= w; j++)
 				s[i + 1][j] += s[i][j];
+	}
+public:
+	CumulativeSum2D() = default;
+
+	explicit CumulativeSum2D(const std::vector<std::vector<T>>& a) {
+		build(a);
 	}
 
 	int height() const { return (int)s.size() - 1; }
