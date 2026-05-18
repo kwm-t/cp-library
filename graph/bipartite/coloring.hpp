@@ -21,10 +21,9 @@ namespace kwm_t::graph::bipartite {
  *   - 無向グラフを想定
  *
  * 使用例:
- *   BipartiteColoring bc(n);
- *   bc.add_edge(u, v);
- *   bool ok = bc.is_bipartite();
- *   auto col = bc.color; // 0 or 1
+ *   vector graph(n, vector<int>());
+ *   BipartiteColoring bc(n,graph);
+ *   auto col = bc.get_color; // 0 or 1
  *
  * verified:
  *   - https://atcoder.jp/contests/awc0071/submissions/75933094
@@ -36,8 +35,16 @@ public:
 		execute();
 	}
 
+	bool is_bipartite() const {
+		return bipartite;
+	}
+
 	int get_components() const {
 		return components;
+	}
+
+	int get_color(int i) const {
+		return color[i];
 	}
 
 	const std::vector<int>& get_color() const {
@@ -46,7 +53,7 @@ public:
 
 private:
 	int n;
-	bool is_bipartite;
+	bool bipartite;
 	std::vector<std::vector<int>> graph;
 	std::vector<int> color;
 	int components;
@@ -65,18 +72,16 @@ private:
 		return ok;
 	}
 
-	bool execute() {
-		bool ok = true;
+	void execute() {
+		bipartite = true;
 		components = 0;
 
 		for (int i = 0; i < n; ++i) {
 			if (color[i] != -1) continue;
 			color[i] = 0;
 			components++;
-			if (!dfs(i)) ok = false;
+			if (!dfs(i)) bipartite = false;
 		}
-
-		return ok;
 	}
 };
 
