@@ -66,6 +66,45 @@ public:
 	}
 };
 
+/**
+ * @brief スライド区間 min/max をまとめて計算
+ *
+ * @param a
+ *   入力配列
+ * @param k
+ *   窓幅
+ * @return
+ *   各長さ k の区間に対する min/max の配列
+ *
+ * 使用例:
+ *   auto mn = sliding_window<int>(a, 3);
+ *   auto mx = sliding_window<int, greater<int>>(a, 3);
+ *
+ * 計算量:
+ *   O(N)
+ * verify
+ *   https://atcoder.jp/contests/awc0068/submissions/75953477
+ */
+template <class T, class Compare = std::less<T>>
+std::vector<T> sliding_window(const std::vector<T>& a, int k) {
+	assert(1 <= k && k <= (int)a.size());
+
+	SlidingWindow<T, Compare> sw;
+	std::vector<T> res;
+	res.reserve(a.size() - k + 1);
+
+	for (int i = 0; i < k - 1; i++) {
+		sw.push(i, a[i]);
+	}
+
+	for (int i = k - 1; i < (int)a.size(); i++) {
+		sw.push(i, a[i]);
+		res.push_back(sw.get(i - k + 1));
+	}
+
+	return res;
+}
+
 } // namespace kwm_t::data_structure
 
 #endif
