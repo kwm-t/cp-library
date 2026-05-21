@@ -140,7 +140,6 @@ public:
 				v = par[head[v]];
 			}
 		}
-		bool swap = false;
 		if (depth[u] > depth[v]) f(in[v], in[u] + 1, true);
 		else f(in[u], in[v] + 1, false);
 	}
@@ -161,7 +160,7 @@ public:
 		}
 		if (u == v) return;
 		if (depth[u] > depth[v]) f(in[v] + 1, in[u] + 1, true);
-		else f(in[u] + 1, in[v] + 1, true);
+		else f(in[u] + 1, in[v] + 1, false);
 	}
 
 	// ===== 部分木 =====
