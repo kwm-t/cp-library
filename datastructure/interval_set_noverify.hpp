@@ -25,6 +25,7 @@
  *
  * verified:
  *   - https://atcoder.jp/contests/abc430/submissions/75172066
+ *   - https://atcoder.jp/contests/awc0078/submissions/76170297
  */
 namespace kwm_t::data_structure {
 

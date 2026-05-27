@@ -24,6 +24,7 @@
  *   - 番兵として (-INF, -INF), (INF, INF) を内部に持つ
  *
  * verified:
+ *  https://atcoder.jp/contests/awc0078/submissions/76168909
  */
 namespace kwm_t::data_structure {
 
