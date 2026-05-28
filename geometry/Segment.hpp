@@ -19,7 +19,7 @@
  * @tparam T 座標型
  *
  * verified:
- *   AOJ CGL 系
+ *   https://atcoder.jp/contests/awc0079/submissions/76187291
  */
 
 namespace kwm_t::geometry {

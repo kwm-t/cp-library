@@ -22,9 +22,7 @@
  *   long long cr = a.cross(b);
  *
  * verified:
- *   ・偏角ソート
- *   ・凸包
- *   ・格子幾何
+ *   ・https://atcoder.jp/contests/awc0079/submissions/76187291
  */
 
 namespace kwm_t::geometry {
