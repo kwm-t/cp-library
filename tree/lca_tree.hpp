@@ -37,7 +37,7 @@ public:
 	LcaTree(std::vector<std::vector<int>> g, int root = 0)
 		: n((int)g.size()), root(root),
 		g(g) {
-		build();
+		if(!g.empty())build();
 	}
 
 	// LCA

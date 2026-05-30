@@ -78,6 +78,7 @@ namespace kwm_t::REPLACE_NAMESPACE {
  *
  *
  * verified:
+ *  提出先のURLを記載する。
  */
 
 class TemplateClass {
