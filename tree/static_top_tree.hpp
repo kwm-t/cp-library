@@ -57,6 +57,7 @@ namespace kwm_t::tree {
  *
  * verified:
  *   - https://atcoder.jp/contests/abc351/submissions/74913979
+ *   - https://atcoder.jp/contests/abc460/submissions/76299920
  */
 template <
 	typename Path,
