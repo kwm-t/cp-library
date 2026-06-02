@@ -70,7 +70,7 @@ struct EulerTourSubtree {
  *   O(N)
  * 
  * Verified:
- *  未検証
+ *  https://atcoder.jp/contests/awc0082/submissions/76350633
  */ 
 struct EulerTourFull {
     std::vector<int> tour;   // 頂点列
