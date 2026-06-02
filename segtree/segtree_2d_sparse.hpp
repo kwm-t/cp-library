@@ -38,6 +38,7 @@
  * verified:
  *   https://atcoder.jp/contests/ABC266/submissions/74604159
  *   https://yukicoder.me/submissions/1156160
+ *   https://atcoder.jp/contests/awc0082/submissions/76351099
  */
 namespace kwm_t::segtree {
 
@@ -101,7 +102,7 @@ public:
 	/**
 	 * @brief 点更新（モノイド演算）
 	 */
-	void set(C i0, C j0, S val) {
+	void apply(C i0, C j0, S val) {
 		int i = get_i(i0) + H;
 		while (i > 0) {
 			int j_idx = get_j(i, j0);
