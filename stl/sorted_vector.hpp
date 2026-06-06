@@ -42,6 +42,7 @@ std::size_t count_greater(const std::vector<T>& v, const T& x) {
 // [l, r) に含まれる個数
 template <class T>
 std::size_t count_range(const std::vector<T>& v, const T& l, const T& r) {
+	if (l > r)return 0;
 	auto L = std::lower_bound(v.begin(), v.end(), l);
 	auto R = std::lower_bound(v.begin(), v.end(), r);
 	return std::distance(L, R);
