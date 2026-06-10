@@ -67,6 +67,24 @@ inline long long euler_phi(long long n) {
     return result;
 }
 
+// 二項係数愚直
+template <typename T = long long>
+inline T binomial(long long n, long long k) {
+    if (n < k || k < 0) return T(0);
+
+    k = std::min(k, n - k);
+
+    T numerator = 1;
+    T denominator = 1;
+
+    for (long long i = 1; i <= k; i++) {
+        numerator *= T(n - k + i);
+        denominator *= T(i);
+    }
+
+    numerator /= denominator;
+    return numerator;
+}
 } // namespace kwm_t::math
 
 #endif // KWM_T_MATH_MATHUTIL_HPP
