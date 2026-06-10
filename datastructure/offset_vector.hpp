@@ -1,0 +1,192 @@
+#ifndef KWM_T_DATASTRUCTURE_OFFSET_VECTOR_HPP
+#define KWM_T_DATASTRUCTURE_OFFSET_VECTOR_HPP
+
+#include <cassert>
+#include <iostream>
+#include <utility>
+#include <vector>
+
+namespace kwm_t::datastructure {
+
+/**
+ * @brief 負の添字を扱える疎配列
+ *
+ * 固定範囲 [min_key, max_key] を O(1) でアクセスする。
+ * std::map<int,T> や std::unordered_map<int,T> の代替を想定。
+ *
+ * T{} を未使用状態として扱う。
+ *
+ * clear() は触った要素のみ初期化するため
+ * O(全要素数) ではなく O(操作回数)。
+ *
+ * 計算量:
+ *   operator[] : O(1)
+ *   contains   : O(1)
+ *   erase      : O(1)
+ *   clear      : O(触った要素数)
+ *   foreach    : O(触った要素数)
+ *
+ * @tparam T
+ *   値型
+ *
+ * 制約 / 注意:
+ *   T{} を未使用状態として扱う。
+ *   そのため T{} が有効値となる用途には向かない。
+ *
+ * 使用例:
+ *
+ *   OffsetVector<long long> dp(-200000, 200000);
+ *
+ *   dp[0] = 1;
+ *   dp[-5] += 3;
+ *
+ *   if (dp.contains(-5)) {
+ *       ...
+ *   }
+ *
+ *   dp.clear();
+ *
+ * verified:
+ *   https://atcoder.jp/contests/awc0088/submissions/76567453
+ */
+template<class T>
+class OffsetVector {
+private:
+    int min_key_;
+    int max_key_;
+    int offset_;
+
+    std::vector<T> data_;
+
+    std::vector<int> touched_;
+    std::vector<char> touched_flag_;
+
+    int index(int key) const {
+        assert(min_key_ <= key && key <= max_key_);
+        return key + offset_;
+    }
+
+    void touch(int idx) {
+        if (!touched_flag_[idx]) {
+            touched_flag_[idx] = 1;
+            touched_.push_back(idx);
+        }
+    }
+
+public:
+    OffsetVector() = default;
+
+    OffsetVector(int min_key, int max_key)
+        : min_key_(min_key),
+          max_key_(max_key),
+          offset_(-min_key),
+          data_(max_key - min_key + 1, T{}),
+          touched_flag_(max_key - min_key + 1, 0) {}
+
+    T& operator[](int key) {
+        int idx = index(key);
+        touch(idx);
+        return data_[idx];
+    }
+
+    const T& operator[](int key) const {
+        return data_[index(key)];
+    }
+
+    bool contains(int key) const {
+        return data_[index(key)] != T{};
+    }
+
+    void erase(int key) {
+        int idx = index(key);
+        touch(idx);
+        data_[idx] = T{};
+    }
+
+    void set(int key, const T& value) {
+        int idx = index(key);
+        touch(idx);
+        data_[idx] = value;
+    }
+
+    void add(int key, const T& value) {
+        int idx = index(key);
+        touch(idx);
+        data_[idx] += value;
+    }
+
+    void clear() {
+        for (int idx : touched_) {
+            data_[idx] = T{};
+            touched_flag_[idx] = 0;
+        }
+        touched_.clear();
+    }
+
+    int min_key() const {
+        return min_key_;
+    }
+
+    int max_key() const {
+        return max_key_;
+    }
+
+    int size() const {
+        int res = 0;
+
+        for (int idx : touched_) {
+            if (data_[idx] != T{}) {
+                ++res;
+            }
+        }
+
+        return res;
+    }
+
+    template<class F>
+    void foreach(F f) const {
+        for (int idx : touched_) {
+            if (data_[idx] != T{}) {
+                f(idx - offset_, data_[idx]);
+            }
+        }
+    }
+
+    std::vector<std::pair<int, T>> items() const {
+        std::vector<std::pair<int, T>> res;
+
+        for (int idx : touched_) {
+            if (data_[idx] != T{}) {
+                res.emplace_back(idx - offset_, data_[idx]);
+            }
+        }
+
+        return res;
+    }
+
+    void dump(std::ostream& os = std::cerr) const {
+        os << "{";
+
+        bool first = true;
+
+        for (int idx : touched_) {
+            if (data_[idx] == T{}) {
+                continue;
+            }
+
+            if (!first) {
+                os << ", ";
+            }
+
+            os << (idx - offset_) << ":" << data_[idx];
+
+            first = false;
+        }
+
+        os << "}\n";
+    }
+};
+
+} // namespace kwm_t::datastructure
+
+#endif // KWM_T_DATASTRUCTURE_OFFSET_VECTOR_HPP
