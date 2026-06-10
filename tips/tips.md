@@ -62,7 +62,7 @@ transform(S.begin(), S.end(), S.begin(),
 ```cpp
 do {
     // 処理
-} while (next_permutation(v.begin(), v.end()));
+} while (next_permutation(idx.begin(), idx.end()));
 ```
 
 ---
