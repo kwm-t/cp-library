@@ -11,13 +11,13 @@ namespace kwm_t::datastructure {
 /**
  * @brief 負の添字を扱える疎配列
  *
- * 固定範囲 [min_key, max_key] を O(1) でアクセスする。
- * std::map<int,T> や std::unordered_map<int,T> の代替を想定。
+ * 添字範囲は半開区間 [l, r)
  *
+ * std::map<int,T> や std::unordered_map<int,T> の代替を想定。
  * T{} を未使用状態として扱う。
  *
  * clear() は触った要素のみ初期化するため
- * O(全要素数) ではなく O(操作回数)。
+ * O(r - l) ではなく O(操作回数)。
  *
  * 計算量:
  *   operator[] : O(1)
@@ -26,8 +26,7 @@ namespace kwm_t::datastructure {
  *   clear      : O(触った要素数)
  *   foreach    : O(触った要素数)
  *
- * @tparam T
- *   値型
+ * @tparam T 値型
  *
  * 制約 / 注意:
  *   T{} を未使用状態として扱う。
@@ -35,7 +34,7 @@ namespace kwm_t::datastructure {
  *
  * 使用例:
  *
- *   OffsetVector<long long> dp(-200000, 200000);
+ *   OffsetVector<long long> dp(-200000, 200001);
  *
  *   dp[0] = 1;
  *   dp[-5] += 3;
@@ -47,14 +46,13 @@ namespace kwm_t::datastructure {
  *   dp.clear();
  *
  * verified:
- *   https://atcoder.jp/contests/awc0088/submissions/76567453
+ *   https://atcoder.jp/contests/awc0088/submissions/76567559
  */
 template<class T>
 class OffsetVector {
 private:
-    int min_key_;
-    int max_key_;
-    int offset_;
+    int l_;
+    int r_;
 
     std::vector<T> data_;
 
@@ -62,8 +60,8 @@ private:
     std::vector<char> touched_flag_;
 
     int index(int key) const {
-        assert(min_key_ <= key && key <= max_key_);
-        return key + offset_;
+        assert(l_ <= key && key < r_);
+        return key - l_;
     }
 
     void touch(int idx) {
@@ -76,12 +74,13 @@ private:
 public:
     OffsetVector() = default;
 
-    OffsetVector(int min_key, int max_key)
-        : min_key_(min_key),
-          max_key_(max_key),
-          offset_(-min_key),
-          data_(max_key - min_key + 1, T{}),
-          touched_flag_(max_key - min_key + 1, 0) {}
+    OffsetVector(int l, int r)
+        : l_(l),
+          r_(r),
+          data_(r - l, T{}),
+          touched_flag_(r - l, 0) {
+        assert(l <= r);
+    }
 
     T& operator[](int key) {
         int idx = index(key);
@@ -123,12 +122,12 @@ public:
         touched_.clear();
     }
 
-    int min_key() const {
-        return min_key_;
+    int l() const {
+        return l_;
     }
 
-    int max_key() const {
-        return max_key_;
+    int r() const {
+        return r_;
     }
 
     int size() const {
@@ -147,7 +146,7 @@ public:
     void foreach(F f) const {
         for (int idx : touched_) {
             if (data_[idx] != T{}) {
-                f(idx - offset_, data_[idx]);
+                f(idx + l_, data_[idx]);
             }
         }
     }
@@ -157,7 +156,7 @@ public:
 
         for (int idx : touched_) {
             if (data_[idx] != T{}) {
-                res.emplace_back(idx - offset_, data_[idx]);
+                res.emplace_back(idx + l_, data_[idx]);
             }
         }
 
@@ -178,7 +177,7 @@ public:
                 os << ", ";
             }
 
-            os << (idx - offset_) << ":" << data_[idx];
+            os << (idx + l_) << ":" << data_[idx];
 
             first = false;
         }
