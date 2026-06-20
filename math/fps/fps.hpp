@@ -163,6 +163,30 @@ struct FormalPowerSeries : std::vector<T> {
 	}
 	F divide(const std::vector<std::pair<int, T>> &g) const { return F(*this).divide_inplace(g); }
 
+	// divide by x^shift * h(x), where h(0) != 0
+	// return the removed shift amount
+	// O(nk)
+	int divide_shifted_inplace(std::vector<std::pair<int, T>> g) {
+		int n = this->size();
+		assert(!g.empty());
+
+		int shift = g.front().first;
+
+		// remove x^shift
+		*this >>= shift;
+
+		for (auto &[d, c] : g) d -= shift;
+
+		assert(g.front().first == 0);
+		assert(g.front().second != T(0));
+
+		divide_inplace(std::move(g));
+
+		return shift;
+	}
+
+	F divide_shifted(const std::vector<std::pair<int, T>> &g) const { return F(*this).divide_shifted_inplace(g); }
+
 	// multiply and divide (1 + cz^d)
 	// O(n)
 	void multiply_inplace(const int d, const T c) {
