@@ -32,6 +32,8 @@
  * verified:
  *   https://atcoder.jp/contests/awc0015/submissions/74250351
  *	 https://yukicoder.me/submissions/1153333
+ *   半開区間でない一般の場合
+ * 　https://atcoder.jp/contests/abc463/submissions/76859533
  */
 namespace kwm_t::algorithm {
 
