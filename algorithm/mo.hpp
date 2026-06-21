@@ -32,22 +32,34 @@
  * verified:
  *   https://atcoder.jp/contests/awc0015/submissions/74250351
  *	 https://yukicoder.me/submissions/1153333
- *   半開区間でない一般の場合
- * 　https://atcoder.jp/contests/abc463/submissions/76859533
+ *	 一般の場合
+ *	 https://atcoder.jp/contests/abc463/submissions/76868142
  */
 namespace kwm_t::algorithm {
 
 class Mo {
 private:
-	int n, q;
+	int q;
 	int block_size;
+	int min_coord;
+	int default_l, default_r;
 
 	std::vector<int> left, right;
 	std::vector<int> order;
 
 public:
-	Mo(int n_, int q_) : n(n_), q(q_) {
-		block_size = std::max(1, int(n / std::sqrt(q_)));
+	// 0 <= l <= r < n
+	Mo(int n_, int q_) : q(q_), min_coord(0), default_l(0), default_r(0) {
+		block_size = std::max(1, int(double(n_) / std::sqrt(q_)));
+		order.resize(q_);
+		std::iota(order.begin(), order.end(), 0);
+	}
+
+	// l_bound <= l,r <= r_bound
+	Mo(int l_bound, int r_bound, int q_) : q(q_), min_coord(l_bound), default_l(l_bound), default_r(l_bound) {
+
+		long long coord_size = 1LL * r_bound - l_bound + 1;
+		block_size = std::max(1, int(double(coord_size) / std::sqrt(q_)));
 		order.resize(q_);
 		std::iota(order.begin(), order.end(), 0);
 	}
@@ -58,18 +70,18 @@ public:
 		right = r;
 	}
 
-	// 実行
+private:
 	template<class AddL, class AddR, class RemL, class RemR, class Out>
-	void run(AddL add_left, AddR add_right, RemL remove_left, RemR remove_right, Out output) {
+	void run_impl(AddL add_left, AddR add_right, RemL remove_left, RemR remove_right, Out output, int nl, int nr) {
+
 		std::sort(order.begin(), order.end(), [&](int a, int b) {
-			int ablock = left[a] / block_size;
-			int bblock = left[b] / block_size;
+			int ablock = (left[a] - min_coord) / block_size;
+			int bblock = (left[b] - min_coord) / block_size;
+
 			if (ablock != bblock) return ablock < bblock;
 			if (ablock & 1) return right[a] < right[b];
 			return right[a] > right[b];
 			});
-
-		int nl = 0, nr = 0;
 
 		for (int idx : order) {
 			while (nl > left[idx]) add_left(--nl);
@@ -79,6 +91,18 @@ public:
 
 			output(idx);
 		}
+	}
+
+public:
+	// デフォルト開始位置
+	template<class AddL, class AddR, class RemL, class RemR, class Out>
+	void run(AddL add_left, AddR add_right, RemL remove_left, RemR remove_right, Out output) {
+		run_impl(add_left, add_right, remove_left, remove_right, output, default_l, default_r);
+	}
+	// 任意開始位置
+	template<class AddL, class AddR, class RemL, class RemR, class Out>
+	void run(AddL add_left, AddR add_right, RemL remove_left, RemR remove_right, Out output, int init_l, int init_r) {
+		run_impl(add_left, add_right, remove_left, remove_right, output, init_l, init_r);
 	}
 };
 
