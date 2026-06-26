@@ -51,6 +51,8 @@
  *   - https://yukicoder.me/submissions/1157023
  *   - https://yukicoder.me/submissions/1157028
  *   - https://judge.yosupo.jp/submission/365677
+ *   - 辺に情報を乗せる頂点倍+遅延セグ木
+ *   - https://atcoder.jp/contests/awc0100/submissions/76970430
  */
 namespace kwm_t::tree {
 
