@@ -26,7 +26,7 @@
  *
  * verified:
  */
-namespace kwm_t::datastrucuture {
+namespace kwm_t::datastructure {
 
 template <class T, class Op>
 class SqrtDecomposition {
@@ -100,6 +100,6 @@ public:
 	}
 };
 
-} // namespace kwm_t::datastrucuture
+} // namespace kwm_t::datastructure
 
 #endif // KWM_T_DATASTRUCTURE_SQRT_DECOMP_HPP
