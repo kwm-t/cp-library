@@ -28,7 +28,7 @@
  * @return 凸包（反時計回り）
  *
  * verified:
- *   AOJ CGL_4_A
+ *   https://atcoder.jp/contests/awc0103/submissions/77111025
  */
 
 namespace kwm_t::geometry {
