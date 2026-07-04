@@ -28,7 +28,6 @@ constexpr T ceil_div(T a, T b) {
  */
 template <class T>
 constexpr T floor_div(T a, T b) {
-    static_assert(std::is_integral_v<T>, "T must be integral");
     assert(b != 0);
 
     T q = a / b;
@@ -55,7 +54,6 @@ constexpr T floor_div(T a, T b) {
  */
 template <class T>
 constexpr T floor_mod(T a, T m) {
-    static_assert(std::is_integral_v<T>, "T must be integral");
     assert(m != 0);
 
     T r = a % m;
