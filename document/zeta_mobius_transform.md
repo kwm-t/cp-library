@@ -88,10 +88,10 @@ std::vector<T> mobius(int n, std::vector<T>z) {
 ### $n進数$
 ```cpp
 template<typename T>
-std::vector<T> zetaP(const int p, const int n, std::vector<T> z) {
-	// size|a| = pow(p,n)
+std::vector<T> zetaP(const int p, const int digits, std::vector<T> z) {
+	// size|z| = pow(p,digits)
 	int pow = 1;
-	for (int j = 0; j < n; ++j) {
+	for (int j = 0; j < digits; ++j) {
 		for (int i = 0; i < (int)z.size(); ++i) {
 			if ((i / pow) % p)z[i] += z[i - pow];
 		}
