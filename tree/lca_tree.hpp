@@ -21,6 +21,7 @@ namespace kwm_t::tree {
  *
  * verified:
  *  - https://atcoder.jp/contests/awc0059/submissions/75370597
+ *  - https://atcoder.jp/contests/awc0106/submissions/77251198
  */
 class LcaTree {
 public:
@@ -37,7 +38,7 @@ public:
 	LcaTree(std::vector<std::vector<int>> g, int root = 0)
 		: n((int)g.size()), root(root),
 		g(g) {
-		if(!g.empty())build();
+		if (!g.empty())build();
 	}
 
 	// LCA
@@ -110,6 +111,34 @@ public:
 		return kth_ancestor(v, uv - d);
 	}
 
+	// u→v のパス上の頂点を順番に返す
+	std::vector<int> get_path(int u, int v) const {
+		int p = lca(u, v);
+
+		std::vector<int> left;
+		std::vector<int> right;
+
+		// u -> LCA
+		int cur = u;
+		while (cur != p) {
+			left.push_back(cur);
+			cur = parent[0][cur];
+		}
+		left.push_back(p);
+
+		// v -> LCA
+		cur = v;
+		while (cur != p) {
+			right.push_back(cur);
+			cur = parent[0][cur];
+		}
+
+		std::reverse(right.begin(), right.end());
+
+		left.insert(left.end(), right.begin(), right.end());
+
+		return left;
+	}
 private:
 	// 前処理
 	void build() {
