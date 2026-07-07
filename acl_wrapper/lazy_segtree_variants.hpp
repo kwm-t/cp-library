@@ -40,6 +40,22 @@ F id() { return 0; }
 
 using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
 }
+namespace RangeAddRangeMinIndex {
+struct S { long long val; int idx; };
+using F = long long;
+static constexpr long long INF = (long long)4e18;
+
+S op(S a, S b) {
+	if (a.val != b.val) return (a.val < b.val ? a : b);
+	return (a.idx < b.idx ? a : b);
+}
+S e() { return { INF, INT_MAX }; }
+S mapping(F f, S x) { return { x.val + f, x.idx }; }
+F composition(F f, F g) { return f + g; }
+F id() { return 0; }
+
+using lazy_segtree = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>;
+}
 
 // ================= Range Add / Max =================
 namespace RangeAddRangeMax {
