@@ -19,36 +19,36 @@ struct FormalPowerSeries : std::vector<T> {
 
 	F operator-() const {
 		F res(*this);
-		for (auto &e : res) e = -e;
+		for (auto& e : res) e = -e;
 		return res;
 	}
-	F &operator*=(const T &g) {
-		for (auto &e : *this) e *= g;
+	F& operator*=(const T& g) {
+		for (auto& e : *this) e *= g;
 		return *this;
 	}
-	F &operator/=(const T &g) {
+	F& operator/=(const T& g) {
 		assert(g != T(0));
 		*this *= g.inv();
 		return *this;
 	}
-	F &operator+=(const F &g) {
+	F& operator+=(const F& g) {
 		int n = this->size(), m = g.size();
 		for (int i = 0; i < std::min(n, m); ++i) (*this)[i] += g[i];
 		return *this;
 	}
-	F &operator-=(const F &g) {
+	F& operator-=(const F& g) {
 		int n = this->size(), m = g.size();
 		for (int i = 0; i < std::min(n, m); ++i)(*this)[i] -= g[i];
 		return *this;
 	}
-	F &operator<<=(const int d) {
+	F& operator<<=(const int d) {
 		int n = this->size();
 		if (d >= n) *this = F(n);
 		this->insert(this->begin(), d, 0);
 		this->resize(n);
 		return *this;
 	}
-	F &operator>>=(const int d) {
+	F& operator>>=(const int d) {
 		int n = this->size();
 		this->erase(this->begin(), this->begin() + min(n, d));
 		this->resize(n);
@@ -81,9 +81,35 @@ struct FormalPowerSeries : std::vector<T> {
 		return res;
 	}
 
+	F& add_inplace(const F& g, int d = -1) {
+		int n = this->size();
+		if (d == -1) d = n;
+		assert(d >= 0);
+		this->resize(d);
+		for (int i = 0; i < std::min(d, (int)g.size()); ++i)
+			(*this)[i] += g[i];
+		return *this;
+	}
+	F& add_resize_inplace(const F& g) { return add_inplace(g, std::max((int)this->size(), (int)g.size())); }
+	F add(const F& g, int d = -1) const { return F(*this).add_inplace(g, d); }
+	F add_resize(const F& g) const { return F(*this).add_resize_inplace(g); }
+
+	F& sub_inplace(const F& g, int d = -1) {
+		int n = this->size();
+		if (d == -1) d = n;
+		assert(d >= 0);
+		this->resize(d);
+		for (int i = 0; i < std::min(d, (int)g.size()); ++i)
+			(*this)[i] -= g[i];
+		return *this;
+	}
+	F& sub_resize_inplace(const F& g) { return sub_inplace(g, std::max((int)this->size(), (int)g.size())); }
+	F sub(const F& g, int d = -1) const { return F(*this).sub_inplace(g, d); }
+	F sub_resize(const F& g) const { return F(*this).sub_resize_inplace(g); }
+
 	// fast: FMT-friendly modulus only
 	// O(n log n)
-	F &multiply_inplace(const F &g, int d = -1) {
+	F& multiply_inplace(const F& g, int d = -1) {
 		int n = this->size();
 		if (d == -1) d = n;
 		assert(d >= 0);
@@ -91,9 +117,12 @@ struct FormalPowerSeries : std::vector<T> {
 		this->resize(d);
 		return *this;
 	}
-	F multiply(const F &g, const int d = -1) const { return F(*this).multiply_inplace(g, d); }
+	F& multiply_resize_inplace(const F& g) { return multiply_inplace(g, (int)this->size() + (int)g.size() - 1); }
+	F multiply(const F& g, const int d = -1) const { return F(*this).multiply_inplace(g, d); }
+	F multiply_resize(const F& g) const { return F(*this).multiply_resize_inplace(g); }
+
 	// O(n log n)
-	F &divide_inplace(const F &g, int d = -1) {
+	F& divide_inplace(const F& g, int d = -1) {
 		int n = this->size();
 		if (d == -1) d = n;
 		assert(d >= 0);
@@ -101,8 +130,9 @@ struct FormalPowerSeries : std::vector<T> {
 		this->resize(d);
 		return *this;
 	}
-	F divide(const F &g, const int d = -1) const { return F(*this).divide_inplace(g, d); }
-
+	// F& divide_resize_inplace(const F& g) { return divide_inplace(g, (int)this->size() + (int)g.size() - 1); }
+	F divide(const F& g, const int d = -1) const { return F(*this).divide_inplace(g, d); }
+	// F divide_resize(const F& g) const { return F(*this).divide_resize_inplace(g); }
 	// // naive
 	// // O(n^2)
 	// F &multiply_inplace(const F &g) {
@@ -129,31 +159,31 @@ struct FormalPowerSeries : std::vector<T> {
 
 	// sparse
 	// O(nk)
-	F &multiply_inplace(std::vector<std::pair<int, T>> g) {
+	F& multiply_inplace(std::vector<std::pair<int, T>> g) {
 		int n = this->size();
-		auto[d, c] = g.front();
+		auto [d, c] = g.front();
 		if (d == 0) g.erase(g.begin());
 		else c = 0;
 
 		for (int i = (n - 1); i >= 0; --i) {
 			(*this)[i] *= c;
-			for (auto &[j, b] : g) {
+			for (auto& [j, b] : g) {
 				if (j > i) break;
 				(*this)[i] += (*this)[i - j] * b;
 			}
 		}
 		return *this;
 	}
-	F multiply(const std::vector<std::pair<int, T>> &g) const { return F(*this).multiply_inplace(g); }
+	F multiply(const std::vector<std::pair<int, T>>& g) const { return F(*this).multiply_inplace(g); }
 	// O(nk)
-	F &divide_inplace(std::vector<std::pair<int, T>> g) {
+	F& divide_inplace(std::vector<std::pair<int, T>> g) {
 		int n = this->size();
-		auto[d, c] = g.front();
+		auto [d, c] = g.front();
 		assert(d == 0 && c != T(0));
 		T ic = c.inv();
 		g.erase(g.begin());
 		for (int i = 0; i < n; ++i) {
-			for (auto &[j, b] : g) {
+			for (auto& [j, b] : g) {
 				if (j > i) break;
 				(*this)[i] -= (*this)[i - j] * b;
 			}
@@ -161,7 +191,7 @@ struct FormalPowerSeries : std::vector<T> {
 		}
 		return *this;
 	}
-	F divide(const std::vector<std::pair<int, T>> &g) const { return F(*this).divide_inplace(g); }
+	F divide(const std::vector<std::pair<int, T>>& g) const { return F(*this).divide_inplace(g); }
 
 	// divide by x^shift * h(x), where h(0) != 0
 	// return the removed shift amount
@@ -175,7 +205,7 @@ struct FormalPowerSeries : std::vector<T> {
 		// remove x^shift
 		*this >>= shift;
 
-		for (auto &[d, c] : g) d -= shift;
+		for (auto& [d, c] : g) d -= shift;
 
 		assert(g.front().first == 0);
 		assert(g.front().second != T(0));
@@ -185,7 +215,7 @@ struct FormalPowerSeries : std::vector<T> {
 		return shift;
 	}
 
-	F divide_shifted(const std::vector<std::pair<int, T>> &g) const { return F(*this).divide_shifted_inplace(g); }
+	F divide_shifted(const std::vector<std::pair<int, T>>& g) const { return F(*this).divide_shifted_inplace(g); }
 
 	// multiply and divide (1 + cz^d)
 	// O(n)
@@ -204,14 +234,14 @@ struct FormalPowerSeries : std::vector<T> {
 	}
 
 	// O(n)
-	T eval(const T &a) const {
+	T eval(const T& a) const {
 		T x(1), res(0);
 		for (auto e : *this) res += e * x, x *= a;
 		return res;
 	}
 
 	// O(n)
-	F &integ_inplace() {
+	F& integ_inplace() {
 		int n = this->size();
 		assert(n > 0);
 		if (n == 1) return *this = F{ 0 };
@@ -220,14 +250,14 @@ struct FormalPowerSeries : std::vector<T> {
 		std::vector<T> inv(n);
 		inv[1] = 1;
 		int p = T::mod();
-		for (int i = 2; i < n; ++i) inv[i] = -inv[p%i] * (p / i);
+		for (int i = 2; i < n; ++i) inv[i] = -inv[p % i] * (p / i);
 		for (int i = 2; i < n; ++i) (*this)[i] *= inv[i];
 		return *this;
 	}
 	F integ() const { return F(*this).integ_inplace(); }
 
 	// O(n)
-	F &deriv_inplace() {
+	F& deriv_inplace() {
 		int n = this->size();
 		assert(n > 0);
 		for (int i = 2; i < n; ++i) (*this)[i] *= i;
@@ -238,7 +268,7 @@ struct FormalPowerSeries : std::vector<T> {
 	F deriv() const { return F(*this).deriv_inplace(); }
 
 	// O(n log n)
-	F &log_inplace(int d = -1) {
+	F& log_inplace(int d = -1) {
 		int n = this->size();
 		assert(n > 0 && (*this)[0] == 1);
 		if (d == -1) d = n;
@@ -254,7 +284,7 @@ struct FormalPowerSeries : std::vector<T> {
 
 	// O(n log n)
 	// https://arxiv.org/abs/1301.5804 (Figure 1, right)
-	F &exp_inplace(int d = -1) {
+	F& exp_inplace(int d = -1) {
 		int n = this->size();
 		assert(n > 0 && (*this)[0] == 0);
 		if (d == -1) d = n;
@@ -343,7 +373,7 @@ struct FormalPowerSeries : std::vector<T> {
 	F exp(const int d = -1) const { return F(*this).exp_inplace(d); }
 
 	// O(n log n)
-	F &pow_inplace(const long long k, int d = -1) {
+	F& pow_inplace(const long long k, int d = -1) {
 		int n = this->size();
 		if (d == -1) d = n;
 		assert(d >= 0 && k >= 0);
@@ -362,13 +392,13 @@ struct FormalPowerSeries : std::vector<T> {
 		*this *= k;
 		this->exp_inplace();
 		*this *= c.pow(k);
-		this->insert(this->begin(), l*k, 0);
+		this->insert(this->begin(), l * k, 0);
 		return *this;
 	}
 	F pow(const long long k, const int d = -1) const { return F(*this).pow_inplace(k, d); }
 
 	// O(n log n)
-	F &shift_inplace(const T c) {
+	F& shift_inplace(const T c) {
 		int n = this->size();
 		auto fc = Factorial<T>(n);
 		for (int i = 0; i < n; ++i) (*this)[i] *= fc.fac[i];
@@ -383,10 +413,10 @@ struct FormalPowerSeries : std::vector<T> {
 	}
 	F shift(const T c) const { return F(*this).shift_inplace(c); }
 
-	F operator*(const T &g) const { return F(*this) *= g; }
-	F operator/(const T &g) const { return F(*this) /= g; }
-	F operator+(const F &g) const { return F(*this) += g; }
-	F operator-(const F &g) const { return F(*this) -= g; }
+	F operator*(const T& g) const { return F(*this) *= g; }
+	F operator/(const T& g) const { return F(*this) /= g; }
+	F operator+(const F& g) const { return F(*this) += g; }
+	F operator-(const F& g) const { return F(*this) -= g; }
 	F operator<<(const int d) const { return F(*this) <<= d; }
 	F operator>>(const int d) const { return F(*this) >>= d; }
 	F operator*(std::vector<std::pair<int, T>> g) const { return F(*this) *= g; }
