@@ -49,19 +49,22 @@ private:
 
 public:
 	// 0 <= l <= r < n
-	Mo(int n_, int q_) : q(q_), min_coord(0), default_l(0), default_r(0) {
-		block_size = std::max(1, int(double(n_) / std::sqrt(q_)));
-		order.resize(q_);
-		std::iota(order.begin(), order.end(), 0);
-	}
+	Mo(int n_, const std::vector<std::pair<int, int>>& queries) : Mo(0, n_, queries) {}
+
+	Mo(int n_, int q_) : Mo(0, n_, q_) {}
 
 	// l_bound <= l,r <= r_bound
-	Mo(int l_bound, int r_bound, int q_) : q(q_), min_coord(l_bound), default_l(l_bound), default_r(l_bound) {
+	Mo(int l_bound, int r_bound, const std::vector<std::pair<int, int>>& queries)
+		: q(queries.size()), min_coord(l_bound), default_l(l_bound), default_r(l_bound) {
 
-		long long coord_size = 1LL * r_bound - l_bound + 1;
-		block_size = std::max(1, int(double(coord_size) / std::sqrt(q_)));
-		order.resize(q_);
-		std::iota(order.begin(), order.end(), 0);
+		init(1LL * r_bound - l_bound + 1, q);
+		query(queries);
+	}
+
+	Mo(int l_bound, int r_bound, int q_)
+		: q(q_), min_coord(l_bound), default_l(l_bound), default_r(l_bound) {
+
+		init(1LL * r_bound - l_bound + 1, q);
 	}
 
 	// クエリ設定
@@ -70,7 +73,26 @@ public:
 		right = r;
 	}
 
+	// クエリ設定
+	void query(const std::vector<std::pair<int, int>>& queries) {
+		left.clear();
+		right.clear();
+		left.reserve(queries.size());
+		right.reserve(queries.size());
+
+		for (auto [l, r] : queries) {
+			left.push_back(l);
+			right.push_back(r);
+		}
+	}
+
 private:
+	void init(long long coord_size, int q_) {
+		block_size = std::max(1, int(double(coord_size) / std::sqrt(q_)));
+		order.resize(q_);
+		std::iota(order.begin(), order.end(), 0);
+	}
+
 	template<class AddL, class AddR, class RemL, class RemR, class Out>
 	void run_impl(AddL add_left, AddR add_right, RemL remove_left, RemR remove_right, Out output, int nl, int nr) {
 
@@ -81,7 +103,7 @@ private:
 			if (ablock != bblock) return ablock < bblock;
 			if (ablock & 1) return right[a] < right[b];
 			return right[a] > right[b];
-			});
+		});
 
 		for (int idx : order) {
 			while (nl > left[idx]) add_left(--nl);
