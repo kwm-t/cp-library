@@ -51,12 +51,13 @@
  *  ```
  *
  * Verified:
- *
+ *  https://atcoder.jp/contests/awc0115/submissions/77544766
  */
 namespace kwm_t::algorithm::search {
 
 template <class T, class F, class Compare = std::less<>>
-auto ternary_search(T l, T r, F f, Compare comp = Compare()) {
+std::pair<T, decltype(std::declval<F>()(std::declval<T>()))>
+ternary_search(T l, T r, F f, Compare comp = Compare()) {
 	using U = decltype(f(l));
 
 	while (r - l > 2) {
@@ -127,7 +128,8 @@ auto ternary_search(T l, T r, F f, Compare comp = Compare()) {
  */
 namespace kwm_t::algorithm::search {
 template <class T, class F, class Compare = std::less<>>
-auto ternary_search_double(T l, T r, F f, int counter = 100, Compare comp = Compare()) {
+std::pair<T, decltype(std::declval<F>()(std::declval<T>()))>
+ternary_search_double(T l, T r, F f, int counter = 100, Compare comp = Compare()) {
 	using U = decltype(f(l));
 
 	while (counter--) {
