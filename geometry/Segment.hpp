@@ -1,72 +1,53 @@
-﻿#ifndef KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
-#define KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
+﻿#ifndef KWM_T_GEOMETRY_SEGMENT_HPP
+#define KWM_T_GEOMETRY_SEGMENT_HPP
 
 #include <tuple>
+#include <vector>
 #include <numeric>
 #include <type_traits>
 #include <cstdlib>
 
-//#include "point.hpp"
+#include "point.hpp"
 
 /**
- * @brief Line from two points (normalized)
+ * @brief Line utilities (integer normalized form)
  *
- * 2点 p1, p2 を通る直線を
+ * 直線を
  *
  *      ax + by + c = 0
  *
- * の整数正規形で返す。
+ * の整数正規形で扱う。
  *
  * 正規化条件:
  *   gcd(|a|,|b|,|c|) = 1
  *   a > 0  または
  *   a = 0 かつ b > 0
- *   a = b = 0 の場合は c ≥ 0
+ *   a = b = 0 の場合は c >= 0
  *
  * 同一直線なら必ず同じ (a,b,c) を返す。
- *
- * 典型用途:
- *   ・直線の同一判定
- *   ・直線集合のハッシュ化
- *   ・格子幾何
- *
- * 計算量:
- *   O(log C) (gcd)
- *
- * @tparam T 整数型 (long long / int / __int128 など)
- *
- * @param p1 点1
- * @param p2 点2
- *
- * @return (a,b,c) : ax + by + c = 0
- *
- * 制約 / 注意:
- *   ・T は整数型を想定
- *   ・p1 != p2 を仮定
- *
- * 使用例:
- *
- *   geometry::Point<long long> p1{0,0};
- *   geometry::Point<long long> p2{2,2};
- *
- *   auto [a,b,c] = geometry::line_from_points(p1,p2);
- *
- * verified:
- *   ・直線同一判定
  */
 
 namespace kwm_t::geometry {
+
+/**
+ * @brief 直線を正規化する
+ *
+ * ax + by + c = 0 を正規化して返す。
+ *
+ * @tparam T 整数型
+ *
+ * @param a,b,c 直線係数
+ *
+ * @return 正規化後の (a,b,c)
+ */
 template<class T>
 inline std::tuple<T, T, T>
-line_from_points(const Point<T>& p1, const Point<T>& p2) {
+normalize_line(T a, T b, T c) {
 
 	static_assert(std::is_integral_v<T>, "T must be integral");
 
-	T a = p2.y - p1.y;
-	T b = p1.x - p2.x;
-	T c = p1.y * p2.x - p1.x * p2.y;
-
-	T g = std::gcd(std::abs(a), std::gcd(std::abs(b), std::abs(c)));
+	T g = std::gcd(std::abs(a),
+		std::gcd(std::abs(b), std::abs(c)));
 
 	if (g != 0) {
 		a /= g;
@@ -80,41 +61,91 @@ line_from_points(const Point<T>& p1, const Point<T>& p2) {
 		c = -c;
 	}
 
-	return { a,b,c };
+	return { a, b, c };
+}
+
+/**
+ * @brief 2点を通る直線（正規化）
+ */
+template<class T>
+inline std::tuple<T, T, T>
+line_from_points(const Point<T>& p1, const Point<T>& p2) {
+
+	static_assert(std::is_integral_v<T>, "T must be integral");
+
+	T a = p2.y - p1.y;
+	T b = p1.x - p2.x;
+	T c = p1.y * p2.x - p1.x * p2.y;
+
+	return normalize_line(a, b, c);
+}
+
+/**
+ * @brief 2点を結ぶ線分の垂直二等分線（正規化）
+ *
+ * p1 != p2 を仮定。
+ * verify
+ *  https://atcoder.jp/contests/abc467/submissions/77650914
+ */
+template<class T>
+inline std::tuple<T, T, T>
+perpendicular_bisector(const Point<T>& p1, const Point<T>& p2) {
+
+	static_assert(std::is_integral_v<T>, "T must be integral");
+
+	T dx = p2.x - p1.x;
+	T dy = p2.y - p1.y;
+
+	return normalize_line(
+		dx * 2,
+		dy * 2,
+		-(dx * (p1.x + p2.x) + dy * (p1.y + p2.y))
+	);
+}
+
+/**
+ * @brief 2直線が交点を持つか判定
+ *
+ * @tparam IncludeCoincident
+ *   true  : 同一直線も true
+ *   false : 一意な交点を持つ場合のみ true
+ *
+ * 正規化済みである必要はない。
+ *
+ * verify
+ *  https://atcoder.jp/contests/abc467/submissions/77650914
+ */
+template<bool IncludeCoincident = true, class T>
+inline bool
+has_intersection(const std::tuple<T, T, T>& l1,
+	const std::tuple<T, T, T>& l2) {
+
+	static_assert(std::is_integral_v<T>, "T must be integral");
+
+	const auto& [a1, b1, c1] = l1;
+	const auto& [a2, b2, c2] = l2;
+
+	const T det = a1 * b2 - a2 * b1;
+
+	if (det != 0) return true;
+
+	if constexpr (!IncludeCoincident) {
+		return false;
+	}
+
+	return
+		a1 * c2 == a2 * c1 &&
+		b1 * c2 == b2 * c1;
 }
 
 /**
  * @brief 全点が同一直線上にあるか判定
  *
- * points の全点が同一直線上に存在するかを判定する。
- *
  * 点数が 0,1,2 の場合は true を返す。
  *
  * 計算量:
  *   O(N)
- *
- * @tparam T 整数型
- *
- * @param points 点列
- *
- * @return true  : 全点が同一直線上
- * @return false : そうでない
- *
- * 使用例:
- *
- *   vector<Point<long long>> ps = {
- *       {0,0},
- *       {1,1},
- *       {2,2},
- *       {5,5}
- *   };
- *
- *   bool ok = geometry::is_collinear(ps);
- *
- * verified:
- *   https://atcoder.jp/contests/awc0079/submissions/76187547
  */
-
 template<class T>
 inline bool
 is_collinear(const std::vector<Point<T>>& points) {
@@ -149,7 +180,6 @@ is_collinear(const std::vector<Point<T>>& points) {
 		T dx2 = points[i].x - p0.x;
 		T dy2 = points[i].y - p0.y;
 
-		// 外積
 		if (dx * dy2 - dy * dx2 != 0) {
 			return false;
 		}
@@ -157,6 +187,7 @@ is_collinear(const std::vector<Point<T>>& points) {
 
 	return true;
 }
+
 } // namespace kwm_t::geometry
 
-#endif // KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
+#endif // KWM_T_GEOMETRY_SEGMENT_HPP
