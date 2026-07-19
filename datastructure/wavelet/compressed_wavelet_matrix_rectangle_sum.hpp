@@ -8,10 +8,13 @@
 
 namespace kwm_t::data_structure::wavelet {
 
-// 座標圧縮付き Rectangle Sum
-// verified
-// https://judge.yosupo.jp/submission/365586
-// https://atcoder.jp/contests/abc405/submissions/74813191
+/**
+ * @brief 座標圧縮付き Rectangle Sum
+ * verified:
+ * - https://judge.yosupo.jp/submission/365586
+ * - https://atcoder.jp/contests/abc405/submissions/74813191
+ * - https://atcoder.jp/contests/abc467/submissions/77660923
+ */
 template <typename T, int MAXLOG, typename D>
 struct CompressedWaveletMatrixRectangleSum {
 	WaveletMatrixRectangleSum<int, MAXLOG, D> mat;
@@ -46,8 +49,22 @@ struct CompressedWaveletMatrixRectangleSum {
 	D rect_sum(int l, int r, T lower, T upper) const {
 		return mat.rect_sum(l, r, get(lower), get(upper));
 	}
+
+	// 点加算
+	void point_add(int k, const D& x) { mat.point_add(k, x); }
+
+	// 二分探索
+	template <class F>
+	int max_right(int l, int r, F f) const {
+		return mat.max_right(l, r, f);
+	}
+
+	// 値取得
+	T value(int k) const {
+		return ys[k];
+	}
 };
 
-} // namespace
+} // namespace kwm_t::data_structure::wavelet
 
 #endif
