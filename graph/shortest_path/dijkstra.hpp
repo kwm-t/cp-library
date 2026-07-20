@@ -50,7 +50,8 @@ namespace kwm_t::graph::shortest_path {
 		std::vector<T> dist(n, inf);
 		std::vector<int> prev(n, -1);
 
-		std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> pq;
+		using S = std::pair<T, int>;
+		std::priority_queue<S, std::vector<S>, std::greater<S>> pq;
 
 		dist[s] = 0;
 		pq.emplace(0, s);
