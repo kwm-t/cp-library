@@ -93,6 +93,9 @@ public:
 		return (int)hash1.size() - 1;
 	}
 
+	/**
+	 * @brief HashとHashを連結させる
+	 */
 	static Hash concat(Hash h1, Hash h2, int len2) {
 		long long p1 = 1;
 		long long p2 = 1;
