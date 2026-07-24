@@ -1,123 +1,167 @@
 ﻿#ifndef KWM_T_STRING_ROLLING_HASH_HPP
 #define KWM_T_STRING_ROLLING_HASH_HPP
 
+#include <array>
 #include <vector>
-#include <utility>
 
 /**
- * @brief Rolling Hash（静的・ダブルハッシュ）
+ * @brief Rolling Hash（静的・多重ハッシュ）
  *
  * 文字列や配列に対して prefix hash を構築し、
- * 任意区間のハッシュを O(1) で取得できる
+ * 任意区間のハッシュを O(1) で取得できる。
  *
- * 計算量:
- *   構築: O(N)
- *   クエリ: O(1)
- *
- * @tparam T 要素型（char, int など）
- *
- * @param s 入力列
+ * ハッシュ数はテンプレート引数で変更できる。
  *
  * 使用例:
- *   RollingHash<std::string> rh(s);
+ *   RollingHash<std::string> rh(s);      // ダブルハッシュ
+ *   RollingHash<std::string, 1> rh(s);   // シングルハッシュ
+ *   RollingHash<std::string, 2> rh(s);   // ダブルハッシュ
+ *   RollingHash<std::string, 3> rh(s);   // トリプルハッシュ
+ *
  *   auto h = rh.get(l, r); // [l, r)
  *
  *   if (rh.get(l1, r1) == rh.get(l2, r2)) {
  *       // substring equal
  *   }
  *
+ * 計算量:
+ *   構築: O(N * HashCount)
+ *   クエリ: O(HashCount)
+ *   連結: O(HashCount * log len)
+ *
+ * @tparam Container 要素型（char, int など）を持つコンテナ
+ * @tparam HashCount ハッシュ数
+ *
  * 制約 / 注意:
  *   - 衝突の可能性は低いがゼロではない
  *   - T は整数として扱える必要あり
  *
  * verified:
- *   - https://atcoder.jp/contests/awc0120/submissions/77788393
+ *   - https://atcoder.jp/contests/awc0120/submissions/77788781
  */
 namespace kwm_t::string {
 
-template <typename Container>
+template <typename Container, int HashCount = 2>
 struct RollingHash {
 private:
+	using ll = long long;
 
-	static constexpr long long base1 = 1007;
-	static constexpr long long base2 = 2009;
-	static constexpr long long mod1 = 1000000007;
-	static constexpr long long mod2 = 1000000009;
+	static constexpr std::array<ll, 3> bases = {
+		1007,
+		2009,
+		1000003
+	};
 
-	std::vector<long long> hash1, hash2;
-	std::vector<long long> power1, power2;
+	static constexpr std::array<ll, 3> mods = {
+		1000000007,
+		1000000009,
+		998244353
+	};
+
+	std::array<std::vector<ll>, HashCount> hashes;
+	std::array<std::vector<ll>, HashCount> powers;
 
 public:
-	using Hash = std::pair<long long, long long>;
+	using Hash = std::array<ll, HashCount>;
+
 	RollingHash() = default;
 
 	explicit RollingHash(const Container& s) {
 		build(s);
 	}
 
+	/**
+	 * @brief prefix hash を構築する
+	 *
+	 * 計算量:
+	 *   O(N * HashCount)
+	 */
 	void build(const Container& s) {
-		int n = (int)s.size();
+		const int n = (int)s.size();
 
-		hash1.assign(n + 1, 0);
-		hash2.assign(n + 1, 0);
-		power1.assign(n + 1, 1);
-		power2.assign(n + 1, 1);
+		for (int k = 0; k < HashCount; ++k) {
+			hashes[k].assign(n + 1, 0);
+			powers[k].assign(n + 1, 1);
+		}
 
 		for (int i = 0; i < n; ++i) {
-			long long x = (long long)s[i];
+			const ll x = (ll)s[i];
 
-			hash1[i + 1] = (hash1[i] * base1 + x) % mod1;
-			hash2[i + 1] = (hash2[i] * base2 + x) % mod2;
+			for (int k = 0; k < HashCount; ++k) {
+				hashes[k][i + 1] =
+					(hashes[k][i] * bases[k] + x) % mods[k];
 
-			power1[i + 1] = (power1[i] * base1) % mod1;
-			power2[i + 1] = (power2[i] * base2) % mod2;
+				powers[k][i + 1] =
+					powers[k][i] * bases[k] % mods[k];
+			}
 		}
 	}
 
 	/**
-	 * @brief 区間 [l, r) のハッシュを取得
+	 * @brief 区間 [l, r) のハッシュを取得する
+	 *
+	 * 計算量:
+	 *   O(HashCount)
 	 */
 	Hash get(int l, int r) const {
-		long long res1 = hash1[r] - hash1[l] * power1[r - l] % mod1;
-		if (res1 < 0) res1 += mod1;
+		Hash res;
 
-		long long res2 = hash2[r] - hash2[l] * power2[r - l] % mod2;
-		if (res2 < 0) res2 += mod2;
-		return { res1, res2 };
-	}
+		for (int k = 0; k < HashCount; ++k) {
+			res[k] =
+				hashes[k][r]
+				- hashes[k][l] * powers[k][r - l] % mods[k];
 
-	/**
-	 * @brief 長さを取得
-	 */
-	int size() const {
-		return (int)hash1.size() - 1;
-	}
-
-	/**
-	 * @brief HashとHashを連結させる
-	 */
-	static Hash concat(Hash h1, Hash h2, int len2) {
-		long long p1 = 1;
-		long long p2 = 1;
-
-		long long b1 = base1;
-		long long b2 = base2;
-
-		while (len2 > 0) {
-			if (len2 & 1) {
-				p1 = p1 * b1 % mod1;
-				p2 = p2 * b2 % mod2;
+			if (res[k] < 0) {
+				res[k] += mods[k];
 			}
-
-			b1 = b1 * b1 % mod1;
-			b2 = b2 * b2 % mod2;
-			len2 >>= 1;
 		}
 
-		return {
-			(h1.first * p1 + h2.first) % mod1,
-			(h1.second * p2 + h2.second) % mod2
-		};
+		return res;
+	}
+
+	/**
+	 * @brief 長さを取得する
+	 */
+	int size() const {
+		return (int)hashes[0].size() - 1;
+	}
+
+	/**
+	 * @brief Hash と Hash を連結させる
+	 *
+	 * h1 に長さ len2 の h2 を連結したハッシュを返す。
+	 *
+	 * hash(A + B)
+	 * = hash(A) * base^|B| + hash(B)
+	 *
+	 * power 配列は使用せず、繰り返し二乗法で計算する。
+	 *
+	 * 計算量:
+	 *   O(HashCount * log len2)
+	 */
+	static Hash concat(Hash h1, Hash h2, int len2) {
+		Hash res;
+
+		for (int k = 0; k < HashCount; ++k) {
+			ll p = 1;
+			ll base = bases[k];
+
+			int len = len2;
+
+			while (len > 0) {
+				if (len & 1) {
+					p = p * base % mods[k];
+				}
+
+				base = base * base % mods[k];
+				len >>= 1;
+			}
+
+			res[k] =
+				(h1[k] * p + h2[k]) % mods[k];
+		}
+
+		return res;
 	}
 };
 
