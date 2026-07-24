@@ -31,69 +31,91 @@
  *   - T は整数として扱える必要あり
  *
  * verified:
- *   - substring一致判定
- *   - 回文判定
+ *   - https://atcoder.jp/contests/awc0120/submissions/77788393
  */
 namespace kwm_t::string {
 
 template <typename Container>
 struct RollingHash {
 private:
-    using ll = long long;
 
-    static constexpr ll base1 = 1007;
-    static constexpr ll base2 = 2009;
-    static constexpr ll mod1  = 1000000007;
-    static constexpr ll mod2  = 1000000009;
+	static constexpr long long base1 = 1007;
+	static constexpr long long base2 = 2009;
+	static constexpr long long mod1 = 1000000007;
+	static constexpr long long mod2 = 1000000009;
 
-    std::vector<ll> hash1, hash2;
-    std::vector<ll> power1, power2;
+	std::vector<long long> hash1, hash2;
+	std::vector<long long> power1, power2;
 
 public:
-    RollingHash() = default;
+	using Hash = std::pair<long long, long long>;
+	RollingHash() = default;
 
-    explicit RollingHash(const Container& s) {
-        build(s);
-    }
+	explicit RollingHash(const Container& s) {
+		build(s);
+	}
 
-    void build(const Container& s) {
-        int n = (int)s.size();
+	void build(const Container& s) {
+		int n = (int)s.size();
 
-        hash1.assign(n + 1, 0);
-        hash2.assign(n + 1, 0);
-        power1.assign(n + 1, 1);
-        power2.assign(n + 1, 1);
+		hash1.assign(n + 1, 0);
+		hash2.assign(n + 1, 0);
+		power1.assign(n + 1, 1);
+		power2.assign(n + 1, 1);
 
-        for (int i = 0; i < n; ++i) {
-            ll x = (ll)s[i];
+		for (int i = 0; i < n; ++i) {
+			long long x = (long long)s[i];
 
-            hash1[i + 1] = (hash1[i] * base1 + x) % mod1;
-            hash2[i + 1] = (hash2[i] * base2 + x) % mod2;
+			hash1[i + 1] = (hash1[i] * base1 + x) % mod1;
+			hash2[i + 1] = (hash2[i] * base2 + x) % mod2;
 
-            power1[i + 1] = (power1[i] * base1) % mod1;
-            power2[i + 1] = (power2[i] * base2) % mod2;
-        }
-    }
+			power1[i + 1] = (power1[i] * base1) % mod1;
+			power2[i + 1] = (power2[i] * base2) % mod2;
+		}
+	}
 
-    /**
-     * @brief 区間 [l, r) のハッシュを取得
-     */
-    std::pair<ll, ll> get(int l, int r) const {
-        ll res1 = hash1[r] - hash1[l] * power1[r - l] % mod1;
-        if (res1 < 0) res1 += mod1;
+	/**
+	 * @brief 区間 [l, r) のハッシュを取得
+	 */
+	Hash get(int l, int r) const {
+		long long res1 = hash1[r] - hash1[l] * power1[r - l] % mod1;
+		if (res1 < 0) res1 += mod1;
 
-        ll res2 = hash2[r] - hash2[l] * power2[r - l] % mod2;
-        if (res2 < 0) res2 += mod2;
+		long long res2 = hash2[r] - hash2[l] * power2[r - l] % mod2;
+		if (res2 < 0) res2 += mod2;
+		return { res1, res2 };
+	}
 
-        return {res1, res2};
-    }
+	/**
+	 * @brief 長さを取得
+	 */
+	int size() const {
+		return (int)hash1.size() - 1;
+	}
 
-    /**
-     * @brief 長さを取得
-     */
-    int size() const {
-        return (int)hash1.size() - 1;
-    }
+	static Hash concat(Hash h1, Hash h2, int len2) {
+		long long p1 = 1;
+		long long p2 = 1;
+
+		long long b1 = base1;
+		long long b2 = base2;
+
+		while (len2 > 0) {
+			if (len2 & 1) {
+				p1 = p1 * b1 % mod1;
+				p2 = p2 * b2 % mod2;
+			}
+
+			b1 = b1 * b1 % mod1;
+			b2 = b2 * b2 % mod2;
+			len2 >>= 1;
+		}
+
+		return {
+			(h1.first * p1 + h2.first) % mod1,
+			(h1.second * p2 + h2.second) % mod2
+		};
+	}
 };
 
 } // namespace kwm_t::string
