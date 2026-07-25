@@ -56,11 +56,12 @@ struct FormalPowerSeries : std::vector<T> {
 	}
 
 	// O(n log n)
-	F inv(int d = -1) const {
+	F& inv_inplace(int d = -1) {
 		int n = this->size();
 		assert(n != 0 && (*this)[0] != 0);
 		if (d == -1) d = n;
 		assert(d >= 0);
+
 		F res{ (*this)[0].inv() };
 		for (int m = 1; m < d; m *= 2) {
 			F f(this->begin(), this->begin() + std::min(n, 2 * m));
@@ -73,13 +74,17 @@ struct FormalPowerSeries : std::vector<T> {
 			f.resize(2 * m), atcoder::internal::butterfly(f);
 			for (int i = 0; i < 2 * m; ++i) f[i] *= g[i];
 			atcoder::internal::butterfly_inv(f);
-			T iz = T(2 * m).inv(); iz *= -iz;
+			T iz = T(2 * m).inv();
+			iz *= -iz;
 			for (int i = 0; i < m; ++i) f[i] *= iz;
 			res.insert(res.end(), f.begin(), f.begin() + m);
 		}
 		res.resize(d);
-		return res;
+		*this = std::move(res);
+		return *this;
 	}
+
+	F inv(int d = -1) const { return F(*this).inv_inplace(d); }
 
 	F& add_inplace(const F& g, int d = -1) {
 		int n = this->size();
@@ -130,32 +135,9 @@ struct FormalPowerSeries : std::vector<T> {
 		this->resize(d);
 		return *this;
 	}
-	// F& divide_resize_inplace(const F& g) { return divide_inplace(g, (int)this->size() + (int)g.size() - 1); }
+	F& divide_resize_inplace(const F& g) { return divide_inplace(g, (int)this->size() + (int)g.size() - 1); }
 	F divide(const F& g, const int d = -1) const { return F(*this).divide_inplace(g, d); }
-	// F divide_resize(const F& g) const { return F(*this).divide_resize_inplace(g); }
-	// // naive
-	// // O(n^2)
-	// F &multiply_inplace(const F &g) {
-	//   int n = this->size(), m = g.size();
-	//   rrep(i, n) {
-	//     (*this)[i] *= g[0];
-	//     rep2(j, 1, min(i+1, m)) (*this)[i] += (*this)[i-j] * g[j];
-	//   }
-	//   return *this;
-	// }
-	// F multiply(const F &g) const { return F(*this).multiply_inplace(g); }
-	// // O(n^2)
-	// F &divide_inplace(const F &g) {
-	//   assert(g[0] != T(0));
-	//   T ig0 = g[0].inv();
-	//   int n = this->size(), m = g.size();
-	//   rep(i, n) {
-	//     rep2(j, 1, min(i+1, m)) (*this)[i] -= (*this)[i-j] * g[j];
-	//     (*this)[i] *= ig0;
-	//   }
-	//   return *this;
-	// }
-	// F divide(const F &g) const { return F(*this).divide_inplace(g); }
+	F divide_resize(const F& g) const { return F(*this).divide_resize_inplace(g); }
 
 	// sparse
 	// O(nk)
