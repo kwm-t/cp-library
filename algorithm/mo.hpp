@@ -32,6 +32,8 @@
  * verified:
  *   https://atcoder.jp/contests/awc0015/submissions/74250351
  *	 https://yukicoder.me/submissions/1153333
+ *   区間種類数
+ *   https://atcoder.jp/contests/awc0122/submissions/77921338
  *	 一般の場合
  *	 https://atcoder.jp/contests/abc463/submissions/76868142
  */
