@@ -33,7 +33,7 @@
  *   https://atcoder.jp/contests/awc0015/submissions/74250351
  *	 https://yukicoder.me/submissions/1153333
  *   区間種類数
- *   https://atcoder.jp/contests/awc0122/submissions/77921338
+ *   https://atcoder.jp/contests/awc0122/submissions/77921512
  *	 一般の場合
  *	 https://atcoder.jp/contests/abc463/submissions/76868142
  */
@@ -123,10 +123,18 @@ public:
 	void run(AddL add_left, AddR add_right, RemL remove_left, RemR remove_right, Out output) {
 		run_impl(add_left, add_right, remove_left, remove_right, output, default_l, default_r);
 	}
+	template<class Add, class Rem, class Out>
+	void run(Add add, Rem remove, Out output) {
+		run_impl(add, add, remove, remove, output, default_l, default_r);
+	}
 	// 任意開始位置
 	template<class AddL, class AddR, class RemL, class RemR, class Out>
 	void run(AddL add_left, AddR add_right, RemL remove_left, RemR remove_right, Out output, int init_l, int init_r) {
 		run_impl(add_left, add_right, remove_left, remove_right, output, init_l, init_r);
+	}
+	template<class Add, class Rem, class Out>
+	void run(Add add, Rem remove, Out output, int init_l, int init_r) {
+		run_impl(add, add, remove, remove, output, init_l, init_r);
 	}
 };
 
