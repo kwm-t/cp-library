@@ -52,6 +52,8 @@ inline long long mod_pow(int128 a, long long e, long long m) {
  *   - 一般の n に対しては確率的アルゴリズムだが、
  *     基底 {2, 3, 5, 7, 11} を用いる本実装では、
  *     n <= 10^12 の範囲において誤りなく素数判定を行える。
+ *     基底 {2, 325, 9375, 28178, 450775, 9780504, 1795265022} を用いる本実装では、
+ *     n < 2^64 の範囲において誤りなく素数判定を行える。
  *   - __int128 をサポートするコンパイラが必要。
  *
  * 使用例:
@@ -67,6 +69,7 @@ inline bool is_prime(long long n) {
 	if (n % 2 == 0) return false;
 
 	const std::vector<long long> a_list = { 2, 3, 5, 7, 11 };
+	// const std::vector<long long> a_list = { 2, 325, 9375, 28178, 450775, 9780504, 1795265022 };
 
 	// n - 1 = d * 2^s (d は奇数)
 	long long d = (n - 1) / ((n - 1) & (1 - n));
