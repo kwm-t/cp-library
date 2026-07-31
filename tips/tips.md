@@ -110,6 +110,20 @@ using int128 = __int128;
 #endif
 ```
 
+```cpp
+auto gcd128 = [](int128 a, int128 b) {
+	while (b) {
+		int128 r = a % b;
+		a = b;
+		b = r;
+	}
+	return a;
+};
+auto lcm128 = [&](int128 a, int128 b) {
+	return a * b / gcd128(a, b);
+};
+```
+
 ---
 
 ## 🔹 浮動小数比較
