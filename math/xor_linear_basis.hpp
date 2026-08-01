@@ -7,6 +7,8 @@
 namespace kwm_t::math {
 
     // XOR linear basis (minimum form, noshi91 style)
+    // verified
+    // https://atcoder.jp/contests/awc0125/submissions/77975682
     template <class T>
     std::vector<T> xor_linear_basis(std::vector<T> a) {
         std::vector<T> basis;
