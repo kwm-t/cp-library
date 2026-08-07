@@ -76,6 +76,14 @@ auto len = clamp(r1, l0, r0) - clamp(l1, l0, r0);
 
 ---
 
+## priority_queue(昇順)
+```cpp
+using S = std::pair<int, int>;
+std::priority_queue<S, std::vector<S>, std::greater<S>> pq;
+```
+
+---
+
 ## 🔹 グリッド移動
 
 ```cpp
