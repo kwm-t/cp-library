@@ -23,7 +23,7 @@
  *   - 
  */
 
-namespace kwm_t::segtree {
+namespace kwm_t::segtree::beats {
 
     // ================= Range Chmin / Sum =================
     namespace RangeChminRangeSum {

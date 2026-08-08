@@ -1,7 +1,8 @@
 ﻿#ifndef KWM_T_SEGTREE_LAZY_SEGTREE_BEATS_HPP
 #define KWM_T_SEGTREE_LAZY_SEGTREE_BEATS_HPP
 
-#include <bits/stdc++.h>
+#include <utility>
+#include <vector>
 
 /**
  * @brief Segment Tree Beats (ACL風 lazy_segtree 拡張)
@@ -35,6 +36,7 @@
  *
  * verified:
  *   - https://atcoder.jp/contests/abc430/submissions/74233474
+ *   - https://atcoder.jp/contests/abc470/submissions/78237785
  */
 
 namespace kwm_t::segtree {
