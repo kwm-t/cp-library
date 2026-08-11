@@ -31,7 +31,7 @@
  *   aclwrapper::DsuWrapper<int, decltype(merge)> dsu(n, init, merge);
  *
  * verified:
- *   - (未)
+ *   - https://atcoder.jp/contests/awc0132/submissions/78301658
  */
 
 namespace kwm_t::aclwrapper {
