@@ -31,7 +31,7 @@
  *   aclwrapper::DsuWrapper<int, decltype(merge)> dsu(n, init, merge);
  *
  * verified:
- *   - https://atcoder.jp/contests/awc0132/submissions/78301658
+ *   - https://atcoder.jp/contests/awc0132/submissions/78301765
  */
 
 namespace kwm_t::aclwrapper {
@@ -79,7 +79,7 @@ public:
 	 * @brief a と b が同一連結成分か
 	 */
 	bool same(int a, int b) const {
-		return Base::same(a, b);
+		return const_cast<Base*>(static_cast<const Base*>(this))->same(a, b);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public:
 	 * @brief a の属する連結成分のサイズ
 	 */
 	int size(int a) const {
-		return Base::size(a);
+		return const_cast<Base*>(static_cast<const Base*>(this))->size(a);
 	}
 
 	/**
