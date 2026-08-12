@@ -113,3 +113,8 @@ sum k=0 to n a^k
 ```
 sum of squares from 1 to n
 ```
+
+## expand fps
+```
+Series[x/(1-x) * x^2/(1-x^2) * 1/(1-x^3), {x, 0, 36}]
+```
