@@ -31,16 +31,14 @@
  *   aclwrapper::DsuWrapper<int, decltype(merge)> dsu(n, init, merge);
  *
  * verified:
- *   - https://atcoder.jp/contests/awc0132/submissions/78301765
+ *   - https://atcoder.jp/contests/awc0132/submissions/78301971
  */
 
 namespace kwm_t::aclwrapper {
 
 template<typename Data, class Merge>
-struct DsuWrapper : private atcoder::dsu {
+struct DsuWrapper {
 public:
-	using Base = atcoder::dsu;
-
 	/**
 	 * @brief コンストラクタ
 	 * @param n 頂点数
@@ -48,7 +46,7 @@ public:
 	 * @param merge_fn データ統合関数
 	 */
 	DsuWrapper(int n, std::vector<Data> init_data, Merge merge_fn)
-		: Base(n), data(std::move(init_data)), merge_fn(merge_fn) {
+		: dsu(n), data(std::move(init_data)), merge_fn(merge_fn) {
 		assert((int)data.size() == n);
 	}
 
@@ -57,13 +55,11 @@ public:
 	 * @return 新しいリーダー
 	 */
 	int merge(int a, int b) {
-		a = leader(a);
-		b = leader(b);
+		a = dsu.leader(a);
+		b = dsu.leader(b);
 		if (a == b) return a;
 
-		int l = Base::merge(a, b);
-		int r = (l == a ? b : a);
-
+		int l = dsu.merge(a, b);
 		data[l] = merge_fn(data[a], data[b]);
 		return l;
 	}
@@ -71,39 +67,40 @@ public:
 	/**
 	 * @brief a の属する連結成分のデータ取得
 	 */
-	const Data& get(int a) const {
-		return data[leader(a)];
+	const Data& get(int a) {
+		return data[dsu.leader(a)];
 	}
 
 	/**
 	 * @brief a と b が同一連結成分か
 	 */
-	bool same(int a, int b) const {
-		return const_cast<Base*>(static_cast<const Base*>(this))->same(a, b);
+	bool same(int a, int b) {
+		return dsu.same(a, b);
 	}
 
 	/**
 	 * @brief a の属する連結成分の代表元
 	 */
-	int leader(int a) const {
-		return const_cast<Base*>(static_cast<const Base*>(this))->leader(a);
+	int leader(int a) {
+		return dsu.leader(a);
 	}
 
 	/**
 	 * @brief a の属する連結成分のサイズ
 	 */
-	int size(int a) const {
-		return const_cast<Base*>(static_cast<const Base*>(this))->size(a);
+	int size(int a) {
+		return dsu.size(a);
 	}
 
 	/**
 	 * @brief 全グループ取得 (ACLそのまま)
 	 */
-	std::vector<std::vector<int>> groups() const {
-		return const_cast<Base*>(static_cast<const Base*>(this))->groups();
+	std::vector<std::vector<int>> groups() {
+		return dsu.groups();
 	}
 
 private:
+	atcoder::dsu dsu;
 	std::vector<Data> data;
 	Merge merge_fn;
 };
