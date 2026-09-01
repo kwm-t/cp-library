@@ -118,6 +118,18 @@ public:
 		VS::clear();
 		built = false;
 	}
+
+	// lower_bound の index(x未満の数)
+	int lower_bound_index(const S& x) const {
+		assert(built);
+		return std::lower_bound(this->begin(), this->end(), x) - this->begin();
+	}
+
+	// upper_bound の index(x以下の数)
+	int upper_bound_index(const S& x) const {
+		assert(built);
+		return std::upper_bound(this->begin(), this->end(), x) - this->begin();
+	}
 };
 
 
