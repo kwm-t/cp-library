@@ -31,12 +31,16 @@ namespace kwm_t::graph::bipartite {
 class BipartiteColoring {
 public:
 	explicit BipartiteColoring(int n, const std::vector<std::vector<int>>& graph)
-		: n(n), graph(graph), color(n, -1), components(0) {
+		: n(n), graph(graph), color(n, -1), group(n, -1), components(0) {
 		execute();
 	}
 
 	bool is_bipartite() const {
 		return bipartite;
+	}
+
+	bool same_group(int u, int v) const {
+		return group[u] == group[v];
 	}
 
 	int get_components() const {
@@ -56,6 +60,7 @@ private:
 	bool bipartite;
 	std::vector<std::vector<int>> graph;
 	std::vector<int> color;
+	std::vector<int> group;
 	int components;
 
 	bool dfs(int v) {
@@ -65,6 +70,7 @@ private:
 				if (color[nv] == color[v]) ok = false;
 			}
 			else {
+				group[nv] = group[v];
 				color[nv] = 1 - color[v];
 				if (!dfs(nv)) ok = false;
 			}
@@ -79,6 +85,7 @@ private:
 		for (int i = 0; i < n; ++i) {
 			if (color[i] != -1) continue;
 			color[i] = 0;
+			group[i] = components;
 			components++;
 			if (!dfs(i)) bipartite = false;
 		}
