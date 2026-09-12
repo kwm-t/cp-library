@@ -38,7 +38,6 @@ private:
 	}
 
 	int bit;
-	int kind;
 
 	std::vector<int> node;
 	std::vector<std::array<int, 2>> next;
@@ -61,8 +60,8 @@ private:
 	}
 
 public:
-	BinaryTrie(int _bit = default_bit(), int _kind = 2)
-		: bit(_bit), kind(_kind) {
+	BinaryTrie(int _bit = default_bit())
+		: bit(_bit) {
 		node.resize(1);
 		next.emplace_back(e);
 	}
@@ -73,8 +72,7 @@ public:
 		return b;
 	}
 
-	void insert(T x) {
-		auto v = trans(x);
+	void insert(const std::vector<int>& v) {
 		int now = 0;
 		for (int i = 0; i < bit; ++i) {
 			if (next[now][v[i]] == -1) {
@@ -86,18 +84,18 @@ public:
 			node[now]++;
 		}
 	}
+	void insert(T x) { insert(trans(x)); }
 
-	void erase(T x) {
-		auto v = trans(x);
+	void erase(const std::vector<int>& v) {
 		int now = 0;
 		for (int i = 0; i < bit; ++i) {
 			now = next[now][v[i]];
 			node[now]--;
 		}
 	}
+	void erase(T x) { erase(trans(x)); }
 
-	bool search(T x) const {
-		auto v = trans(x);
+	bool search(const std::vector<int>& v) const {
 		int now = 0;
 		for (int i = 0; i < bit; ++i) {
 			if (next[now][v[i]] == -1) return false;
@@ -105,39 +103,41 @@ public:
 			now = next[now][v[i]];
 		}
 		int cnt = node[now];
-		for (int i = 0; i < kind; ++i) {
+		for (int i = 0; i < 2; ++i) {
 			if (next[now][i] != -1) cnt -= node[next[now][i]];
 		}
 		return cnt > 0;
 	}
+	bool search(T x) const { return search(trans(x)); }
 
-	T kth_element(int k) const {
+	vector<int> kth_element_vec(int k) const {
 		int now = 0;
 		std::vector<int> v;
 		while (true) {
 			bool ok = false;
-			for (int i = 0; i < kind; ++i) {
+			for (int i = 0; i < 2; ++i) {
 				if (next[now][i] == -1) continue;
 				if (k <= node[next[now][i]]) {
 					v.push_back(i);
 					now = next[now][i];
 					ok = true;
 					break;
-				} else {
+				}
+				else {
 					k -= node[next[now][i]];
 				}
 			}
 			if (!ok) break;
 		}
-		return inverse(v);
+		return v;
 	}
+	T kth_element(int k) const { return inverse(kth_element_vec(k)); }
 
-	T xor_max(T x) const {
-		auto v = trans(x);
+	std::vector<int> xor_max(const std::vector<int>& v) const {
 		std::vector<int> ret;
 		int now = 0;
 		for (int i = 0; i < bit; ++i) {
-			int want[2] = {1 - v[i], v[i]};
+			int want[2] = { 1 - v[i], v[i] };
 			for (int t : want) {
 				if (next[now][t] == -1) continue;
 				if (node[next[now][t]] <= 0) continue;
@@ -146,15 +146,15 @@ public:
 				break;
 			}
 		}
-		return inverse(ret);
+		return ret;
 	}
+	T xor_max(T x) const { return inverse(xor_max(trans(x))); }
 
-	T xor_min(T x) const {
-		auto v = trans(x);
+	std::vector<int> xor_min(const std::vector<int>& v) const {
 		std::vector<int> ret;
 		int now = 0;
 		for (int i = 0; i < bit; ++i) {
-			int want[2] = {v[i], 1 - v[i]};
+			int want[2] = { v[i], 1 - v[i] };
 			for (int t : want) {
 				if (next[now][t] == -1) continue;
 				if (node[next[now][t]] <= 0) continue;
@@ -163,19 +163,18 @@ public:
 				break;
 			}
 		}
-		return inverse(ret);
+		return ret;
 	}
+	T xor_min(T x) const { return inverse(xor_min(trans(x))); }
 
-	int xor_count(T x, T k) const {
-		auto vx = trans(x);
-		auto vk = trans(k);
-
+	int xor_count(const std::vector<int>& vx, const std::vector<int>& vk) const {
 		int ret = 0, now = 0;
 		for (int i = 0; i < bit; ++i) {
 			if (vk[i] == 0) {
 				if (next[now][vx[i]] == -1) break;
 				now = next[now][vx[i]];
-			} else {
+			}
+			else {
 				if (next[now][vx[i]] != -1)
 					ret += node[next[now][vx[i]]];
 				if (next[now][1 - vx[i]] == -1) break;
@@ -184,9 +183,9 @@ public:
 		}
 		return ret;
 	}
+	int xor_count(T x, T k) const { return xor_count(trans(x), trans(k)); }
 
-	int over_count(T x) const {
-		auto v = trans(x);
+	int over_count(const std::vector<int>& v) const {
 		int ret = 0, now = 0;
 		for (int i = 0; i < bit; ++i) {
 			if (v[i] == 0) {
@@ -198,10 +197,9 @@ public:
 		}
 		return ret;
 	}
+	int over_count(T x) const { return over_count(trans(x)); }
 
-	int size() const {
-		return node[0];
-	}
+	int size() const { return node[0]; }
 };
 
 } // namespace kwm_t::data_structure
