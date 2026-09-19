@@ -48,6 +48,7 @@ namespace kwm_t::utility {
  *
  * verified:
  *   - https://yukicoder.me/submissions/1157426
+ *   - https://atcoder.jp/contests/abc476/submissions/79389149
  */
 template <class T>
 struct DiagonalCumulativeSum {
