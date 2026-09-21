@@ -29,7 +29,7 @@
  *   - クエリは [l, r) の半開区間
  *   - add/remove は順序に依存しないように設計すること
  *
- * verified:
+verified
  *   https://atcoder.jp/contests/awc0015/submissions/74250351
  *	 https://yukicoder.me/submissions/1153333
  *   区間種類数

@@ -18,6 +18,8 @@
  *   - mod は素数
  *   - x は long long
  *   - y.size() >= 1
+ * verified
+ *   https://atcoder.jp/contests/arc230/submissions/79418709
  */
 
 namespace kmw_t::math::modint {
