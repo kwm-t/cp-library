@@ -1,34 +1,31 @@
 ﻿#ifndef KWM_T_DATASTRUCTURE_SQRT_DECOMP_HPP
 #define KWM_T_DATASTRUCTURE_SQRT_DECOMP_HPP
 
+#include <algorithm>
+#include <cmath>
 #include <vector>
 
 /**
  * @brief 平方分割（区間取得）
  *
- * 区間クエリ（非更新 or 点更新）を sqrt 分割で処理
+ * 区間クエリ（非更新 or 点更新）を平方分割で処理する。
  *
- * 典型用途:
- *   - Range Sum / Min / Max
- *   - 更新が軽めの問題
+ * @tparam T 値型
+ * @tparam op モノイド演算 (T, T) -> T
+ * @tparam e 単位元
+ *
+ * 制約:
+ *   - op は結合則を満たす
+ *   - e は op の単位元
  *
  * 計算量:
  *   - 構築: O(N)
- *   - クエリ: O(√N)
- *   - 点更新: O(√N)
- *
- * @tparam T 値型
- * @tparam Op モノイド演算 (T, T) -> T
- *
- * 制約 / 注意:
- *   - op は結合則を満たす
- *   - e は単位元
- *
- * verified:
+ *   - クエリ: O(sqrt(N))
+ *   - 点更新: O(sqrt(N))
  */
 namespace kwm_t::datastructure {
 
-template <class T, class Op>
+template <class T, T (*op)(T, T), T e>
 class SqrtDecomposition {
 private:
 	int n;
@@ -38,41 +35,38 @@ private:
 	std::vector<T> data;
 	std::vector<T> block;
 
-	Op op;
-	T e;
-
 public:
-	SqrtDecomposition(int n_, Op op_, T e_)
-		: n(n_), op(op_), e(e_) {
+	SqrtDecomposition(int n_)
+		: n(n_) {
 		block_size = std::max(1, (int)std::sqrt(n));
 		block_cnt = (n + block_size - 1) / block_size;
+
 		data.assign(n, e);
 		block.assign(block_cnt, e);
 	}
 
-	SqrtDecomposition(const std::vector<T>& v, Op op_, T e_)
-		: SqrtDecomposition((int)v.size(), op_, e_) {
+	SqrtDecomposition(const std::vector<T>& v)
+		: SqrtDecomposition((int)v.size()) {
 		for (int i = 0; i < n; ++i) {
 			data[i] = v[i];
 			block[i / block_size] = op(block[i / block_size], v[i]);
 		}
 	}
 
-	// 点更新
-	void set(int i, T x) {
-		int b = i / block_size;
+	void set(int p, T x) {
+		int b = p / block_size;
 
-		// 再計算
-		data[i] = x;
+		data[p] = x;
+
 		block[b] = e;
 		int l = b * block_size;
 		int r = std::min(n, l + block_size);
-		for (int j = l; j < r; ++j) {
-			block[b] = op(block[b], data[j]);
+
+		for (int i = l; i < r; ++i) {
+			block[b] = op(block[b], data[i]);
 		}
 	}
 
-	// 区間取得 [l, r)
 	T prod(int l, int r) const {
 		T ret = e;
 
@@ -80,23 +74,31 @@ public:
 		int br = r / block_size;
 
 		if (bl == br) {
-			for (int i = l; i < r; ++i)
+			for (int i = l; i < r; ++i) {
 				ret = op(ret, data[i]);
+			}
 			return ret;
 		}
 
 		int lend = (bl + 1) * block_size;
-		for (int i = l; i < lend; ++i)
+		for (int i = l; i < lend; ++i) {
 			ret = op(ret, data[i]);
+		}
 
-		for (int b = bl + 1; b < br; ++b)
+		for (int b = bl + 1; b < br; ++b) {
 			ret = op(ret, block[b]);
+		}
 
 		int rbegin = br * block_size;
-		for (int i = rbegin; i < r; ++i)
+		for (int i = rbegin; i < r; ++i) {
 			ret = op(ret, data[i]);
+		}
 
 		return ret;
+	}
+
+	T all_prod() const {
+		return prod(0, n);
 	}
 };
 
