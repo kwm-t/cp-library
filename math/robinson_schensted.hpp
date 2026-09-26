@@ -36,6 +36,7 @@ namespace kwm_t::math {
  *     is_strong == false の場合は upper_bound を使用する。
  *
  * verified:
+ *   - https://yukicoder.me/submissions/1190590
  *   - https://atcoder.jp/contests/abc468/submissions/77872609
  *   - 上記は嘘解法のためWAです
  */
