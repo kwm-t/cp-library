@@ -95,6 +95,20 @@ private:
 	std::vector<int> order;
 
 private:
+	static std::vector<std::vector<std::pair<int, int>>> to_graph(
+		const std::vector<std::vector<int>>& graph
+	) {
+		std::vector<std::vector<std::pair<int, int>>> result(graph.size());
+
+		for (int v = 0; v < static_cast<int>(graph.size()); ++v) {
+			for (int to : graph[v]) {
+				result[v].emplace_back(to, -1);
+			}
+		}
+
+		return result;
+	}
+
 	void build_tree() {
 		parent.assign(n, -1);
 		parent_edge.assign(n, -1);
@@ -287,6 +301,11 @@ public:
 	 * @param graph (頂点, 辺 ID) の隣接リスト
 	 * @param queries 頂点対によるクエリ
 	 */
+	MoOnTree(
+		const std::vector<std::vector<int>>& graph,
+		const std::vector<std::pair<int, int>>& queries
+	)
+		: MoOnTree(to_graph(graph), queries) {}
 	MoOnTree(
 		const std::vector<std::vector<std::pair<int, int>>>& graph,
 		const std::vector<std::pair<int, int>>& queries
