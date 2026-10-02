@@ -34,7 +34,7 @@
  *   - 区間は常に「互いに素かつ同じ値の隣接区間がマージされた状態」を保つ
  *
  * verified:
- *   https://atcoder.jp/contests/awc0053/submissions/75170416
+ *   https://atcoder.jp/contests/awc0053/submissions/79682515
  *   https://yukicoder.me/submissions/1191292
  */
 namespace kwm_t::data_structure {
