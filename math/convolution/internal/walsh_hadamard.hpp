@@ -19,87 +19,66 @@
  * verified:
  */
 namespace kwm_t::math::convolution::internal {
-
-// XOR
-template <typename T>
-void xor_transform(std::vector<T>& f) {
+template <typename T, typename Op>
+void pair_transform(std::vector<T>& f, Op op) {
 	int n = (int)f.size();
 	assert((n & (n - 1)) == 0);
 
 	for (int len = 1; len < n; len <<= 1) {
 		for (int i = 0; i < n; i += len << 1) {
 			for (int j = 0; j < len; ++j) {
-				T x = f[i + j];
-				T y = f[i + j + len];
-				f[i + j] = x + y;
-				f[i + j + len] = x - y;
+				op(f[i + j], f[i + j + len]);
 			}
 		}
 	}
 }
 
+// XOR
+template <typename T>
+void xor_transform(std::vector<T>& f) {
+	pair_transform(f, [](T& x, T& y) {
+		T a = x;
+		T b = y;
+		x = a + b;
+		y = a - b;
+	});
+}
+
 template <typename T>
 void xor_transform_inv(std::vector<T>& f) {
-	int n = (int)f.size();
 	xor_transform(f);
-	T inv_n = T(1) / T(n);
+	T inv_n = T(1) / T(f.size());
 	for (auto& x : f) x *= inv_n;
 }
 
 // OR
 template <typename T>
 void or_transform(std::vector<T>& f) {
-	int n = (int)f.size();
-	assert((n & (n - 1)) == 0);
-
-	for (int len = 1; len < n; len <<= 1) {
-		for (int i = 0; i < n; i += len << 1) {
-			for (int j = 0; j < len; ++j) {
-				f[i + j + len] += f[i + j];
-			}
-		}
-	}
+	pair_transform(f, [](T& x, T& y) {
+		y += x;
+	});
 }
 
 template <typename T>
 void or_transform_inv(std::vector<T>& f) {
-	int n = (int)f.size();
-
-	for (int len = 1; len < n; len <<= 1) {
-		for (int i = 0; i < n; i += len << 1) {
-			for (int j = 0; j < len; ++j) {
-				f[i + j + len] -= f[i + j];
-			}
-		}
-	}
+	pair_transform(f, [](T& x, T& y) {
+		y -= x;
+	});
 }
 
 // AND
 template <typename T>
 void and_transform(std::vector<T>& f) {
-	int n = (int)f.size();
-	assert((n & (n - 1)) == 0);
-
-	for (int len = 1; len < n; len <<= 1) {
-		for (int i = 0; i < n; i += len << 1) {
-			for (int j = 0; j < len; ++j) {
-				f[i + j] += f[i + j + len];
-			}
-		}
-	}
+	pair_transform(f, [](T& x, T& y) {
+		x += y;
+	});
 }
 
 template <typename T>
 void and_transform_inv(std::vector<T>& f) {
-	int n = (int)f.size();
-
-	for (int len = 1; len < n; len <<= 1) {
-		for (int i = 0; i < n; i += len << 1) {
-			for (int j = 0; j < len; ++j) {
-				f[i + j] -= f[i + j + len];
-			}
-		}
-	}
+	pair_transform(f, [](T& x, T& y) {
+		x -= y;
+	});
 }
 
 }
