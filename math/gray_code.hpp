@@ -1,4 +1,11 @@
-﻿#ifndef KWM_T_MATH_GRAY_CODE_HPP
+﻿/**
+ * @file gray_code.hpp
+ * @brief Gray code
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/gray_code.hpp
+ */
+
+#ifndef KWM_T_MATH_GRAY_CODE_HPP
 #define KWM_T_MATH_GRAY_CODE_HPP
 
 #include <vector>

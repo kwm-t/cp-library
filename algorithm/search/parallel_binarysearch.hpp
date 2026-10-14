@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP
+﻿/**
+ * @file parallel_binarysearch.hpp
+ * @brief 並列二分探索
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/search/parallel_binarysearch.hpp
+ */
+#ifndef KWM_T_ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP
 #define KWM_T_ALGORITHM_SEARCH_PARALLEL_BINARY_SEARCH_HPP
 
 #include <vector>

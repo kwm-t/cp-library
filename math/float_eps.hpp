@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FLOAT_EPS_HPP
+﻿/**
+ * @file float_eps.hpp
+ * @brief 浮動小数点数の誤差判定
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/float_eps.hpp
+ */
+#ifndef KWM_T_MATH_FLOAT_EPS_HPP
 #define KWM_T_MATH_FLOAT_EPS_HPP
 
 #include <cmath>

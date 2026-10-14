@@ -1,4 +1,10 @@
-﻿#ifndef KMW_T_MATH_MODINT_FRACMINT_HPP
+﻿/**
+ * @file fracmint.hpp
+ * @brief 分数を扱う modint 補助機能
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/fracmint.hpp
+ */
+#ifndef KMW_T_MATH_MODINT_FRACMINT_HPP
 #define KMW_T_MATH_MODINT_FRACMINT_HPP
 
 #include <iostream>

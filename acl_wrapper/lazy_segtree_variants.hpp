@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ACLWRAPPER_LAZY_SEGTREE_VARIANTS_HPP
+﻿/**
+ * @file lazy_segtree_variants.hpp
+ * @brief Lazy Segment Tree の各種バリエーション
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/acl_wrapper/lazy_segtree_variants.hpp
+ */
+#ifndef KWM_T_ACLWRAPPER_LAZY_SEGTREE_VARIANTS_HPP
 #define KWM_T_ACLWRAPPER_LAZY_SEGTREE_VARIANTS_HPP
 
 #include <vector>

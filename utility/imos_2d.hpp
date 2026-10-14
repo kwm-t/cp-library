@@ -1,3 +1,9 @@
+/**
+ * @file imos_2d.hpp
+ * @brief 二次元 Imos 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/imos_2d.hpp
+ */
 #ifndef KWM_T_UTILITY_IMOS_2D_HPP
 #define KWM_T_UTILITY_IMOS_2D_HPP
 

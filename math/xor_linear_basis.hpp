@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_XOR_LINEAR_BASIS_HPP
+﻿/**
+ * @file xor_linear_basis.hpp
+ * @brief XOR 線形基底
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/xor_linear_basis.hpp
+ */
+#ifndef KWM_T_MATH_XOR_LINEAR_BASIS_HPP
 #define KWM_T_MATH_XOR_LINEAR_BASIS_HPP
 
 #include <vector>

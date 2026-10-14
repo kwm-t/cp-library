@@ -1,3 +1,9 @@
+/**
+ * @file integer.hpp
+ * @brief 整数型に関する補助機能
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/base/integer.hpp
+ */
 #ifndef KWM_T_BASE_INTEGR_HPP
 #define KWM_T_BASE_INTEGR_HPP
 

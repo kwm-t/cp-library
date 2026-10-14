@@ -1,3 +1,9 @@
+/**
+ * @file edge.hpp
+ * @brief グラフの辺
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/edge.hpp
+ */
 #ifndef KWM_T_GRAPH_EDGE_HPP
 #define KWM_T_GRAPH_EDGE_HPP
 

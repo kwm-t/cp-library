@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FPS_BOSTAN_MORI_HPP
+﻿/**
+ * @file bostan_mori.hpp
+ * @brief Bostan-Mori 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/bostan_mori.hpp
+ */
+#ifndef KWM_T_MATH_FPS_BOSTAN_MORI_HPP
 #define KWM_T_MATH_FPS_BOSTAN_MORI_HPP
 
 #include <vector>

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_MEDIAN_MULTISET_HPP
+﻿/**
+ * @file median_multiset.hpp
+ * @brief 中央値を管理する multiset
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/median_multiset.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_MEDIAN_MULTISET_HPP
 #define KWM_T_DATA_STRUCTURE_MEDIAN_MULTISET_HPP
 
 #include <set>

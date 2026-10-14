@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP
+﻿/**
+ * @file convex_hull_trick.hpp
+ * @brief Convex Hull Trick
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/convex_hull_trick.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP
 #define KWM_T_DATA_STRUCTURE_CONVEX_HULL_TRICK_ADD_MONOTONE_HPP
 
 #include <deque>

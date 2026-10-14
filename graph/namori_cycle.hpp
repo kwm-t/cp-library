@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_NAMORI_CYCLE_HPP
+﻿/**
+ * @file namori_cycle.hpp
+ * @brief ナモリグラフのサイクル
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/namori_cycle.hpp
+ */
+#ifndef KWM_T_GRAPH_NAMORI_CYCLE_HPP
 #define KWM_T_GRAPH_NAMORI_CYCLE_HPP
 
 #include <vector>

@@ -1,3 +1,9 @@
+/**
+ * @file common_tangents.hpp
+ * @brief 二つの円の共通接線
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/geometry/common_tangents.hpp
+ */
 #ifndef KWM_T_GEOMETRY_COMMON_TANGENTS_HPP
 #define KWM_T_GEOMETRY_COMMON_TANGENTS_HPP
 

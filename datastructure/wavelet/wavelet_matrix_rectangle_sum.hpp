@@ -1,3 +1,10 @@
+/**
+ * @file wavelet_matrix.hpp
+ * @brief Wavelet Matrix
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/wavelet/wavelet_matrix.hpp
+ */
+
 #ifndef KWM_T_DATA_STRUCTURE_WAVELET_WAVELET_MATRIX_RECTANGLE_SUM_HPP
 #define KWM_T_DATA_STRUCTURE_WAVELET_WAVELET_MATRIX_RECTANGLE_SUM_HPP
 

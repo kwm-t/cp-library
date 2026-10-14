@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_K_MIN_CUT_HPP
+﻿/**
+ * @file k_min_cut.hpp
+ * @brief K 最小カット
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/k_min_cut.hpp
+ */
+#ifndef KWM_T_GRAPH_K_MIN_CUT_HPP
 #define KWM_T_GRAPH_K_MIN_CUT_HPP
 
 #include <vector>

@@ -1,3 +1,9 @@
+/**
+ * @file top_k.hpp
+ * @brief 上位 K 要素を管理するデータ構造
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/acl_wrapper/top_k.hpp
+ */
 #ifndef KWM_T_ACLWRAPPER_TOP_K_HPP
 #define KWM_T_ACLWRAPPER_TOP_K_HPP
 

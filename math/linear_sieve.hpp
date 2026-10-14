@@ -1,3 +1,9 @@
+/**
+ * @file linear_sieve.hpp
+ * @brief 線形篩
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/linear_sieve.hpp
+ */
 #ifndef KWM_T_MATH_LINEAR_SIEVE_HPP
 #define KWM_T_MATH_LINEAR_SIEVE_HPP
 

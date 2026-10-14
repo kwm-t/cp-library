@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_UTILITY_DIAGONAL_CUMULATIVE_SUM_HPP
+﻿/**
+ * @file diagonal_cumulative_sum.hpp
+ * @brief 対角方向の累積和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/diagonal_cumulative_sum.hpp
+ */
+#ifndef KWM_T_UTILITY_DIAGONAL_CUMULATIVE_SUM_HPP
 #define KWM_T_UTILITY_DIAGONAL_CUMULATIVE_SUM_HPP
 
 #include <vector>

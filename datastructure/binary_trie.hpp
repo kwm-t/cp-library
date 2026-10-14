@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_BINARY_TRIE_HPP
+﻿/**
+ * @file binary_trie.hpp
+ * @brief Binary Trie
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/binary_trie.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_BINARY_TRIE_HPP
 #define KWM_T_DATA_STRUCTURE_BINARY_TRIE_HPP
 
 #include <array>

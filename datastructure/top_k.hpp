@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_TOP_K_HPP
+﻿/**
+ * @file top_k.hpp
+ * @brief 上位 K 要素を管理するデータ構造
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/top_k.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_TOP_K_HPP
 #define KWM_T_DATA_STRUCTURE_TOP_K_HPP
 
 #include <vector>

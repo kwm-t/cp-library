@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GEOMETRY_SEGMENT_HPP
+﻿/**
+ * @file segment.hpp
+ * @brief 線分
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/geometry/segment.hpp
+ */
+#ifndef KWM_T_GEOMETRY_SEGMENT_HPP
 #define KWM_T_GEOMETRY_SEGMENT_HPP
 
 #include <tuple>

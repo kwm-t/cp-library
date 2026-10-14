@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FPS_MULTIPOINT_EVALUATION_HPP
+﻿/**
+ * @file multipoint_evaluation.hpp
+ * @brief 多点評価
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/multipoint_evaluation.hpp
+ */
+#ifndef KWM_T_MATH_FPS_MULTIPOINT_EVALUATION_HPP
 #define KWM_T_MATH_FPS_MULTIPOINT_EVALUATION_HPP
 
 #include <vector>

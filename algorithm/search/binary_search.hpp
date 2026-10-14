@@ -1,5 +1,12 @@
-﻿#ifndef KWM_T_ALGORITHM_SEARCH_BINARYSEARCH_HPP
-#define KWM_T_ALGORITHM_SEARCH_BINARYSEARCH_HPP
+﻿/**
+ * @file binarysearch.hpp
+ * @brief 二分探索
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/search/binary_search.hpp
+ */
+
+#ifndef KWM_T_ALGORITHM_SEARCH_BINARY_SEARCH_HPP
+#define KWM_T_ALGORITHM_SEARCH_BINARY_SEARCH_HPP
 
 #include <cstdlib>
 
@@ -112,4 +119,4 @@ T binarySearchDouble(T ok, T ng, const F &f, int counter = 100) {
 
 } // namespace kwm_t::algorithm::search
 
-#endif // KWM_T_ALGORITHM_SEARCH_BINARYSEARCH_HPP
+#endif // KWM_T_ALGORITHM_SEARCH_BINARY_SEARCH_HPP

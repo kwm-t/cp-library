@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_MATRIX_GAUSS_JORDAN_HPP
+﻿/**
+ * @file gauss_jordan.hpp
+ * @brief Gauss-Jordan 消去法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/matrix/gauss_jordan.hpp
+ */
+#ifndef KWM_T_MATH_MATRIX_GAUSS_JORDAN_HPP
 #define KWM_T_MATH_MATRIX_GAUSS_JORDAN_HPP
 
 #include <vector>

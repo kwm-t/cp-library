@@ -1,3 +1,9 @@
+/**
+ * @file alien_dp.hpp
+ * @brief Alien DP
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/alien_dp.hpp
+ */
 #ifndef KWM_T_ALGORITHM_ALIEN_DP_HPP
 #define KWM_T_ALGORITHM_ALIEN_DP_HPP
 

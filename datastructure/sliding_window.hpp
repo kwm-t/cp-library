@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_SLIDING_WINDOW_AGGREGATION_HPP
+﻿/**
+ * @file sliding_window.hpp
+ * @brief スライディングウィンドウ
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/sliding_window.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_SLIDING_WINDOW_AGGREGATION_HPP
 #define KWM_T_DATA_STRUCTURE_SLIDING_WINDOW_AGGREGATION_HPP
 
 #include <deque>

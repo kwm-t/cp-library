@@ -1,3 +1,9 @@
+/**
+ * @file fft_convolution.hpp
+ * @brief FFT 畳み込み
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/fft_convolution.hpp
+ */
 #ifndef KWM_T_MATH_CONVOLUTION_INTERNAL_FFT_CONVOLUTION_HPP
 #define KWM_T_MATH_CONVOLUTION_INTERNAL_FFT_CONVOLUTION_HPP
 

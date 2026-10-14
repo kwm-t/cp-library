@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_PASCAL_TABLE_HPP
+﻿/**
+ * @file pascal_table.hpp
+ * @brief パスカルの三角形
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/pascal_table.hpp
+ */
+#ifndef KWM_T_MATH_PASCAL_TABLE_HPP
 #define KWM_T_MATH_PASCAL_TABLE_HPP
 
 #include <vector>

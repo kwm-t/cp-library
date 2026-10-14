@@ -1,3 +1,9 @@
+/**
+ * @file exponential_search.hpp
+ * @brief 指数探索
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/search/exponential_search.hpp
+ */
 #ifndef KWM_T_ALGORITHM_SEARCH_EXPONENTIALSEARCH_HPP
 #define KWM_T_ALGORITHM_SEARCH_EXPONENTIALSEARCH_HPP
 

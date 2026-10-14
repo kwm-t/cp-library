@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_DIOPHANTINE_HPP
+﻿/**
+ * @file diophantine.hpp
+ * @brief 一次不定方程式
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/diophantine.hpp
+ */
+#ifndef KWM_T_MATH_DIOPHANTINE_HPP
 #define KWM_T_MATH_DIOPHANTINE_HPP
 
 #include <utility>

@@ -1,3 +1,9 @@
+/**
+ * @file point_line_distance.hpp
+ * @brief 点と直線の距離
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/geometry/point_line_distance.hpp
+ */
 #ifndef KWM_T_GEOMETRY_POINT_LINE_DISTANCE_HPP
 #define KWM_T_GEOMETRY_POINT_LINE_DISTANCE_HPP
 

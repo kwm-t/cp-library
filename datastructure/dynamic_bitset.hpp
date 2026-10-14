@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_DYNAMIC_BITSET_HPP
+﻿/**
+ * @file dynamic_bitset.hpp
+ * @brief 動的ビット集合
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/dynamic_bitset.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_DYNAMIC_BITSET_HPP
 #define KWM_T_DATA_STRUCTURE_DYNAMIC_BITSET_HPP
 
 #include <vector>

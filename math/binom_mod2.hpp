@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_BINOM_MOD2_HPP
+﻿/**
+ * @file binom_mod2.hpp
+ * @brief 法 2 の二項係数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/binom_mod2.hpp
+ */
+#ifndef KWM_T_MATH_BINOM_MOD2_HPP
 #define KWM_T_MATH_BINOM_MOD2_HPP
 
 #include <cstdint>

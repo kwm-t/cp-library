@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_RATIONAL_HPP
+﻿/**
+ * @file rational.hpp
+ * @brief 有理数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/rational.hpp
+ */
+#ifndef KWM_T_MATH_RATIONAL_HPP
 #define KWM_T_MATH_RATIONAL_HPP
 
 #include <numeric>

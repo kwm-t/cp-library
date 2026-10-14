@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_BASE_BUILTIN_HPP
+﻿/**
+ * @file builtin.hpp
+ * @brief コンパイラ組み込み機能の補助
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/base/builtin.hpp
+ */
+#ifndef KWM_T_BASE_BUILTIN_HPP
 #define KWM_T_BASE_BUILTIN_HPP
 
 /**

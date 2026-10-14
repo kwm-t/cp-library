@@ -1,3 +1,9 @@
+/**
+ * @file bipartite_vertex_cover.hpp
+ * @brief 二部グラフの最小点被覆・最大独立集合
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/acl_wrapper/bipartite_vertex_cover.hpp
+ */
 #ifndef KWM_T_ACL_WRAPPER_BIPARTITE_VERTEX_COVER_HPP
 #define KWM_T_ACL_WRAPPER_BIPARTITE_VERTEX_COVER_HPP
 

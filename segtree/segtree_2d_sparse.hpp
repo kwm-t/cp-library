@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_SEGTREE_SEGTREE_2D_SPARSE_HPP
+﻿/**
+ * @file segtree_2d_sparse.hpp
+ * @brief 二次元 Sparse Segment Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/segtree/segtree_2d_sparse.hpp
+ */
+#ifndef KWM_T_SEGTREE_SEGTREE_2D_SPARSE_HPP
 #define KWM_T_SEGTREE_SEGTREE_2D_SPARSE_HPP
 
 #include <vector>

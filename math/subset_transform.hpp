@@ -1,3 +1,9 @@
+/**
+ * @file subset_transform.hpp
+ * @brief 部分集合変換
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/subset_transform.hpp
+ */
 #ifndef KWM_T_MATH_SUBSET_TRANSFORM_HPP
 #define KWM_T_MATH_SUBSET_TRANSFORM_HPP
 

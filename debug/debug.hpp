@@ -1,3 +1,9 @@
+/**
+ * @file debug.hpp
+ * @brief debug に関する処理（要確認）
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/debug/debug.hpp
+ */
 #ifndef KWM_T_DEBUG_DEBUG_HPP
 #define KWM_T_DEBUG_DEBUG_HPP
 

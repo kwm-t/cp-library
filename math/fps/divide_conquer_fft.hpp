@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FPS_DIVIDE_CONQUER_FFT_HPP
+﻿/**
+ * @file divide_conquer_fft.hpp
+ * @brief 分割統治 FFT
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/divide_conquer_fft.hpp
+ */
+#ifndef KWM_T_MATH_FPS_DIVIDE_CONQUER_FFT_HPP
 #define KWM_T_MATH_FPS_DIVIDE_CONQUER_FFT_HPP
 
 #include <vector>

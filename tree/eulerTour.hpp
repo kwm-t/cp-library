@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_EULER_TOUR_HPP
+﻿/**
+ * @file eulerTour.hpp
+ * @brief Euler Tour
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/eulerTour.hpp
+ */
+#ifndef KWM_T_TREE_EULER_TOUR_HPP
 #define KWM_T_TREE_EULER_TOUR_HPP
 
 #include <vector>

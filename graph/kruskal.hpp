@@ -1,3 +1,9 @@
+/**
+ * @file kruskal.hpp
+ * @brief Kruskal 法による最小全域木
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/kruskal.hpp
+ */
 #ifndef KWM_T_GRAPH_KRUSKAL_HPP
 #define KWM_T_GRAPH_KRUSKAL_HPP
 

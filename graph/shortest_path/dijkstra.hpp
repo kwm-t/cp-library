@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_SHORTEST_PATH_DIJKSTRA_HPP
+﻿/**
+ * @file dijkstra.hpp
+ * @brief Dijkstra 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/shortest_path/dijkstra.hpp
+ */
+#ifndef KWM_T_GRAPH_SHORTEST_PATH_DIJKSTRA_HPP
 #define KWM_T_GRAPH_SHORTEST_PATH_DIJKSTRA_HPP
 
 #include <vector>

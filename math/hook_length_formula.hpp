@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_HOOK_LENGTH_FORMULA_HPP
+﻿/**
+ * @file hook_length_formula.hpp
+ * @brief フック長公式
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/hook_length_formula.hpp
+ */
+#ifndef KWM_T_MATH_HOOK_LENGTH_FORMULA_HPP
 #define KWM_T_MATH_HOOK_LENGTH_FORMULA_HPP
 
 #include <vector>

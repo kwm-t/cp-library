@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ALGORITHM_SORT_MERGESORT_HPP
+﻿/**
+ * @file merge_sort.hpp
+ * @brief マージソート
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/sort/merge_sort.hpp
+ */
+#ifndef KWM_T_ALGORITHM_SORT_MERGESORT_HPP
 #define KWM_T_ALGORITHM_SORT_MERGESORT_HPP
 
 #include <vector>

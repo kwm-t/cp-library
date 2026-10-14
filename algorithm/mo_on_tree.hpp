@@ -1,3 +1,9 @@
+/**
+ * @file mo_on_tree.hpp
+ * @brief 木上の Mo's algorithm
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/mo_on_tree.hpp
+ */
 #ifndef KWM_T_ALGORITHM_MO_ON_TREE_HPP
 #define KWM_T_ALGORITHM_MO_ON_TREE_HPP
 

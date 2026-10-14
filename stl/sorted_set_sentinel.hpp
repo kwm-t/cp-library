@@ -1,3 +1,9 @@
+/**
+ * @file sorted_set_sentinel.hpp
+ * @brief 番兵を用いた Sorted Set
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/stl/sorted_set_sentinel.hpp
+ */
 #ifndef KWM_T_STL_SORTED_SET_SENTINEL_HPP
 #define KWM_T_STL_SORTED_SET_SENTINEL_HPP
 

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_CARTESIAN_TREE_HPP
+﻿/**
+ * @file cartesian_tree.hpp
+ * @brief Cartesian Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/cartesian_tree.hpp
+ */
+#ifndef KWM_T_TREE_CARTESIAN_TREE_HPP
 #define KWM_T_TREE_CARTESIAN_TREE_HPP
 
 #include <vector>

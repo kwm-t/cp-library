@@ -1,3 +1,9 @@
+/**
+ * @file binary_indexed_tree.hpp
+ * @brief Binary Indexed Tree（Fenwick Tree）
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/binary_indexed_tree.hpp
+ */
 #ifndef KWM_T_DATA_STRUCT_BINARY_INDEXED_TREE_HPP
 #define KWM_T_DATA_STRUCT_BINARY_INDEXED_TREE_HPP
 

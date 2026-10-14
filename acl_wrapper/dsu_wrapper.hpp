@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ACLWRAPPER_DSU_WRAPPER_HPP
+﻿/**
+ * @file dsu_wrapper.hpp
+ * @brief AtCoder Library の DSU ラッパー
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/acl_wrapper/dsu_wrapper.hpp
+ */
+#ifndef KWM_T_ACLWRAPPER_DSU_WRAPPER_HPP
 #define KWM_T_ACLWRAPPER_DSU_WRAPPER_HPP
 
 #include <vector>

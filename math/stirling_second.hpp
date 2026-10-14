@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_STIRLING_SECOND_HPP
+﻿/**
+ * @file stirling_second.hpp
+ * @brief 第二種 Stirling 数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/stirling_second.hpp
+ */
+#ifndef KWM_T_MATH_STIRLING_SECOND_HPP
 #define KWM_T_MATH_STIRLING_SECOND_HPP
 
 #include <vector>

@@ -1,3 +1,9 @@
+/**
+ * @file warshall_floyd.hpp
+ * @brief Warshall-Floyd 法による全点対最短路
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/shortest_path/warshall_floyd.hpp
+ */
 #ifndef KWM_T_GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
 #define KWM_T_GRAPH_SHORTEST_PATH_WARSHALL_FLOYD_HPP
 

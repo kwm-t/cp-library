@@ -1,4 +1,11 @@
-﻿#ifndef KWM_T_MATH_BSGS_HPP
+﻿/**
+ * @file baby_step_giant_step.hpp
+ * @brief Baby-step Giant-step
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/baby_step_giant_step.hpp
+ */
+
+#ifndef KWM_T_MATH_BSGS_HPP
 #define KWM_T_MATH_BSGS_HPP
 
 // ============================================

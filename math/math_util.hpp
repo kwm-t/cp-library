@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_MATHUTIL_HPP
+﻿/**
+ * @file math_util.hpp
+ * @brief 数学関連の補助関数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/math_util.hpp
+ */
+#ifndef KWM_T_MATH_MATHUTIL_HPP
 #define KWM_T_MATH_MATHUTIL_HPP
 
 #include <vector>

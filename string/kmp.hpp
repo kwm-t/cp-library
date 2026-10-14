@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_KMP_HPP
+﻿/**
+ * @file kmp.hpp
+ * @brief Knuth-Morris-Pratt 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/kmp.hpp
+ */
+#ifndef KWM_T_STRING_KMP_HPP
 #define KWM_T_STRING_KMP_HPP
 
 #include <vector>

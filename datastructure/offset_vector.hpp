@@ -1,3 +1,9 @@
+/**
+ * @file offset_vector.hpp
+ * @brief オフセット付き vector
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/offset_vector.hpp
+ */
 #ifndef KWM_T_DATASTRUCTURE_OFFSET_VECTOR_HPP
 #define KWM_T_DATASTRUCTURE_OFFSET_VECTOR_HPP
 

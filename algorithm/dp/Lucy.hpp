@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ALGORITHM_DP_LUCY_HPP
+﻿/**
+ * @file lucy.hpp
+ * @brief Lucy DP
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/lucy.hpp
+ */
+#ifndef KWM_T_ALGORITHM_DP_LUCY_HPP
 #define KWM_T_ALGORITHM_DP_LUCY_HPP
 
 #include <vector>

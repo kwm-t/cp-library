@@ -1,3 +1,9 @@
+/**
+ * @file imos_3d.hpp
+ * @brief 三次元 Imos 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/imos_3d.hpp
+ */
 #ifndef KWM_T_UTILITY_IMOS_3D_HPP
 #define KWM_T_UTILITY_IMOS_3D_HPP
 

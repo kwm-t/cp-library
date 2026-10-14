@@ -1,3 +1,9 @@
+/**
+ * @file unordered_dense.hpp
+ * @brief 高速な unordered コンテナ
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/base/unordered_dense.hpp
+ */
 #ifndef KWM_T_BASE_UNORDERED_DENSE_HPP
 #define KWM_T_BASE_UNORDERED_DENSE_HPP
 

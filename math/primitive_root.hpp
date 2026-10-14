@@ -1,4 +1,11 @@
-﻿#ifndef KWM_T_MATH_PRIMITIVE_ROOT_HPP
+﻿/**
+ * @file primitive_root.hpp
+ * @brief 原始根
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/primitive_root.hpp
+ */
+
+#ifndef KWM_T_MATH_PRIMITIVE_ROOT_HPP
 #define KWM_T_MATH_PRIMITIVE_ROOT_HPP
 
 #include <vector>

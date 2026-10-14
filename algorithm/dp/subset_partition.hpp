@@ -1,3 +1,9 @@
+/**
+ * @file subset_partition.hpp
+ * @brief 部分集合分割 DP
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/subset_partition.hpp
+ */
 #ifndef KWM_T_ALGORITHM_DP_SUBSET_PARTITION_HPP
 #define KWM_T_ALGORITHM_DP_SUBSET_PARTITION_HPP
 

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_UTILITY_TIME_KEEPER_HPP
+﻿/**
+ * @file time_keeper.hpp
+ * @brief 実行時間計測
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/time_keeper.hpp
+ */
+#ifndef KWM_T_UTILITY_TIME_KEEPER_HPP
 #define KWM_T_UTILITY_TIME_KEEPER_HPP
 
 #include <chrono>

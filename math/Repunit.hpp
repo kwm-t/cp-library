@@ -1,3 +1,9 @@
+/**
+ * @file repunit.hpp
+ * @brief レピュニット
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/repunit.hpp
+ */
 #ifndef KWM_T_MATH_REPUNIT_HPP
 #define KWM_T_MATH_REPUNIT_HPP
 

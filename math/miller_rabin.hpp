@@ -1,3 +1,9 @@
+/**
+ * @file miller_rabin.hpp
+ * @brief Miller-Rabin 素数判定法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/miller_rabin.hpp
+ */
 #ifndef KWM_T_MATH_MILLER_RABIN_HPP
 #define KWM_T_MATH_MILLER_RABIN_HPP
 

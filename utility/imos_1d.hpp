@@ -1,3 +1,9 @@
+/**
+ * @file imos_1d.hpp
+ * @brief 一次元 Imos 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/imos_1d.hpp
+ */
 #ifndef KWM_T_UTILITY_IMOS_1D_HPP
 #define KWM_T_UTILITY_IMOS_1D_HPP
 

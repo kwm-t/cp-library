@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_CAYLEY_AND_MATCHING_HPP
+﻿/**
+ * @file cayley_and_matching.hpp
+ * @brief Cayley の公式とマッチング
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/cayley_and_matching.hpp
+ */
+#ifndef KWM_T_MATH_CAYLEY_AND_MATCHING_HPP
 #define KWM_T_MATH_CAYLEY_AND_MATCHING_HPP
 
 #include <vector>

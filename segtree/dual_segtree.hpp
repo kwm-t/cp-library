@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_SEGTREE_DUAL_SEGTREE_HPP
+﻿/**
+ * @file dual_segtree.hpp
+ * @brief Dual Segment Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/segtree/dual_segtree.hpp
+ */
+#ifndef KWM_T_SEGTREE_DUAL_SEGTREE_HPP
 #define KWM_T_SEGTREE_DUAL_SEGTREE_HPP
 
 #include <vector>

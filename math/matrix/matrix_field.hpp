@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_MATRIX_MATRIX_FIELD_HPP
+﻿/**
+ * @file matrix_field.hpp
+ * @brief 体上の行列演算
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/matrix/matrix_field.hpp
+ */
+#ifndef KWM_T_MATH_MATRIX_MATRIX_FIELD_HPP
 #define KWM_T_MATH_MATRIX_MATRIX_FIELD_HPP
 
 // #include

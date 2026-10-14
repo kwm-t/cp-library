@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_UTILITY_RANDOM_HPP
+﻿/**
+ * @file random.hpp
+ * @brief 乱数生成の補助機能
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/random.hpp
+ */
+#ifndef KWM_T_UTILITY_RANDOM_HPP
 #define KWM_T_UTILITY_RANDOM_HPP
 
 #include <random>

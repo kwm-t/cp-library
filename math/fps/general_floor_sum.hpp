@@ -1,3 +1,9 @@
+/**
+ * @file general_floor_sum.hpp
+ * @brief 一般化 floor sum
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/general_floor_sum.hpp
+ */
 #ifndef KWM_T_MATH_FPS_GENERAL_FLOOR_SUM_HPP
 #define KWM_T_MATH_FPS_GENERAL_FLOOR_SUM_HPP
 

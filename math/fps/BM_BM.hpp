@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FPS_BM_PREPROCESS_HPP
+﻿/**
+ * @file bm_bm.hpp
+ * @brief Bostan-Mori 法関連の処理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/bm_bm.hpp
+ */
+#ifndef KWM_T_MATH_FPS_BM_PREPROCESS_HPP
 #define KWM_T_MATH_FPS_BM_PREPROCESS_HPP
 
 #include <vector>

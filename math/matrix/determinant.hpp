@@ -1,3 +1,9 @@
+/**
+ * @file determinant.hpp
+ * @brief 行列式
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/matrix/determinant.hpp
+ */
 #ifndef KWM_T_MATH_MATRIX_DETERMINANT_HPP
 #define KWM_T_MATH_MATRIX_DETERMINANT_HPP
 

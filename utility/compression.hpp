@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_UTILITY_COMPRESSION_HPP
+﻿/**
+ * @file compression.hpp
+ * @brief 座標圧縮
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/compression.hpp
+ */
+#ifndef KWM_T_UTILITY_COMPRESSION_HPP
 #define KWM_T_UTILITY_COMPRESSION_HPP
 
 #include <vector>

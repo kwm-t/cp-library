@@ -1,3 +1,10 @@
+/**
+ * @file persistent_segtree.hpp
+ * @brief 永続 Segment Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/segtree/persistent_segtree.hpp
+ */
+
 #ifndef KWM_T_DATA_SEGTREE_PERSISTENT_SEG_TREE_HPP
 #define KWM_T_DATA_SEGTREE_PERSISTENT_SEG_TREE_HPP
 

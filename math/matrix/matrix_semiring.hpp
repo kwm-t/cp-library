@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_MATRIX_SEMIRING_HPP
+﻿/**
+ * @file matrix_semiring.hpp
+ * @brief 半環上の行列演算
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/matrix/matrix_semiring.hpp
+ */
+#ifndef KWM_T_MATH_MATRIX_SEMIRING_HPP
 #define KWM_T_MATH_MATRIX_SEMIRING_HPP
 
 // #include

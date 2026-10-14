@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_SEGTREE_LAZY_SEGTREE_BEATS_HPP
+﻿/**
+ * @file lazy_segtree_beats.hpp
+ * @brief Lazy Segment Tree Beats
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/segtree/lazy_segtree_beats.hpp
+ */
+#ifndef KWM_T_SEGTREE_LAZY_SEGTREE_BEATS_HPP
 #define KWM_T_SEGTREE_LAZY_SEGTREE_BEATS_HPP
 
 #include <utility>

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_UTILITY_DIAGONAL_IMOS_HPP
+﻿/**
+ * @file diagonal_imos.hpp
+ * @brief 対角方向の Imos 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/diagonal_imos.hpp
+ */
+#ifndef KWM_T_UTILITY_DIAGONAL_IMOS_HPP
 #define KWM_T_UTILITY_DIAGONAL_IMOS_HPP
 
 #include <vector>

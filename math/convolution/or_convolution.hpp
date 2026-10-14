@@ -1,3 +1,9 @@
+/**
+ * @file or_convolution.hpp
+ * @brief OR 畳み込み
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/or_convolution.hpp
+ */
 #ifndef KWM_T_MATH_CONVOLUTION_OR_CONVOLUTION_HPP
 #define KWM_T_MATH_CONVOLUTION_OR_CONVOLUTION_HPP
 

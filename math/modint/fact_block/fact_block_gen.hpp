@@ -1,3 +1,9 @@
+/**
+ * @file fact_block_gen.hpp
+ * @brief 階乗ブロックの生成
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/fact_block/fact_block_gen.hpp
+ */
 #ifndef KWM_T_MATH_MODINT_FACT_BLOCK_HPP
 #define KWM_T_MATH_MODINT_FACT_BLOCK_HPP
 

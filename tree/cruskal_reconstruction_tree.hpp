@@ -1,3 +1,9 @@
+/**
+ * @file cruskal_reconstruction_tree.hpp
+ * @brief Kruskal Reconstruction Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/cruskal_reconstruction_tree.hpp
+ */
 #ifndef KWM_T_TREE_KRUSKAL_RECONSTRUCTION_TREE_HPP
 #define KWM_T_TREE_KRUSKAL_RECONSTRUCTION_TREE_HPP
 

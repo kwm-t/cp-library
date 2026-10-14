@@ -1,5 +1,11 @@
-﻿#ifndef KWM_T_ALGORITHM_SORT_EXPONENTIAL_MERGESORT_HPP
-#define KWM_T_ALGORITHM_SORT_EXPONENTIAL_MERGESORT_HPP
+﻿/**
+ * @file exponential_merge_sort.hpp
+ * @brief 指数探索を用いたマージソート
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/sort/exponential_merge_sort.hpp
+ */
+#ifndef KWM_T_ALGORITHM_SORT_EXPONENTIAL_MERGE_SORT_HPP
+#define KWM_T_ALGORITHM_SORT_EXPONENTIAL_MERGE_SORT_HPP
 
 #include <vector>
 #include <iterator>
@@ -153,4 +159,4 @@ constexpr void exponential_merge_sort(
 
 } // namespace kwm_t::algorithm::sort
 
-#endif //KWM_T_ALGORITHM_SORT_EXPONENTIAL_MERGESORT_HPP
+#endif //KWM_T_ALGORITHM_SORT_EXPONENTIAL_MERGE_SORT_HPP

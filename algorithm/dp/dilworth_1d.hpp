@@ -1,3 +1,9 @@
+/**
+ * @file dilworth_1d.hpp
+ * @brief 一次元 Dilworth の定理に関する処理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/dilworth_1d.hpp
+ */
 #ifndef KWM_T_ALGORITHM_DP_DILWORTH_1D_HPP
 #define KWM_T_ALGORITHM_DP_DILWORTH_1D_HPP
 

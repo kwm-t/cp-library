@@ -1,3 +1,9 @@
+/**
+ * @file diameter.hpp
+ * @brief 木の直径
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/diameter.hpp
+ */
 #ifndef KWM_T_TREE_DIAMETER_HPP
 #define KWM_T_TREE_DIAMETER_HPP
 

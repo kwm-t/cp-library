@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_SEGTREE_DYNAMIC_SEGTREE_HPP
+﻿/**
+ * @file dynamic_segtree.hpp
+ * @brief 動的 Segment Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/segtree/dynamic_segtree.hpp
+ */
+#ifndef KWM_T_SEGTREE_DYNAMIC_SEGTREE_HPP
 #define KWM_T_SEGTREE_DYNAMIC_SEGTREE_HPP
 
 #include <memory>

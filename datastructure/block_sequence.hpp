@@ -1,3 +1,9 @@
+/**
+ * @file block_sequence.hpp
+ * @brief ブロック分割による列データ構造
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/block_sequence.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_BLOCK_SEQUENCE_HPP
 #define KWM_T_DATA_STRUCTURE_BLOCK_SEQUENCE_HPP
 

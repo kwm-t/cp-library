@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_ROLLING_HASH_DYNAMIC_HPP
+﻿/**
+ * @file rolling_hash_dynamic.hpp
+ * @brief 動的ローリングハッシュ
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/rolling_hash_dynamic.hpp
+ */
+#ifndef KWM_T_STRING_ROLLING_HASH_DYNAMIC_HPP
 #define KWM_T_STRING_ROLLING_HASH_DYNAMIC_HPP
 
 #include <vector>

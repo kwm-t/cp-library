@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_MODINT_BINOM_SUM_SQRT_HPP
+﻿/**
+ * @file binom_sum_sqrt_decomposition.hpp
+ * @brief 平方分割による二項係数和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/binom_sum_sqrt_decomposition.hpp
+ */
+#ifndef KWM_T_MATH_MODINT_BINOM_SUM_SQRT_HPP
 #define KWM_T_MATH_MODINT_BINOM_SUM_SQRT_HPP
 
 #include <vector>

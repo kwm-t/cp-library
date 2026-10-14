@@ -1,3 +1,9 @@
+/**
+ * @file fast_lca.hpp
+ * @brief 高速 LCA
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/fast_lca.hpp
+ */
 #ifndef KWM_T_TREE_FAST_LCA_HPP
 #define KWM_T_TREE_FAST_LCA_HPP
 

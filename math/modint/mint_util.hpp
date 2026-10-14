@@ -1,3 +1,9 @@
+/**
+ * @file mint_util.hpp
+ * @brief modint の補助関数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/mint_util.hpp
+ */
 #ifndef KWM_T_MATH_MODINT_MINT_UTIL_HPP
 #define KWM_T_MATH_MODINT_MINT_UTIL_HPP
 

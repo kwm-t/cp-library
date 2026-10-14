@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_DYNAMIC_LICHAO_TREE_HPP
+﻿/**
+ * @file dynamic_lichao_tree.hpp
+ * @brief 動的 Li Chao Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/dynamic_lichao_tree.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_DYNAMIC_LICHAO_TREE_HPP
 #define KWM_T_DATA_STRUCTURE_DYNAMIC_LICHAO_TREE_HPP
 
 #include <algorithm>

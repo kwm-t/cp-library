@@ -1,3 +1,9 @@
+/**
+ * @file grid_bfs.hpp
+ * @brief グリッド上の幅優先探索
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/shortest_path/grid_bfs.hpp
+ */
 #ifndef KWM_T_GRAPH_SHORTEST_PATH_GRID_BFS_HPP
 #define KWM_T_GRAPH_SHORTEST_PATH_GRID_BFS_HPP
 

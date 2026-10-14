@@ -1,3 +1,9 @@
+/**
+ * @file multiple_transform.hpp
+ * @brief 倍数変換
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/internal/multiple_transform.hpp
+ */
 #ifndef KWM_T_MATH_CONVOLUTION_INTERNAL_MULTIPLE_TRANSFORM_HPP
 #define KWM_T_MATH_CONVOLUTION_INTERNAL_MULTIPLE_TRANSFORM_HPP
 

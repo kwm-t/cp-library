@@ -1,3 +1,9 @@
+/**
+ * @file cumulative_sum_3d.hpp
+ * @brief 三次元累積和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/cumulative_sum_3d.hpp
+ */
 #ifndef KWM_T_UTILITY_CUMULATIVE_SUM_3D_HPP
 #define KWM_T_UTILITY_CUMULATIVE_SUM_3D_HPP
 

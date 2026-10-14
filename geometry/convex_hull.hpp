@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GEOMETRY_CONVEX_HULL_HPP
+﻿/**
+ * @file convex_hull.hpp
+ * @brief 凸包
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/geometry/convex_hull.hpp
+ */
+#ifndef KWM_T_GEOMETRY_CONVEX_HULL_HPP
 #define KWM_T_GEOMETRY_CONVEX_HULL_HPP
 
 #include <vector>

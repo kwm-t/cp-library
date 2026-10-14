@@ -1,3 +1,9 @@
+/**
+ * @file divisor_transform.hpp
+ * @brief 約数変換
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/internal/divisor_transform.hpp
+ */
 #ifndef KWM_T_MATH_CONVOLUTION_INTERNAL_DIVISOR_TRANSFORM_HPP
 #define KWM_T_MATH_CONVOLUTION_INTERNAL_DIVISOR_TRANSFORM_HPP
 

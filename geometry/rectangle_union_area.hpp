@@ -1,3 +1,9 @@
+/**
+ * @file rectangle_union_area.hpp
+ * @brief 長方形の和集合の面積
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/geometry/rectangle_union_area.hpp
+ */
 #ifndef KWM_T_RECTANGLE_UNION_AREA_HPP
 #define KWM_T_RECTANGLE_UNION_AREA_HPP
 

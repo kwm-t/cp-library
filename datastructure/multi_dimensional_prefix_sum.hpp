@@ -1,3 +1,9 @@
+/**
+ * @file multi_dimensional_prefix_sum.hpp
+ * @brief 多次元累積和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/multi_dimensional_prefix_sum.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_MULTI_DIMENSIONAL_PREFIX_SUM_HPP
 #define KWM_T_DATA_STRUCTURE_MULTI_DIMENSIONAL_PREFIX_SUM_HPP
 

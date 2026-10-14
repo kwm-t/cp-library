@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
+﻿/**
+ * @file line_from_points.hpp
+ * @brief 二点を通る直線
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/geometry/line_from_points.hpp
+ */
+#ifndef KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
 #define KWM_T_GEOMETRY_LINE_FROM_POINTS_HPP
 
 #include <tuple>

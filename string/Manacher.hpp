@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_MANACHER_HPP
+﻿/**
+ * @file manacher.hpp
+ * @brief Manacher 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/manacher.hpp
+ */
+#ifndef KWM_T_STRING_MANACHER_HPP
 #define KWM_T_STRING_MANACHER_HPP
 
 #include <vector>

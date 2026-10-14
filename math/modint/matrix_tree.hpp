@@ -1,4 +1,10 @@
-﻿#ifndef KMW_T_MATH_MODINT_MATRIX_TREE_HPP
+﻿/**
+ * @file matrix_tree.hpp
+ * @brief 行列木定理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/matrix_tree.hpp
+ */
+#ifndef KMW_T_MATH_MODINT_MATRIX_TREE_HPP
 #define KMW_T_MATH_MODINT_MATRIX_TREE_HPP
 
 #include <vector>

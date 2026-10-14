@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_EULER_PHI_HPP
+﻿/**
+ * @file euler_phi_table.hpp
+ * @brief Euler のトーシェント関数の表
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/euler_phi_table.hpp
+ */
+#ifndef KWM_T_MATH_EULER_PHI_HPP
 #define KWM_T_MATH_EULER_PHI_HPP
 
 #include <vector>

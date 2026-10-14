@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_BIGINT_STRING_HPP
+﻿/**
+ * @file bigint_string.hpp
+ * @brief 文字列による多倍長整数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/bigint_string.hpp
+ */
+#ifndef KWM_T_STRING_BIGINT_STRING_HPP
 #define KWM_T_STRING_BIGINT_STRING_HPP
 
 #include <string>

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_LCS_HPP
+﻿/**
+ * @file lcs.hpp
+ * @brief 最長共通部分列（LCS）
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/lcs.hpp
+ */
+#ifndef KWM_T_STRING_LCS_HPP
 #define KWM_T_STRING_LCS_HPP
 
 #include <vector>

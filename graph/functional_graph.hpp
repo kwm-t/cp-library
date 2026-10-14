@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_FUNCTIONAL_GRAPH_HPP
+﻿/**
+ * @file functional_graph.hpp
+ * @brief Functional Graph
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/functional_graph.hpp
+ */
+#ifndef KWM_T_GRAPH_FUNCTIONAL_GRAPH_HPP
 #define KWM_T_GRAPH_FUNCTIONAL_GRAPH_HPP
 
 #include <vector>

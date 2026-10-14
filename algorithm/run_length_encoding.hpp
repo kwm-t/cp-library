@@ -1,3 +1,9 @@
+/**
+ * @file run_length_encoding.hpp
+ * @brief ランレングス圧縮
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/run_length_encoding.hpp
+ */
 #ifndef KWM_T_ALGORITHM_RUN_LENGTH_ENCODING_HPP
 #define KWM_T_ALGORITHM_RUN_LENGTH_ENCODING_HPP
 

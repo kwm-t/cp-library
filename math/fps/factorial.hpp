@@ -1,3 +1,9 @@
+/**
+ * @file factorial.hpp
+ * @brief 形式的冪級数の階乗関連処理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/factorial.hpp
+ */
 #ifndef KWM_T_MATH_FPS_FACTORIAL_HPP
 #define KWM_T_MATH_FPS_FACTORIAL_HPP
 

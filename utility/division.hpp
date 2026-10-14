@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_UTILITY_DIVISION_HPP
+﻿/**
+ * @file division.hpp
+ * @brief 整数除算の補助機能
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/division.hpp
+ */
+#ifndef KWM_T_UTILITY_DIVISION_HPP
 #define KWM_T_UTILITY_DIVISION_HPP
 
 #include <type_traits>

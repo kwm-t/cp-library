@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_SIEVE_HPP
+﻿/**
+ * @file sieve.hpp
+ * @brief 篩による素数列挙
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/sieve.hpp
+ */
+#ifndef KWM_T_MATH_SIEVE_HPP
 #define KWM_T_MATH_SIEVE_HPP
 
 #include <vector>

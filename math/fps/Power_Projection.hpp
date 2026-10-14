@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FPS_POWER_PROJECTION_HPP
+﻿/**
+ * @file power_projection.hpp
+ * @brief Power Projection
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/power_projection.hpp
+ */
+#ifndef KWM_T_MATH_FPS_POWER_PROJECTION_HPP
 #define KWM_T_MATH_FPS_POWER_PROJECTION_HPP
 
 #include <vector>

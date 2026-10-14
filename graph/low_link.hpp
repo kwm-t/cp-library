@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_LOWLINK_HPP
+﻿/**
+ * @file low_link.hpp
+ * @brief Lowlink
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/low_link.hpp
+ */
+#ifndef KWM_T_GRAPH_LOWLINK_HPP
 #define KWM_T_GRAPH_LOWLINK_HPP
 
 #include <vector>

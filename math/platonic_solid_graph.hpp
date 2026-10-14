@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_PLATONIC_SOLID_GRAPH_HPP
+﻿/**
+ * @file platonic_solid_graph.hpp
+ * @brief 正多面体のグラフ
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/platonic_solid_graph.hpp
+ */
+#ifndef KWM_T_MATH_PLATONIC_SOLID_GRAPH_HPP
 #define KWM_T_MATH_PLATONIC_SOLID_GRAPH_HPP
 
 #include <vector>

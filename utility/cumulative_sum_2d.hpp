@@ -1,3 +1,9 @@
+/**
+ * @file cumulative_sum_2d.hpp
+ * @brief 二次元累積和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/cumulative_sum_2d.hpp
+ */
 #ifndef KWM_T_UTILITY_CUMULATIVE_SUM_2D_HPP
 #define KWM_T_UTILITY_CUMULATIVE_SUM_2D_HPP
 

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_SEGTREE_BEATS_VARIANTS_HPP
+﻿/**
+ * @file lazy_segtree_beats_variants.hpp
+ * @brief Lazy Segment Tree Beats の各種バリエーション
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/segtree/lazy_segtree_beats_variants.hpp
+ */
+#ifndef KWM_T_SEGTREE_BEATS_VARIANTS_HPP
 #define KWM_T_SEGTREE_BEATS_VARIANTS_HPP
 
 #include <vector>

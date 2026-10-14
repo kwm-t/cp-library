@@ -1,3 +1,9 @@
+/**
+ * @file non_adjacent_sum.hpp
+ * @brief 隣接しない要素の和に関する DP
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/non_adjacent_sum.hpp
+ */
 #ifndef KWM_T_ALGORITHM_DP_NON_ADJACENT_SUM_HPP
 #define KWM_T_ALGORITHM_DP_NON_ADJACENT_SUM_HPP
 

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_BIT_DP_CHROMATIC_NUMBER_HPP
+﻿/**
+ * @file chromatic_number.hpp
+ * @brief グラフの彩色数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/chromatic_number.hpp
+ */
+#ifndef KWM_T_GRAPH_BIT_DP_CHROMATIC_NUMBER_HPP
 #define KWM_T_GRAPH_BIT_DP_CHROMATIC_NUMBER_HPP
 
 #include <vector>

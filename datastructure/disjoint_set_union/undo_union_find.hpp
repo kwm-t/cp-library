@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNDO_UNION_FIND_HPP
+﻿/**
+ * @file undo_union_find.hpp
+ * @brief Undo Union-Find
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/disjoint_set_union/undo_union_find.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNDO_UNION_FIND_HPP
 #define KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_UNDO_UNION_FIND_HPP
 
 #include <vector>

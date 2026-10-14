@@ -1,3 +1,9 @@
+/**
+ * @file distinct_product_sum.hpp
+ * @brief 相異なる要素の積の和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/distinct_product_sum.hpp
+ */
 #ifndef KWM_T_MATH_MODINT_DISTINCT_PRODUCT_SUM_HPP
 #define KWM_T_MATH_MODINT_DISTINCT_PRODUCT_SUM_HPP
 

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_XOR_BASIS_RECONSTRUCT_HPP
+﻿/**
+ * @file subset_xor_reconstruct.hpp
+ * @brief 部分集合 XOR からの復元
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/subset_xor_reconstruct.hpp
+ */
+#ifndef KWM_T_MATH_XOR_BASIS_RECONSTRUCT_HPP
 #define KWM_T_MATH_XOR_BASIS_RECONSTRUCT_HPP
 
 #include <vector>

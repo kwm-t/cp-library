@@ -1,3 +1,9 @@
+/**
+ * @file composition_inverse.hpp
+ * @brief 形式的冪級数の合成逆関数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/composition_inverse.hpp
+ */
 #ifndef KWM_T_MATH_FPS_COMPOSITION_INVERSE_HPP
 #define KWM_T_MATH_FPS_COMPOSITION_INVERSE_HPP
 

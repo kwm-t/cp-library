@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ALGORITHM_DP_MONOTONE_MINIMA_HPP
+﻿/**
+ * @file monotone_minima.hpp
+ * @brief Monotone Minima
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/monotone_minima.hpp
+ */
+#ifndef KWM_T_ALGORITHM_DP_MONOTONE_MINIMA_HPP
 #define KWM_T_ALGORITHM_DP_MONOTONE_MINIMA_HPP
 
 #include <vector>

@@ -1,3 +1,9 @@
+/**
+ * @file fps.hpp
+ * @brief 形式的冪級数（FPS）
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/fps.hpp
+ */
 #ifndef KWM_T_MATH_FPS_FPS_HPP
 #define KWM_T_MATH_FPS_FPS_HPP
 

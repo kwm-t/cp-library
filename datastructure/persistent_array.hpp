@@ -1,3 +1,9 @@
+/**
+ * @file persistent_array.hpp
+ * @brief 永続配列
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/persistent_array.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_PERSISTENT_ARRAY_HPP
 #define KWM_T_DATA_STRUCTURE_PERSISTENT_ARRAY_HPP
 

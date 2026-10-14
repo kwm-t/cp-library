@@ -1,3 +1,9 @@
+/**
+ * @file matrix_semiring_variants.hpp
+ * @brief 半環上の行列演算のバリエーション
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/matrix/matrix_semiring_variants.hpp
+ */
 #ifndef KWM_T_MATH_MATRIX_SEMIRING_VARIANTS_HPP
 #define KWM_T_MATH_MATRIX_SEMIRING_VARIANTS_HPP
 

@@ -1,3 +1,9 @@
+/**
+ * @file disjoint_sparse_table.hpp
+ * @brief Disjoint Sparse Table
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/disjoint_sparse_table.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP
 #define KWM_T_DATA_STRUCTURE_DISJOINT_SPARSE_TABLE_HPP
 

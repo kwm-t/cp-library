@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_ARBITRARY_MOD_BINOMIAL_COEFFICIENTS_HPP
+﻿/**
+ * @file arbitrary_mod_binomial_coefficients.hpp
+ * @brief 任意の法における二項係数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/arbitrary_mod_binomial_coefficients.hpp
+ */
+#ifndef KWM_T_MATH_ARBITRARY_MOD_BINOMIAL_COEFFICIENTS_HPP
 #define KWM_T_MATH_ARBITRARY_MOD_BINOMIAL_COEFFICIENTS_HPP
 
 #include <vector>

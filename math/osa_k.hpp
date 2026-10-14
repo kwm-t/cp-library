@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_OSA_K_HPP
+﻿/**
+ * @file osa_k.hpp
+ * @brief Osa-K 法による素因数分解
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/osa_k.hpp
+ */
+#ifndef KWM_T_MATH_OSA_K_HPP
 #define KWM_T_MATH_OSA_K_HPP
 
 #include <vector>

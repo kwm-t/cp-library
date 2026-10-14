@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_ROLLING_HASH_HPP
+﻿/**
+ * @file rolling_hash.hpp
+ * @brief ローリングハッシュ
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/rolling_hash.hpp
+ */
+#ifndef KWM_T_STRING_ROLLING_HASH_HPP
 #define KWM_T_STRING_ROLLING_HASH_HPP
 
 #include <array>

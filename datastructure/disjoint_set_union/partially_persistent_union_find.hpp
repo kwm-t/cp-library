@@ -1,3 +1,9 @@
+/**
+ * @file partially_persistent_union_find.hpp
+ * @brief 部分永続 Union-Find
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/disjoint_set_union/partially_persistent_union_find.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE__DISJOINT_SET_UNION_PARTIALLY_PERSISTENT_UNION_FIND_HPP
 #define KWM_T_DATA_STRUCTURE__DISJOINT_SET_UNION_PARTIALLY_PERSISTENT_UNION_FIND_HPP
 

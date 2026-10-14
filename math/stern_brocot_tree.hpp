@@ -1,4 +1,11 @@
-﻿#ifndef KWM_T_MATH_STERN_BROCOT_TREE_HPP
+﻿/**
+ * @file stern_brocot_tree.hpp
+ * @brief Stern-Brocot Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/stern_brocot_tree.hpp
+ */
+
+#ifndef KWM_T_MATH_STERN_BROCOT_TREE_HPP
 #define KWM_T_MATH_STERN_BROCOT_TREE_HPP
 
 #include <vector>

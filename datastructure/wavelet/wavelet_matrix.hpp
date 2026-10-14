@@ -1,3 +1,9 @@
+/**
+ * @file wavelet_matrix_rectangle_sum.hpp
+ * @brief Wavelet Matrix による矩形和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/wavelet/wavelet_matrix_rectangle_sum.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_WAVELET_WAVELET_MATRIX_HPP
 #define KWM_T_DATA_STRUCTURE_WAVELET_WAVELET_MATRIX_HPP
 

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_AUXILIARY_TREE_HPP
+﻿/**
+ * @file auxiliary_tree.hpp
+ * @brief 仮想木（Auxiliary Tree）
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/auxiliary_tree.hpp
+ */
+#ifndef KWM_T_TREE_AUXILIARY_TREE_HPP
 #define KWM_T_TREE_AUXILIARY_TREE_HPP
 
 #include <vector>

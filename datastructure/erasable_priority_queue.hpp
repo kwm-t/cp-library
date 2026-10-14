@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_ERASABLE_PRIORITY_QUEUE_HPP
+﻿/**
+ * @file erasable_priority_queue.hpp
+ * @brief 削除可能な優先度付きキュー
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/erasable_priority_queue.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_ERASABLE_PRIORITY_QUEUE_HPP
 #define KWM_T_DATA_STRUCTURE_ERASABLE_PRIORITY_QUEUE_HPP
 
 #include <queue>

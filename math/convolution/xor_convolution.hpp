@@ -1,3 +1,9 @@
+/**
+ * @file xor_convolution.hpp
+ * @brief XOR 畳み込み
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/xor_convolution.hpp
+ */
 #ifndef KWM_T_MATH_CONVOLUTION_XOR_CONVOLUTION_HPP
 #define KWM_T_MATH_CONVOLUTION_XOR_CONVOLUTION_HPP
 

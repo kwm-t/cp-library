@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_BEST_THEOREM_HPP
+﻿/**
+ * @file best_theorem.hpp
+ * @brief 有向グラフの BEST 定理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/best_theorem.hpp
+ */
+#ifndef KWM_T_GRAPH_BEST_THEOREM_HPP
 #define KWM_T_GRAPH_BEST_THEOREM_HPP
 
 #include <vector>

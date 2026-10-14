@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_INTERVAL_SET_HPP
+﻿/**
+ * @file interval_set.hpp
+ * @brief 区間集合を管理する Interval Set
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/interval_set.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_INTERVAL_SET_HPP
 #define KWM_T_DATA_STRUCTURE_INTERVAL_SET_HPP
 
 #include <set>

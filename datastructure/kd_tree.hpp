@@ -1,3 +1,9 @@
+/**
+ * @file kd_tree.hpp
+ * @brief KD Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/kd_tree.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_KD_TREE_HPP
 #define KWM_T_DATA_STRUCTURE_KD_TREE_HPP
 

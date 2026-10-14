@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_REROOTING_HPP
+﻿/**
+ * @file re_rooting.hpp
+ * @brief 全方位木 DP（Re-rooting）
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/re_rooting.hpp
+ */
+#ifndef KWM_T_TREE_REROOTING_HPP
 #define KWM_T_TREE_REROOTING_HPP
 
 #include <vector>

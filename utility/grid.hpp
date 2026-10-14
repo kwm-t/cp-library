@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_UTILITY_GRID_HPP
+﻿/**
+ * @file grid.hpp
+ * @brief グリッドの補助機能
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/grid.hpp
+ */
+#ifndef KWM_T_UTILITY_GRID_HPP
 #define KWM_T_UTILITY_GRID_HPP
 
 #include <vector>

@@ -1,3 +1,9 @@
+/**
+ * @file golden_section_search.hpp
+ * @brief 黄金分割探索
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/search/golden_section_search.hpp
+ */
 #ifndef KWM_T_ALGORITHM_SEARCH_GOLDENSECTIONSEARCH_HPP
 #define KWM_T_ALGORITHM_SEARCH_GOLDENSECTIONSEARCH_HPP
 

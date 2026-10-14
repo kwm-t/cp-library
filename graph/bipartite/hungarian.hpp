@@ -1,3 +1,9 @@
+/**
+ * @file hungarian.hpp
+ * @brief ハンガリー法による割当問題
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/bipartite/hungarian.hpp
+ */
 #ifndef KWM_T_GRAPH_BIPARTITE_HUNGARIAN_HPP
 #define KWM_T_GRAPH_BIPARTITE_HUNGARIAN_HPP
 

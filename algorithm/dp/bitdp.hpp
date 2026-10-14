@@ -1,3 +1,9 @@
+/**
+ * @file bitdp.hpp
+ * @brief ビット DP
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/bitdp.hpp
+ */
 #ifndef KWM_T_ALGORITHM_DP_BIT_DP_HPP
 #define KWM_T_ALGORITHM_DP_BIT_DP_HPP
 

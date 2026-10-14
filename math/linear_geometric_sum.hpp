@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_LINEAR_GEOMETRIC_SUM_HPP
+﻿/**
+ * @file linear_geometric_sum.hpp
+ * @brief 線形・等比数列の和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/linear_geometric_sum.hpp
+ */
+#ifndef KWM_T_MATH_LINEAR_GEOMETRIC_SUM_HPP
 #define KWM_T_MATH_LINEAR_GEOMETRIC_SUM_HPP
 
 #include <atcoder/modint>

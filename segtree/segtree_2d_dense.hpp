@@ -1,3 +1,9 @@
+/**
+ * @file segtree_2d_dense.hpp
+ * @brief 二次元 Dense Segment Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/segtree/segtree_2d_dense.hpp
+ */
 #ifndef KWM_T_SEGTREE_SEGTREE_2D_DENSE_HPP
 #define KWM_T_SEGTREE_SEGTREE_2D_DENSE_HPP
 

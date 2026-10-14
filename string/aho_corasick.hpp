@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_AHO_CORASICK_HPP
+﻿/**
+ * @file aho_corasick.hpp
+ * @brief Aho-Corasick 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/aho_corasick.hpp
+ */
+#ifndef KWM_T_STRING_AHO_CORASICK_HPP
 #define KWM_T_STRING_AHO_CORASICK_HPP
 
 #include <vector>

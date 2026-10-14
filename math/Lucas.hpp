@@ -1,4 +1,11 @@
-﻿#ifndef KWM_T_MATH_LUCAS_HPP
+﻿/**
+ * @file lucas.hpp
+ * @brief Lucas の定理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/lucas.hpp
+ */
+
+#ifndef KWM_T_MATH_LUCAS_HPP
 #define KWM_T_MATH_LUCAS_HPP
 
 #include <vector>

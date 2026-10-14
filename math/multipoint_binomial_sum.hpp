@@ -1,3 +1,9 @@
+/**
+ * @file multipoint_binomial_sum.hpp
+ * @brief 多点での二項係数和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/multipoint_binomial_sum.hpp
+ */
 #ifndef KWM_T_MATH_MULTIPOINT_BINOMIAL_SUM_HPP
 #define KWM_T_MATH_MULTIPOINT_BINOMIAL_SUM_HPP
 

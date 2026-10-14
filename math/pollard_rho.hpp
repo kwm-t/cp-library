@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_POLLARD_RHO_HPP
+﻿/**
+ * @file pollard_rho.hpp
+ * @brief Pollard's rho 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/pollard_rho.hpp
+ */
+#ifndef KWM_T_MATH_POLLARD_RHO_HPP
 #define KWM_T_MATH_POLLARD_RHO_HPP
 
 #include <vector>

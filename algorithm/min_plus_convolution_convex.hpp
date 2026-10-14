@@ -1,3 +1,9 @@
+/**
+ * @file min_plus_convolution_convex.hpp
+ * @brief 凸性を利用した min-plus convolution
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/min_plus_convolution_convex.hpp
+ */
 #ifndef KWM_T_ALGORITHM_MIN_PLUS_CONVOLUTION_CONVEX_HPP
 #define KWM_T_ALGORITHM_MIN_PLUS_CONVOLUTION_CONVEX_HPP
 

@@ -1,5 +1,11 @@
-﻿#ifndef KWM_T_ALGORITHM_SEARCH_TERNARYSEARCH_HPP
-#define KWM_T_ALGORITHM_SEARCH_TERNARYSEARCH_HPP
+﻿/**
+ * @file ternarysearch.hpp
+ * @brief 三分探索
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/search/ternarysearch.hpp
+ */
+#ifndef KWM_T_ALGORITHM_SEARCH_TERNARY_SEARCH_HPP
+#define KWM_T_ALGORITHM_SEARCH_TERNARY_SEARCH_HPP
 
 #include <functional>
 #include <utility>
@@ -145,4 +151,4 @@ ternary_search_double(T l, T r, F f, int counter = 100, Compare comp = Compare()
 
 } // namespace kwm_t::algorithm::search
 
-#endif // KWM_T_ALGORITHM_SEARCH_TERNARYSEARCH_HPP
+#endif // KWM_T_ALGORITHM_SEARCH_TERNARY_SEARCH_HPP

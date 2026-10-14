@@ -1,3 +1,9 @@
+/**
+ * @file dsu_successor.hpp
+ * @brief Successor を管理する DSU
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/dsu_successor.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_DSU_SUCCESSOR_HPP
 #define KWM_T_DATA_STRUCTURE_DSU_SUCCESSOR_HPP
 

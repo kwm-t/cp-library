@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_WEIGHTED_UNION_FIND_HPP
+﻿/**
+ * @file weighted_union_find.hpp
+ * @brief Weighted Union-Find
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/disjoint_set_union/weighted_union_find.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_WEIGHTED_UNION_FIND_HPP
 #define KWM_T_DATA_STRUCTURE_DISJOINT_SET_UNION_WEIGHTED_UNION_FIND_HPP
 
 #include <vector>

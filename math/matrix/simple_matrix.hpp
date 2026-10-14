@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_MATRIX_SIMPLE_MATRIX_HPP
+﻿/**
+ * @file simple_matrix.hpp
+ * @brief 基本的な行列
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/matrix/simple_matrix.hpp
+ */
+#ifndef KWM_T_MATH_MATRIX_SIMPLE_MATRIX_HPP
 #define KWM_T_MATH_MATRIX_SIMPLE_MATRIX_HPP
 
 // #include

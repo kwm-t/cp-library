@@ -1,3 +1,9 @@
+/**
+ * @file mobius_table.hpp
+ * @brief メビウス関数の表
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/mobius_table.hpp
+ */
 #ifndef KWM_T_MATH_MOBIUS_HPP
 #define KWM_T_MATH_MOBIUS_HPP
 

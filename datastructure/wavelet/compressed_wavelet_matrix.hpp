@@ -1,3 +1,9 @@
+/**
+ * @file compressed_wavelet_matrix_rectangle_sum.hpp
+ * @brief 座標圧縮 Wavelet Matrix による矩形和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/wavelet/compressed_wavelet_matrix_rectangle_sum.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_WAVELET_COMPRESSED_WAVELET_MATRIX_HPP
 #define KWM_T_DATA_STRUCTURE_WAVELET_COMPRESSED_WAVELET_MATRIX_HPP
 

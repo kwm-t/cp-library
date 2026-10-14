@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_TRIE_HPP
+﻿/**
+ * @file trie.hpp
+ * @brief Trie
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/trie.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_TRIE_HPP
 #define KWM_T_DATA_STRUCTURE_TRIE_HPP
 
 #include <vector>

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ACLWRAPPER_SLOPE_HELPER_HPP
+﻿/**
+ * @file slope_helper.hpp
+ * @brief min_cost_slope の補助機能
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/acl_wrapper/slope_helper.hpp
+ */
+#ifndef KWM_T_ACLWRAPPER_SLOPE_HELPER_HPP
 #define KWM_T_ACLWRAPPER_SLOPE_HELPER_HPP
 
 #include <vector>

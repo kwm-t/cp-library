@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ALGORITHM_MAXIMUM_RECTANGLE_HPP
+﻿/**
+ * @file maximum_rectangle.hpp
+ * @brief 最大長方形
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/maximum_rectangle.hpp
+ */
+#ifndef KWM_T_ALGORITHM_MAXIMUM_RECTANGLE_HPP
 #define KWM_T_ALGORITHM_MAXIMUM_RECTANGLE_HPP
 
 #include <vector>

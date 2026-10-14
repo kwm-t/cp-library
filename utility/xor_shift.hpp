@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_UTILITY_XORSHIFT_HPP
+﻿/**
+ * @file xor_shift.hpp
+ * @brief Xorshift 乱数生成器
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/xor_shift.hpp
+ */
+#ifndef KWM_T_UTILITY_XORSHIFT_HPP
 #define KWM_T_UTILITY_XORSHIFT_HPP
 
 #include <cstdint>

@@ -1,3 +1,9 @@
+/**
+ * @file binom_prefix_sum.hpp
+ * @brief 二項係数の prefix sum
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/binom_prefix_sum.hpp
+ */
 #ifndef KWM_T_MATH_MODINT_BINOM_PREFIX_SUM_HPP
 #define KWM_T_MATH_MODINT_BINOM_PREFIX_SUM_HPP
 

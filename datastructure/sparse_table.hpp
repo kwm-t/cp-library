@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_SPARSE_TABLE_HPP
+﻿/**
+ * @file sparse_table.hpp
+ * @brief Sparse Table
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/sparse_table.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_SPARSE_TABLE_HPP
 #define KWM_T_DATA_STRUCTURE_SPARSE_TABLE_HPP
 
 #include <vector>

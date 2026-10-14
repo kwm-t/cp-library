@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_MERGE_SORT_TREE_HPP
+﻿/**
+ * @file merge_sort_tree.hpp
+ * @brief Merge Sort Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/merge_sort_tree.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_MERGE_SORT_TREE_HPP
 #define KWM_T_DATA_STRUCTURE_MERGE_SORT_TREE_HPP
 
 #include <vector>

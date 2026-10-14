@@ -1,3 +1,9 @@
+/**
+ * @file robinson_schensted.hpp
+ * @brief Robinson-Schensted 対応
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/robinson_schensted.hpp
+ */
 #ifndef KWM_T_MATH_ROBINSON_SCHENSTED_HPP
 #define KWM_T_MATH_ROBINSON_SCHENSTED_HPP
 

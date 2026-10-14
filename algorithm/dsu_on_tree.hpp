@@ -1,4 +1,11 @@
-﻿#ifndef KWM_T_ALGORITHM_DSU_ON_TREE_HPP
+﻿/**
+ * @file dsu_on_tree.hpp
+ * @brief DSU on Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dsu_on_tree.hpp
+ */
+
+#ifndef KWM_T_ALGORITHM_DSU_ON_TREE_HPP
 #define KWM_T_ALGORITHM_DSU_ON_TREE_HPP
 
 #include <vector>

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FPS_BERLEKAMP_MASSEY_HPP
+﻿/**
+ * @file berlekamp_massey.hpp
+ * @brief Berlekamp-Massey 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/berlekamp_massey.hpp
+ */
+#ifndef KWM_T_MATH_FPS_BERLEKAMP_MASSEY_HPP
 #define KWM_T_MATH_FPS_BERLEKAMP_MASSEY_HPP
 
 #include <vector>

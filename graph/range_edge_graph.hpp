@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_RANGE_EDGE_GRAPH_HPP
+﻿/**
+ * @file range_edge_graph.hpp
+ * @brief 区間辺グラフ
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/range_edge_graph.hpp
+ */
+#ifndef KWM_T_GRAPH_RANGE_EDGE_GRAPH_HPP
 #define KWM_T_GRAPH_RANGE_EDGE_GRAPH_HPP
 
 #include <vector>

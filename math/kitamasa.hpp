@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_KITAMASA_HPP
+﻿/**
+ * @file kitamasa.hpp
+ * @brief Kitamasa 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/kitamasa.hpp
+ */
+#ifndef KWM_T_MATH_KITAMASA_HPP
 #define KWM_T_MATH_KITAMASA_HPP
 
 #include <vector>

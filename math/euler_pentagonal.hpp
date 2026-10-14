@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_EULER_PENTAGONAL_HPP
+﻿/**
+ * @file euler_pentagonal.hpp
+ * @brief Euler の五角数定理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/euler_pentagonal.hpp
+ */
+#ifndef KWM_T_MATH_EULER_PENTAGONAL_HPP
 #define KWM_T_MATH_EULER_PENTAGONAL_HPP
 
 #include <vector>

@@ -1,3 +1,9 @@
+/**
+ * @file walsh_hadamard.hpp
+ * @brief Walsh-Hadamard 変換
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/internal/walsh_hadamard.hpp
+ */
 #ifndef KWM_T_MATH_CONVOLUTION_INTERNAL_WALSH_HADAMARD_HPP
 #define KWM_T_MATH_CONVOLUTION_INTERNAL_WALSH_HADAMARD_HPP
 

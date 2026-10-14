@@ -1,4 +1,11 @@
-﻿#ifndef KWM_T_ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
+﻿/**
+ * @file bitonic_subsequence.hpp
+ * @brief 最長ビトニック部分列
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/bitonic_subsequence.hpp
+ */
+
+#ifndef KWM_T_ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
 #define KWM_T_ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
 
 #include <vector>

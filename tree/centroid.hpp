@@ -1,3 +1,9 @@
+/**
+ * @file centroid.hpp
+ * @brief 木の重心
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/centroid.hpp
+ */
 #ifndef KWM_T_TREE_CENTROID_HPP
 #define KWM_T_TREE_CENTROID_HPP
 

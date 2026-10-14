@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_INTEGER_PARTITION_HPP
+﻿/**
+ * @file integer_partition.hpp
+ * @brief 整数分割
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/integer_partition.hpp
+ */
+#ifndef KWM_T_MATH_INTEGER_PARTITION_HPP
 #define KWM_T_MATH_INTEGER_PARTITION_HPP
 
 #include <vector>

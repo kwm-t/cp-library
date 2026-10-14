@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_SLOPE_TRICK_HPP
+﻿/**
+ * @file slope_trick.hpp
+ * @brief Slope Trick
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/slope_trick.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_SLOPE_TRICK_HPP
 #define KWM_T_DATA_STRUCTURE_SLOPE_TRICK_HPP
 
 #include <queue>

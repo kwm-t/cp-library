@@ -1,3 +1,9 @@
+/**
+ * @file prufer.hpp
+ * @brief Prüfer 列
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/prufer.hpp
+ */
 #ifndef KWM_T_TREE_PRUFER_HPP
 #define KWM_T_TREE_PRUFER_HPP
 

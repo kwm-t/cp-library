@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATA_STRUCTURE_INTERVAL_SET_HPP
+﻿/**
+ * @file interval_set_noverify.hpp
+ * @brief 検証用処理を含まない Interval Set
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/interval_set_noverify.hpp
+ */
+#ifndef KWM_T_DATA_STRUCTURE_INTERVAL_SET_HPP
 #define KWM_T_DATA_STRUCTURE_INTERVAL_SET_HPP
 
 #include <set>

@@ -1,3 +1,9 @@
+/**
+ * @file johnson.hpp
+ * @brief Johnson 法による全点対最短路
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/shortest_path/johnson.hpp
+ */
 #ifndef KWM_T_GRAPH_SHORTEST_PATH_JOHNSON_HPP
 #define KWM_T_GRAPH_SHORTEST_PATH_JOHNSON_HPP
 

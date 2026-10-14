@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_EULERIAN_TRAIL_HPP
+﻿/**
+ * @file eulerian_trail.hpp
+ * @brief オイラー路・オイラー閉路
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/eulerian_trail.hpp
+ */
+#ifndef KWM_T_GRAPH_EULERIAN_TRAIL_HPP
 #define KWM_T_GRAPH_EULERIAN_TRAIL_HPP
 
 #include <vector>

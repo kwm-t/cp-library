@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GEOMETRY_POINT_HPP
+﻿/**
+ * @file point.hpp
+ * @brief 二次元幾何の点
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/geometry/point.hpp
+ */
+#ifndef KWM_T_GEOMETRY_POINT_HPP
 #define KWM_T_GEOMETRY_POINT_HPP
 
 #include <cstdint>

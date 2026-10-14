@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_STATIC_TOP_TREE_HPP
+﻿/**
+ * @file static_top_tree.hpp
+ * @brief Static Top Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/static_top_tree.hpp
+ */
+#ifndef KWM_T_TREE_STATIC_TOP_TREE_HPP
 #define KWM_T_TREE_STATIC_TOP_TREE_HPP
 
 #include <vector>

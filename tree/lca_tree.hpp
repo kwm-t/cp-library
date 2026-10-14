@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_LCA_TREE_HPP
+﻿/**
+ * @file lca_tree.hpp
+ * @brief LCA を用いた木の処理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/lca_tree.hpp
+ */
+#ifndef KWM_T_TREE_LCA_TREE_HPP
 #define KWM_T_TREE_LCA_TREE_HPP
 
 #include <vector>

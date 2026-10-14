@@ -1,3 +1,9 @@
+/**
+ * @file dual_segtree_variants.hpp
+ * @brief Dual Segment Tree の各種バリエーション
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/segtree/dual_segtree_variants.hpp
+ */
 #ifndef KWM_T_SEGTREE_DUAL_SEGTREE_VARIANTS_HPP
 #define KWM_T_SEGTREE_DUAL_SEGTREE_VARIANTS_HPP
 

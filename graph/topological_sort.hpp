@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_TOPOLOGICAL_SORT_HPP
+﻿/**
+ * @file topological_sort.hpp
+ * @brief トポロジカルソート
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/topological_sort.hpp
+ */
+#ifndef KWM_T_GRAPH_TOPOLOGICAL_SORT_HPP
 #define KWM_T_GRAPH_TOPOLOGICAL_SORT_HPP
 
 #include <vector>

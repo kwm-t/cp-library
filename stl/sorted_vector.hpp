@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STL_SORTED_VECTOR_HPP
+﻿/**
+ * @file sorted_vector.hpp
+ * @brief ソート済み vector
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/stl/sorted_vector.hpp
+ */
+#ifndef KWM_T_STL_SORTED_VECTOR_HPP
 #define KWM_T_STL_SORTED_VECTOR_HPP
 
 #include <vector>

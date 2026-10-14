@@ -1,4 +1,10 @@
-﻿#include <algorithm>
+﻿/**
+ * @file geometry.hpp
+ * @brief 幾何ライブラリの基本定義
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/geometry/geometry.hpp
+ */
+#include <algorithm>
 #include <complex>
 #include <vector>
 #include <cmath>

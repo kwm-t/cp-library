@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP
+﻿/**
+ * @file bellmanford.hpp
+ * @brief Bellman-Ford 法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/shortest_path/bellmanford.hpp
+ */
+#ifndef KWM_T_GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP
 #define KWM_T_GRAPH_SHORTEST_PATH_BELLMAN_FORD_NEGATIVE_HPP
 
 #include <vector>

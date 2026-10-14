@@ -1,3 +1,9 @@
+/**
+ * @file heavy_light_decomposition.hpp
+ * @brief Heavy-Light Decomposition
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/heavy_light_decomposition.hpp
+ */
 #ifndef KWM_T_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
 #define KWM_T_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
 

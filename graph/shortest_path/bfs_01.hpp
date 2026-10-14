@@ -1,3 +1,9 @@
+/**
+ * @file bfs_01.hpp
+ * @brief 0-1 BFS
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/shortest_path/bfs_01.hpp
+ */
 #ifndef KWM_T_GRAPH_SHORTEST_PATH_BFS_01_HPP
 #define KWM_T_GRAPH_SHORTEST_PATH_BFS_01_HPP
 

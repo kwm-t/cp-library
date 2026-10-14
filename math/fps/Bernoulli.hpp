@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FPS_BERNOULLI_HPP
+﻿/**
+ * @file bernoulli.hpp
+ * @brief Bernoulli 数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/bernoulli.hpp
+ */
+#ifndef KWM_T_MATH_FPS_BERNOULLI_HPP
 #define KWM_T_MATH_FPS_BERNOULLI_HPP
 
 #include <vector>

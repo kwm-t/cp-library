@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_GAUSSIAN_INTEGER_HPP
+﻿/**
+ * @file gaussian_integer.hpp
+ * @brief ガウス整数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/gaussian_integer.hpp
+ */
+#ifndef KWM_T_MATH_GAUSSIAN_INTEGER_HPP
 #define KWM_T_MATH_GAUSSIAN_INTEGER_HPP
 
 #include <tuple>

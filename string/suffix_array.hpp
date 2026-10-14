@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_SUFFIX_ARRAY_HPP
+﻿/**
+ * @file suffix_array.hpp
+ * @brief Suffix Array
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/suffix_array.hpp
+ */
+#ifndef KWM_T_STRING_SUFFIX_ARRAY_HPP
 #define KWM_T_STRING_SUFFIX_ARRAY_HPP
 
 #include <vector>

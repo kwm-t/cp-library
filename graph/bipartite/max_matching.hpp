@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_MATCHING_BIPARTITE_MAX_MATCHING_HPP
+﻿/**
+ * @file max_matching.hpp
+ * @brief 二部グラフの最大マッチング
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/bipartite/max_matching.hpp
+ */
+#ifndef KWM_T_GRAPH_MATCHING_BIPARTITE_MAX_MATCHING_HPP
 #define KWM_T_GRAPH_MATCHING_BIPARTITE_MAX_MATCHING_HPP
 
 #include <vector>

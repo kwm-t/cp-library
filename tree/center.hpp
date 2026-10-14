@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_CENTER_HPP
+﻿/**
+ * @file center.hpp
+ * @brief 木の中心
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/center.hpp
+ */
+#ifndef KWM_T_TREE_CENTER_HPP
 #define KWM_T_TREE_CENTER_HPP
 
 #include <vector>

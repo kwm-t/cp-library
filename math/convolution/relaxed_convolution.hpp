@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_CONVOLUTION_RELAXED_CONVOLUTION_HPP
+﻿/**
+ * @file relaxed_convolution.hpp
+ * @brief Relaxed Convolution
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/relaxed_convolution.hpp
+ */
+#ifndef KWM_T_MATH_CONVOLUTION_RELAXED_CONVOLUTION_HPP
 #define KWM_T_MATH_CONVOLUTION_RELAXED_CONVOLUTION_HPP
 
 #include <vector>

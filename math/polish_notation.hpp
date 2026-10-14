@@ -1,3 +1,9 @@
+/**
+ * @file polish_notation.hpp
+ * @brief ポーランド記法
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/polish_notation.hpp
+ */
 #ifndef KWM_T_MATH_POLISH_NOTATION_HPP
 #define KWM_T_MATH_POLISH_NOTATION_HPP
 

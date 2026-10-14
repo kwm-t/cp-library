@@ -1,3 +1,9 @@
+/**
+ * @file range_add_ap.hpp
+ * @brief 区間加算・等差数列加算
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/range_add_ap.hpp
+ */
 #ifndef KWM_T_DATASTRUCTURE_RANGE_ADD_AP_HPP
 #define KWM_T_DATASTRUCTURE_RANGE_ADD_AP_HPP
 

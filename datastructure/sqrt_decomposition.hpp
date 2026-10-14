@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATASTRUCTURE_SQRT_DECOMP_HPP
+﻿/**
+ * @file sqrt_decomposition.hpp
+ * @brief 平方分割
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/sqrt_decomposition.hpp
+ */
+#ifndef KWM_T_DATASTRUCTURE_SQRT_DECOMP_HPP
 #define KWM_T_DATASTRUCTURE_SQRT_DECOMP_HPP
 
 #include <algorithm>

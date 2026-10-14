@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STL_SORTED_SET_SAFE_HPP
+﻿/**
+ * @file sorted_set_safe.hpp
+ * @brief 安全性を重視した Sorted Set
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/stl/sorted_set_safe.hpp
+ */
+#ifndef KWM_T_STL_SORTED_SET_SAFE_HPP
 #define KWM_T_STL_SORTED_SET_SAFE_HPP
 
 #include <set>

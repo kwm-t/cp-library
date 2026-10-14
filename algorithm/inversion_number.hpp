@@ -1,3 +1,9 @@
+/**
+ * @file inversion_number.hpp
+ * @brief 転倒数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/inversion_number.hpp
+ */
 #ifndef KWM_T_ALGORITHM_INVERSION_NUMBER_HPP
 #define KWM_T_ALGORITHM_INVERSION_NUMBER_HPP
 

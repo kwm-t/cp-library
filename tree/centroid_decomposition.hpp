@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_CENTROID_DECOMPOSITION_HPP
+﻿/**
+ * @file centroid_decomposition.hpp
+ * @brief 重心分解
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/centroid_decomposition.hpp
+ */
+#ifndef KWM_T_TREE_CENTROID_DECOMPOSITION_HPP
 #define KWM_T_TREE_CENTROID_DECOMPOSITION_HPP
 
 #include <vector>

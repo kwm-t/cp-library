@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_TREE_ISOMORPHISM_HPP
+﻿/**
+ * @file isomorphism.hpp
+ * @brief 木の同型判定
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/tree/isomorphism.hpp
+ */
+#ifndef KWM_T_TREE_ISOMORPHISM_HPP
 #define KWM_T_TREE_ISOMORPHISM_HPP
 
 #include <vector>

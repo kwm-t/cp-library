@@ -1,3 +1,9 @@
+/**
+ * @file is_prime.hpp
+ * @brief 素数判定
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/is_prime.hpp
+ */
 #ifndef KWM_T_MATH_IS_PRIME_HPP
 #define KWM_T_MATH_IS_PRIME_HPP
 

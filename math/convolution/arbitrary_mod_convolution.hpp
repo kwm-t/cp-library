@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_CONVOLUTION_ARBITRARY_MOD_CONVOLUTION_HPP
+﻿/**
+ * @file arbitrary_mod_convolution.hpp
+ * @brief 任意の法での畳み込み
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/arbitrary_mod_convolution.hpp
+ */
+#ifndef KWM_T_MATH_CONVOLUTION_ARBITRARY_MOD_CONVOLUTION_HPP
 #define KWM_T_MATH_CONVOLUTION_ARBITRARY_MOD_CONVOLUTION_HPP
 
 #include <vector>

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_PALINDROMIC_TREE_HPP
+﻿/**
+ * @file palindromic_tree.hpp
+ * @brief Palindromic Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/palindromic_tree.hpp
+ */
+#ifndef KWM_T_STRING_PALINDROMIC_TREE_HPP
 #define KWM_T_STRING_PALINDROMIC_TREE_HPP
 
 #include <vector>

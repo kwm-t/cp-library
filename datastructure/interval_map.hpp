@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_DATASTRUCTURE_INTERVAL_MAP_HPP
+﻿/**
+ * @file interval_map.hpp
+ * @brief 区間ごとの値を管理する Interval Map
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/interval_map.hpp
+ */
+#ifndef KWM_T_DATASTRUCTURE_INTERVAL_MAP_HPP
 #define KWM_T_DATASTRUCTURE_INTERVAL_MAP_HPP
 
 #include <set>

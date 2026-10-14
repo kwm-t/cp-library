@@ -1,3 +1,9 @@
+/**
+ * @file succinct_indexable_dictionary.hpp
+ * @brief Succinct Indexable Dictionary
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/bit_vector/succinct_indexable_dictionary.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_BIT_VECTOR_SUCCINCT_INDEXABLE_DICTIONARY_HPP
 #define KWM_T_DATA_STRUCTURE_BIT_VECTOR_SUCCINCT_INDEXABLE_DICTIONARY_HPP
 

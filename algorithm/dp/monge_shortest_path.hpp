@@ -1,3 +1,9 @@
+/**
+ * @file monge_shortest_path.hpp
+ * @brief Monge 性を利用した最短路 DP
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/monge_shortest_path.hpp
+ */
 #ifndef KWM_T_ALGORITHM_DP_MONGE_SHORTEST_PATH_HPP
 #define KWM_T_ALGORITHM_DP_MONGE_SHORTEST_PATH_HPP
 

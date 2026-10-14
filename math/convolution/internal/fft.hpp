@@ -1,3 +1,9 @@
+/**
+ * @file fft.hpp
+ * @brief FFT の内部実装
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/internal/fft.hpp
+ */
 #ifndef KWM_T_MATH_CONVOLUTION_INTERNAL_FFT_HPP
 #define KWM_T_MATH_CONVOLUTION_INTERNAL_FFT_HPP
 

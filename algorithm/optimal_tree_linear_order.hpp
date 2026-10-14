@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_ALGORITHM_TREE_OPTIMAL_TREE_LINEAR_ORDER_HPP
+﻿/**
+ * @file optimal_tree_linear_order.hpp
+ * @brief 木の最適な線形順序
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/optimal_tree_linear_order.hpp
+ */
+#ifndef KWM_T_ALGORITHM_TREE_OPTIMAL_TREE_LINEAR_ORDER_HPP
 #define KWM_T_ALGORITHM_TREE_OPTIMAL_TREE_LINEAR_ORDER_HPP
 
 #include <vector>

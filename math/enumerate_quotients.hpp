@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_ENUMERATE_QUOTIENTS_HPP
+﻿/**
+ * @file enumerate_quotients.hpp
+ * @brief 商の列挙
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/enumerate_quotients.hpp
+ */
+#ifndef KWM_T_MATH_ENUMERATE_QUOTIENTS_HPP
 #define KWM_T_MATH_ENUMERATE_QUOTIENTS_HPP
 
 #include <vector>

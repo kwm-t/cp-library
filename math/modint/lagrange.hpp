@@ -1,4 +1,10 @@
-﻿#ifndef KMW_T_MATH_MODINT_LAGRANGE_HPP
+﻿/**
+ * @file lagrange.hpp
+ * @brief Lagrange 補間
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/lagrange.hpp
+ */
+#ifndef KMW_T_MATH_MODINT_LAGRANGE_HPP
 #define KMW_T_MATH_MODINT_LAGRANGE_HPP
 
 #include <vector>

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_SHORTEST_CYCLE_HPP
+﻿/**
+ * @file shortest_cycle.hpp
+ * @brief 最短閉路
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/shortest_cycle.hpp
+ */
+#ifndef KWM_T_GRAPH_SHORTEST_CYCLE_HPP
 #define KWM_T_GRAPH_SHORTEST_CYCLE_HPP
 
 #include <vector>

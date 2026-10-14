@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_STRING_CONTAIN_HPP
+﻿/**
+ * @file contain.hpp
+ * @brief 文字列の包含判定
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/string/contain.hpp
+ */
+#ifndef KWM_T_STRING_CONTAIN_HPP
 #define KWM_T_STRING_CONTAIN_HPP
 
 #include <string>

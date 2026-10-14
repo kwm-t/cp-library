@@ -1,3 +1,9 @@
+/**
+ * @file base_conversion.hpp
+ * @brief 基数変換
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/utility/base_conversion.hpp
+ */
 #ifndef KWM_T_UTILITY_BASE_CONVERSION_HPP
 #define KWM_T_UTILITY_BASE_CONVERSION_HPP
 

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_HOCKEY_STICK_HPP
+﻿/**
+ * @file hockey_stick.hpp
+ * @brief ホッケースティック恒等式
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/hockey_stick.hpp
+ */
+#ifndef KWM_T_MATH_HOCKEY_STICK_HPP
 #define KWM_T_MATH_HOCKEY_STICK_HPP
 
 #include <cassert>

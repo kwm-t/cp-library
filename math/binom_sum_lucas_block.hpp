@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_BINOM_SUM_LUCAS_BLOCK_HPP
+﻿/**
+ * @file binom_sum_lucas_block.hpp
+ * @brief Lucas の定理を利用した二項係数和
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/binom_sum_lucas_block.hpp
+ */
+#ifndef KWM_T_MATH_BINOM_SUM_LUCAS_BLOCK_HPP
 #define KWM_T_MATH_BINOM_SUM_LUCAS_BLOCK_HPP
 
 #include <vector>

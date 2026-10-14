@@ -1,3 +1,9 @@
+/**
+ * @file sqrt_tree.hpp
+ * @brief Sqrt Tree
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/datastructure/sqrt_tree.hpp
+ */
 #ifndef KWM_T_DATA_STRUCTURE_SQRT_TREE_HPP
 #define KWM_T_DATA_STRUCTURE_SQRT_TREE_HPP
 

@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_GRAPH_BIPARTITE_COLORING_HPP
+﻿/**
+ * @file coloring.hpp
+ * @brief 二部グラフの彩色
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/graph/bipartite/coloring.hpp
+ */
+#ifndef KWM_T_GRAPH_BIPARTITE_COLORING_HPP
 #define KWM_T_GRAPH_BIPARTITE_COLORING_HPP
 
 #include <vector>

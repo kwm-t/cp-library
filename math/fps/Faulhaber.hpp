@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_FPS_FAULHABER_HPP
+﻿/**
+ * @file faulhaber.hpp
+ * @brief Faulhaber の公式
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/fps/faulhaber.hpp
+ */
+#ifndef KWM_T_MATH_FPS_FAULHABER_HPP
 #define KWM_T_MATH_FPS_FAULHABER_HPP
 
 #include <vector>

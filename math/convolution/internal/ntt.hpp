@@ -1,3 +1,9 @@
+/**
+ * @file ntt.hpp
+ * @brief NTT の内部実装
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/convolution/internal/ntt.hpp
+ */
 #ifndef KWM_T_MATH_CONVOLUTION_INTERNAL_NTT_HPP
 #define KWM_T_MATH_CONVOLUTION_INTERNAL_NTT_HPP
 

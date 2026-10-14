@@ -1,4 +1,10 @@
-﻿#ifndef KWM_T_MATH_MODINT_BINOM_HPP
+﻿/**
+ * @file binom.hpp
+ * @brief 二項係数
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/binom.hpp
+ */
+#ifndef KWM_T_MATH_MODINT_BINOM_HPP
 #define KWM_T_MATH_MODINT_BINOM_HPP
 
 #include <vector>

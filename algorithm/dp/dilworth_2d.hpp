@@ -1,3 +1,9 @@
+/**
+ * @file dilworth_2d.hpp
+ * @brief 二次元 Dilworth の定理に関する処理
+ * @author kwm_t
+ * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/dp/dilworth_2d.hpp
+ */
 #ifndef KWM_T_ALGORITHM_DP_DILWORTH_2D_HPP
 #define KWM_T_ALGORITHM_DP_DILWORTH_2D_HPP
 
