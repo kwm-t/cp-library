@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <utility>
 
-//#include "algorithm/dp/bitonic_subsequence.hpp"
+#include "algorithm/dp/longest_increasing_subsequence.hpp"
 
 namespace kwm_t::algorithm::dp {
 
