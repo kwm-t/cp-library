@@ -152,7 +152,7 @@ public:
 
 		// 中央
 		while (it->second <= r) {
-			eraseRange(it);
+			it = eraseRange(it);
 		}
 
 		// 右端
