@@ -10,28 +10,29 @@
 #include <set>
 #include <functional>
 #include <utility>
+#include <vector>
 
-/**
- * @brief 閉区間集合 [l, r] を管理するデータ構造
- *
- * 典型用途:
- *   - 区間の union 管理
- *   - mex 管理
- *   - 区間の被覆判定
- *
- * 計算量:
- *   - 各操作 O(log N)
- *
- * @tparam T
- *   - 順序比較可能
- *
- * 制約 / 注意:
- *   - 閉区間 [l, r]
- *   - 番兵として (-INF, -INF), (INF, INF) を内部に持つ
- *
- * verified:
- *  https://atcoder.jp/contests/awc0078/submissions/76168909
- */
+ /**
+  * @brief 閉区間集合 [l, r] を管理するデータ構造
+  *
+  * 典型用途:
+  *   - 区間の union 管理
+  *   - mex 管理
+  *   - 区間の被覆判定
+  *
+  * 計算量:
+  *   - 各操作 O(log N)
+  *
+  * @tparam T
+  *   - 順序比較可能
+  *
+  * 制約 / 注意:
+  *   - 閉区間 [l, r]
+  *   - 番兵として (-INF, -INF), (INF, INF) を内部に持つ
+  *
+  * verified:
+  *  https://atcoder.jp/contests/awc0078/submissions/76168909
+  */
 namespace kwm_t::data_structure {
 
 template<typename T>
@@ -161,6 +162,16 @@ public:
 		eraseRange(x, x, onInsert, onErase);
 	}
 
+	// 登録取得
+	std::vector<std::pair<T, T>> getRanges() const {
+		std::vector<std::pair<T, T>> res;
+		res.reserve(rangeCount());
+		for (auto it = std::next(ranges_.begin()); it != std::prev(ranges_.end()); ++it) {
+			res.push_back(*it);
+		}
+		return res;
+	}
+
 	// 登録区間数
 	int rangeCount() const noexcept { return static_cast<int>(ranges_.size()) - 2; }
 
@@ -173,7 +184,7 @@ public:
 
 	// デバッグ表示
 	void debug() const noexcept {
-		for (auto[l, r] : ranges_)
+		for (auto [l, r] : ranges_)
 			if (std::abs(l) != TINF)
 				std::cout << l << " " << r << "\n";
 	}

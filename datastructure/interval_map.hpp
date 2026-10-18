@@ -15,34 +15,34 @@
 #include <tuple>
 #include <utility>
 
-/**
- * @brief 半開区間 [l, r) の集合を管理するデータ構造（Interval Map）
- *
- * 典型用途:
- *   - 区間の追加・削除・値の更新
- *   - 区間のマージ管理（重なり・隣接の統合）
- *   - 区間被覆判定
- *   - 区間被覆を利用した貪欲・シミュレーション問題
- *
- * 計算量:
- *   - 各操作: O(k log N)
- *     (k は分割・削除・マージされる区間数)
- *
- * @tparam T
- *   - 区間に対応する値の型
- *
- * @param limit
- *   - 管理する座標の上限（番兵として使用）
- *
- * 制約 / 注意:
- *   - 半開区間 [l, r) を扱う
- *   - 内部で番兵（-INF, INF）を保持
- *   - 区間は常に「互いに素かつ同じ値の隣接区間がマージされた状態」を保つ
- *
- * verified:
- *   https://atcoder.jp/contests/awc0053/submissions/79682515
- *   https://yukicoder.me/submissions/1191292
- */
+ /**
+  * @brief 半開区間 [l, r) の集合を管理するデータ構造（Interval Map）
+  *
+  * 典型用途:
+  *   - 区間の追加・削除・値の更新
+  *   - 区間のマージ管理（重なり・隣接の統合）
+  *   - 区間被覆判定
+  *   - 区間被覆を利用した貪欲・シミュレーション問題
+  *
+  * 計算量:
+  *   - 各操作: O(k log N)
+  *     (k は分割・削除・マージされる区間数)
+  *
+  * @tparam T
+  *   - 区間に対応する値の型
+  *
+  * @param limit
+  *   - 管理する座標の上限（番兵として使用）
+  *
+  * 制約 / 注意:
+  *   - 半開区間 [l, r) を扱う
+  *   - 内部で番兵（-INF, INF）を保持
+  *   - 区間は常に「互いに素かつ同じ値の隣接区間がマージされた状態」を保つ
+  *
+  * verified:
+  *   https://atcoder.jp/contests/awc0053/submissions/79682515
+  *   https://yukicoder.me/submissions/1191292
+  */
 namespace kwm_t::data_structure {
 
 template <typename T>
@@ -245,6 +245,18 @@ public:
 		if (isSentinel(*it)) return std::nullopt;
 
 		return *it;
+	}
+
+	// --- 全区間取得 ---
+	std::vector<Range> getRanges() const {
+		std::vector<Range> res;
+		res.reserve(rangeCount());
+
+		for (auto it = std::next(st.begin()); it != std::prev(st.end()); ++it) {
+			res.push_back(*it);
+		}
+
+		return res;
 	}
 
 	// --- 区間数 ---
