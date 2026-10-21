@@ -61,6 +61,7 @@
  *   - https://atcoder.jp/contests/awc0100/submissions/76970430
  *   - 辺に情報を乗せる+遅延セグ木
  *   - https://atcoder.jp/contests/awc0100/submissions/76977123
+ *   - https://atcoder.jp/contests/awc0183/submissions/80238952
  */
 namespace kwm_t::tree {
 
