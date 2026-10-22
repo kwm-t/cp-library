@@ -78,48 +78,59 @@ int lis(const std::vector<T>& a, bool is_strong = true) {
 
 
 /**
- * @brief LIS を復元（インデックス）
- */
+* @brief LIS を復元（インデックス、辞書順最小）
+*/
 template<class T>
 std::vector<int> lis_restore(const std::vector<T>& a, bool is_strong = true) {
-
 	int n = (int)a.size();
 
-	const T INF = std::numeric_limits<T>::max();
+	std::vector<T> xs = a;
+	std::sort(xs.begin(), xs.end());
+	xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
 
-	std::vector<T> dp(n, INF);
-	std::vector<int> pos(n);
-	std::vector<int> pre(n, -1);
+	int m = (int)xs.size();
+	std::vector<int> bit(m + 1, 0);
+	std::vector<int> len(n);
 
-	int len = 0;
+	auto query = [&](int i) {
+		int res = 0;
+		for (; i > 0; i -= i & -i) {
+			res = std::max(res, bit[i]);
+		}
+		return res;
+		};
 
-	for (int i = 0; i < n; ++i) {
+	auto update = [&](int i, int v) {
+		for (; i <= m; i += i & -i) {
+			bit[i] = std::max(bit[i], v);
+		}
+		};
 
-		int k;
-
-		if (is_strong) k = std::lower_bound(dp.begin(), dp.begin() + len, a[i]) - dp.begin();
-		else k = std::upper_bound(dp.begin(), dp.begin() + len, a[i]) - dp.begin();
-
-		dp[k] = a[i];
-		pos[k] = i;
-
-		if (k > 0) pre[i] = pos[k - 1];
-
-		if (k == len) ++len;
+	for (int i = n - 1; i >= 0; --i) {
+		int x = (int)(std::lower_bound(xs.begin(), xs.end(), a[i]) - xs.begin()) + 1;
+		int rev = m - x + 1;
+		len[i] = 1 + query(is_strong ? rev - 1 : rev);
+		update(rev, len[i]);
 	}
 
-	std::vector<int> res(len);
+	int rem = *std::max_element(len.begin(), len.end());
+	std::vector<int> res;
+	T last{};
+	bool has_last = false;
 
-	int cur = pos[len - 1];
+	for (int i = 0; i < n; ++i) {
+		if (len[i] < rem) continue;
+		if (has_last && (is_strong ? !(last < a[i]) : !(last <= a[i]))) continue;
 
-	for (int i = len - 1; i >= 0; --i) {
-		res[i] = cur;
-		cur = pre[cur];
+		res.push_back(i);
+		last = a[i];
+		has_last = true;
+		--rem;
+		if (rem == 0) break;
 	}
 
 	return res;
 }
-
 }
 
 #endif // KWM_T_ALGORITHM_DP_LONGEST_INCREASING_SUBSEQUENCE_HPP
