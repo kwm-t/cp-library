@@ -39,8 +39,8 @@ template<class T = int>
 struct BinaryTrie {
 private:
 	static constexpr int default_bit() {
-		if constexpr (std::is_same_v<T, int>) return 30;
-		else return 60;
+		if constexpr (std::is_same_v<T, int>) return 31;
+		else return 63;
 	}
 
 	int bit;
