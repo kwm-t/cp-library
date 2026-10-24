@@ -261,7 +261,7 @@ struct FormalPowerSeries : std::vector<T> {
 		assert(n > 0 && (*this)[0] == 1);
 		if (d == -1) d = n;
 		assert(d >= 0);
-		if (d < n) this->resize(d);
+		this->resize(d);
 		F f_inv = this->inv();
 		this->deriv_inplace();
 		this->multiply_inplace(f_inv);
