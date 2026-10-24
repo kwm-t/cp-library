@@ -86,6 +86,10 @@ namespace kwm_t::geometry {
 			return x * o.y - y * o.x;
 		}
 
+		auto dist(const Point& o) const {
+			return (x - o.x) * (x - o.x) + (y - o.y) * (y - o.y);
+		}
+
 		/* squared norm */
 
 		auto norm2() const {
