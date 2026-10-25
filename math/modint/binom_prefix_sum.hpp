@@ -43,6 +43,9 @@ namespace kwm_t::math::modint {
  * @return
  *   各クエリに対する
  *   sum_{i=0}^{y[j]-1} C(x[j], i)
+ * 
+ * @verify
+ *  https://judge.yosupo.jp/submission/413215
  */
 template <class Mint>
 std::vector<Mint> binom_prefix_sum(
