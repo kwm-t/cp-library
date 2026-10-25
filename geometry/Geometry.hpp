@@ -50,7 +50,6 @@ D cross(const Point &lh, const Point &rh) {
     return lh.real() * rh.imag() - lh.imag() * rh.real();
 }
 
-// ★ 修正ポイント（バグ）
 Point rotate(const Point &p, const D &theta) {
     return Point(
         std::cos(theta) * p.real() - std::sin(theta) * p.imag(),
