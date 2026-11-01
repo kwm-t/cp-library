@@ -8,6 +8,8 @@
 #define KWM_T_MATH_SIEVE_HPP
 
 #include <vector>
+#include <algorithm>
+#include <cmath>
 
 namespace kwm_t::math {
 
@@ -43,6 +45,36 @@ inline std::vector<int> primes(int n) {
 	}
 	return res;
 }
-}
 
+/**
+ * @brief 区間篩
+ * [l, r) に含まれる素数を列挙する
+ */
+inline std::vector<long long> segmented_sieve(long long l, long long r) {
+	std::vector<long long> res;
+	if (r <= 2 || l >= r) return res;
+
+	l = std::max(l, 2LL);
+
+	long long n = static_cast<long long>(std::sqrt(r - 1));
+	while (n < (r - 1) / n) ++n;
+	auto is_prime = sieve(static_cast<int>(n));
+
+	std::vector<bool> ok(r - l, true);
+
+	for (long long p = 2; p <= n; ++p) {
+		if (!is_prime[p]) continue;
+
+		long long start = std::max(p * p, ((l + p - 1) / p) * p);
+		for (long long i = start; i < r; i += p) {
+			ok[i - l] = false;
+		}
+	}
+
+	for (long long i = 0; i < r - l; ++i) {
+		if (ok[i]) res.push_back(l + i);
+	}
+	return res;
+}
+}
 #endif
