@@ -105,10 +105,10 @@ int dense(
 
 			for (int i = 0; i < n; ++i) {
 				if (p[i] != T(0)) {
-					x.emplace_back(i, internal::random_nonzero<Mint>(rnd));
+					x.emplace_back(i, Mint(val) * internal::random_nonzero<Mint>(rnd));
 				}
 				if (q[i] != T(0)) {
-					y.emplace_back(i, internal::random_nonzero<Mint>(rnd));
+					y.emplace_back(i, Mint(val) * internal::random_nonzero<Mint>(rnd));
 				}
 			}
 
@@ -165,12 +165,12 @@ int sparse(
 
 			for (const auto& [i, val] : p) {
 				if (val != T(0)) {
-					x.emplace_back(i, internal::random_nonzero<Mint>(rnd));
+					x.emplace_back(i, Mint(val) * internal::random_nonzero<Mint>(rnd));
 				}
 			}
 			for (const auto& [i, val] : q) {
 				if (val != T(0)) {
-					y.emplace_back(i, internal::random_nonzero<Mint>(rnd));
+					y.emplace_back(i, Mint(val) * internal::random_nonzero<Mint>(rnd));
 				}
 			}
 
