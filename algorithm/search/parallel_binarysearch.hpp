@@ -1,6 +1,6 @@
 ﻿/**
  * @file parallel_binarysearch.hpp
- * @brief 二分探索
+ * @brief 並列二分探索
  * @author kwm_t
  * @see https://github.com/kwm-t/cp-library/blob/main/algorithm/search/parallel_binarysearch.hpp
  */
