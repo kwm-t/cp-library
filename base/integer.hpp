@@ -337,6 +337,27 @@ inline Int128 lcm(Int128 a, Int128 b) {
     return (a / gcd(a, b)) * b;
 }
 
+/**
+ * @brief 絶対値
+ */
+inline Int128 abs(Int128 x) {
+    return x < 0 ? -x : x;
+}
+
+/**
+ * @brief min
+ */
+inline Int128 min(Int128 a, Int128 b) {
+    return a < b ? a : b;
+}
+
+/**
+ * @brief max
+ */
+inline Int128 max(Int128 a, Int128 b) {
+    return a < b ? b : a;
+}
+
 } // namespace base
 } // namespace kwm_t
 
