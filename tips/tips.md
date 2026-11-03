@@ -20,7 +20,6 @@ printf("%.16Lf\n", ans);
 // iostream
 cout << fixed << setprecision(16) << ans << endl;
 ```
-
 ---
 
 ## 🔹 部分集合DP（部分集合列挙）
