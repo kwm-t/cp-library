@@ -4,8 +4,8 @@
  * @author kwm_t
  * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/fracmint.hpp
  */
-#ifndef KMW_T_MATH_MODINT_FRACMINT_HPP
-#define KMW_T_MATH_MODINT_FRACMINT_HPP
+#ifndef KWM_T_MATH_MODINT_FRACMINT_HPP
+#define KWM_T_MATH_MODINT_FRACMINT_HPP
 
 #include <iostream>
 #include <cassert>
@@ -24,7 +24,7 @@
  *   - 分母0は未定義（assertで落とす）
  */
 
-namespace kmw_t::math::modint {
+namespace kwm_t::math::modint {
 
 	template <class Mint>
 	struct FracMint {
@@ -130,6 +130,6 @@ namespace kmw_t::math::modint {
 		}
 	};
 
-} // namespace kmw_t::math::modint
+} // namespace kwm_t::math::modint
 
-#endif // KMW_T_MATH_MODINT_FRACMINT_HPP
+#endif // KWM_T_MATH_MODINT_FRACMINT_HPP

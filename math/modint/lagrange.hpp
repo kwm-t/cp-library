@@ -4,8 +4,8 @@
  * @author kwm_t
  * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/lagrange.hpp
  */
-#ifndef KMW_T_MATH_MODINT_LAGRANGE_HPP
-#define KMW_T_MATH_MODINT_LAGRANGE_HPP
+#ifndef KWM_T_MATH_MODINT_LAGRANGE_HPP
+#define KWM_T_MATH_MODINT_LAGRANGE_HPP
 
 #include <vector>
 
@@ -28,7 +28,7 @@
   *   https://atcoder.jp/contests/arc230/submissions/79418709
   */
 
-namespace kmw_t::math::modint {
+namespace kwm_t::math::modint {
 
 template <class Mint>
 Mint lagrange_interpolation(const std::vector<Mint>& y, long long x) {
@@ -137,6 +137,6 @@ std::vector<Mint> lagrange_coefficients(const std::vector<Mint>& y) {
 	res.resize(N);
 	return res;
 }
-} // namespace kmw_t::math::modint
+} // namespace kwm_t::math::modint
 
-#endif // KMW_T_MATH_MODINT_LAGRANGE_HPP
+#endif // KWM_T_MATH_MODINT_LAGRANGE_HPP

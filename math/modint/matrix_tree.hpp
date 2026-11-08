@@ -4,8 +4,8 @@
  * @author kwm_t
  * @see https://github.com/kwm-t/cp-library/blob/main/math/modint/matrix_tree.hpp
  */
-#ifndef KMW_T_MATH_MODINT_MATRIX_TREE_HPP
-#define KMW_T_MATH_MODINT_MATRIX_TREE_HPP
+#ifndef KWM_T_MATH_MODINT_MATRIX_TREE_HPP
+#define KWM_T_MATH_MODINT_MATRIX_TREE_HPP
 
 #include <vector>
 
@@ -28,7 +28,7 @@
  *   https://yukicoder.me/submissions/1153309
  */
 
-namespace kmw_t::math::modint {
+namespace kwm_t::math::modint {
 
 	template <class Mint>
 	Mint count_spanning_tree(std::vector<std::vector<Mint>> mat) {
@@ -63,6 +63,6 @@ namespace kmw_t::math::modint {
 		return det;
 	}
 
-} // namespace kmw_t::math::modint
+} // namespace kwm_t::math::modint
 
-#endif // KMW_T_MATH_MODINT_MATRIX_TREE_HPP
+#endif // KWM_T_MATH_MODINT_MATRIX_TREE_HPP
